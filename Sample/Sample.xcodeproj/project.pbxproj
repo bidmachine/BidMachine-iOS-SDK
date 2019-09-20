@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -138,10 +138,12 @@
 		42F86ED421BA8EC700B58CB5 /* NativeAdViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NativeAdViewCell.xib; sourceTree = "<group>"; };
 		42F86ED521BA8EC700B58CB5 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 		4C457DF5B61B5580F6B78493 /* Pods_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		549B8E916D5C2C388455B574 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
 		650DD9D321C8FEF50092473F /* NSBundle+Swizz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Swizz.h"; sourceTree = "<group>"; };
 		650DD9D421C8FEF50092473F /* NSBundle+Swizz.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Swizz.m"; sourceTree = "<group>"; };
 		650DD9D621C8FF370092473F /* Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		651D7334218C47BB0001227B /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		9CAAA96B182D4995F32BC9A0 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		D901693121F6030C00FECE42 /* BannerLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerLoadingVC.swift; sourceTree = "<group>"; };
 		D91BDE8521B28F4700C538CE /* TableViewContentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewContentEntity.swift; sourceTree = "<group>"; };
 		D91F84A12175CC11005A92F1 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +308,8 @@
 			children = (
 				2465525C1AE09FD9EE054AA7 /* Pods-Sample.debug.xcconfig */,
 				2F370CB65E2C78152C295470 /* Pods-Sample.release.xcconfig */,
+				9CAAA96B182D4995F32BC9A0 /* Pods-Sample.debug.xcconfig */,
+				549B8E916D5C2C388455B574 /* Pods-Sample.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -533,15 +537,28 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${PODS_ROOT}/DTBiOSSDK/DTBiOSSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTBiOSSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AEC1BF259906E4EAA4E16271 /* [CP] Copy Pods Resources */ = {
@@ -550,15 +567,20 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-Sample/Pods-Sample-resources.sh",
+				"${PODS_ROOT}/TapjoySDK/Tapjoy.framework/Versions/A/Resources/TapjoyResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TapjoyResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Sample/Pods-Sample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -750,13 +772,14 @@
 		};
 		D91F84B42175CC12005A92F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2465525C1AE09FD9EE054AA7 /* Pods-Sample.debug.xcconfig */;
+			baseConfigurationReference = 9CAAA96B182D4995F32BC9A0 /* Pods-Sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -779,13 +802,14 @@
 		};
 		D91F84B52175CC12005A92F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F370CB65E2C78152C295470 /* Pods-Sample.release.xcconfig */;
+			baseConfigurationReference = 549B8E916D5C2C388455B574 /* Pods-Sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

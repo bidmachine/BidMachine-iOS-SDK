@@ -903,7 +903,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kiwi/Kiwi.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
@@ -916,7 +916,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C43C06997D5090DD0B747B31 /* [CP] Check Pods Manifest.lock */ = {
