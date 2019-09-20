@@ -31,6 +31,7 @@ export ADAPTERS=(
     "BDMTapjoyAdapter"
     "BDMMintegralAdapter"
     "BDMCriteoAdapter"
+    "BDMAmazonAdapter"
     )
 
 # Utility 
@@ -119,10 +120,16 @@ function merge_components {
 
 function copy_adapters {
     local universal_temp_dir=$TEMP_DIR/universal
+    echo -e "${INFO}Copy $adapter${INFO}"    
 
     for adapter in ${ADAPTERS[@]}; do 
-        echo -e "${INFO}Copy $adapter${INFO}"    
-        mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
+        if [[ "$adapter" == "BDMAmazonAdapter" ]]; then
+            mkdir "$RELEASE_DIR/$adapter.embeddedframework"
+            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/$adapter.embeddedframework/lib$adapter.a"
+            cp -r "$PROJECT_DIR/Pods/DTBiOSSDK/DTBiOSSDK.framework" "$RELEASE_DIR/$adapter.embeddedframework"
+        else
+            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
+        fi
     done
 }
 

@@ -146,6 +146,34 @@
                ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D9403D162327D2550091E61E"
+               BuildableName = "libBDMAmazonAdapter.a"
+               BlueprintName = "BDMAmazonAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "427D1C6823293EEF00874ED0"
+               BuildableName = "libBDMCriteoAdapter.a"
+               BlueprintName = "BDMCriteoAdapter"
+               ReferencedContainer = "container:../Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

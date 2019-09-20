@@ -68,4 +68,11 @@ Pod::Spec.new do |s|
     ss.vendored_libraries = 'libBDMCriteoAdapter.a' 
     ss.dependency 'BidMachine/Core'
   end
+
+  s.subspec 'AmazonAdapter' do |ss|
+    ss.vendored_libraries = 'BDMAmazonAdapter.embeddedframework/*.a' 
+    ss.vendored_frameworks = 'BDMAmazonAdapter.embeddedframework/*.framework' 
+
+    ss.dependency 'BidMachine/Core'
+  end
 end
