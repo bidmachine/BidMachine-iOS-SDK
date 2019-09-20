@@ -161,9 +161,9 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 #pragma mark - Private
 
 - (CGSize)sizeFromContentInfo:(NSDictionary *)contentInfo {
-    NSNumber * width = contentInfo[@"width"];
-    NSNumber * height = contentInfo[@"height"];
-    if (ANY(width).number != nil || ANY(height).number != nil) {
+    NSNumber * width = contentInfo[@"width"] ? : contentInfo[@"w"];
+    NSNumber * height = contentInfo[@"height"] ? : contentInfo[@"h"];
+    if (ANY(width).number == nil || ANY(height).number == nil) {
         return [self defaultAdSize];
     }
     if (width.floatValue <= 0 ||

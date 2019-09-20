@@ -15,9 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMMintegralVideoAdProxy : NSObject <MTGRewardAdLoadDelegate, MTGRewardAdShowDelegate>
 
-//@property (nonatomic, weak, nullable) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
-//@property (nonatomic, weak, nullable) id <BDMAdapterLoadingDelegate> loadingDelegate;
-
 @property (nonatomic, weak) id <BDMFullscreenAdapter> adapter;
 @property (nonatomic, strong, readonly) MTGBidRewardAdManager *manager;
 

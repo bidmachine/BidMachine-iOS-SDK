@@ -61,6 +61,10 @@ def mintegral
   pod 'MintegralAdSDK/BidRewardVideoAd', '~> 5.6'
 end
 
+def amazon
+  pod 'DTBiOSSDK', '~> 3.0'
+end
+
 # Targets configuration
 target 'BidMachine' do
   project 'BidMachine/BidMachine.xcodeproj'
@@ -127,6 +131,12 @@ target 'BDMMintegralAdapter' do
   stack_modules
 end
 
+target 'BDMAmazonAdapter' do
+  project 'Adaptors/Adaptors.xcodeproj'
+  amazon
+  stack_modules
+end
+
 target 'Sample' do
   project 'Sample/Sample.xcodeproj'
   mraid
@@ -138,6 +148,7 @@ target 'Sample' do
   tapjoy
   facebook
   mintegral
+  amazon
   stack_modules
   protobuf
   toasts
