@@ -8,21 +8,20 @@
 
 #import "BDMNativeAdViewDisplayAd.h"
 #import "BDMViewabilityMetricProvider.h"
-#import "BDMNativeAd.h"
-#import "UIView+BDMNativeAd.h"
 #import "NSError+BDMSdk.h"
-#import "BDMNativeAdProtocol.h"
 #import "BDMSdk+Project.h"
 
+#import <StackFoundation/StackFoundation.h>
 
-@interface BDMNativeAdViewDisplayAd () <BDMViewabilityMetricProviderDelegate>
+@interface BDMNativeAdViewDisplayAd () <BDMNativeAdAdapterDataSource, BDMViewabilityMetricProviderDelegate, BDMNativeAdAdapterDelegate, BDMNativeAdAdapterDataSource>
 
-@property (nonatomic, strong) id <BDMNativeAd> adapter;
 @property (nonatomic, strong) BDMViewabilityMetricProvider * metricProvider;
-@property (nonatomic, strong) UITapGestureRecognizer * tapGestureRecognizer;
+@property (nonatomic, strong) id <BDMNativeAdServiceAdapter> serviceAdapter;
+@property (nonatomic, strong) id <BDMNativeAdAdapter> nativeAdAdapter;
 
 @property (nonatomic, weak) UIViewController * rootViewController;
-@property (nonatomic, weak) UIView <BDMNativeAdView> * container;
+@property (nonatomic, weak) id <BDMNativeAdRendering> renderingAd;
+@property (nonatomic, weak) UIView * containerView;
 
 @end
 
@@ -33,26 +32,59 @@
         BDMLog(@"Trying to initialise BDMNativeAdViewDisplayAd with placement of unsupported type");
         return nil;
     }
-    return nil;
-}
-
-- (void)presentAd:(UIViewController *)controller container:(UIView <BDMNativeAdView> *)container {
-    if (container.BDM_associatedNativeAd == self.adapter) {
-        return;
-    }
     
-    self.rootViewController = controller;
-    self.container = container;
-    [self renderNativeAd];
-}
-
-- (UIView *)adView {
-    return self.container;
+    id <BDMNativeAdServiceAdapter> adapter;
+    BDMNativeAdViewDisplayAd * displayAd = [[BDMNativeAdViewDisplayAd alloc] initWithResponse:response];
+    adapter = [BDMSdk.sharedSdk nativeAdAdapterForNetwork:displayAd.displayManager];
+    displayAd.serviceAdapter = adapter;
+    
+    return displayAd;
 }
 
 - (void)prepare {
-    // TODO: Do something with native ad
+    [self prepareAdapter:self.serviceAdapter];
 }
+
+- (void)presentOn:(id<BDMNativeAdRendering>)renderingAd controller:(UIViewController *)controller error:(NSError *__autoreleasing  _Nullable *)error {
+    BDMLog(@"Trying to present adapter: %@ with viewability configuration: %@", self.nativeAdAdapter, self.viewabilityConfig);
+    NSError *internalError = nil;
+    if (![self validateRenderingAd:renderingAd error:error]) {
+        STK_SET_AUTORELASE_VAR(error, internalError);
+        [self.delegate displayAd:self failedToPresent:internalError];
+        return;
+    }
+    
+//    if (![BDMSdk.sharedSdk isDeviceReachable]) {
+//        internalError = [NSError bdm_errorWithCode:BDMErrorCodeNoConnection description:@"You are not connected to Internet."];
+//        STK_SET_AUTORELASE_VAR(error, internalError);
+//        [self.delegate displayAd:self failedToPresent:internalError];
+//        return;
+//    }
+    
+    self.rootViewController = controller;
+    self.containerView = renderingAd.containerView;
+    @try {
+        [self.nativeAdAdapter renderOn:renderingAd
+                              delegate:self
+                            dataSource:self];
+        // Viewability
+        [self.metricProvider startViewabilityMonitoringForView:renderingAd.containerView
+                                                 configuration:self.viewabilityConfig
+                                                      delegate:self];
+    }
+    @catch (NSException * exc) {
+        BDMLog(@"Adapter: %@ raise exception: %@", self.nativeAdAdapter, exc);
+        STK_SET_AUTORELASE_VAR(error, exc.bdm_wrappedError);
+        [self.delegate displayAd:self failedToPresent:exc.bdm_wrappedError];
+    }
+}
+
+- (void)invalidate {
+    [self.metricProvider finishViewabilityMonitoringForView:self.containerView];
+    [super invalidate];
+}
+
+#pragma mark - Private
 
 - (BDMViewabilityMetricProvider *)metricProvider {
     if (!_metricProvider) {
@@ -62,81 +94,62 @@
     return _metricProvider;
 }
 
-- (UITapGestureRecognizer *)tapGestureRecognizer {
-    if (!_tapGestureRecognizer) {
-        _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerTap)];
-        _tapGestureRecognizer.numberOfTapsRequired = 1;
+- (BOOL)validateRenderingAd:(id<BDMNativeAdRendering>)renderingAd error:(NSError * _Nullable __autoreleasing *)error {
+    BOOL containsIcon = [renderingAd respondsToSelector:@selector(iconView)] && renderingAd.iconView != nil;
+    BOOL containsMedia = [renderingAd respondsToSelector:@selector(mediaContainerView)] && renderingAd.mediaContainerView != nil;
+    BOOL isValid = containsIcon || containsMedia;
+    
+    if (!isValid) {
+        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"Rendering ad shuld contains Media or Icon field"]);
     }
-    return _tapGestureRecognizer;
-}
-
-- (void)registerTap {
-    // Register tap
-}
-
-- (void)invalidate {
-    [self.container BDM_setAssociatedNativeAd:nil];
-    [self.metricProvider finishViewabilityMonitoringForView:self.adView];
-    [super invalidate]; 
-}
-
-- (void)renderNativeAd {
-    // Rendering
-    BDMLog(@"Trying to present adapter: %@ with viewability configuration: %@", self.adapter, self.viewabilityConfig);
-    @try {
-        if ([self.adapter respondsToSelector:@selector(renderOnView:)]) {
-            [self.adapter renderOnView:self.container];
-        }
-        // Viewability
-        [self.metricProvider startViewabilityMonitoringForView:self.container
-                                                 configuration:self.viewabilityConfig
-                                                      delegate:self];
-        // Clicks
-        if ([self.adapter respondsToSelector:@selector(clickableViews)]) {
-            [[self.adapter clickableViews] enumerateObjectsUsingBlock:^(UIView * view, NSUInteger idx, BOOL * stop) {
-                [view addGestureRecognizer:self.tapGestureRecognizer];
-            }];
-        } else {
-            [self.container addGestureRecognizer:self.tapGestureRecognizer];
-        }
-    }
-    @catch (NSException * exc) {
-        BDMLog(@"Adapter: %@ raise exception: %@", self.adapter, exc);
-        [self.delegate displayAd:self failedToPresent:exc.bdm_wrappedError];
-    }
-}
-
-#pragma mark - BDMBannerAdapterDisplayDelegate
-
-- (void)adapter:(id<BDMAdapter>)adapter failedToPresentAdWithError:(NSError *)error {
-    BDMLog(@"Adapter: %@ failed to present with error: %@", adapter, error);
-    [self.delegate displayAd:self failedToPresent:error];
-}
-
-- (void)adapterRegisterUserInteraction:(id<BDMBannerAdapter>)adapter {
-    BDMLog(@"Adapter: %@ register user interaction", adapter);
-    [self.delegate displayAdLogUserInteraction:self];
-}
-
-- (UIViewController *)rootViewControllerForAdapter:(id<BDMBannerAdapter>)adapter {
-    return self.rootViewController;
+    return isValid;
 }
 
 #pragma mark - BDMViewabilityMetricProviderDelegate
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectFinishView:(UIView *)view {
-    BDMLog(@"Adapter: %@ finish view", self.adapter);
+    BDMLog(@"Adapter: %@ finish view", self.nativeAdAdapter);
     [self.delegate displayAdLogFinishView:self];
+    if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackFinish)]) {
+        [self.nativeAdAdapter nativeAdDidTrackFinish];
+    }
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectImpression:(UIView *)view {
-    BDMLog(@"Adapter: %@ impression view", self.adapter);
+    BDMLog(@"Adapter: %@ impression view", self.nativeAdAdapter);
     [self.delegate displayAdLogImpression:self];
+    if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackViewability)]) {
+        [self.nativeAdAdapter nativeAdDidTrackViewability];
+    }
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectStartView:(UIView *)view {
-    BDMLog(@"Adapter: %@ start view", self.adapter);
+    BDMLog(@"Adapter: %@ start view", self.nativeAdAdapter);
     [self.delegate displayAdLogStartView:self];
+    if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackImpression)]) {
+        [self.nativeAdAdapter nativeAdDidTrackImpression];
+    }
+}
+
+#pragma mark - BDMNativeAdAdapterDelegate
+
+- (void)trackInteraction {
+     BDMLog(@"Adapter: %@ register user interaction", self.nativeAdAdapter);
+    [self.delegate displayAdLogUserInteraction:self];
+}
+
+#pragma mark - BDMNativeAdAdapterDataSource;
+
+- (nonnull UIViewController *)rootViewController {
+    return self.rootViewController;
+}
+
+#pragma mark - Override
+
+- (void)service:(id<BDMNativeAdServiceAdapter>)service didLoadNativeAds:(NSArray <id<BDMNativeAdAdapter>> *)nativeAds {
+    self.nativeAdAdapter = nativeAds.firstObject;
+    //TODO: Append validation (now nothing validate)
+    [super service:service didLoadNativeAds:nativeAds];
 }
 
 @end

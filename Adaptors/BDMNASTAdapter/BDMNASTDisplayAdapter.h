@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BidMachine/BDMNativeAdProtocol.h>
+@import BidMachine.Adapters;
 
 @import StackNASTKit;
 
 
-@interface BDMNASTDisplayAdapter : NSObject <BDMNativeAd>
+@interface BDMNASTDisplayAdapter : NSObject <BDMNativeAdAdapter>
 
 + (instancetype)displayAdapterForAd:(STKNASTAd *)ad;
 

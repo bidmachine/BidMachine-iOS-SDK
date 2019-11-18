@@ -12,7 +12,7 @@
 #import "BDMSdk+Project.h"
 
 
-@interface BDMBaseDisplayAd () <BDMAdapterLoadingDelegate>
+@interface BDMBaseDisplayAd ()
 
 @property (nonatomic, strong, readwrite) BDMResponse *response;
 @property (nonatomic, assign, readwrite) BOOL hasLoadedCreative;
@@ -95,7 +95,7 @@
 
 #pragma mark - BDMNativeAdServiceAdapterLoadingDelegate
 
-- (void)service:(id<BDMNativeAdServiceAdapter>)service didLoadNativeAds:(NSArray <id<BDMNativeAd>> *)nativeAds {
+- (void)service:(id<BDMNativeAdServiceAdapter>)service didLoadNativeAds:(NSArray <id<BDMNativeAdAdapter>> *)nativeAds {
     self.hasLoadedCreative = YES;
     BDMLog(@"Adapter prepared ad content: %@", service);
     [self.delegate displayAdReady:self];

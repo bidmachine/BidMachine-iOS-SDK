@@ -10,7 +10,6 @@
 #import "BDMFullscreenAdDisplayAd.h"
 #import "BDMBannerViewDisplayAd.h"
 #import "BDMNativeAdViewDisplayAd.h"
-#import "BDMNativeAdProtocol.h"
 #import "BDMRequest+Private.h"
 #import "NSError+BDMSdk.h"
 #import <StackFoundation/StackFoundation.h>

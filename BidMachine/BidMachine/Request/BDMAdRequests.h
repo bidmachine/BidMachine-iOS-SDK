@@ -57,3 +57,20 @@
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate;
 
 @end
+
+/**
+ Request for native ad
+ */
+@interface BDMNativeAdRequest : BDMRequest
+/**
+ Specify ad type of native ad
+ */
+@property (nonatomic, assign, readwrite) BDMNativeAdType type;
+/**
+ Perform auction for current parameters
+ 
+ @param delegate Delegate object
+ */
+- (void)performWithDelegate:(id<BDMRequestDelegate>)delegate;
+
+@end

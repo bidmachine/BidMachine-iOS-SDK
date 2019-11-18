@@ -59,3 +59,20 @@
 }
 
 @end
+
+@implementation BDMNativeAdRequest
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.type = BDMNativeAdTypeAllMedia;
+    }
+    return self;
+}
+
+- (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
+    [self registerDelegate: delegate];
+    id<BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement nativePlacementWithAdType:self.type];
+    [self performWithRequest:self placementType:BDMInternalPlacementTypeNative placementBuilder:builder];
+}
+
+@end

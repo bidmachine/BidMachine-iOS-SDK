@@ -9,7 +9,8 @@
 import UIKit
 import BidMachine
 
-class NativeAdViewCell: UITableViewCell, BDMNativeAdView {
+class NativeAdViewCell: UITableViewCell, BDMNativeAdRendering {
+    
     @IBOutlet weak var titleLab: UILabel!
     @IBOutlet weak var descriptionLab: UILabel!
     @IBOutlet weak var icon: UIImageView!
@@ -34,6 +35,10 @@ class NativeAdViewCell: UITableViewCell, BDMNativeAdView {
     
     func callToActionLabel() -> UILabel {
         return callToActionLab
+    }
+    
+    func containerView() -> UIView {
+        return self
     }
 }
 

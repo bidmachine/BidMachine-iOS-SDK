@@ -12,7 +12,7 @@
 #import "BDMResponse.h"
 
 
-@interface BDMBaseDisplayAd : NSObject <BDMDisplayAd>
+@interface BDMBaseDisplayAd : NSObject <BDMDisplayAd, BDMAdapterLoadingDelegate, BDMNativeAdServiceAdapterLoadingDelegate>
 
 @property (nonatomic, weak, readwrite) id<BDMDisplayAdDelegate> delegate;
 @property (nonatomic, weak, readonly) UIView *adView;

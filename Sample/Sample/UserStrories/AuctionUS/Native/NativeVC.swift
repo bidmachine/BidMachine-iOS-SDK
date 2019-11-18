@@ -10,7 +10,7 @@ import UIKit
 import BidMachine
 
 class NativeVC: UIViewController {
-    private var request: BDMRequest?
+    private var request: BDMNativeAdRequest?
     
     
     override func viewDidLoad() {

@@ -6,12 +6,23 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "BDMBaseDisplayAd.h"
+#import "BDMNativeAd.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
+/// Native custom class display ad
 @interface BDMNativeAdViewDisplayAd : BDMBaseDisplayAd
+/// Call method to start rendering ad
+/// @param renderingAd Rendering container
+/// @param controller Root view controller
+/// @param error Autorelease error return syncronized error ( validate, reachability or throw exception )
+- (void)presentOn:(id <BDMNativeAdRendering>)renderingAd
+       controller:(UIViewController *)controller
+            error:(NSError * __autoreleasing*)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 

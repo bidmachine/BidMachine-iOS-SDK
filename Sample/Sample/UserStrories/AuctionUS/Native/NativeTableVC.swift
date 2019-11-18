@@ -16,7 +16,7 @@ class NativeTableVC: UITableViewController {
         static let contentDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
     private let native = BDMNativeAd()
-    var request: BDMRequest?
+    var request: BDMNativeAdRequest?
     var error: NSError?
     
     @IBOutlet var nativeAdExampleTV: UITableView!
@@ -36,19 +36,19 @@ class NativeTableVC: UITableViewController {
         nativeAdExampleTV.register(NativeAdViewCell.nib, forCellReuseIdentifier: NativeAdViewCell.reuseIdentifier)
         native.delegate = self
         
-        let req = request ?? BDMRequest()
+        let req = request ?? BDMNativeAdRequest()
         native.make(req)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row.quotientAndRemainder(dividingBy: 3).remainder == 0 {
             let nativeAdViewCell = tableView.dequeueReusableCell(withIdentifier: NativeAdViewCell.reuseIdentifier, for: indexPath) as! NativeAdViewCell
-            native.present(on: nativeAdViewCell, fromRootViewController: self, error: &error)
+            native.present(on: nativeAdViewCell, controller: self, error: &error)
             return nativeAdViewCell
         }
         

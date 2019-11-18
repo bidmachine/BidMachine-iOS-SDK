@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4204768F21353E1B00FA2261 /* BDMNativeAdProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */; };
 		420476932135483600FA2261 /* BDMRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 420476912135483600FA2261 /* BDMRuntimeExtensions.h */; };
 		420476942135483600FA2261 /* BDMRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 420476922135483600FA2261 /* BDMRuntimeExtensions.m */; };
 		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
@@ -39,8 +38,6 @@
 		42420DD921B7AA280041C724 /* BDMInitialisationResponseProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42420DD821B7AA280041C724 /* BDMInitialisationResponseProtocol.h */; };
 		42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 42420DDA21B7AA930041C724 /* BDMInitialisationResponseModel.h */; };
 		42420DDD21B7AA930041C724 /* BDMInitialisationResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42420DDB21B7AA930041C724 /* BDMInitialisationResponseModel.m */; };
-		4248C208218C88CE00279AE2 /* UIView+BDMNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4248C206218C88CE00279AE2 /* UIView+BDMNativeAd.h */; };
-		4248C209218C88CE00279AE2 /* UIView+BDMNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248C207218C88CE00279AE2 /* UIView+BDMNativeAd.m */; };
 		424BA29A2199CCC800E2745D /* BDMUserAgentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */; };
 		424BA29F2199CCD300E2745D /* BDMTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BA29B2199CCD300E2745D /* BDMTransformers.m */; };
 		424BA2A02199CCD300E2745D /* BDMTransformers.h in Headers */ = {isa = PBXBuildFile; fileRef = 424BA29C2199CCD300E2745D /* BDMTransformers.h */; };
@@ -140,9 +137,6 @@
 		9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBED2281FB3218D004C4669 /* BDMRequest.m */; };
 		9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2597231FB1DC91006F3FA7 /* BidMachine.framework */; };
 		9CFBD1831FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */; };
-		B993BB4020BFDA48000592D4 /* BDMNativeAdService.h in Headers */ = {isa = PBXBuildFile; fileRef = B993BB3E20BFDA48000592D4 /* BDMNativeAdService.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		B993BB4120BFDA48000592D4 /* BDMNativeAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = B993BB3F20BFDA48000592D4 /* BDMNativeAdService.m */; };
-		B993BB4420BFDA5B000592D4 /* BDMNativeAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B993BB4220BFDA5B000592D4 /* BDMNativeAdProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		C41C59EB49949D4F91A14F31 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */; };
 		D69B3D605EB114A9D2B9D3CF /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */; };
 /* End PBXBuildFile section */
@@ -159,7 +153,6 @@
 
 /* Begin PBXFileReference section */
 		07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.release.xcconfig"; sourceTree = "<group>"; };
-		4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdProtocol.m; sourceTree = "<group>"; };
 		420476912135483600FA2261 /* BDMRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRuntimeExtensions.h; sourceTree = "<group>"; };
 		420476922135483600FA2261 /* BDMRuntimeExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRuntimeExtensions.m; sourceTree = "<group>"; };
 		420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMProtoAPI-Umbrella.h"; sourceTree = "<group>"; };
@@ -191,8 +184,6 @@
 		42420DD821B7AA280041C724 /* BDMInitialisationResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInitialisationResponseProtocol.h; sourceTree = "<group>"; };
 		42420DDA21B7AA930041C724 /* BDMInitialisationResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInitialisationResponseModel.h; sourceTree = "<group>"; };
 		42420DDB21B7AA930041C724 /* BDMInitialisationResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInitialisationResponseModel.m; sourceTree = "<group>"; };
-		4248C206218C88CE00279AE2 /* UIView+BDMNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+BDMNativeAd.h"; sourceTree = "<group>"; };
-		4248C207218C88CE00279AE2 /* UIView+BDMNativeAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+BDMNativeAd.m"; sourceTree = "<group>"; };
 		424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMUserAgentProvider.m; sourceTree = "<group>"; };
 		424BA29B2199CCD300E2745D /* BDMTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDMTransformers.m; path = BidMachine/BDMTransformers.m; sourceTree = SOURCE_ROOT; };
 		424BA29C2199CCD300E2745D /* BDMTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDMTransformers.h; path = BidMachine/BDMTransformers.h; sourceTree = SOURCE_ROOT; };
@@ -302,9 +293,6 @@
 		9CFBD1761FB982BE00C31DE6 /* BidMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BidMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMServerCommunicatorSpec.m; sourceTree = "<group>"; };
 		9D9D423B3923E5DEE08C92FD /* Pods-BidMachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B993BB3E20BFDA48000592D4 /* BDMNativeAdService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdService.h; sourceTree = "<group>"; };
-		B993BB3F20BFDA48000592D4 /* BDMNativeAdService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdService.m; sourceTree = "<group>"; };
-		B993BB4220BFDA5B000592D4 /* BDMNativeAdProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdProtocol.h; sourceTree = "<group>"; };
 		BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -337,8 +325,6 @@
 				65CE5DA421B15F0400652496 /* BDMRetryTimer.m */,
 				420476912135483600FA2261 /* BDMRuntimeExtensions.h */,
 				420476922135483600FA2261 /* BDMRuntimeExtensions.m */,
-				4248C206218C88CE00279AE2 /* UIView+BDMNativeAd.h */,
-				4248C207218C88CE00279AE2 /* UIView+BDMNativeAd.m */,
 				9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */,
 				424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */,
 				422CAC3621AE7A38000A0D51 /* NSArray+BDMEventURL.h */,
@@ -476,7 +462,6 @@
 		429C045F2167585C000C5265 /* AdObjects */ = {
 			isa = PBXGroup;
 			children = (
-				429C046021676096000C5265 /* Private */,
 				427037C721AD245F007B47E4 /* BDMAdEventProducerProtocol.h */,
 				9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */,
 				9C25974E1FB1F8A0006F3FA7 /* BDMInterstitial.m */,
@@ -488,17 +473,6 @@
 				4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */,
 			);
 			path = AdObjects;
-			sourceTree = "<group>";
-		};
-		429C046021676096000C5265 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				B993BB4220BFDA5B000592D4 /* BDMNativeAdProtocol.h */,
-				4204768E21353E1B00FA2261 /* BDMNativeAdProtocol.m */,
-				B993BB3E20BFDA48000592D4 /* BDMNativeAdService.h */,
-				B993BB3F20BFDA48000592D4 /* BDMNativeAdService.m */,
-			);
-			path = Private;
 			sourceTree = "<group>";
 		};
 		42C3FDBB21624175004D3784 /* HeaderBidding */ = {
@@ -733,7 +707,6 @@
 				423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */,
 				9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */,
 				42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */,
-				B993BB4420BFDA5B000592D4 /* BDMNativeAdProtocol.h in Headers */,
 				4269622521836145004D9B17 /* BDMFullscreenAdDisplayAd.h in Headers */,
 				427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */,
 				9CBED2201FB2DBC4004C4669 /* BDMRegistry.h in Headers */,
@@ -749,7 +722,6 @@
 				9C2597471FB1EA50006F3FA7 /* BDMNetworkProtocol.h in Headers */,
 				9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */,
 				427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */,
-				4248C208218C88CE00279AE2 /* UIView+BDMNativeAd.h in Headers */,
 				4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */,
 				65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */,
 				4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */,
@@ -767,7 +739,6 @@
 				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
 				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
 				42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */,
-				B993BB4020BFDA48000592D4 /* BDMNativeAdService.h in Headers */,
 				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
 				422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */,
 				65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */,
@@ -948,7 +919,6 @@
 				9C6A651D2031D7F000D5A98A /* BDMFactory+BDMOperation.m in Sources */,
 				65CE5DA621B15F0400652496 /* BDMRetryTimer.m in Sources */,
 				4269622621836145004D9B17 /* BDMFullscreenAdDisplayAd.m in Sources */,
-				4248C209218C88CE00279AE2 /* UIView+BDMNativeAd.m in Sources */,
 				42CF2F6E22E065E8000E825A /* BDMHeaderBiddingPreparationOperation.m in Sources */,
 				425EF0102164C897004B1839 /* BDMSdkConfiguration.m in Sources */,
 				9C2597441FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m in Sources */,
@@ -979,7 +949,6 @@
 				65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */,
 				422712FB2164B5D100EE5012 /* BDMTargeting.m in Sources */,
 				65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */,
-				B993BB4120BFDA48000592D4 /* BDMNativeAdService.m in Sources */,
 				4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */,
 				426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */,
 				42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */,
@@ -996,7 +965,6 @@
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
 				422CAC3921AE7A38000A0D51 /* NSArray+BDMEventURL.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
-				4204768F21353E1B00FA2261 /* BDMNativeAdProtocol.m in Sources */,
 				6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */,
 				421AFFB622D898A3004DF0EB /* ADCOMAd+Private.m in Sources */,
 			);
