@@ -38,6 +38,23 @@
 - (void)setStarRating:(nonnull NSNumber *)rating;
 
 @end
+@protocol BDMNativeAdAssets <NSObject>
+/// Title text
+@property(nonatomic, readonly, copy, nonnull) NSString *title;
+/// Description
+@property(nonatomic, readonly, copy, nonnull) NSString *body;
+/// Call to action text
+@property(nonatomic, readonly, copy, nonnull) NSString *CTAText;
+/// Icon image url
+@property(nonatomic, readonly, copy, nonnull) NSString *iconUrl;
+/// Main image url
+@property(nonatomic, readonly, copy, nonnull) NSString *mainImageUrl;
+/// App store rating (0 to 5)
+@property(nonatomic, readonly, copy, nullable) NSNumber *starRating;
+/// Contains video
+@property(nonatomic, readonly, assign) BOOL containsVideo;
+
+@end
 /// Callback handler of native ad
 @protocol BDMNativeAdDelegate <NSObject>
 /// Trigger ready event
@@ -55,7 +72,7 @@
 
 @end
 /// Native ad object that provides native
-@interface BDMNativeAd : NSObject <BDMAdEventProducer>
+@interface BDMNativeAd : NSObject <BDMNativeAdAssets, BDMAdEventProducer>
 /// Delegate of producer
 @property (nonatomic, weak, nullable) id<BDMAdEventProducerDelegate> producerDelegate;
 /// Info of latest sucessful auctuion
@@ -70,10 +87,14 @@
 /// @param request Request with mediation specific parameters
 - (void)makeRequest:(nonnull BDMNativeAdRequest *)request;
 /// Present ready native ad in container
+/// @param view Presented view
+/// @param clickableViews Custom clickable views
 /// @param adRendering Native ad rendering object that conforms BDMNativeAdRendering
 /// @param controller Current view controller
 /// @param error Autorelease error pointer that indicates rendering error
-- (void)presentOn:(nonnull id <BDMNativeAdRendering>)adRendering
+- (void)presentOn:(nonnull UIView *)view
+   clickableViews:(nonnull NSArray<UIView *> *)clickableViews
+      adRendering:(nonnull id <BDMNativeAdRendering>)adRendering
        controller:(nonnull UIViewController *)controller
             error:(NSError *_Nullable __autoreleasing* _Nullable)error;
 /// Remove all loaded ad data

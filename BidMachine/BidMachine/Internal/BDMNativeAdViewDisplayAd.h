@@ -14,12 +14,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// Native custom class display ad
 @interface BDMNativeAdViewDisplayAd : BDMBaseDisplayAd
 /// Call method to start rendering ad
-/// @param renderingAd Rendering container
+/// @param view Presented view
+/// @param clickableViews Custom clickable views
+/// @param adRendering Native ad rendering object that conforms BDMNativeAdRendering
 /// @param controller Root view controller
-/// @param error Autorelease error return syncronized error ( validate, reachability or throw exception )
-- (void)presentOn:(id <BDMNativeAdRendering>)renderingAd
+/// @param error Autorelease error return syncronized error ( validate or throw exception )
+- (void)presentOn:(nonnull UIView *)view
+   clickableViews:(NSArray<UIView *> *)clickableViews
+      adRendering:(id <BDMNativeAdRendering>)adRendering
        controller:(UIViewController *)controller
             error:(NSError * __autoreleasing*)error;
+/// Current Native ad assets
+- (id<BDMNativeAdAssets>)assets;
 
 @end
 

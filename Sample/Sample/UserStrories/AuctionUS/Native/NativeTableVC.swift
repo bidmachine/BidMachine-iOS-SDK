@@ -48,7 +48,11 @@ class NativeTableVC: UITableViewController {
         
         if indexPath.row.quotientAndRemainder(dividingBy: 3).remainder == 0 {
             let nativeAdViewCell = tableView.dequeueReusableCell(withIdentifier: NativeAdViewCell.reuseIdentifier, for: indexPath) as! NativeAdViewCell
-            native.present(on: nativeAdViewCell, controller: self, error: &error)
+            native.present(on: nativeAdViewCell,
+                           clickableViews: [],
+                           adRendering: nativeAdViewCell,
+                           controller: self,
+                           error: &error)
             return nativeAdViewCell
         }
         

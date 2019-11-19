@@ -13,14 +13,12 @@
 
 #import <StackFoundation/StackFoundation.h>
 
-@interface BDMNativeAdViewDisplayAd () <BDMNativeAdAdapterDataSource, BDMViewabilityMetricProviderDelegate, BDMNativeAdAdapterDelegate, BDMNativeAdAdapterDataSource>
+@interface BDMNativeAdViewDisplayAd () <BDMViewabilityMetricProviderDelegate, BDMNativeAdAdapterDelegate>
 
 @property (nonatomic, strong) BDMViewabilityMetricProvider * metricProvider;
 @property (nonatomic, strong) id <BDMNativeAdServiceAdapter> serviceAdapter;
 @property (nonatomic, strong) id <BDMNativeAdAdapter> nativeAdAdapter;
 
-@property (nonatomic, weak) UIViewController * rootViewController;
-@property (nonatomic, weak) id <BDMNativeAdRendering> renderingAd;
 @property (nonatomic, weak) UIView * containerView;
 
 @end
@@ -45,10 +43,15 @@
     [self prepareAdapter:self.serviceAdapter];
 }
 
-- (void)presentOn:(id<BDMNativeAdRendering>)renderingAd controller:(UIViewController *)controller error:(NSError *__autoreleasing  _Nullable *)error {
+- (void)presentOn:(UIView *)view
+   clickableViews:(NSArray<UIView *> *)clickableViews
+      adRendering:(id<BDMNativeAdRendering>)adRendering
+       controller:(UIViewController *)controller
+            error:(NSError *__autoreleasing  _Nullable *)error
+{
     BDMLog(@"Trying to present adapter: %@ with viewability configuration: %@", self.nativeAdAdapter, self.viewabilityConfig);
     NSError *internalError = nil;
-    if (![self validateRenderingAd:renderingAd error:error]) {
+    if (![self validateRenderingAd:adRendering error:error]) {
         STK_SET_AUTORELASE_VAR(error, internalError);
         [self.delegate displayAd:self failedToPresent:internalError];
         return;
@@ -61,14 +64,15 @@
 //        return;
 //    }
     
-    self.rootViewController = controller;
-    self.containerView = renderingAd.containerView;
+    self.containerView = view;
     @try {
-        [self.nativeAdAdapter renderOn:renderingAd
-                              delegate:self
-                            dataSource:self];
+        self.nativeAdAdapter.delegate = self;
+        [self.nativeAdAdapter presentOn:view
+                         clickableViews:clickableViews
+                            adRendering:adRendering
+                             controller:controller];
         // Viewability
-        [self.metricProvider startViewabilityMonitoringForView:renderingAd.containerView
+        [self.metricProvider startViewabilityMonitoringForView:view
                                                  configuration:self.viewabilityConfig
                                                       delegate:self];
     }
@@ -79,7 +83,12 @@
     }
 }
 
+- (id<BDMNativeAdAssets>)assets {
+    return self.nativeAdAdapter;
+}
+
 - (void)invalidate {
+    [self.nativeAdAdapter invalidate];
     [self.metricProvider finishViewabilityMonitoringForView:self.containerView];
     [super invalidate];
 }
@@ -133,15 +142,9 @@
 
 #pragma mark - BDMNativeAdAdapterDelegate
 
-- (void)trackInteraction {
-     BDMLog(@"Adapter: %@ register user interaction", self.nativeAdAdapter);
+- (void)nativeAdAdapterTrackUserInteraction:(id<BDMNativeAdAdapter>)adapter {
+     BDMLog(@"Adapter: %@ register user interaction", adapter);
     [self.delegate displayAdLogUserInteraction:self];
-}
-
-#pragma mark - BDMNativeAdAdapterDataSource;
-
-- (nonnull UIViewController *)rootViewController {
-    return self.rootViewController;
 }
 
 #pragma mark - Override

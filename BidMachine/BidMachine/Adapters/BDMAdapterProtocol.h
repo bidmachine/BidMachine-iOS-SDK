@@ -133,24 +133,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id <BDMNativeAdServiceAdapterLoadingDelegate> loadingDelegate;
 
 @end
-@protocol BDMNativeAdAdapterDataSource <NSObject>
-/// Controller for presentation custom ads controller
-- (nonnull UIViewController *)rootViewController;
-
-@end
 @protocol BDMNativeAdAdapterDelegate <NSObject>
 /// Fire method when network will tracked interaction
-- (void)trackInteraction;
+- (void)nativeAdAdapterTrackUserInteraction:(id<BDMNativeAdAdapter>)adapter;
 
 @end
-@protocol BDMNativeAdAdapter <NSObject>
-/// Start rendering native ad in container
-/// @param adRendering Ad rendering container view
-/// @param delegate Delegate callback handler
-/// @param dataSource Datasource callback handler
-- (void)renderOn:(id <BDMNativeAdRendering>)adRendering
-        delegate:(id<BDMNativeAdAdapterDelegate>)delegate
-      dataSource:(id <BDMNativeAdAdapterDataSource>)dataSource;
+@protocol BDMNativeAdAdapter <BDMNativeAdAssets>
+/// Native adapter delegate handler
+@property (nonatomic, weak, nullable) id<BDMNativeAdAdapterDelegate> delegate;
+/// Call method to start rendering ad
+/// @param view Presented view
+/// @param clickableViews Custom clickable views
+/// @param adRendering Native ad rendering object that conforms BDMNativeAdRendering
+/// @param controller Root view controller
+- (void)presentOn:(nonnull UIView *)view
+   clickableViews:(NSArray<UIView *> *)clickableViews
+      adRendering:(id <BDMNativeAdRendering>)adRendering
+       controller:(UIViewController *)controller;
+/// Call method when ads should be clean
+- (void)invalidate;
 @optional
 /// Is called when native will be invalidate
 - (void)nativeAdDidTrackFinish;

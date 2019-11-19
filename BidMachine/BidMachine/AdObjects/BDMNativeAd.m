@@ -51,9 +51,12 @@
     }
 }
 
-- (void)presentOn:(id<BDMNativeAdRendering>)adRendering
+- (void)presentOn:(UIView *)view
+   clickableViews:(NSArray<UIView *> *)clickableViews
+      adRendering:(id<BDMNativeAdRendering>)adRendering
        controller:(UIViewController *)controller
-            error:(NSError * _Nullable __autoreleasing *)error {
+            error:(NSError * _Nullable __autoreleasing *)error
+{
     if (!self.displayAd.hasLoadedCreative) {
         STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeNoContent
                                                      description:@"Display ad not ready to present any ad!"])
@@ -65,8 +68,11 @@
     [self.middleware startEvent:BDMEventViewable];
     
     [self.currentRequest cancelExpirationTimer];
-    //    self.isCreativeOnScreen = YES;
-    [self.displayAd presentOn:adRendering controller:controller error:error];
+    [self.displayAd presentOn:view
+               clickableViews:clickableViews
+                  adRendering:adRendering
+                   controller:controller
+                        error:error];
 }
 
 - (void)invalidate {
@@ -162,6 +168,36 @@
     if (error.code != BDMErrorCodeNoConnection) {
         [self invalidate];
     }
+}
+
+#pragma mark - BDMNativeAdAssets
+
+- (NSString *)title {
+    return [self.displayAd assets].title;
+}
+
+- (NSString *)body {
+    return [self.displayAd assets].title;
+}
+
+- (NSString *)CTAText {
+    return [self.displayAd assets].CTAText;
+}
+
+- (NSString *)iconUrl {
+    return [self.displayAd assets].iconUrl;
+}
+
+- (NSString *)mainImageUrl {
+    return [self.displayAd assets].mainImageUrl;
+}
+
+- (NSNumber *)starRating {
+    return [self.displayAd assets].starRating;
+}
+
+- (BOOL)containsVideo {
+    return [self.displayAd assets].containsVideo;
 }
 
 @end

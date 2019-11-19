@@ -16,6 +16,7 @@ end
 
 def nast
   pod 'StackIAB/StackNASTKit', '~> 0.5.0'
+  pod 'StackIAB/StackRichMedia', '~> 0.5.0'
 end
 
 def mraid
