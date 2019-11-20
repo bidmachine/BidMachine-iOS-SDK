@@ -108,8 +108,10 @@
     
     // Clicks
     [clickableViews enumerateObjectsUsingBlock:^(UIView * view, NSUInteger idx, BOOL * stop) {
+        view.userInteractionEnabled = YES;
         [view addGestureRecognizer:self.tapGestureRecognizer];
     }];
+    
 }
 
 - (void)invalidate {

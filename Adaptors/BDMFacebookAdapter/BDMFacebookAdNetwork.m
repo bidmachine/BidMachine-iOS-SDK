@@ -14,6 +14,7 @@
 #import "BDMFacebookStringValueTransformer.h"
 #import "BDMFacebookBannerAdapter.h"
 #import "BDMFacebookFullscreenAdapter.h"
+#import "BDMFacebookNativeAdServiceAdapter.h"
 
 
 @interface BDMFacebookAdNetwork ()
@@ -102,11 +103,15 @@
     return [BDMFacebookFullscreenAdapter new];
 }
 
+- (id<BDMNativeAdServiceAdapter>)nativeAdAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMFacebookNativeAdServiceAdapter new];
+}
+
 #pragma mark - Private
 
 - (void)syncMetadata {
     [FBAdSettings setLogLevel:BDMSdkLoggingEnabled ? FBAdLogLevelVerbose : FBAdLogLevelNone];
-    [FBAdSettings setIsChildDirected:BDMSdk.sharedSdk.restrictions.coppa];
+    [FBAdSettings setMixedAudience:BDMSdk.sharedSdk.restrictions.coppa];
 }
 
 @end

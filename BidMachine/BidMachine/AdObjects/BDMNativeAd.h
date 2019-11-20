@@ -20,9 +20,6 @@
 /// Label for call to action text
 /// @return Nonnul instance of label
 - (nonnull UILabel *)callToActionLabel;
-/// Container with all required and optional BDMNativeAdRendering views
-/// @return Nonnul instance of UIView
-- (nonnull UIView *)containerView;
 /// Label for description text
 /// @return Nonnul instance of label
 - (nonnull UILabel *)descriptionLabel;
@@ -33,6 +30,9 @@
 /// Container for media content
 /// @return  Nonnul instance of label may contains with aspect ratio 16:9
 - (nonnull UIView *)mediaContainerView;
+/// Container for AdChoice view content
+/// @return  Nonnul instance of label may contains with aspect ratio 16:9
+- (nonnull UIView *)adChoiceView;
 /// Is called with rating value
 /// @param rating Rating value number
 - (void)setStarRating:(nonnull NSNumber *)rating;

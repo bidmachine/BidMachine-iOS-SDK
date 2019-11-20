@@ -62,6 +62,12 @@
 		658CA9062361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9052361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m */; };
 		658CA90F2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */; };
 		658CA9122361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9112361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m */; };
+		65BA8E3023852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E2F23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m */; };
+		65BA8E3323852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3223852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m */; };
+		65BA8E3623853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3523853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.m */; };
+		65BA8E3923853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3823853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.m */; };
+		65BA8E3C23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3B23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m */; };
+		65BA8E3F23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3E23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m */; };
 		6B47495757048052CFAE08D1 /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9760A28AAF36CBCE46A7B5F3 /* Pods_BDMFacebookAdapter.framework */; };
 		6B9407F81F0B5BCD15DE14FC /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341B91B8A631D185022912B9 /* Pods_BDMMyTargetAdapter.framework */; };
 		79F342A3165C5C934C37DFDC /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C81FB136F6A9FC824EE07B11 /* Pods_BDMNASTAdapter.framework */; };
@@ -320,6 +326,18 @@
 		658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoFullscreenAdapter.m; sourceTree = "<group>"; };
 		658CA9102361B40C00B6D234 /* BDMSmaatoStringValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSmaatoStringValueTransformer.h; sourceTree = "<group>"; };
 		658CA9112361B40C00B6D234 /* BDMSmaatoStringValueTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoStringValueTransformer.m; sourceTree = "<group>"; };
+		65BA8E2E23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetNativeAdServiceAdapter.h; sourceTree = "<group>"; };
+		65BA8E2F23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetNativeAdServiceAdapter.m; sourceTree = "<group>"; };
+		65BA8E3123852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetNativeAdDisplayAdapter.h; sourceTree = "<group>"; };
+		65BA8E3223852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetNativeAdDisplayAdapter.m; sourceTree = "<group>"; };
+		65BA8E3423853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralNativeAdServiceAdapter.h; sourceTree = "<group>"; };
+		65BA8E3523853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralNativeAdServiceAdapter.m; sourceTree = "<group>"; };
+		65BA8E3723853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMintegralNativeAdDisplayAdapter.h; sourceTree = "<group>"; };
+		65BA8E3823853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMintegralNativeAdDisplayAdapter.m; sourceTree = "<group>"; };
+		65BA8E3A23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookNativeAdServiceAdapter.h; sourceTree = "<group>"; };
+		65BA8E3B23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookNativeAdServiceAdapter.m; sourceTree = "<group>"; };
+		65BA8E3D23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFacebookNativeAdDisplayAdapter.h; sourceTree = "<group>"; };
+		65BA8E3E23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFacebookNativeAdDisplayAdapter.m; sourceTree = "<group>"; };
 		69BAD9A02399B42BE4E60746 /* Pods_BDMMintegralAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMintegralAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CD4F6399F574C776C859CB /* Pods_BDMMintegralAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMintegralAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -698,6 +716,10 @@
 				42A93E6A22E70D2B005053A2 /* BDMFacebookBannerAdapter.m */,
 				42A93E6D22E71754005053A2 /* BDMFacebookFullscreenAdapter.h */,
 				42A93E6E22E71754005053A2 /* BDMFacebookFullscreenAdapter.m */,
+				65BA8E3A23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.h */,
+				65BA8E3B23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m */,
+				65BA8E3D23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.h */,
+				65BA8E3E23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m */,
 			);
 			name = Adapters;
 			sourceTree = "<group>";
@@ -709,6 +731,10 @@
 				4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */,
 				4231D02122E1D93C002852CE /* BDMMyTargetBannerAdapter.h */,
 				4231D02222E1D93C002852CE /* BDMMyTargetBannerAdapter.m */,
+				65BA8E2E23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.h */,
+				65BA8E2F23852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m */,
+				65BA8E3123852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.h */,
+				65BA8E3223852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m */,
 			);
 			name = Adapters;
 			sourceTree = "<group>";
@@ -880,6 +906,10 @@
 			children = (
 				D99FF2AC2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.h */,
 				D99FF2AD2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m */,
+				65BA8E3423853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.h */,
+				65BA8E3523853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.m */,
+				65BA8E3723853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.h */,
+				65BA8E3823853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.m */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -1534,6 +1564,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A93E5722E70368005053A2 /* BDMFacebookAdNetwork.m in Sources */,
+				65BA8E3F23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m in Sources */,
+				65BA8E3C23854E350007F298 /* BDMFacebookNativeAdServiceAdapter.m in Sources */,
 				42A93E6B22E70D2B005053A2 /* BDMFacebookBannerAdapter.m in Sources */,
 				42A93E6F22E71754005053A2 /* BDMFacebookFullscreenAdapter.m in Sources */,
 				42A93E6022E70758005053A2 /* BDMFaceebookPlacementsTransformer.m in Sources */,
@@ -1545,7 +1577,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BA8E3023852E6A0007F298 /* BDMMyTargetNativeAdServiceAdapter.m in Sources */,
 				4231D01D22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m in Sources */,
+				65BA8E3323852ECC0007F298 /* BDMMyTargetNativeAdDisplayAdapter.m in Sources */,
 				4231D02322E1D93C002852CE /* BDMMyTargetBannerAdapter.m in Sources */,
 				4231D01A22E1B4DA002852CE /* BDMMyTargetSlotTransformer.m in Sources */,
 				42D7311422DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m in Sources */,
@@ -1581,6 +1615,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D99FF2AE2306E72E0060FA8E /* BDMMintegralFullscreenAdapter.m in Sources */,
+				65BA8E3623853AFD0007F298 /* BDMMintegralNativeAdServiceAdapter.m in Sources */,
+				65BA8E3923853B1A0007F298 /* BDMMintegralNativeAdDisplayAdapter.m in Sources */,
 				D926898E23214DE800B79B2C /* BDMMintegralVideoAdProxy.m in Sources */,
 				D99FF2A023069A030060FA8E /* BDMMintegralAdNetwork.m in Sources */,
 				D99FF2AA2306DE120060FA8E /* BDMMintegralValueTransformer.m in Sources */,

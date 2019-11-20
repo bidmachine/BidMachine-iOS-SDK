@@ -13,6 +13,7 @@
 #import "BDMMyTargetSlotTransformer.h"
 #import "BDMMyTargetFullscreenAdapter.h"
 #import "BDMMyTargetBannerAdapter.h"
+#import "BDMMyTargetNativeAdServiceAdapter.h"
 
 
 @implementation BDMMyTargetAdNetwork
@@ -58,6 +59,10 @@
 
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk {
     return [BDMMyTargetBannerAdapter new];
+}
+
+- (id<BDMNativeAdServiceAdapter>)nativeAdAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMMyTargetNativeAdServiceAdapter new];
 }
 
 #pragma mark - Private

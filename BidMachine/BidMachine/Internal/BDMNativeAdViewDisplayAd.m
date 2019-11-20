@@ -66,6 +66,8 @@
     
     self.containerView = view;
     @try {
+        clickableViews = clickableViews.count ? clickableViews : @[view, adRendering.callToActionLabel, adRendering.titleLabel];
+        
         self.nativeAdAdapter.delegate = self;
         [self.nativeAdAdapter presentOn:view
                          clickableViews:clickableViews
@@ -104,14 +106,15 @@
 }
 
 - (BOOL)validateRenderingAd:(id<BDMNativeAdRendering>)renderingAd error:(NSError * _Nullable __autoreleasing *)error {
-    BOOL containsIcon = [renderingAd respondsToSelector:@selector(iconView)] && renderingAd.iconView != nil;
-    BOOL containsMedia = [renderingAd respondsToSelector:@selector(mediaContainerView)] && renderingAd.mediaContainerView != nil;
-    BOOL isValid = containsIcon || containsMedia;
+    BOOL containsIcon = [renderingAd respondsToSelector:@selector(iconView)] && UIImageView.stk_isValid(renderingAd.iconView);
+    BOOL containsMedia = [renderingAd respondsToSelector:@selector(mediaContainerView)] && UIView.stk_isValid(renderingAd.mediaContainerView);
+    BOOL isValidField = UILabel.stk_isValid(renderingAd.titleLabel) && UILabel.stk_isValid(renderingAd.callToActionLabel) && UILabel.stk_isValid(renderingAd.descriptionLabel);
+    BOOL isValidMedia = containsIcon || containsMedia;
     
-    if (!isValid) {
-        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"Rendering ad shuld contains Media or Icon field"]);
+    if (!(isValidField && isValidMedia)) {
+        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"Rendering ad have not valid format"]);
     }
-    return isValid;
+    return isValidField && isValidMedia;
 }
 
 #pragma mark - BDMViewabilityMetricProviderDelegate

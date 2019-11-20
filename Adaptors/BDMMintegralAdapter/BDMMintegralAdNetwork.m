@@ -11,6 +11,8 @@
 #import "BDMMintegralAdNetwork.h"
 #import "BDMMintegralValueTransformer.h"
 #import "BDMMintegralFullscreenAdapter.h"
+#import "BDMMintegralNativeAdServiceAdapter.h"
+
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKBidding/MTGBiddingSDK.h>
 
@@ -72,6 +74,10 @@
 
 - (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk {
     return [BDMMintegralFullscreenAdapter new];
+}
+
+- (id<BDMNativeAdServiceAdapter>)nativeAdAdapterForSdk:(BDMSdk *)sdk {
+    return [BDMMintegralNativeAdServiceAdapter new];
 }
 
 #pragma mark - Private
