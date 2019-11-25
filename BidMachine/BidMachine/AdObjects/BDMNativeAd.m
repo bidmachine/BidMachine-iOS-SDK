@@ -75,6 +75,10 @@
                         error:error];
 }
 
+- (BDMAuctionInfo *)auctionInfo {
+    return self.currentRequest.info;
+}
+
 - (void)invalidate {
     [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
     [self.currentRequest invalidate];
@@ -87,6 +91,11 @@
 
 - (BOOL)canShow {
     return self.displayAd.availableToPresent;
+}
+
+- (void)unregisterViews {
+    [self.middleware rejectAll:BDMErrorCodeWasDestroyed];
+    [self.displayAd unregisterViews];
 }
 
 #pragma mark - Private
@@ -144,22 +153,19 @@
 
 - (void)displayAdLogFinishView:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventClosed];
-    if ([self.producerDelegate respondsToSelector:@selector(didProduceFinish:)]) {
-        [self.producerDelegate didProduceFinish:self];
-    }
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventViewable];
-    if ([self.producerDelegate respondsToSelector:@selector(didProduceViewability:)]) {
-        [self.producerDelegate didProduceViewability:self];
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidLogImpression:)]) {
+        [self.delegate nativeAdDidLogImpression:self];
     }
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventClick];
-    if ([self.producerDelegate respondsToSelector:@selector(didProduceUserAction:)]) {
-        [self.producerDelegate didProduceUserAction:self];
+    if ([self.delegate respondsToSelector:@selector(nativeAdLogUserInteraction:)]) {
+        [self.delegate nativeAdLogUserInteraction:self];
     }
 }
 

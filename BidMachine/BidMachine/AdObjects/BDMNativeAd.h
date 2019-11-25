@@ -69,6 +69,12 @@
 /// Trigger when native ad did expire
 /// @param nativeAd Expired instance of native
 - (void)nativeAdDidExpire:(nonnull BDMNativeAd *)nativeAd;
+/// Trigger when native ad did log impression
+/// @param nativeAd Instance of native
+- (void)nativeAdDidLogImpression:(nonnull BDMNativeAd *)nativeAd;
+/// Trigger when native ad did log interaction
+/// @param nativeAd Instance of native
+- (void)nativeAdLogUserInteraction:(nonnull BDMNativeAd *)nativeAd;
 
 @end
 /// Native ad object that provides native
@@ -99,5 +105,7 @@
             error:(NSError *_Nullable __autoreleasing* _Nullable)error;
 /// Remove all loaded ad data
 - (void)invalidate;
+/// Unregister native ad views. Call this method before reuse native
+- (void)unregisterViews;
 
 @end

@@ -15,12 +15,6 @@
 /// Producer did log user action
 /// @param producer On screen ad
 - (void)didProduceUserAction:(nonnull id<BDMAdEventProducer>)producer;
-/// Producer did log finish
-/// @param producer On screen ad
-- (void)didProduceFinish:(nonnull id<BDMAdEventProducer>)producer;
-/// Producer did log viewability
-/// @param producer On screen ad
-- (void)didProduceViewability:(nonnull id<BDMAdEventProducer>)producer;
 /// Producer did log impression
 /// @param producer On screen ad
 - (void)didProduceImpression:(nonnull id<BDMAdEventProducer>)producer;

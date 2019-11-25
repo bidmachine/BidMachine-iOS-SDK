@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
             error:(NSError * __autoreleasing*)error;
 /// Current Native ad assets
 - (id<BDMNativeAdAssets>)assets;
+/// Unregister native ad views. Call this method before reuse native
+- (void)unregisterViews;
 
 @end
 

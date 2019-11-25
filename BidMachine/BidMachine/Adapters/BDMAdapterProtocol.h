@@ -152,6 +152,8 @@ NS_ASSUME_NONNULL_BEGIN
        controller:(UIViewController *)controller;
 /// Call method when ads should be clean
 - (void)invalidate;
+/// Unregister native ad views. Call this method before reuse native
+- (void)unregisterView;
 @optional
 /// Is called when native will be invalidate
 - (void)nativeAdDidTrackFinish;

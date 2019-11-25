@@ -22,6 +22,7 @@
         [nast setObject:link forKey:@"link"];
     }
     
+    //TODO: Return implementation with type ADCOMNativeImageAssetType_NativeImageAssetTypeMainImage
     if (self.assetArray_Count > 0) {
         STKAny *assets = ANY(self.assetArray).flatMap(^id(ADCOMAd_Display_Native_Asset *obj) {
             if (obj.hasTitle) {
@@ -33,7 +34,7 @@
                 return asset;
             }
             
-            if (obj.hasImage && obj.image.type == ADCOMNativeImageAssetType_NativeImageAssetTypeIconImage) {
+            if (obj.hasImage && obj.id_p == 124) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;
                 [asset setObject:@(124) forKey:@"id"];
@@ -44,7 +45,7 @@
                 return asset;
             }
             
-            if (obj.hasImage && obj.image.type == ADCOMNativeImageAssetType_NativeImageAssetTypeMainImage) {
+            if (obj.hasImage && obj.id_p == 128) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;
                 [asset setObject:@(128) forKey:@"id"];
@@ -64,7 +65,7 @@
                 return asset;
             }
             
-            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeDesc) {
+            if (obj.hasData_p && obj.id_p == 127) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;
                 [asset setObject:@(127) forKey:@"id"];
@@ -73,7 +74,7 @@
                 return asset;
             }
             
-            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeRating) {
+            if (obj.hasData_p && obj.id_p == 7) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;
                 [asset setObject:@(7) forKey:@"id"];
@@ -82,7 +83,7 @@
                 return asset;
             }
             
-            if (obj.hasData_p && obj.data_p.type == ADCOMNativeDataAssetType_NativeDataAssetTypeCtaText) {
+            if (obj.hasData_p && obj.id_p == 8) {
                 NSMutableDictionary *asset = NSMutableDictionary.dictionary;
                 NSMutableDictionary *value = NSMutableDictionary.dictionary;
                 [asset setObject:@(8) forKey:@"id"];

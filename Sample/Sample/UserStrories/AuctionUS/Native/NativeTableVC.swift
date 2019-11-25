@@ -41,13 +41,14 @@ class NativeTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row.quotientAndRemainder(dividingBy: 3).remainder == 0 {
+        if indexPath.row.quotientAndRemainder(dividingBy: 20).remainder == 0 {
             let nativeAdViewCell = tableView.dequeueReusableCell(withIdentifier: NativeAdViewCell.reuseIdentifier, for: indexPath) as! NativeAdViewCell
+            native.unregisterViews()
             native.present(on: nativeAdViewCell,
                            clickableViews: [],
                            adRendering: nativeAdViewCell,
@@ -68,7 +69,7 @@ class NativeTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row.quotientAndRemainder(dividingBy: 3).remainder == 0 {
+        if indexPath.row.quotientAndRemainder(dividingBy: 20).remainder == 0 {
             return 375
         }
         return 86
@@ -77,6 +78,7 @@ class NativeTableVC: UITableViewController {
 
 extension NativeTableVC: BDMNativeAdDelegate {
     func nativeAd(_ nativeAd: BDMNativeAd, readyToPresentAd auctionInfo: BDMAuctionInfo) {
+        tableView.reloadData()
         ToastMaker.showToast(viewController: self, data: auctionInfo)
     }
     

@@ -21,11 +21,12 @@
 
 @end
 
-@interface BDMNASTDisplayAdapter ()<STKRichMediaPlayerViewDelegate>
+@interface BDMNASTDisplayAdapter ()<STKRichMediaPlayerViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) STKNASTAd *ad;
 @property (nonatomic, strong) BDMNASTRichMediaAsset *asset;
-@property (nonatomic, strong) UITapGestureRecognizer * tapGestureRecognizer;
+@property (nonatomic, strong) STKRichMediaPlayerView *richMedia;
+@property (nonatomic, strong) NSMutableArray<UITapGestureRecognizer *> *gestures;
 
 @end
 
@@ -39,16 +40,15 @@
     if (self = [super init]) {
         self.ad = ad;
         self.asset = [BDMNASTRichMediaAsset assetWithNastAd:ad];
+        self.gestures = [NSMutableArray new];
     }
     return self;
 }
 
 - (UITapGestureRecognizer *)tapGestureRecognizer {
-    if (!_tapGestureRecognizer) {
-        _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerTap)];
-        _tapGestureRecognizer.numberOfTapsRequired = 1;
-    }
-    return _tapGestureRecognizer;
+    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerTap)];
+    gesture.numberOfTouchesRequired = 1;
+    return gesture;
 }
 
 #pragma mark - BDMNativeAdAssets
@@ -81,6 +81,14 @@
     return self.asset.contentURL != nil;
 }
 
+- (STKRichMediaPlayerView *)richMedia {
+    if (!_richMedia) {
+        _richMedia = STKRichMediaPlayerView.new;
+        _richMedia.delegate = self;
+    }
+    return _richMedia;
+}
+
 #pragma mark - BDMNativeAd
 
 - (void)presentOn:(UIView *)view
@@ -92,30 +100,40 @@
     adRendering.callToActionLabel.text = self.ad.callToAction;
     adRendering.descriptionLabel.text = self.ad.descriptionText;
     
-    
-    
     if ([adRendering respondsToSelector:@selector(iconView)] && adRendering.iconView) {
         adRendering.iconView.stkFastImageCache([NSURL URLWithString:self.ad.iconURLString]);
     }
     
     if ([adRendering respondsToSelector:@selector(mediaContainerView)] && adRendering.mediaContainerView) {
-        STKRichMediaPlayerView *player = STKRichMediaPlayerView.new;
-        [player stk_edgesEqual:adRendering.mediaContainerView];
-        player.delegate = self;
-        player.rootViewController = controller;
-        [player playAsset:self.asset];
+        [self.richMedia stk_edgesEqual:adRendering.mediaContainerView];
+        self.richMedia.rootViewController = controller;
+        [self.richMedia playAsset:self.asset];
     }
     
+    
+    adRendering.titleLabel.userInteractionEnabled = YES;
+    [adRendering.titleLabel addGestureRecognizer:self.tapGestureRecognizer];
+    
+    adRendering.callToActionLabel.userInteractionEnabled = YES;
+    [adRendering.callToActionLabel addGestureRecognizer:self.tapGestureRecognizer];
+    
     // Clicks
-    [clickableViews enumerateObjectsUsingBlock:^(UIView * view, NSUInteger idx, BOOL * stop) {
-        view.userInteractionEnabled = YES;
-        [view addGestureRecognizer:self.tapGestureRecognizer];
+    [clickableViews enumerateObjectsUsingBlock:^(UIView * tapView, NSUInteger idx, BOOL * stop) {
+        UITapGestureRecognizer *gesture = [self tapGestureRecognizer];
+        tapView.userInteractionEnabled = YES;
+        [tapView addGestureRecognizer:gesture];
+        [self.gestures addObject:gesture];
     }];
     
 }
 
 - (void)invalidate {
-    
+    [self unregisterView];
+}
+
+- (void)unregisterView {
+    [self.richMedia removeFromSuperview];
+    [self.gestures removeAllObjects];
 }
 
 #pragma mark - Trackers

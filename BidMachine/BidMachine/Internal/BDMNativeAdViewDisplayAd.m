@@ -66,7 +66,7 @@
     
     self.containerView = view;
     @try {
-        clickableViews = clickableViews.count ? clickableViews : @[view, adRendering.callToActionLabel, adRendering.titleLabel];
+        clickableViews = clickableViews.count ? clickableViews : @[adRendering.callToActionLabel, adRendering.titleLabel];
         
         self.nativeAdAdapter.delegate = self;
         [self.nativeAdAdapter presentOn:view
@@ -93,6 +93,10 @@
     [self.nativeAdAdapter invalidate];
     [self.metricProvider finishViewabilityMonitoringForView:self.containerView];
     [super invalidate];
+}
+
+- (void)unregisterViews {
+    [self.nativeAdAdapter unregisterView];
 }
 
 #pragma mark - Private
