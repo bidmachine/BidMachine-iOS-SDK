@@ -11,7 +11,6 @@
 @protocol BDMAdEventProducer;
 /// Event producer handler protocol
 @protocol BDMAdEventProducerDelegate <NSObject>
-@optional
 /// Producer did log user action
 /// @param producer On screen ad
 - (void)didProduceUserAction:(nonnull id<BDMAdEventProducer>)producer;

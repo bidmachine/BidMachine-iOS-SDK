@@ -35,6 +35,7 @@ class NativeTableVC: UITableViewController {
         nativeAdExampleTV.register(ContentTableViewCell.nib, forCellReuseIdentifier: ContentTableViewCell.reuseIdentifier)
         nativeAdExampleTV.register(NativeAdViewCell.nib, forCellReuseIdentifier: NativeAdViewCell.reuseIdentifier)
         native.delegate = self
+        native.producerDelegate = self
         
         let req = request ?? BDMNativeAdRequest()
         native.make(req)
@@ -85,16 +86,14 @@ extension NativeTableVC: BDMNativeAdDelegate {
     func nativeAd(_ nativeAd: BDMNativeAd, failedWithError error: Error) {
         ToastMaker.showToast(viewController: self, data: error)
     }
+}
+
+extension NativeTableVC: BDMAdEventProducerDelegate {
     
-    func nativeAdDidLogImpression(_ nativeAd: BDMNativeAd) {
+    func didProduceImpression(_ producer: BDMAdEventProducer) {
         ToastMaker.showToast(viewController: self, data: "Native ad impression")
     }
-    
-    func nativeAdDidExpire(_ nativeAd: BDMNativeAd) {
-        ToastMaker.showToast(viewController: self, data: "Native ad expired")
-    }
-    
-    func nativeAdLogUserInteraction(_ nativeAd: BDMNativeAd) {
+    func didProduceUserAction(_ producer: BDMAdEventProducer) {
         ToastMaker.showToast(viewController: self, data: "Native ad user interaction")
     }
 }

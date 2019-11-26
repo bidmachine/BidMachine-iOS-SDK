@@ -146,9 +146,6 @@
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventImpression];
-    if ([self.producerDelegate respondsToSelector:@selector(didProduceImpression:)]) {
-        [self.producerDelegate didProduceImpression:self];
-    }
 }
 
 - (void)displayAdLogFinishView:(id<BDMDisplayAd>)displayAd {
@@ -157,16 +154,10 @@
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventViewable];
-    if ([self.delegate respondsToSelector:@selector(nativeAdDidLogImpression:)]) {
-        [self.delegate nativeAdDidLogImpression:self];
-    }
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventClick];
-    if ([self.delegate respondsToSelector:@selector(nativeAdLogUserInteraction:)]) {
-        [self.delegate nativeAdLogUserInteraction:self];
-    }
 }
 
 - (void)displayAd:(id<BDMDisplayAd>)displayAd failedToPresent:(NSError *)error {

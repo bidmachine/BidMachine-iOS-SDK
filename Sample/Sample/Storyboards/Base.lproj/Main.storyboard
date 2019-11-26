@@ -370,12 +370,6 @@
                                     <action selector="loadNative:" destination="LFb-Yf-oKt" eventType="touchUpInside" id="BV9-Mh-cAp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Native Ad is under development" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrK-q6-nhd">
-                                <rect key="frame" x="261" y="35" width="246" height="20"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJ9-1x-f2K">
                                 <rect key="frame" x="727" y="938" width="25" height="24"/>
                                 <connections>
@@ -386,9 +380,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="crB-kb-LDq" firstAttribute="bottom" secondItem="PJ9-1x-f2K" secondAttribute="bottom" constant="12" id="AB3-q4-0mN"/>
-                            <constraint firstItem="OrK-q6-nhd" firstAttribute="centerX" secondItem="mDG-G7-XJT" secondAttribute="centerX" id="HGy-Rd-5qm"/>
                             <constraint firstItem="8p1-eZ-SJS" firstAttribute="centerX" secondItem="mDG-G7-XJT" secondAttribute="centerX" id="SQb-qn-tYa"/>
-                            <constraint firstItem="OrK-q6-nhd" firstAttribute="top" secondItem="crB-kb-LDq" secondAttribute="top" constant="35" id="Zih-rl-bXT"/>
                             <constraint firstItem="wqC-Ry-pNA" firstAttribute="centerY" secondItem="mDG-G7-XJT" secondAttribute="centerY" id="aPv-CW-3mP"/>
                             <constraint firstItem="crB-kb-LDq" firstAttribute="trailing" secondItem="PJ9-1x-f2K" secondAttribute="trailing" constant="16" id="kpF-qf-chJ"/>
                             <constraint firstItem="crB-kb-LDq" firstAttribute="bottom" secondItem="8p1-eZ-SJS" secondAttribute="bottom" constant="10" id="lCO-Wo-d7Q"/>
