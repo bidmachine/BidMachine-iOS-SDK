@@ -22,15 +22,15 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @property (copy, nonatomic, readwrite, nonnull) NSString *userId;
 /**
- User gender refer to OpenRTB 2.5 spec
+ User gender in OpenRTB 2.5 format
  */
 @property (copy, nonatomic, readwrite, nonnull) BDMUserGender *gender;
 /**
- User gender yob to OpenRTB 2.5 spec
+ User gender yob in OpenRTB 2.5 format
  */
 @property (copy, nonatomic, readwrite, nonnull) NSNumber *yearOfBirth;
 /**
- Get user age
+ User age
  */
 @property (copy, nonatomic, readonly, nullable) NSNumber *userAge;
 /**
@@ -38,15 +38,15 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @property (copy, nonatomic, readwrite, nullable) NSString *keywords;
 /**
- Blocked advertiser categories using the IAB content categories. Refer to List 5.1
+ List of blocked advertiser categories using the IAB content categories.
  */
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedCategories;
 /**
- Block list of advertisers by their domains (e.g., “ford.com”).
+ List of blocked advertisers by their domains (e.g., “ford.com”).
  */
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedAdvertisers;
 /**
- Block list of applications by their platform-specific exchange- independent application identifiers. These are numeric IDs.
+ List of blocked applications by their platform-specific exchange-independent application identifiers. Usually store IDs.
  */
 @property (copy, nonatomic, readwrite, nullable) NSArray <NSString *> *blockedApps;
 /**
@@ -66,7 +66,7 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @property (copy, nonatomic, readwrite, nullable) NSString *zip;
 /**
- Store URL
+ App's Store URL
  */
 @property (copy, nonatomic, readwrite, nullable) NSURL *storeURL;
 /**

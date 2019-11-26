@@ -59,14 +59,14 @@
               placementType:(BDMInternalPlacementType)placementType
            placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
     if (!BDMSdk.sharedSdk.sellerID.length) {
-        BDMLog(@"You must call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
+        BDMLog(@"You should call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk was not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
         NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"No seller ID"];
         [self notifyDelegatesOnFail:error];
         return;
     }
     
     if (self.state == BDMRequestStateAuction) {
-        BDMLog(@"Trying to perform non idle request");
+        BDMLog(@"Trying to perform nonidle request");
         return;
     }
     
@@ -116,7 +116,7 @@
 
 - (void)beginExpirationMonitoring {
     __weak typeof (self) weakSelf = self;
-    BDMLog(@"Start expiration monitoring for response: %@ of time: %1.2f s", self.response.identifier, self.response.expirationTime.doubleValue);
+    BDMLog(@"Started monitoring for expiration for response: %@ of time: %1.2f s", self.response.identifier, self.response.expirationTime.doubleValue);
     self.expirationTimer = [STKExpirationTimer expirationTimerWithExpirationTimeinterval:self.response.expirationTime.doubleValue
                                                                           observableItem:self.response
                                                                                   expire:^(id<BDMResponse> response) {
@@ -186,7 +186,7 @@
 }
 
 - (void)cancelExpirationTimer {
-    BDMLog(@"Cancel expiration timer for response: %@", self.response.identifier);
+    BDMLog(@"Cancelling expiration timer for response: %@", self.response.identifier);
     self.expirationTimer = nil;
 }
 
@@ -197,7 +197,7 @@
 
 - (id<BDMDisplayAd>)displayAdWithError:(NSError *__autoreleasing *)error {
     if (self.state != BDMRequestStateSuccessful) {
-        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Request not successful and unable to create display ad!"]);
+        STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Request was not successful. Cannot create display ad!"]);
     }
     return [BDMFactory.sharedFactory displayAdWithResponse:self.response
                                              plecementType:self.placementType];

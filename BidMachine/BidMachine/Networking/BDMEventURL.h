@@ -13,15 +13,15 @@
 
 
 /**
- Wrapper for event for mapping to BDMEventTypeExtended from Extension of proto models
+ Wrapper for event for mapping BDMEventTypeExtended to Extension from proto models
  @param event Event (or extended errors)
  @return Raw value of BDMEventTypeExtended
  */
 NSInteger BDMEventTrackerTypeFromBDMEvent(BDMEvent event);
 /**
- Wrapper for event for mapping to BDMActionType from Extension of proto models
+ Wrapper for event for mapping BDMActionType from Extension from proto models
 
- @param event Event, exteneded errors not supports here!
+ @param event Event, extended errors are not supported here!
  @return Raw value of BDMActionType
  */
 NSInteger BDMActionTypeFromBDMEvent(BDMEvent event);
@@ -31,31 +31,31 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event);
 
 @property (nonatomic, readonly, assign) NSInteger type;
 /**
- Replace BM_ACTION_START in URL
+ Replaces BM_ACTION_START in URL
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByStartTime)(NSDate *);
 /**
- Replace BM_ACTION_FINISH in URL
+ Replaces BM_ACTION_FINISH in URL
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByFinishTime)(NSDate *);
 /**
- Replace macros 
+ Replaces macros
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByAction)(NSInteger);
 /**
- Replace event macros
+ Replaces event macros
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByEvent)(NSInteger);
 /**
- Replace error codes
+ Replaces error codes
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByErrorCode)(BDMErrorCode);
 /**
- Replace type
+ Replaces type
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByType)(NSString *);
 /**
- Replace network name
+ Replaces network name
  */
 @property (nonatomic, readonly, copy) BDMEventURL *(^extendedByAdNetwork)(NSString *);
 /**

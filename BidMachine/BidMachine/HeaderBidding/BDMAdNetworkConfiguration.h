@@ -20,20 +20,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BDMAdNetworkConfigurationBuilder : NSObject
 /**
- Add network name, registered in ad network adapter and backend. Required
+ Adds network name, registered in ad network adapter and backend. Required
  */
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendName)(NSString *);
 /**
- Add class of BDMNetwork. Required
+ Adds class of BDMNetwork. Required
  */
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendNetworkClass)(Class<BDMNetwork>);
 /**
- Add network ad units that contains info about
+ Adds network ad units that contain info about
  ad format and network specific parameters. Required
  */
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendAdUnit)(BDMAdUnitFormat, NSDictionary <NSString *, id> *);
 /**
- Add network specific parameters. Optional
+ Adds network specific parameters. Optional
  */
 @property (nonatomic, copy, readonly) BDMAdNetworkConfigurationBuilder *(^appendInitializationParams)(NSDictionary <NSString *, id> *);
 @end
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) Class<BDMNetwork> networkClass;
 /**
- Network ad units that contains info about
+ Network ad units that contain info about
  ad format and network specific parameters. Required
  */
 @property (nonatomic, copy, readonly) NSArray <BDMAdUnit *> *adUnits;
@@ -62,11 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSDictionary <NSString *, id> *initializationParams;
 /**
  Timeout for network placement preparation before auction request
- By default SDK for network response
  */
 @property (nonatomic, assign, readonly) NSTimeInterval timeout;
 /**
- Build configuration for ad network adapter work
+ Builds configuration for ad network adapter
  
  @param builder Builder block
  @return Configuration

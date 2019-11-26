@@ -24,14 +24,14 @@
  */
 - (void)request:(nonnull BDMRequest *)request failedWithError:(nonnull NSError *)error;
 /**
- Method called then auction complete with success
+ Method called when auction was successfully completed
 
  @param request Ready to render request
  @param info Auction info
  */
 - (void)request:(nonnull BDMRequest *)request completeWithInfo:(nonnull BDMAuctionInfo *)info;
 /**
- Method called if success auction result was expire
+ Method called if successful auction result expired
 
  @param request Expired request
  */
@@ -43,11 +43,11 @@
  */
 @interface BDMRequest : NSObject 
 /**
- Auction info. Nil if auction not performed or failed
+ Auction info. Nil if auction was not performed or failed
  */
 @property (copy, nonatomic, readonly, nullable) BDMAuctionInfo *info;
 /**
- Bids configuration for current request
+ Bid prices configuration for current request
  */
 @property (copy, nonatomic, readwrite, nonnull) NSArray <BDMPriceFloor *> *priceFloors;
 /**

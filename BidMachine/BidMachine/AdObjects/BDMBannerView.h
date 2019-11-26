@@ -22,58 +22,58 @@
 @protocol BDMBannerDelegate <NSObject>
 @required
 /**
- Called when banner ready tp render creative on screen
+ Called when banner is ready to render creative
 
  @param bannerView Ready to present banner view
  */
 - (void)bannerViewReadyToPresent:(nonnull BDMBannerView *)bannerView;
 /**
- Called in case if banner view failed to load
+ Called in case if banner failed to load
 
  @param bannerView Failed instance of banner view
  @param error Error object
  */
 - (void)bannerView:(nonnull BDMBannerView *)bannerView failedWithError:(nonnull NSError *)error;
 /**
- Called when user interact with banner
+ Called when user interacts with banner
 
  @param bannerView Ready banner view
  */
 - (void)bannerViewRecieveUserInteraction:(nonnull BDMBannerView *)bannerView;
 @optional
 /**
- Called when banner view ready for present
+ Called when banner view is ready to be presented
  
- @param bannerView Ready for present instance of BDMBannerView
+ @param bannerView Ready to be presented instance of BDMBannerView
  @param auctionInfo Auction info
  */
 - (void)bannerView:(nonnull BDMBannerView *)bannerView readyToPresentAd:(nonnull BDMAuctionInfo *)auctionInfo __attribute__((deprecated("Use -bannerViewReadyToPresent: instead")));
 /**
- Called in case banner perform request by itself
+ Called in case banner performed request by itself
  when instance of banner view expired
  
  @param bannerView banner view
  */
 - (void)bannerViewDidExpire:(nonnull BDMBannerView *)bannerView;
 /**
- Called when banner open product link in external
+ Called when banner opens product link in external
  browser (Safari) after user interaction
 
  @param bannerView Banner that revieve user interaction
  */
 - (void)bannerViewWillLeaveApplication:(nonnull BDMBannerView *)bannerView;
 /**
- Called before banner open product link in StoreKit or Safari
+ Called before banner opens product link in StoreKit or Safari
  view controller internally in application after user interaction
 
- @param bannerView Banner that revieve user interaction
+ @param bannerView Banner that receives user interaction
  */
 - (void)bannerViewWillPresentScreen:(nonnull BDMBannerView *)bannerView;
 /**
- Called after banner dissmis product link in StoreKit or Safari
+ Called after banner dissmissed product link in StoreKit or Safari
  view controller internally in application after user interaction
 
- @param bannerView Banner that revieve user interaction
+ @param bannerView Banner that recieved user interaction
  */
 - (void)bannerViewDidDismissScreen:(nonnull BDMBannerView *)bannerView;
 @end
@@ -87,16 +87,16 @@
  */
 @property (nonatomic, weak, nullable) id<BDMAdEventProducerDelegate> producerDelegate;
 /**
- Calback handler
+ Callback handler
  */
 @property (nonatomic, weak, nullable) id<BDMBannerDelegate> delegate;
 /**
- Root view controller for present modal controllers and
+ Root view controller for presenting modal controllers and
  viewability tracking
  */
 @property (nonatomic, weak, nullable) IBOutlet UIViewController *rootViewController;
 /**
- Info of latest sucessful auctuion
+ Info of latest successful auction
  */
 @property (nonatomic, copy, readonly, nullable) BDMAuctionInfo *latestAuctionInfo;
 /**
@@ -104,11 +104,11 @@
  */
 @property (nonatomic, assign, readwrite) BDMBannerAdSize adSize __attribute__((deprecated("Use BDMBannerRequest.adSize instead")));
 /**
- Getter that indicates that ad ready or not
+ Getter that indicates if ad is ready or not
  */
 @property (nonatomic, assign, readonly, getter=isLoaded) BOOL loaded;
 /**
- Boolean flag indicates can SDK show ad or not
+ Boolean flag that indicates if SDK can show ad or not
  */
 @property (nonatomic, assign, readonly) BOOL canShow;
 /**
@@ -118,8 +118,8 @@
  */
 - (void)makeRequest:(nonnull BDMRequest *)request __attribute__((deprecated("Use -populateWithRequest: instead")));
 /**
- Add request to ad object instance. If request not was not
- performed, ad object will perform by itslef
+ Adds request to ad object instance. If request was not
+ performed, ad object will perform request by itslef
 
  @param request Request
  */

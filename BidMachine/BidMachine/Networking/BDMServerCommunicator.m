@@ -36,7 +36,7 @@
                    success:(void(^)(id<BDMResponse>))success
                    failure:(void(^)(NSError *))failure {
     BDMApiRequest *urlRequest = [BDMApiRequest request:auctionBuilder];
-    BDMLog(@"Perform auction with auction request: %@", urlRequest);
+    BDMLog(@"Performing auction with auction request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
                                                  completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
@@ -47,7 +47,7 @@
                                                              BDMLog(@"Auction request failed with error: %@", wrappedError);
                                                              STK_RUN_BLOCK(failure, wrappedError);
                                                          } else {
-                                                             BDMLog(@"Auction request successful  with response: %@", wrappedResponse);
+                                                             BDMLog(@"Auction request was successful with response: %@", wrappedResponse);
                                                              STK_RUN_BLOCK(success, wrappedResponse);
                                                          }
                                                      });
@@ -60,7 +60,7 @@
                 failure:(void (^)(NSError *))failure
 {
     BDMApiRequest *urlRequest = [BDMApiRequest sessionRequest:sessionBuilder];
-    BDMLog(@"Perform init request: %@", urlRequest);
+    BDMLog(@"Performing init request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
                                                  completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
@@ -71,7 +71,7 @@
                                                              BDMLog(@"Init request failed with error: %@", wrappedError);
                                                              STK_RUN_BLOCK(failure, wrappedError);
                                                          } else {
-                                                             BDMLog(@"Init request successful  with response: %@", wrappedResponse);
+                                                             BDMLog(@"Init request was successful  with response: %@", wrappedResponse);
                                                              STK_RUN_BLOCK(success, wrappedResponse);
                                                          }
                                                      });

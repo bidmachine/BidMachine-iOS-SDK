@@ -65,7 +65,7 @@
 - (void)presentAd:(UIViewController *)controller container:(UIView *)container {
     BDMLog(@"Trying to present fullscreen adapter: %@ from root view controller: %@", self.adapter, controller);
     if (![BDMSdk.sharedSdk isDeviceReachable]) {
-        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoConnection description:@"You are not connected to Internet."];
+        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeNoConnection description:@"You don't have internet connection."];
         [self.delegate displayAd:self failedToPresent:error];
         return;
     }
@@ -74,7 +74,7 @@
     @try {
         [self.adapter present];
     } @catch (NSException *exception) {
-        BDMLog(@"Adapter: %@ raise exception: %@", self.adapter, exception);
+        BDMLog(@"Adapter: %@ raised exception: %@", self.adapter, exception);
         [self.delegate displayAd:self failedToPresent:exception.bdm_wrappedError];
     }
 }

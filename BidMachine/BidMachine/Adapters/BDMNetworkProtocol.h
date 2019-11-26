@@ -43,45 +43,45 @@ NS_ASSUME_NONNULL_BEGIN
  Starts session in ad network
  
  @param parameters Custom dictionary that contains parameters for network initialisation
- @param completion Triggers when network complete initialisation
+ @param completion Triggers when network completes initialisation
  */
 - (void)initialiseWithParameters:(NSDictionary <NSString *, id>*)parameters
                       completion:(void(^_Nonnull)(BOOL, NSError *_Nullable))completion;
 /**
  Transfoms and populate adunit information for auction
  Need to implement if Third party SDK contains several info
- that Appodeal Ad Exchange SDK doesn't have
+ that BidMachine SDK doesn't have
  
- @param parameters Recieved information
+ @param parameters Received information
  @param adUnitFormat AdUnitFormat
- @param completion Block that fires when ad network finish inforamtion collection
+ @param completion Block that fires when ad network finished collecting information
  */
 - (void)collectHeaderBiddingParameters:(NSDictionary <NSString *, id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void(^_Nonnull)(NSDictionary <NSString *, id> *_Nullable, NSError *_Nullable))completion;
 /**
- Return banner adapter
+ Returns banner adapter
  
  @param sdk Current sdk
  @return Banner adapter
  */
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk;
 /**
- Return interstitial adapter
+ Returns interstitial adapter
  
  @param sdk Current sdk
  @return Interstitial adapter
  */
 - (id<BDMFullscreenAdapter>)interstitialAdAdapterForSdk:(BDMSdk *)sdk;
 /**
- Return video adapter
+ Returns video adapter
  
  @param sdk Current sdk
  @return Video adapter
  */
 - (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk;
 /**
- Return native ad adapter
+ Returns native ad adapter
  
  @param sdk Current sdk
  @return Native ad adapter
