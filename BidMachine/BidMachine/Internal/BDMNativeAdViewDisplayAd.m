@@ -96,6 +96,7 @@
 }
 
 - (void)unregisterViews {
+    [self.metricProvider finishViewabilityMonitoringForView:self.containerView];
     [self.nativeAdAdapter unregisterView];
 }
 
