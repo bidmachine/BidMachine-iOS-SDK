@@ -79,7 +79,7 @@
                                                       delegate:self];
     }
     @catch (NSException * exc) {
-        BDMLog(@"Adapter: %@ raise exception: %@", self.nativeAdAdapter, exc);
+        BDMLog(@"Adapter: %@ raised exception: %@", self.nativeAdAdapter, exc);
         STK_SET_AUTORELASE_VAR(error, exc.bdm_wrappedError);
         [self.delegate displayAd:self failedToPresent:exc.bdm_wrappedError];
     }
@@ -125,7 +125,7 @@
 #pragma mark - BDMViewabilityMetricProviderDelegate
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectFinishView:(UIView *)view {
-    BDMLog(@"Adapter: %@ finish view", self.nativeAdAdapter);
+    BDMLog(@"Adapter: %@ detected viewability finish event", self.nativeAdAdapter);
     [self.delegate displayAdLogFinishView:self];
     if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackFinish)]) {
         [self.nativeAdAdapter nativeAdDidTrackFinish];
@@ -133,7 +133,7 @@
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectImpression:(UIView *)view {
-    BDMLog(@"Adapter: %@ impression view", self.nativeAdAdapter);
+    BDMLog(@"Adapter: %@ detected viewability impression event", self.nativeAdAdapter);
     [self.delegate displayAdLogImpression:self];
     if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackViewability)]) {
         [self.nativeAdAdapter nativeAdDidTrackViewability];
@@ -141,7 +141,7 @@
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectStartView:(UIView *)view {
-    BDMLog(@"Adapter: %@ start view", self.nativeAdAdapter);
+    BDMLog(@"Adapter: %@ detected viewability start event", self.nativeAdAdapter);
     [self.delegate displayAdLogStartView:self];
     if ([self.nativeAdAdapter respondsToSelector:@selector(nativeAdDidTrackImpression)]) {
         [self.nativeAdAdapter nativeAdDidTrackImpression];
@@ -151,7 +151,7 @@
 #pragma mark - BDMNativeAdAdapterDelegate
 
 - (void)nativeAdAdapterTrackUserInteraction:(id<BDMNativeAdAdapter>)adapter {
-     BDMLog(@"Adapter: %@ register user interaction", adapter);
+     BDMLog(@"Adapter: %@ registered user interaction", adapter);
     [self.delegate displayAdLogUserInteraction:self];
 }
 

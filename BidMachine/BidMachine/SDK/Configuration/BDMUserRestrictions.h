@@ -20,19 +20,19 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @property (assign, nonatomic, readwrite) BOOL coppa;
 /**
- Setup that user is under GDPR
+ Indicates that user is under GDPR policy
  */
 @property (assign, nonatomic, readwrite) BOOL subjectToGDPR;
 /**
- Setup that user give consent
+ Indicates that user has given consent
  */
 @property (assign, nonatomic, readwrite) BOOL hasConsent;
 /**
- * The consent string for sending the GDPR consent
+ * The consent string to send GDPR consent
  */
 @property (copy, nonatomic, readwrite, nullable) NSString *consentString;
 /**
- Indicates that SDK allow to pass user information to networks
+ Indicates that SDK allows to pass user information to networks
  */
 @property (assign, nonatomic, readonly) BOOL allowUserInformation;
 @end

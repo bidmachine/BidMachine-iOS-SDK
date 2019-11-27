@@ -99,7 +99,7 @@
     if (build.name && build.networkClass) {
         config = [[self alloc] initWithBuilder:build];
     } else {
-        BDMLog(@"One of required parameters not exists: name, networkClass");
+        BDMLog(@"One of required parameters does not exist: name, networkClass");
     }
     return config;
 }

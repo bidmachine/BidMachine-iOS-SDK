@@ -92,7 +92,7 @@
                       completion:(void (^)(void))completion {
     // Seller ID check
     if (!sellerID.length) {
-        BDMLog(@"Seller ID should be valid string. Sdk not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
+        BDMLog(@"Seller ID should be valid string. Sdk was not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
         return;
     }
     

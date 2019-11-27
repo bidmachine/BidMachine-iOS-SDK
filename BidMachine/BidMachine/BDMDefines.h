@@ -44,15 +44,15 @@ FOUNDATION_EXPORT NSInteger const kBDMUndefinedYearOfBirth;
  - BDMErrorCodeNoConnection: Connection error
  - BDMErrorCodeBadContent: Serialisation errors
  - BDMErrorCodeTimeout: Request was timed out
- - BDMErrorCodeNoContent: No content was recieved
+ - BDMErrorCodeNoContent: No content was received
  - BDMErrorCodeException: Handled exception
- - BDMErrorCodeWasClosed: Ad was closed before sdk track imression
+ - BDMErrorCodeWasClosed: Ad was closed before sdk tracked imression
  - BDMErrorCodeWasDestroyed: Ad was destroyed before impression
- - BDMErrorCodeWasExpired: Ad was expired
+ - BDMErrorCodeWasExpired: Ad expired
  - BDMErrorCodeInternal: Any internal SDK error
- - BDMErrorCodeHTTPServerError: Server return 4XX
- - BDMErrorCodeHTTPBadRequest: Server return 5XX
- - BDMErrorCodeHeaderBiddingNetwork: Ad Network speicific error
+ - BDMErrorCodeHTTPServerError: Server returned 4XX
+ - BDMErrorCodeHTTPBadRequest: Server returned 5XX
+ - BDMErrorCodeHeaderBiddingNetwork: Ad Network specific error
  */
 typedef NS_ENUM(NSInteger, BDMErrorCode) {
     BDMErrorCodeUnknown = 0,
@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, BDMErrorCode) {
 };
 
 /**
- Ad formats supports bit mask
+ Supported ad formats bit mask
  
  - BDMFullsreenAdTypeBanner: HTML and MRAID ad creatives
  - BDMFulscreenAdTypeVideo: VAST and VPAID ad creatives
@@ -101,9 +101,9 @@ typedef NS_ENUM(NSInteger, BDMBannerAdSize) {
 /**
  Supported asset configuration
 
- - BDMNativeAdTypeIcon: Include icon image supports
- - BDMNativeAdTypeImage: Include promo image support
- - BDMNativeAdTypeVideo: Include video content supports
+ - BDMNativeAdTypeIcon: Icon image
+ - BDMNativeAdTypeImage: Promo image
+ - BDMNativeAdTypeVideo: Video content
  */
 typedef NS_OPTIONS(NSUInteger, BDMNativeAdType) {
     BDMNativeAdTypeIcon     = 1 << 0,
@@ -115,9 +115,9 @@ typedef NS_OPTIONS(NSUInteger, BDMNativeAdType) {
 /**
  Supported ad units types configuration
  
- - BDMNativeAdTypeIcon: Include icon image supports
- - BDMNativeAdTypeImage: Include promo image support
- - BDMNativeAdTypeVideo: Include video content supports
+ - BDMNativeAdTypeIcon: Icon image
+ - BDMNativeAdTypeImage: Promo image
+ - BDMNativeAdTypeVideo: Video content
  */
 typedef NS_ENUM(NSInteger, BDMAdUnitFormat) {
     BDMAdUnitFormatUnknown = -1,

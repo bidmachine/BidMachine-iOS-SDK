@@ -18,7 +18,7 @@
  */
 @property (nonatomic, assign, readwrite) BDMBannerAdSize adSize;
 /**
- Perform auction for current parameters
+ Performs auction with current parameters
 
  @param delegate Delegate object
  */
@@ -32,11 +32,11 @@
  */
 @interface BDMInterstitialRequest : BDMRequest
 /**
- Specify ad type of interstitial
+ Specifies ad type of interstitial
  */
 @property (nonatomic, assign, readwrite) BDMFullscreenAdType type;
 /**
- Perform auction for current parameters
+ Performs auction with current parameters
  
  @param delegate Delegate object
  */
@@ -50,7 +50,7 @@
  */
 @interface BDMRewardedRequest : BDMRequest
 /**
- Perform auction for current parameters
+ Perform auction with current parameters
  
  @param delegate Delegate object
  */
@@ -63,11 +63,11 @@
  */
 @interface BDMNativeAdRequest : BDMRequest
 /**
- Specify ad type of native ad
+ Specifies ad type of native ad
  */
 @property (nonatomic, assign, readwrite) BDMNativeAdType type;
 /**
- Perform auction for current parameters
+ Performs auction with current parameters
  
  @param delegate Delegate object
  */

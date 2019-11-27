@@ -52,7 +52,7 @@
         [self.adapter presentInContainer:container];
     }
     @catch (NSException * exc) {
-        BDMLog(@"Adapter: %@ raise exception: %@", self.adapter, exc);
+        BDMLog(@"Adapter: %@ raised exception: %@", self.adapter, exc);
         [self.delegate displayAd:self failedToPresent:exc.bdm_wrappedError];
     }
 }
@@ -62,7 +62,7 @@
 }
 
 - (void)invalidate {
-    BDMLog(@"Display ad invalidate: %@", self);
+    BDMLog(@"Invalidating ad: %@", self);
     [self.metricProvider finishViewabilityMonitoringForView:self.adView];
     self.adapter.displayDelegate = nil;
     [super invalidate];
@@ -88,7 +88,7 @@
 }
 
 - (void)adapterRegisterUserInteraction:(id<BDMBannerAdapter>)adapter {
-    BDMLog(@"Adapter: %@ register user interaction", adapter);
+    BDMLog(@"Adapter: %@ registered user interaction", adapter);
     [self.delegate displayAdLogUserInteraction:self];
 }
 
@@ -108,14 +108,14 @@
 }
 
 - (void)adapterDidDismissScreen:(id<BDMBannerAdapter>)adapter {
-    BDMLog(@"Adapter: %@ dismiss screen", adapter);
+    BDMLog(@"Adapter: %@ dismissed screen", adapter);
     if ([self.delegate respondsToSelector:@selector(displayAdDidDismissScreen:)]) {
         [self.delegate displayAdDidDismissScreen:self];
     }
 }
 
 - (void)adapterWillLeaveApplication:(id<BDMBannerAdapter>)adapter {
-    BDMLog(@"Adapter: %@ leave application", adapter);
+    BDMLog(@"Adapter: %@ left application", adapter);
     if ([self.delegate respondsToSelector:@selector(displayAdWillLeaveApplication:)]) {
         [self.delegate displayAdWillLeaveApplication:self];
     }
@@ -124,17 +124,17 @@
 #pragma mark - BDMViewabilityMetricProviderDelegate
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectFinishView:(UIView *)view {
-    BDMLog(@"Adapter: %@ finish view", self.adapter);
+    BDMLog(@"Adapter: %@ detected viewability finish event", self.adapter);
     [self.delegate displayAdLogFinishView:self];
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectImpression:(UIView *)view {
-    BDMLog(@"Adapter: %@ impression view", self.adapter);
+    BDMLog(@"Adapter: %@ detected viewability impression event", self.adapter);
     [self.delegate displayAdLogImpression:self];
 }
 
 - (void)viewabilityMetricProvider:(BDMViewabilityMetricProvider *)provider detectStartView:(UIView *)view {
-    BDMLog(@"Adapter: %@ start view", self.adapter);
+    BDMLog(@"Adapter: %@ detected viewability start event", self.adapter);
     [self.delegate displayAdLogStartView:self];
 }
 

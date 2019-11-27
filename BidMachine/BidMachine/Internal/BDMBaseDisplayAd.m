@@ -74,7 +74,7 @@
         [adapter prepareContent:self.response.creative.renderingInfo];
     }
     @catch (NSException *exc) {
-        BDMLog(@"Adapter: %@ raise exception: %@", adapter, exc);
+        BDMLog(@"Adapter: %@ raised exception: %@", adapter, exc);
         [self.delegate displayAd:self failedWithError:exc.bdm_wrappedError];
     }
 }

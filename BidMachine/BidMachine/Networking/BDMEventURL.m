@@ -103,7 +103,6 @@ NSInteger BDMActionTypeFromBDMEvent(BDMEvent event) {
 }
 
 - (NSArray <NSString *>*)macrosPattern {
-    // You will never know correct macros format i swear
     return @[
              @"%%25%%25%@%%25%%25",
              @"%%%%%@%%%%",

@@ -15,7 +15,7 @@ BDM_SUBCLASSING_RESTRICTED
  */
 @interface BDMPriceFloor : NSObject
 /**
- Identifier of bid
+ Bid identifier
  */
 @property (copy, nonatomic, readwrite, nonnull) NSString * ID;
 /**

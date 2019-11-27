@@ -10,15 +10,15 @@
 #import <BidMachine/BDMSdkConfiguration.h>
 
 /**
- Poxy object that provides communcation between bidding and networks adapter
+ Proxy object that provides communication between bidding and networks adapter
  */
 @interface BDMSdk : NSObject
 /**
- Boolean getter that indicated that sdk ready for auction
+ Boolean getter that indicates if sdk is ready for auction
  */
 @property (nonatomic, assign, readonly, getter=isInitialized) BOOL initialized;
 /**
- Enable logging. by default logging disabled
+ Enables logging. Logging is disabled by default
  */
 @property (nonatomic, assign, readwrite) BOOL enableLogging;
 /**
@@ -29,7 +29,7 @@
 + (nonnull instancetype)new NS_UNAVAILABLE;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 /**
- Singelton sdk object
+ Singleton sdk object
  
  @return Shared instance
  */
@@ -37,17 +37,17 @@
 /**
  Starts session with publisher id
  
- @param sellerID Your seller id registered in exchange dashboard
- @param completion Called then sdk complete initialisation actions
+ @param sellerID Your seller id provided by BidMachine
+ @param completion Called when sdk completes initialisation
  */
 - (void)startSessionWithSellerID:(nonnull NSString *)sellerID
                       completion:(void(^ _Nullable)(void))completion;
 /**
  Starts session with publisher id and configured start data
  
- @param sellerID Your publisher id registered in exchange dashboard
+ @param sellerID Your seller id provided by BidMachine
  @param configuration Initial configuration
- @param completion Called then sdk complete initialisation actions
+ @param completion Called when sdk completes initialisation
  */
 - (void)startSessionWithSellerID:(nonnull NSString *)sellerID
                    configuration:(nonnull BDMSdkConfiguration *)configuration
