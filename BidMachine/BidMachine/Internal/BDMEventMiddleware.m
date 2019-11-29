@@ -300,6 +300,11 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
         return;
     }
     
+    //TODO: server fraud filter
+    if (type == BDMEventAuction && code == BDMErrorCodeNoContent) {
+        return;
+    }
+    
     URL = URL
     .extendedByStartTime(startTime)
     .extendedByFinishTime(finishTime)
