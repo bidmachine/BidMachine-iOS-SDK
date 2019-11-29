@@ -1,6 +1,7 @@
-# Version 1.3.1 (Sep 6th, 2019)
 
-- Add Header Bidding Mintegral adapter
+# Version 1.4.0 (Nov 29th, 2019)
+
+- Add Native Ad support
 
 # Version 1.3.0 (Aug 13th, 2019)
 
