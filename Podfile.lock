@@ -3,47 +3,47 @@ PODS:
   - DTBiOSSDK (3.0.0)
   - FBAudienceNetwork (5.6.0):
     - FBSDKCoreKit/Basics (>= 5.2.1)
-  - FBSDKCoreKit/Basics (5.11.0)
+  - FBSDKCoreKit/Basics (5.11.1)
   - Kiwi (3.0.0)
   - MintegralAdSDK/BidInterstitialVideoAd (5.8.4.0):
     - MintegralAdSDK/BidNativeAd
   - MintegralAdSDK/BidNativeAd (5.8.4.0)
   - MintegralAdSDK/BidRewardVideoAd (5.8.4.0):
     - MintegralAdSDK/BidNativeAd
-  - myTargetSDK (5.4.1)
-  - Protobuf (3.10.0)
-  - smaato-ios-sdk (21.2.1):
-    - smaato-ios-sdk/Full (= 21.2.1)
-  - smaato-ios-sdk/Banner (21.2.1):
+  - myTargetSDK (5.4.2)
+  - Protobuf (3.11.0)
+  - smaato-ios-sdk (21.2.2):
+    - smaato-ios-sdk/Full (= 21.2.2)
+  - smaato-ios-sdk/Banner (21.2.2):
     - smaato-ios-sdk/Modules/Banner
     - smaato-ios-sdk/Modules/Core
     - smaato-ios-sdk/Modules/RichMedia
-  - smaato-ios-sdk/Full (21.2.1):
+  - smaato-ios-sdk/Full (21.2.2):
     - smaato-ios-sdk/Banner
     - smaato-ios-sdk/Interstitial
     - smaato-ios-sdk/RewardedAds
-  - smaato-ios-sdk/Interstitial (21.2.1):
+  - smaato-ios-sdk/Interstitial (21.2.2):
     - smaato-ios-sdk/Modules/Interstitial
     - smaato-ios-sdk/Modules/RichMedia
     - smaato-ios-sdk/Modules/Video
-  - smaato-ios-sdk/Modules/Banner (21.2.1):
+  - smaato-ios-sdk/Modules/Banner (21.2.2):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/Core (21.2.1)
-  - smaato-ios-sdk/Modules/Interstitial (21.2.1):
+  - smaato-ios-sdk/Modules/Core (21.2.2)
+  - smaato-ios-sdk/Modules/Interstitial (21.2.2):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/OpenMeasurement (21.2.1):
+  - smaato-ios-sdk/Modules/OpenMeasurement (21.2.2):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/RewardedAds (21.2.1):
+  - smaato-ios-sdk/Modules/RewardedAds (21.2.2):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/RichMedia (21.2.1):
-    - smaato-ios-sdk/Modules/Core
-    - smaato-ios-sdk/Modules/OpenMeasurement
-  - smaato-ios-sdk/Modules/UnifiedBidding (21.2.1):
-    - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/Video (21.2.1):
+  - smaato-ios-sdk/Modules/RichMedia (21.2.2):
     - smaato-ios-sdk/Modules/Core
     - smaato-ios-sdk/Modules/OpenMeasurement
-  - smaato-ios-sdk/RewardedAds (21.2.1):
+  - smaato-ios-sdk/Modules/UnifiedBidding (21.2.2):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/Video (21.2.2):
+    - smaato-ios-sdk/Modules/Core
+    - smaato-ios-sdk/Modules/OpenMeasurement
+  - smaato-ios-sdk/RewardedAds (21.2.2):
     - smaato-ios-sdk/Modules/RewardedAds
     - smaato-ios-sdk/Modules/Video
   - StackAPI/BidMachine (0.1.2):
@@ -76,7 +76,7 @@ PODS:
     - StackModules/StackFoundation
   - TapjoySDK (12.3.4)
   - Toast-Swift (4.0.1)
-  - VungleSDK-iOS (6.4.5)
+  - VungleSDK-iOS (6.4.6)
 
 DEPENDENCIES:
   - AdColony (~> 4.1)
@@ -125,18 +125,18 @@ SPEC CHECKSUMS:
   AdColony: 0a1e13349ce430ce29374c665611013fd78f792c
   DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
   FBAudienceNetwork: b608516b0a24459b7ebcd09516493d8bf303ee9e
-  FBSDKCoreKit: 9fbfb5b0022d34861bfa6b79f56f8e2ddcd8170b
+  FBSDKCoreKit: 5aada61a229054694810f3cee231f986004b3c49
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
   MintegralAdSDK: f26898e40a1676b53508ea4aa145ce70a897fc46
-  myTargetSDK: a979e842e59f10b9e7eedce7a920a0b7ba111e47
-  Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
-  smaato-ios-sdk: 5bf782553132891bd5b150102520b4c6a91bc010
+  myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
+  Protobuf: 394b2bf29ec303f4325e3ee4892c09e675647152
+  smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
   StackAPI: 222922252854078576b896250fcfb385abd24cec
   StackIAB: aec38ec3f572cc048113b30699a2e54e6bcce87c
   StackModules: ebd9bf35996712e9ea7fbb60e8fddf8c9fccc028
   TapjoySDK: 4325bc3c42ae91fed30929792a71d380c63a3c6c
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
-  VungleSDK-iOS: 8951559521dd73c3f947757e9a4c4bbfd8645b7f
+  VungleSDK-iOS: 6bf8b4fef32afc169acbc1291485560c81ceb293
 
 PODFILE CHECKSUM: 78c78e1d9cdcd86d3f44c04c4e1cfc0ae9e76fd1
 
