@@ -103,3 +103,4 @@ private extension BDMPriceFloor {
 final class BannerRequestVC: RequestVC <BDMBannerRequest> {}
 final class InterstitialRequestVC: RequestVC <BDMInterstitialRequest> {}
 final class RewardedRequestVC: RequestVC <BDMRewardedRequest> {}
+final class NativeAdRequestVC: RequestVC <BDMNativeAdRequest> {}

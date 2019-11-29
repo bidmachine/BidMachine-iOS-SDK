@@ -29,7 +29,7 @@ class NativeVC: UIViewController {
     }
     
     @IBAction func configureRequest(_ sender: Any) {
-        let requestVC: RequestVC? =  UIApplication.shared.mainStoryboard.instantiateVC()
+        let requestVC: NativeAdRequestVC? =  UIApplication.shared.mainStoryboard.instantiateVC()
         
         navigationController?.present(requestVC!, animated: true, completion: nil)
     }

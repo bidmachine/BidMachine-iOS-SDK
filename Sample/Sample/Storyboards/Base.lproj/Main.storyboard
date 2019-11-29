@@ -809,6 +809,49 @@
             </objects>
             <point key="canvasLocation" x="3137" y="1539"/>
         </scene>
+        <!--Native Ad RequestVC-->
+        <scene sceneID="Rmh-ge-bnC">
+            <objects>
+                <tableViewController storyboardIdentifier="NativeAdRequestVC" id="ZON-ru-4fK" customClass="NativeAdRequestVC" customModule="Sample" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="htK-8F-o74">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacingType="standard" id="fWp-0A-wjQ">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="92"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0A-xZ-N8w">
+                                    <rect key="frame" x="340" y="0.0" width="88" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <state key="normal" title="Save &amp; Close"/>
+                                    <connections>
+                                        <action selector="saveAndCloseTouched:" destination="Pko-x9-gex" eventType="touchUpInside" id="Ehb-mk-059"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1I-zT-4rY">
+                                    <rect key="frame" x="365" y="54" width="38" height="38"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <state key="normal" title="Close">
+                                        <color key="titleColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="closeTouched:" destination="Pko-x9-gex" eventType="touchUpInside" id="yAC-fs-yd1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="ZON-ru-4fK" id="2ZB-LS-QCP"/>
+                            <outlet property="delegate" destination="ZON-ru-4fK" id="ham-mm-cXI"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pko-x9-gex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2359.375" y="801.5625"/>
+        </scene>
         <!--Banner RequestVC-->
         <scene sceneID="fEY-DH-wov">
             <objects>
@@ -850,7 +893,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moq-Pa-dXF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8000000000002" y="801.94902548725645"/>
+            <point key="canvasLocation" x="2360" y="802"/>
         </scene>
         <!--Interstitial RequestVC-->
         <scene sceneID="4PB-aT-igr">
@@ -893,7 +936,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zva-Zq-BLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8000000000002" y="801.94902548725645"/>
+            <point key="canvasLocation" x="2360" y="802"/>
         </scene>
     </scenes>
 </document>
