@@ -22,6 +22,7 @@ class SdkContext: NSObject {
     private struct Names {
         static let configuration = "BDMSdkConfiguration.txt"
         static let restriction = "BDMUserRestrictions.txt"
+        static let publisher = "BDMPublisherInfo.txt"
         static let sellerId = "SellerID.txt"
         static let appInfo = "AppInfo.txt"
     }
@@ -33,6 +34,7 @@ class SdkContext: NSObject {
     public var configuration: BDMSdkConfiguration
     public var targeting: BDMTargeting
     public var restriction: BDMUserRestrictions
+    public var publisherInfo: BDMPublisherInfo
     public var sellerId: String
     public var appConfiguration: AppBehaviourConfiguration
     
@@ -49,6 +51,7 @@ class SdkContext: NSObject {
         configuration.testMode = true
         targeting = configuration.targeting ?? BDMTargeting()
         restriction = NSKeyedUnarchiver.unarchive(Names.restriction) ?? BDMUserRestrictions()
+        publisherInfo = NSKeyedUnarchiver.unarchive(Names.publisher) ?? BDMPublisherInfo()
         sellerId = UserDefaults.standard.object(forKey: Names.sellerId).map { $0 as! String } ?? "1"
         
         super.init()
@@ -62,6 +65,7 @@ class SdkContext: NSObject {
         configuration.targeting = targeting
         NSKeyedArchiver.archive(configuration, Names.configuration)
         NSKeyedArchiver.archive(restriction, Names.restriction)
+        NSKeyedArchiver.archive(publisherInfo, Names.publisher)
         UserDefaults.standard.set(sellerId, forKey: Names.sellerId)
         BDMSdk.shared().restrictions = restriction
     }

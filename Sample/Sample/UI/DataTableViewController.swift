@@ -185,6 +185,44 @@ extension DataTableViewController {
         }
     }
     
+    func addPublisherInfoSection() {
+        addSection { section in
+            section.title = "Publisher Info"
+            section
+                .addRow {
+                    [unowned self] row in
+                    let cell: GeneratableDataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Publisher ID", type:.string, value: SdkContext.shared.publisherInfo.publisherId)
+                    cell.generate = { entity, closure in closure( DataEntity(info: "Publisher ID", type:.string, value: UUID().uuidString) ) }
+                    cell.binding = { SdkContext.shared.publisherInfo.publisherId = $0.value! }
+                    row.cell = cell
+                }
+                .addRow {
+                    [unowned self] row in
+                    let cell: GeneratableDataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Publisher Name", type:.string, value: SdkContext.shared.publisherInfo.publisherName)
+                    cell.generate = { entity, closure in closure( DataEntity(info: "Publisher Name", type:.string, value: UUID().uuidString) ) }
+                    cell.binding = { SdkContext.shared.publisherInfo.publisherName = $0.value! }
+                    row.cell = cell
+                }
+                .addRow {
+                    [unowned self] row in
+                    let cell: GeneratableDataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Publisher Domain", type:.string, value: SdkContext.shared.publisherInfo.publisherDomain)
+                    cell.generate = { entity, closure in closure( DataEntity(info: "Publisher Domain", type:.string, value: UUID().uuidString) ) }
+                    cell.binding = { SdkContext.shared.publisherInfo.publisherDomain = $0.value! }
+                    row.cell = cell
+                }
+                .addRow {
+                    [unowned self] row in
+                    let cell: DataTableViewCell = self.tableView.dequeueCell()
+                    cell.entity = DataEntity(info: "Publisher categories", type: .commaSeparatedList, value:SdkContext.shared.publisherInfo.publisherCategories?.joined(separator: ", "))
+                    cell.binding = { SdkContext.shared.publisherInfo.publisherCategories = $0.value!.commaSeparatedList()}
+                    row.cell = cell
+            }
+        }
+    }
+    
     func addLocationTargetingSection() {
         addSection { section in
             section.title = "Location targeting"

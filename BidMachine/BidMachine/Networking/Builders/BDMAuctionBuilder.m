@@ -18,6 +18,7 @@
 @property (nonatomic, assign) BOOL testMode;
 
 @property (nonatomic, strong) BDMRequest *request;
+@property (nonatomic, strong) BDMPublisherInfo *publisherInfo;
 @property (nonatomic, strong) BDMUserRestrictions *restrictions;
 @property (nonatomic, strong) id<BDMAuctionSettings> auctionSettings;
 @property (nonatomic, strong) id<BDMPlacementRequestBuilder> placementBuilder;
@@ -64,6 +65,13 @@
 - (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions {
     return ^id(BDMUserRestrictions * restrictions) {
         self.restrictions = restrictions;
+        return self;
+    };
+}
+
+- (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo {
+    return ^id(BDMPublisherInfo * publisherInfo) {
+        self.publisherInfo = publisherInfo;
         return self;
     };
 }
@@ -224,6 +232,7 @@
     app.storeid     = self.request.targeting.storeId;
     app.storeurl    = self.request.targeting.storeURL.absoluteString;
     app.paid        = self.request.targeting.paid;
+    app.pub         = self.adcomContextAppPublisherMessage;
     app.bundle      = STKBundle.ID;
     app.ver         = STKBundle.bundleVersion;
     app.name        = [NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
@@ -283,6 +292,15 @@
     regs.gdpr = self.restrictions.subjectToGDPR;
     
     return regs;
+}
+
+- (ADCOMContext_App_Publisher *)adcomContextAppPublisherMessage {
+    ADCOMContext_App_Publisher *publisher = [ADCOMContext_App_Publisher message];
+    publisher.id_p = self.publisherInfo.publisherId;
+    publisher.name = self.publisherInfo.publisherName;
+    publisher.domain = self.publisherInfo.publisherDomain;
+    publisher.catArray = self.publisherInfo.publisherCategories.mutableCopy;
+    return publisher;
 }
 
 @end

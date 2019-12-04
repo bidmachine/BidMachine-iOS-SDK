@@ -11,7 +11,7 @@ PODS:
   - MintegralAdSDK/BidRewardVideoAd (5.8.4.0):
     - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.4.2)
-  - Protobuf (3.11.0)
+  - Protobuf (3.11.1)
   - smaato-ios-sdk (21.2.2):
     - smaato-ios-sdk/Full (= 21.2.2)
   - smaato-ios-sdk/Banner (21.2.2):
@@ -129,7 +129,7 @@ SPEC CHECKSUMS:
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
   MintegralAdSDK: f26898e40a1676b53508ea4aa145ce70a897fc46
   myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
-  Protobuf: 394b2bf29ec303f4325e3ee4892c09e675647152
+  Protobuf: 20d79da7f20b5928b80043b05080b816e802659e
   smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
   StackAPI: 222922252854078576b896250fcfb385abd24cec
   StackIAB: aec38ec3f572cc048113b30699a2e54e6bcce87c

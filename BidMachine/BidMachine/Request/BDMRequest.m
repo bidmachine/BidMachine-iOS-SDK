@@ -88,7 +88,8 @@
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
-            .appendRestrictions(BDMSdk.sharedSdk.restrictions);
+            .appendRestrictions(BDMSdk.sharedSdk.restrictions)
+            .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo);
         } success:^(id<BDMResponse> response) {
             // Save response object
             weakSelf.response = response;

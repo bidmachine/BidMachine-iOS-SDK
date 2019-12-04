@@ -37,6 +37,7 @@ class InitializationVC: UIViewController {
     @IBAction func initialiseSdk(_ sender: Any) {
         SdkContext.shared.sellerId = sellerIdTextField.text!
         BDMSdk.shared().restrictions = SdkContext.shared.restriction
+        BDMSdk.shared().publisherInfo = SdkContext.shared.publisherInfo
         BDMSdk.shared().enableLogging = SdkContext.shared.appConfiguration.logging
         
         BDMSdk.shared().startSession(withSellerID:SdkContext.shared.sellerId,

@@ -21,6 +21,7 @@
 @property (nonatomic, copy, readonly) NSString *sellerID;
 @property (nonatomic, copy, readonly) BDMTargeting *targeting;
 @property (nonatomic, copy, readonly) BDMUserRestrictions *restrictions;
+@property (nonatomic, copy, readonly) BDMPublisherInfo *publisherInfo;
 
 @property (nonatomic, assign, readonly) BOOL testMode;
 @property (nonatomic, assign, readonly) BOOL isDeviceReachable;

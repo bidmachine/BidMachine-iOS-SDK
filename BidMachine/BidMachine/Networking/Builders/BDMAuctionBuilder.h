@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "BDMRequest.h"
 #import "BDMAuctionSettings.h"
+#import "BDMPublisherInfo.h"
 #import "BDMPlacementRequestBuilderProtocol.h"
 
 @class GPBMessage;
@@ -21,5 +22,6 @@
 - (BDMAuctionBuilder *(^)(id<BDMPlacementRequestBuilder>))appendPlacementBuilder;
 - (BDMAuctionBuilder *(^)(BOOL))appendTestMode;
 - (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions;
+- (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo;
 
 @end

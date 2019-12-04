@@ -16,6 +16,7 @@ class ConfigurationVC: DataTableViewController {
         addUrlSection()
         addHeaderBiddingSection()
         addUserTargetingSection()
+        addPublisherInfoSection()
         addLocationTargetingSection()
         addAppTargetingSection()
         addAdResttrictionsSection()

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <BidMachine/BDMPublisherInfo.h>
 #import <BidMachine/BDMSdkConfiguration.h>
 
 /**
@@ -25,6 +26,10 @@
  Restrictions
  */
 @property (copy, nonatomic, readwrite, nullable) BDMUserRestrictions *restrictions;
+/**
+ Publisher info
+ */
+@property (copy, nonatomic, readwrite, nullable) BDMPublisherInfo *publisherInfo;
 
 + (nonnull instancetype)new NS_UNAVAILABLE;
 - (nonnull instancetype)init NS_UNAVAILABLE;

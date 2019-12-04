@@ -103,6 +103,8 @@
 		65CE5DA621B15F0400652496 /* BDMRetryTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE5DA421B15F0400652496 /* BDMRetryTimer.m */; };
 		65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */; };
 		65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */; };
+		65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */; };
 		9C2597281FB1DC91006F3FA7 /* BidMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597261FB1DC91006F3FA7 /* BidMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C2597301FB1DD64006F3FA7 /* BDMServerCommunicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25972E1FB1DD64006F3FA7 /* BDMServerCommunicator.h */; };
 		9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25972F1FB1DD64006F3FA7 /* BDMServerCommunicator.m */; };
@@ -256,6 +258,8 @@
 		65CE5DA421B15F0400652496 /* BDMRetryTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRetryTimer.m; sourceTree = "<group>"; };
 		65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMPlacementRequestBuilder.h; path = BidMachine/Networking/Builders/BDMPlacementRequestBuilder.h; sourceTree = SOURCE_ROOT; };
 		65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMPlacementRequestBuilder.m; path = BidMachine/Networking/Builders/BDMPlacementRequestBuilder.m; sourceTree = SOURCE_ROOT; };
+		65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPublisherInfo.h; sourceTree = "<group>"; };
+		65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPublisherInfo.m; sourceTree = "<group>"; };
 		76EB7CD6CDD10BD42CC42D42 /* Pods-BidMachine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachine.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachine/Pods-BidMachine.debug.xcconfig"; sourceTree = "<group>"; };
 		9C2597231FB1DC91006F3FA7 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C2597261FB1DC91006F3FA7 /* BidMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BidMachine.h; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 				422712F92164B5D100EE5012 /* BDMTargeting.m */,
 				427E4D5C219427D3001EE6C7 /* BDMUserRestrictions.h */,
 				427E4D5D219427D3001EE6C7 /* BDMUserRestrictions.m */,
+				65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */,
+				65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -735,6 +741,7 @@
 				420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */,
 				9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */,
 				9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */,
+				65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */,
 				42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */,
 				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
 				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
@@ -925,6 +932,7 @@
 				6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */,
 				42F86EDE21BAB7A400B58CB5 /* BDMPriceFloor.m in Sources */,
 				4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */,
+				65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */,
 				9C25973D1FB1E25C006F3FA7 /* BDMFactory.m in Sources */,
 				9C2597351FB1DFFF006F3FA7 /* BDMDefines.m in Sources */,
 				9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */,
