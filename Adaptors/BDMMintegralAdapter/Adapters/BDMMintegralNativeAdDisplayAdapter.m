@@ -99,8 +99,13 @@
 }
 
 - (void)invalidate {
+    [self unregisterView];
+}
+
+- (void)unregisterView { 
     [self.adManager unregisterView:self.containerView];
 }
+
 
 #pragma mark - MTGBidNativeAdManagerDelegate
 

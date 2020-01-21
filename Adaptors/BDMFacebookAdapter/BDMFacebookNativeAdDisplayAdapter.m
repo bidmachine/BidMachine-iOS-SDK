@@ -91,6 +91,10 @@
 }
 
 - (void)invalidate {
+    [self unregisterView];
+}
+
+- (void)unregisterView {
     [self.ad unregisterView];
 }
 

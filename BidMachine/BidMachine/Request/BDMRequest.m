@@ -190,6 +190,13 @@
     self.expirationTimer = nil;
 }
 
+- (void)setPriceFloors:(NSArray<BDMPriceFloor *> *)priceFloors {
+    _priceFloors = priceFloors;
+    if (priceFloors.count > 0) {
+        BDMLog(@"You haven't disabled header bidding. Are you sure you want to use it with predefined price floor?");
+    }
+}
+
 @end
 
 
