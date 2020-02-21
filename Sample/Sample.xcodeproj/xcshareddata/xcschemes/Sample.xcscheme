@@ -141,7 +141,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D91F84A02175CC11005A92F1"
-               BuildableName = "Sample.app"
+               BuildableName = "BidmachineSample.app"
                BlueprintName = "Sample"
                ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
@@ -157,7 +157,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D91F84A02175CC11005A92F1"
-            BuildableName = "Sample.app"
+            BuildableName = "BidmachineSample.app"
             BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
@@ -180,7 +180,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D91F84A02175CC11005A92F1"
-            BuildableName = "Sample.app"
+            BuildableName = "BidmachineSample.app"
             BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
@@ -204,7 +204,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D91F84A02175CC11005A92F1"
-            BuildableName = "Sample.app"
+            BuildableName = "BidmachineSample.app"
             BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>

@@ -22,6 +22,7 @@ static NSString * const kBDMHeightKey       = @"h";
 
 static NSString * const kBDMMRAIDPreloadKey             = @"should_cache";
 static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay";
+static NSString * const kBDMVASTPostbannerCloseTimeKey  = @"skip_after";
 
 
 @interface BDMCreative ()
@@ -74,6 +75,7 @@ static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay"
         self.displaymanager = @"vast";
         self.format = BDMCreativeFormatVideo;
         renderingInfo[kBDMCreativeKey] = ad.video.adm;
+        renderingInfo[kBDMVASTPostbannerCloseTimeKey] = @(extensions.skipAfter).stringValue;
     // Check DSP Creative from display placement
     } else if (ad.display.adm.length > 0) {
         // All video creatives are displayed by MRAID

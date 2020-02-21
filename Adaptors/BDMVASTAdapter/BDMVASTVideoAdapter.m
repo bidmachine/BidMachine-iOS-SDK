@@ -6,9 +6,6 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#define DEFAULT_SKIP_INTERVAL 5
-#define DEFAULT_REWARD_INTERVAL 30
-
 #import "BDMVASTVideoAdapter.h"
 #import "BDMVASTNetwork.h"
 
@@ -21,6 +18,7 @@
 
 @property (nonatomic, strong) STKVASTController *videoController;
 @property (nonatomic, copy) NSNumber *maxDuration;
+@property (nonatomic, copy) NSNumber *skipAfter;
 
 @end
 
@@ -29,6 +27,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         _maxDuration = @(180);
+        _skipAfter = @(2);
+        
     }
     return self;
 }
@@ -40,6 +40,7 @@
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     NSString * rawXML = contentInfo[@"creative"];
     self.maxDuration = contentInfo[@"max_duration"] ? @(contentInfo[@"max_duration"].floatValue) : self.maxDuration;
+    self.skipAfter = contentInfo[@"skip_after"] ? @(contentInfo[@"skip_after"].floatValue) : self.skipAfter;
     NSData * xmlData = [rawXML dataUsingEncoding:NSUTF8StringEncoding];
     
     self.videoController = [STKVASTController new];
@@ -54,7 +55,7 @@
 #pragma mark - Private
 
 - (NSNumber *)closeTime {
-    return self.rewarded ? @DEFAULT_REWARD_INTERVAL : @DEFAULT_SKIP_INTERVAL;
+    return self.skipAfter > 0 ? self.skipAfter : @(2);
 }
 
 - (BOOL)isAutoclose {
