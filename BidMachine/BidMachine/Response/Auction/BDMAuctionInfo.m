@@ -17,6 +17,7 @@
 @property (nonatomic, copy, readwrite, nullable) NSString * cID;
 @property (nonatomic, copy, readwrite, nullable) NSString * dealID;
 @property (nonatomic, copy, readwrite, nullable) NSArray <NSString *> * adDomains;
+@property (nonatomic, copy, readwrite, nullable) NSDictionary <NSString *, NSString *> *customParams;
 @property (nonatomic, copy, readwrite, nullable) NSString * demandSource;
 @property (nonatomic, copy, readwrite, nullable) NSNumber * price;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;
@@ -36,6 +37,7 @@
         self.creativeID     = response.creative.ID;
         self.adDomains      = response.creative.adDomains;
         self.format         = response.creative.format;
+        self.customParams   = response.creative.customParams;
     }
     return self;
 }
@@ -52,6 +54,7 @@
     copy.dealID         = self.dealID;
     copy.adDomains      = self.adDomains;
     copy.format         = self.format;
+    copy.customParams   = self.customParams;
     return copy;
 }
 
@@ -79,6 +82,9 @@
     extras[@"bm_ad_type"] = NSStringFromBDMCreativeFormat(self.format);
     if (params) {
         [extras addEntriesFromDictionary:params];
+    }
+    if (self.customParams) {
+        [extras addEntriesFromDictionary:self.customParams];
     }
     return extras;
 }

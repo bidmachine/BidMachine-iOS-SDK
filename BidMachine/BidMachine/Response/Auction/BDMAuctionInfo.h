@@ -47,6 +47,10 @@ BDM_SUBCLASSING_RESTRICTED
 */
 @property (nonatomic, assign, readonly) BDMCreativeFormat format;
 /**
+ Creative custom parameters
+*/
+@property (nonatomic, copy, readonly, nullable) NSDictionary <NSString *, NSString *> *customParams;
+/**
  Transform model to key-value map
 */
 - (nonnull NSDictionary *)extras;

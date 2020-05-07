@@ -17,6 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *ID;
 @property (nonatomic, copy, readonly) NSString *displaymanager;
 @property (nonatomic, copy, readonly) NSDictionary <NSString *, NSString *> *renderingInfo;
+@property (nonatomic, copy, readonly) NSDictionary <NSString *, NSString *> *customParams;
 @property (nonatomic, copy, readonly) NSArray <NSString *> *adDomains;
 @property (nonatomic, copy, readonly) NSArray <BDMEventURL *> *trackers;
 @property (nonatomic, copy, readonly) BDMViewabilityMetricConfiguration *viewabilityConfig;
