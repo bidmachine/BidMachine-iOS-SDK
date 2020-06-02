@@ -4,7 +4,7 @@ PODS:
   - DTBiOSSDK (3.0.0)
   - FBAudienceNetwork (5.7.1):
     - FBSDKCoreKit/Basics (>= 5.6.0)
-  - FBSDKCoreKit/Basics (6.2.0)
+  - FBSDKCoreKit/Basics (7.0.0)
   - Kiwi (3.0.0)
   - MintegralAdSDK/BidInterstitialVideoAd (6.0.0.0):
     - MintegralAdSDK/BidNativeAd
@@ -12,7 +12,7 @@ PODS:
   - MintegralAdSDK/BidRewardVideoAd (6.0.0.0):
     - MintegralAdSDK/BidNativeAd
   - myTargetSDK (5.4.2)
-  - Protobuf (3.11.4)
+  - Protobuf (3.12.0)
   - smaato-ios-sdk (21.2.2):
     - smaato-ios-sdk/Full (= 21.2.2)
   - smaato-ios-sdk/Banner (21.2.2):
@@ -47,29 +47,29 @@ PODS:
   - smaato-ios-sdk/RewardedAds (21.2.2):
     - smaato-ios-sdk/Modules/RewardedAds
     - smaato-ios-sdk/Modules/Video
-  - StackAPI/BidMachine (0.2.2):
+  - StackAPI/BidMachine (0.2.3):
     - Protobuf (~> 3.8)
-  - StackIAB/StackMRAIDKit (0.5.13):
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackNASTKit (0.5.13):
+  - StackIAB/StackMRAIDKit (0.5.15):
+    - StackModules (~> 0.6)
+  - StackIAB/StackNASTKit (0.5.15):
     - StackIAB/StackVASTKit
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackRichMedia (0.5.13):
+    - StackModules (~> 0.6)
+  - StackIAB/StackRichMedia (0.5.15):
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackVASTAssets (0.5.13):
+    - StackModules (~> 0.6)
+  - StackIAB/StackVASTAssets (0.5.15):
     - StackIAB/StackXML
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackVASTKit (0.5.13):
+    - StackModules (~> 0.6)
+  - StackIAB/StackVASTKit (0.5.15):
     - StackIAB/StackMRAIDKit
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackVideoPlayer (0.5.13):
-    - StackModules (~> 0.6.3)
-  - StackIAB/StackXML (0.5.13):
-    - StackModules (~> 0.6.3)
+    - StackModules (~> 0.6)
+  - StackIAB/StackVideoPlayer (0.5.15):
+    - StackModules (~> 0.6)
+  - StackIAB/StackXML (0.5.15):
+    - StackModules (~> 0.6)
   - StackModules (0.6.10):
     - StackModules/StackUIKit (= 0.6.10)
   - StackModules/StackFoundation (0.6.10)
@@ -109,7 +109,6 @@ SPEC REPOS:
     - DTBiOSSDK
     - StackAPI
     - StackIAB
-    - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
     - FBAudienceNetwork
@@ -129,14 +128,14 @@ SPEC CHECKSUMS:
   CriteoPublisherSdk: 9ea61c4f6facafd5bc003258d569e6510e06614c
   DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
   FBAudienceNetwork: 33fc8c8c07c1cdbf5279784b73729c6410809daa
-  FBSDKCoreKit: a7bb9f5ac56c1e11d5f8ae0b90a3610f8744b43a
+  FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
   MintegralAdSDK: 00e3c264c3f1c9f9a2fe0ac830e0f185b7ef87e2
   myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
-  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
-  StackAPI: 8e454d27284321af8843dd6630e0f1084d36c4ac
-  StackIAB: 02bac8c41f0252525ad1e1f1f9eb8841d112b413
+  StackAPI: c6ab88dcfa60a7dfc76de632fee36d8bfe87e20b
+  StackIAB: 81eab2972a039a683e9ead2e50a9172b8b394bb4
   StackModules: 4a89dc77f24bcf1500e112a5c9c73140ec8ee58f
   TapjoySDK: c8d73f291cfe922cb8bb2c3ae09b5af0b2863841
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
@@ -144,4 +143,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 16613b085e2d5d05ab2399ecc00071f284c78786
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.9.1

@@ -150,10 +150,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     [self.displayDelegate adapterWillPresentScreen:self];
 }
 
-- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {
-    [STKSpinnerScreen hide];
-    [self.loadingDelegate adapterPreparedContent:self];
-}
+- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {}
 
 - (void)controllerDidCompleteProcessing:(nonnull STKProductController *)controller {}
 

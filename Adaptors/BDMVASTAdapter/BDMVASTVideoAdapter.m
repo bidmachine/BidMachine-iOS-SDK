@@ -58,6 +58,14 @@
     return self.skipAfter > 0 ? self.skipAfter : @(2);
 }
 
+- (BOOL)forceCloseTime {
+    return NO;
+}
+
+- (NSNumber *)videoCloseTime {
+    return @(5);
+}
+
 - (BOOL)isAutoclose {
     return NO;
 }

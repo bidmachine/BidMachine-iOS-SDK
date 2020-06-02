@@ -169,10 +169,7 @@
 
 - (void)controller:(STKProductController *)controller didDismissProduct:(NSURL *)productURL {}
 
-- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {
-    [self.loadingDelegate adapterPreparedContent:self];
-}
-
+- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {}
 
 - (void)controllerDidCompleteProcessing:(nonnull STKProductController *)controller {}
 
