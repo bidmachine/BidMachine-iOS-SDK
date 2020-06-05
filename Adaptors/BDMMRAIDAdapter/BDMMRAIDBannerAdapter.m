@@ -31,9 +31,6 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 @property (nonatomic, weak) UIView *container;
 
-@property (nonatomic, assign) BOOL shouldCache;
-@property (nonatomic, assign) NSTimeInterval closableViewDelay;
-
 @end
 
 @implementation BDMMRAIDBannerAdapter
@@ -44,8 +41,6 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     self.adContent          = contentInfo[@"creative"];
-    self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
-    self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
     
     CGSize bannerSize       = [self sizeFromContentInfo:contentInfo];
     CGRect frame            = (CGRect){.size = bannerSize};
@@ -62,50 +57,24 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     self.presenter = [STKMRAIDViewPresenter new];
     self.presenter.delegate = self;
     self.presenter.frame = frame;
-    
-    if (self.shouldCache) {
-        [self.ad loadHTML:self.adContent];
-    } else {
-        [self.loadingDelegate adapterPreparedContent:self];
-    }
+    [self.ad loadHTML:self.adContent];
 }
 
 - (void)presentInContainer:(UIView *)container {
     [container.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.container = container;
-    if (self.shouldCache) {
-        [container addSubview:self.presenter];
-        [self.presenter presentAd:self.ad];
-    } else {
-        self.activityIndicatorView = [[STKSpinnerView alloc] initWithFrame:self.presenter.frame blurred:YES];
-        self.activityIndicatorView.hidden = NO;
-        [container addSubview:self.activityIndicatorView];
-        [self.ad loadHTML:self.adContent];
-    }
+    [container addSubview:self.presenter];
+    [self.presenter presentAd:self.ad];
 }
 
 #pragma mark - AMKAdDelegate
 
 - (void)didLoadAd:(STKMRAIDAd *)ad {
-    if (self.shouldCache) {
-        [self.loadingDelegate adapterPreparedContent:self];
-    } else {
-        [self.presenter presentAd:ad];
-        __weak typeof(self) weakSelf = self;
-        [UIView animateWithDuration:0.2 animations:^{
-            [weakSelf.activityIndicatorView removeFromSuperview];
-            [weakSelf.container addSubview:weakSelf.presenter];
-        }];
-    }
+    [self.loadingDelegate adapterPreparedContent:self];
 }
 
 - (void)didFailToLoadAd:(STKMRAIDAd *)ad withError:(NSError *)error {
-    if (self.shouldCache) {
-        [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
-    } else {
-        [self.activityIndicatorView removeFromSuperview];
-        [self.displayDelegate adapter:self failedToPresentAdWithError:error];
-    }
+    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
 }
 
 - (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {

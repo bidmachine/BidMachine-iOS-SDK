@@ -20,9 +20,10 @@ static NSString * const kBDMWidthKey        = @"w";
 static NSString * const kBDMHeightKey       = @"h";
 
 
-static NSString * const kBDMMRAIDPreloadKey             = @"should_cache";
 static NSString * const kBDMMRAIDClosableViewDelayKey   = @"closable_view_delay";
-static NSString * const kBDMVASTPostbannerCloseTimeKey  = @"skip_after";
+static NSString * const kBDMCompanionSkipOffset         = @"companion_skip_offset";
+static NSString * const kBDMUseNativeClose              = @"use_native_close";
+static NSString * const kBDMSkipOffset                  = @"skip_offset";
 
 
 @interface BDMCreative ()
@@ -74,8 +75,9 @@ static NSString * const kBDMVASTPostbannerCloseTimeKey  = @"skip_after";
         // All video creatives are displayed by VAST
         self.displaymanager = @"vast";
         self.format = BDMCreativeFormatVideo;
-        renderingInfo[kBDMCreativeKey] = ad.video.adm;
-        renderingInfo[kBDMVASTPostbannerCloseTimeKey] = @(extensions.skipAfter).stringValue;
+        renderingInfo[kBDMCreativeKey]                  = ad.video.adm;
+        renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
+        renderingInfo[kBDMCompanionSkipOffset]          = @(extensions.companionSkipoffset).stringValue;
     // Check DSP Creative from display placement
     } else if (ad.display.adm.length > 0) {
         // All video creatives are displayed by MRAID
@@ -85,8 +87,7 @@ static NSString * const kBDMVASTPostbannerCloseTimeKey  = @"skip_after";
         renderingInfo[kBDMCreativeKey]                  = ad.display.adm;
         renderingInfo[kBDMWidthKey]                     = @(ad.display.w).stringValue;
         renderingInfo[kBDMHeightKey]                    = @(ad.display.h).stringValue;
-        renderingInfo[kBDMMRAIDPreloadKey]              = @(extensions == nil || extensions.preload).stringValue;
-        renderingInfo[kBDMMRAIDClosableViewDelayKey]    = @(extensions.skipAfter).stringValue;
+        renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
     // Check DSP Creative of native fmt
     } else if (ad.display.native.assetArray.count > 0) {
         self.displaymanager = @"nast";

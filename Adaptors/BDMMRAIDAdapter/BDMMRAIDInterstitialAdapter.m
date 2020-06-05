@@ -25,8 +25,8 @@
 @property (nonatomic, strong) STKProductController *productPresenter;
 @property (nonatomic, strong) STKSpinnerWindow *activityWindow;
 
-@property (nonatomic, assign) BOOL shouldCache;
-@property (nonatomic, assign) NSTimeInterval closableViewDelay;
+@property (nonatomic, strong) STKMRAIDPresentationConfiguration *configuration;
+@property (nonatomic, assign) NSTimeInterval skipOffset;
 @property (nonatomic, copy) NSString *adContent;
 
 @end
@@ -39,8 +39,9 @@
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     self.adContent          = contentInfo[@"creative"];
-    self.shouldCache        = contentInfo[@"should_cache"] ? [contentInfo[@"should_cache"] boolValue] : YES;
-    self.closableViewDelay  = contentInfo[@"closable_view_delay"] ? [contentInfo[@"closable_view_delay"] floatValue] : 10.0f;
+    self.configuration      = STKMRAIDPresentationConfiguration.new;
+    self.configuration.closeInterval = [contentInfo[@"skip_offset"] floatValue];
+    self.configuration.ignoreUseCustomClose = [contentInfo[@"use_native_close"] boolValue];
     
     NSArray *mraidFeatures  = @[
                                 kMRAIDSupportsInlineVideo,
@@ -55,29 +56,12 @@
     
     self.presenter = [STKMRAIDInterstitialPresenter new];
     self.presenter.delegate = self;
-    
-    if (self.shouldCache) {
-        [self.ad loadHTML:self.adContent];
-    } else {
-        [self.loadingDelegate adapterPreparedContent:self];
-    }
+    [self.ad loadHTML:self.adContent];
 }
 
 - (void)present {
-    if (self.shouldCache) {
-        [self.presenter presentAd:self.ad];
-    } else {
-        self.activityWindow = [[STKSpinnerWindow alloc] initWithBlur:YES];
-        __weak typeof(self) weakSelf = self;
-        BDMMRAIDClosableView *closableView = [BDMMRAIDClosableView closableView:self.closableViewDelay action:^(BDMMRAIDClosableView *closableView) {
-            [weakSelf hideActivityWindow];
-            NSError *error = NSError.bdm_error(@"User skip interstitial");
-            [weakSelf.displayDelegate adapter:weakSelf failedToPresentAdWithError:error];
-        }];
-        self.activityWindow.hidden = NO;
-        [closableView render:self.activityWindow];
-        [self.ad loadHTML:self.adContent];
-    }
+    self.presenter.configuration = self.configuration;
+    [self.presenter presentAd:self.ad];
 }
 
 - (void)hideActivityWindow {
@@ -96,21 +80,11 @@
 #pragma mark - AMKAdDelegate
 
 - (void)didLoadAd:(STKMRAIDAd *)ad {
-    if (self.shouldCache) {
-        [self.loadingDelegate adapterPreparedContent:self];
-    } else {
-        [self hideActivityWindow];
-        [self.presenter presentAd:ad];
-    }
+    [self.loadingDelegate adapterPreparedContent:self];
 }
 
 - (void)didFailToLoadAd:(STKMRAIDAd *)ad withError:(NSError *)error {
-    if (self.shouldCache) {
-        [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
-    } else {
-        [self hideActivityWindow];
-        [self.displayDelegate adapter:self failedToPresentAdWithError:error];
-    }
+    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
 }
 
 - (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {

@@ -18,7 +18,9 @@
 
 @property (nonatomic, strong) STKVASTController *videoController;
 @property (nonatomic, copy) NSNumber *maxDuration;
-@property (nonatomic, copy) NSNumber *skipAfter;
+@property (nonatomic, copy) NSNumber *skipOffset;
+@property (nonatomic, copy) NSNumber *companionSkipOffset;
+@property (nonatomic, assign) BOOL useNativeClose;
 
 @end
 
@@ -27,8 +29,6 @@
 - (instancetype)init {
     if (self = [super init]) {
         _maxDuration = @(180);
-        _skipAfter = @(2);
-        
     }
     return self;
 }
@@ -40,7 +40,9 @@
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
     NSString * rawXML = contentInfo[@"creative"];
     self.maxDuration = contentInfo[@"max_duration"] ? @(contentInfo[@"max_duration"].floatValue) : self.maxDuration;
-    self.skipAfter = contentInfo[@"skip_after"] ? @(contentInfo[@"skip_after"].floatValue) : self.skipAfter;
+    self.skipOffset = @(contentInfo[@"skip_offset"].floatValue);
+    self.companionSkipOffset = @(contentInfo[@"companion_skip_offset"].floatValue);
+    self.useNativeClose = contentInfo[@"use_native_close"].boolValue;
     NSData * xmlData = [rawXML dataUsingEncoding:NSUTF8StringEncoding];
     
     self.videoController = [STKVASTController new];
@@ -55,15 +57,15 @@
 #pragma mark - Private
 
 - (NSNumber *)closeTime {
-    return self.skipAfter > 0 ? self.skipAfter : @(2);
+    return self.companionSkipOffset;
 }
 
 - (BOOL)forceCloseTime {
-    return NO;
+    return self.useNativeClose;
 }
 
 - (NSNumber *)videoCloseTime {
-    return @(5);
+    return self.skipOffset;
 }
 
 - (BOOL)isAutoclose {

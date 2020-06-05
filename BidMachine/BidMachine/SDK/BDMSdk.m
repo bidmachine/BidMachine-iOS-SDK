@@ -143,7 +143,7 @@
             timer.stop();
         } failure:^(NSError *error) {
             // Reject initialisation
-            [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
+            [weakSelf.middleware rejectEvent:BDMEventInitialisation code:error.code];
             // Repeat action
             timer.repeat();
         }];
