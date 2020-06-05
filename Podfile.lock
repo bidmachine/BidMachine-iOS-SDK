@@ -47,7 +47,7 @@ PODS:
   - smaato-ios-sdk/RewardedAds (21.2.2):
     - smaato-ios-sdk/Modules/RewardedAds
     - smaato-ios-sdk/Modules/Video
-  - StackAPI/BidMachine (0.2.3):
+  - StackAPI/BidMachine (0.2.4):
     - Protobuf (~> 3.8)
   - StackIAB/StackMRAIDKit (0.5.15):
     - StackModules (~> 0.6)
@@ -70,10 +70,10 @@ PODS:
     - StackModules (~> 0.6)
   - StackIAB/StackXML (0.5.15):
     - StackModules (~> 0.6)
-  - StackModules (0.6.10):
-    - StackModules/StackUIKit (= 0.6.10)
-  - StackModules/StackFoundation (0.6.10)
-  - StackModules/StackUIKit (0.6.10):
+  - StackModules (0.7.2):
+    - StackModules/StackUIKit (= 0.7.2)
+  - StackModules/StackFoundation (0.7.2)
+  - StackModules/StackUIKit (0.7.2):
     - StackModules/StackFoundation
   - TapjoySDK (12.4.2)
   - Toast-Swift (4.0.1)
@@ -96,9 +96,9 @@ DEPENDENCIES:
   - StackIAB/StackNASTKit (~> 0.5.0)
   - StackIAB/StackRichMedia (~> 0.5.0)
   - StackIAB/StackVASTKit (~> 0.5.0)
-  - StackModules (~> 0.6.3)
-  - StackModules/StackFoundation (~> 0.6.3)
-  - StackModules/StackUIKit (~> 0.6.3)
+  - StackModules (~> 0.7)
+  - StackModules/StackFoundation (~> 0.7)
+  - StackModules/StackUIKit (~> 0.7)
   - TapjoySDK (= 12.4.2)
   - Toast-Swift (~> 4.0.0)
   - VungleSDK-iOS (= 6.5.2)
@@ -109,6 +109,7 @@ SPEC REPOS:
     - DTBiOSSDK
     - StackAPI
     - StackIAB
+    - StackModules
   https://github.com/CocoaPods/Specs.git:
     - AdColony
     - FBAudienceNetwork
@@ -118,7 +119,6 @@ SPEC REPOS:
     - myTargetSDK
     - Protobuf
     - smaato-ios-sdk
-    - StackModules
     - TapjoySDK
     - Toast-Swift
     - VungleSDK-iOS
@@ -134,13 +134,13 @@ SPEC CHECKSUMS:
   myTargetSDK: ca4a115fb76143f0934e06763c5b02e284af74ec
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
   smaato-ios-sdk: fad41f668ceefe75ece6d46f729bea3ca26471ea
-  StackAPI: c6ab88dcfa60a7dfc76de632fee36d8bfe87e20b
+  StackAPI: 7ae1ef3277af300a8ea18387e89b01aedc8a81af
   StackIAB: 81eab2972a039a683e9ead2e50a9172b8b394bb4
-  StackModules: 4a89dc77f24bcf1500e112a5c9c73140ec8ee58f
+  StackModules: b1a7a6596c2590bdce9ac06c3a94a7aaa7b63e02
   TapjoySDK: c8d73f291cfe922cb8bb2c3ae09b5af0b2863841
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
   VungleSDK-iOS: b39f80d93c342cb07f9d83ab1105817ddcb61b72
 
-PODFILE CHECKSUM: 16613b085e2d5d05ab2399ecc00071f284c78786
+PODFILE CHECKSUM: 17124ea6b72f19839c3875ee3358fde83f644d5e
 
 COCOAPODS: 1.9.1

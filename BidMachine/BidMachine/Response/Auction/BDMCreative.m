@@ -78,7 +78,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         renderingInfo[kBDMCreativeKey]                  = ad.video.adm;
         renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
         renderingInfo[kBDMCompanionSkipOffset]          = @(extensions.companionSkipoffset).stringValue;
-        renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose);
+        renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose).stringValue;
     // Check DSP Creative from display placement
     } else if (ad.display.adm.length > 0) {
         // All video creatives are displayed by MRAID
@@ -89,7 +89,7 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         renderingInfo[kBDMWidthKey]                     = @(ad.display.w).stringValue;
         renderingInfo[kBDMHeightKey]                    = @(ad.display.h).stringValue;
         renderingInfo[kBDMSkipOffset]                   = @(extensions.skipoffset).stringValue;
-        renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose);
+        renderingInfo[kBDMUseNativeClose]               = @(extensions.useNativeClose).stringValue;
     // Check DSP Creative of native fmt
     } else if (ad.display.native.assetArray.count > 0) {
         self.displaymanager = @"nast";
