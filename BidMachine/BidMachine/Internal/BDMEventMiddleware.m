@@ -131,10 +131,61 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 
 @end
 
+@interface BDMEventObject : NSObject
+
+@property (nonatomic, assign, readonly) BOOL isTracked;
+@property (nonatomic, assign, readonly) BDMEvent event;
+@property (nonatomic, strong, readonly) NSDate *startTime;
+@property (nonatomic, strong, readonly) NSString *network;
+@property (nonatomic, assign, readonly) BDMInternalPlacementType placement;
+
+@end
+
+@implementation BDMEventObject
+
+
+- (instancetype)initWithEvent:(BDMEvent)event
+                      network:(NSString *)network
+                    placement:(BDMInternalPlacementType)placement {
+    if (self = [super init]) {
+        _isTracked      = NO;
+        _event          = event;
+        _placement      = placement;
+        _startTime      = [NSDate date];
+        _network        = network ?: @"unspecified";
+    }
+    return self;
+    
+}
+
+- (void)updateTracked {
+    _isTracked = YES;
+}
+
+- (BOOL)isEqual:(BDMEventObject *)object {
+    if (![object isKindOfClass:BDMEventObject.class]) {
+        return NO;
+    }
+    NSString *network = object.network ?: @"unspecified";
+    return
+    self.event == object.event &&
+    self.placement == object.placement &&
+    [self.network isEqualToString:network];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@:::%@:::%@",
+            NSStringFromBDMEvent(self.event),
+            NSStringFromBDMInternalPlacementType(self.placement),
+            self.network];
+}
+
+@end
+
 
 @interface BDMEventMiddleware ()
 
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSDate *> *startTimeByEventType;
+@property (nonatomic, strong) NSMutableArray <BDMEventObject *> *eventObjects;
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
 
@@ -173,12 +224,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)startEvent:(BDMEvent)type
          placement:(BDMInternalPlacementType)placement
            network:(NSString *)network {
-    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
-                     NSStringFromBDMEvent(type),
-                     NSStringFromBDMInternalPlacementType(placement),
-                     network ?: @"unspecified"];
-    NSDate *startTime = [NSDate date];
-    self.startTimeByEventType[key] = startTime;
+    [self.eventObjects addObject:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
 }
 
 #pragma mark - Fulfill
@@ -204,20 +250,21 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)fulfillEvent:(BDMEvent)type
            placement:(BDMInternalPlacementType)placement
              network:(NSString *)network {
-    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
-                     NSStringFromBDMEvent(type),
-                     NSStringFromBDMInternalPlacementType(placement),
-                     network ?: @"unspecified"];
-    NSDate *startTime = self.startTimeByEventType[key];
-    if (!startTime) {
+    BDMEventObject *event = ANY(self.eventObjects).filter(^BOOL(BDMEventObject *obj){
+        return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+    }).array.firstObject;
+    
+    if (!event) {
         return;
     }
     
-    NSDate *finishTime = [NSDate date];
-    [self.startTimeByEventType removeObjectForKey:key];
+    if (!event.isTracked) {
+        [self notifyProducerDelegateIfNeeded:type];
+    }
     
-    BDMLog(@"[Event] %@ event, timing: %1.2f sec", key, finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
-    [self notifyProducerDelegateIfNeeded:type];
+    [event updateTracked];
+    NSDate *finishTime = [NSDate date];
+    BDMLog(@"[Event] %@ event, timing: %1.2f sec", event.description, finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
     
     NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
     BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
@@ -228,7 +275,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     BDMEventURL *fallbackURL = [trackers bdm_searchTrackerOfType:BDMEventTrackingError];
     
     URL = URL
-    .extendedByStartTime(startTime)
+    .extendedByStartTime(event.startTime)
     .extendedByFinishTime(finishTime)
     .extendedByType(NSStringFromBDMInternalPlacementType(placement))
     .extendedByAdNetwork(network);
@@ -240,7 +287,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
                                                      [weakSelf fallback:type
                                                                     url:fallbackURL
                                                                    code:error.code
-                                                              startTime:startTime
+                                                              startTime:event.startTime
                                                              finishTime:finishTime];
                                                  }];
 }
@@ -276,23 +323,20 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
           placement:(BDMInternalPlacementType)placement
             network:(NSString *)network
                code:(BDMErrorCode)code {
-    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
-                     NSStringFromBDMEvent(type),
-                     NSStringFromBDMInternalPlacementType(placement),
-                     network ?: @"unspecified"
-                     ];
-    NSDate *startTime = self.startTimeByEventType[key];
-    if (!startTime) {
+    BDMEventObject *event = ANY(self.eventObjects).filter(^BOOL(BDMEventObject *obj){
+        return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+    }).array.firstObject;
+    
+    if (!event) {
         return;
     }
     
     NSDate *finishTime = [NSDate date];
-    [self.startTimeByEventType removeObjectForKey:key];
-    
+    [self.eventObjects removeObject:event];
     BDMLog(@"[Event] lifecycle error: %@ for %@ event, timing: %1.2f sec",
            NSStringFromBDMErrorCode(code),
-           key,
-           finishTime.timeIntervalSince1970 - startTime.timeIntervalSince1970);
+           event.description,
+           finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
     
     NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
     BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
@@ -306,7 +350,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     }
     
     URL = URL
-    .extendedByStartTime(startTime)
+    .extendedByStartTime(event.startTime)
     .extendedByFinishTime(finishTime)
     .extendedByAction(type)
     .extendedByErrorCode(code)
@@ -317,18 +361,17 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 }
 
 - (void)rejectAll:(BDMErrorCode)code {
-    NSArray <NSString *> *enumerator = [[self.startTimeByEventType copy] allKeys];
-    [enumerator enumerateObjectsUsingBlock:^(NSString *eventString, NSUInteger idx, BOOL *stop) {
-        BDMEvent event = BDMEventFromNSString(eventString);
+    NSArray *events = [self.eventObjects copy];
+    [events enumerateObjectsUsingBlock:^(BDMEventObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         // Send trackers for requiered events
-        if (event != BDMEventViewable &&
-            event != BDMEventClosed &&
-            event != BDMEventImpression &&
-            event != BDMEventClick) {
-            [self rejectEvent:event code:code];
+        if (obj.event != BDMEventViewable &&
+            obj.event != BDMEventClosed &&
+            obj.event != BDMEventImpression &&
+            obj.event != BDMEventClick) {
+            [self rejectEvent:obj.event code:code];
             // Just remove non required
         } else {
-            [self.startTimeByEventType removeObjectForKey:eventString];
+            [self.eventObjects removeObject:obj];
         }
     }];
 }
@@ -356,12 +399,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)removeEvent:(BDMEvent)type
           placement:(BDMInternalPlacementType)placement
             network:(NSString *)network {
-    NSString *key = [NSString stringWithFormat:@"%@:::%@:::%@",
-                     NSStringFromBDMEvent(type),
-                     NSStringFromBDMInternalPlacementType(placement),
-                     network ?: @"unspecified"
-                     ];
-    [self.startTimeByEventType removeObjectForKey:key];
+    [self.eventObjects removeObject:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
 }
 
 #pragma mark - Private
@@ -370,7 +408,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     if (self = [super init]) {
         self.updateEvents           = [builder.updateEvents copy];
         self.updateProducer         = [builder.updateProducer copy];
-        self.startTimeByEventType   = [[NSMutableDictionary alloc] init];
+        self.eventObjects           = [[NSMutableArray alloc] init];
     }
     return self;
 }
