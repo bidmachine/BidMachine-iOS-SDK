@@ -10,7 +10,7 @@
 #import "BDMEventURL.h"
 
 
-typedef NS_ENUM(NSInteger, BDMAuctionType) {
+typedef NS_ENUM(NSUInteger, BDMAuctionType) {
     BDMAuctionTypeFirstPrice = 1,
     BDMAuctionTypeSecondPrice
 };
