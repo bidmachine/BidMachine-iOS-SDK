@@ -32,10 +32,12 @@
     return _session;
 }
 
-- (void)makeAuctionRequest:(void(^)(BDMAuctionBuilder *builder))auctionBuilder
-                   success:(void(^)(id<BDMResponse>))success
-                   failure:(void(^)(NSError *))failure {
-    BDMApiRequest *urlRequest = [BDMApiRequest request:auctionBuilder];
+- (void)makeAuctionRequest:(NSNumber *)timeout
+            auctionBuilder:(void (^)(BDMAuctionBuilder *))auctionBuilder
+                   success:(void (^)(id<BDMResponse>))success
+                   failure:(void (^)(NSError *))failure
+{
+    BDMApiRequest *urlRequest = [BDMApiRequest request:timeout builder:auctionBuilder];
     BDMLog(@"Performing auction with auction request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
@@ -55,11 +57,12 @@
     [task resume];
 }
 
-- (void)makeInitRequest:(void (^)(BDMSessionBuilder *))sessionBuilder
+- (void)makeInitRequest:(NSNumber *)timeout
+         sessionBuilder:(void (^)(BDMSessionBuilder *))sessionBuilder
                 success:(void (^)(id<BDMInitialisationResponse>))success
                 failure:(void (^)(NSError *))failure
 {
-    BDMApiRequest *urlRequest = [BDMApiRequest sessionRequest:sessionBuilder];
+    BDMApiRequest *urlRequest = [BDMApiRequest sessionRequest:timeout builder:sessionBuilder];
     BDMLog(@"Performing init request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest

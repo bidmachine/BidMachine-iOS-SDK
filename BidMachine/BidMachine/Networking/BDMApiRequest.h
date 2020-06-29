@@ -10,7 +10,7 @@
 
 @interface BDMApiRequest : NSMutableURLRequest
 
-+ (BDMApiRequest *)request:(void(^)(BDMAuctionBuilder *))build;
-+ (BDMApiRequest *)sessionRequest:(void(^)(BDMSessionBuilder *))build;
++ (BDMApiRequest *)request:(NSNumber *)timeout builder:(void(^)(BDMAuctionBuilder *))build;
++ (BDMApiRequest *)sessionRequest:(NSNumber *)timeout builder:(void(^)(BDMSessionBuilder *))build;
 
 @end

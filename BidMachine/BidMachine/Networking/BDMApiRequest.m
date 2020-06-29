@@ -29,7 +29,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
 
 @implementation BDMApiRequest
 
-+ (BDMApiRequest *)request:(void (^)(BDMAuctionBuilder *))build {
++ (BDMApiRequest *)request:(NSNumber *)timeout builder:(void (^)(BDMAuctionBuilder *))build {
     BDMAuctionBuilder * builder = [BDMAuctionBuilder new];
     build(builder);
     NSURL *URL = BDMSdk.sharedSdk.auctionSettings.auctionURL ? [NSURL URLWithString:BDMSdk.sharedSdk.auctionSettings.auctionURL] : [BDMSdk.sharedSdk.baseURL URLByAppendingPathComponent:@"auction"];
@@ -37,7 +37,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];
     
-    request.timeoutInterval = kBDMRequestTimeoutInterval;
+    request.timeoutInterval = timeout ? timeout.doubleValue : kBDMRequestTimeoutInterval;
     request.HTTPBodyModel = builder.message;
     [request setHTTPMethod:@"POST"];
     
@@ -47,7 +47,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
     return request;
 }
 
-+ (BDMApiRequest *)sessionRequest:(void (^)(BDMSessionBuilder *))build {
++ (BDMApiRequest *)sessionRequest:(NSNumber *)timeout builder:(void (^)(BDMSessionBuilder *))build {
     BDMSessionBuilder *builder = [BDMSessionBuilder new];
     build(builder);
     
@@ -56,7 +56,7 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                             timeoutInterval:kBDMRequestTimeoutInterval];
     
-    request.timeoutInterval = kBDMRequestTimeoutInterval;
+    request.timeoutInterval = timeout ? timeout.doubleValue : kBDMRequestTimeoutInterval;
     request.HTTPBodyModel = builder.message;
     [request setHTTPMethod:@"POST"];
     

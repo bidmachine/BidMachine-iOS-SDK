@@ -21,11 +21,13 @@
 
 + (instancetype)sharedCommunicator;
 
-- (void)makeAuctionRequest:(void(^)(BDMAuctionBuilder *builder))auctionBuilder
+- (void)makeAuctionRequest:(NSNumber *)timeout
+            auctionBuilder:(void(^)(BDMAuctionBuilder *builder))auctionBuilder
                    success:(void(^)(id<BDMResponse>))success
                    failure:(void(^)(NSError *))failure;
 
-- (void)makeInitRequest:(void(^)(BDMSessionBuilder *builder))sessionBuilder
+- (void)makeInitRequest:(NSNumber *)timeout
+         sessionBuilder:(void(^)(BDMSessionBuilder *builder))sessionBuilder
                 success:(void(^)(id<BDMInitialisationResponse>))success
                 failure:(void(^)(NSError *))failure;
 
