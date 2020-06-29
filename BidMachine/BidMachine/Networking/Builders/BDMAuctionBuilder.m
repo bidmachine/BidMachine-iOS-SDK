@@ -85,7 +85,7 @@
         ORTBRequest *requestMessage    = [ORTBRequest message];
         requestMessage.test            = self.testMode;
         requestMessage.tmax            = self.auctionSettings.tmax;
-        requestMessage.at              = self.auctionSettings.auctionType;
+        requestMessage.at              = (uint32_t)self.auctionSettings.auctionType;
         requestMessage.curArray        = [NSMutableArray arrayWithObject:self.auctionSettings.auctionCurrency];
         // Setup context
         requestMessage.context         = self.adcomContextMessage;
