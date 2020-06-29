@@ -27,6 +27,8 @@ NSString *NSStringFromBDMEvent(BDMEvent event) {
         case BDMEventDestroyed: return @"Destroying"; break;
         case BDMEventImpression: return @"Impression"; break;
         case BDMEventAuction: return @"Auction"; break;
+        case BDMEventAuctionExpired: return @"Auction Expired"; break;
+        case BDMEventAuctionDestroyed: return @"Auction Destroyed"; break;
         case BDMEventInitialisation: return @"Initialisation"; break;
         case BDMEventHeaderBiddingNetworkInitializing: return @"Header Bidding network initialisation"; break;
         case BDMEventHeaderBiddingNetworkPreparing: return @"Header Bidding network preparing"; break;
@@ -51,6 +53,10 @@ BDMEvent BDMEventFromNSString(NSString *event) {
         return BDMEventImpression;
     } else if ([event isEqualToString:@"Auction"]) {
         return BDMEventAuction;
+    } else if ([event isEqualToString:@"Auction Expired"]) {
+        return BDMEventAuctionExpired;
+    } else if ([event isEqualToString:@"Auction Destroyed"]) {
+        return BDMEventAuctionDestroyed;
     } else if ([event isEqualToString:@"Initialisation"]) {
         return BDMEventInitialisation;
     } else if ([event isEqualToString:@"Header Bidding network initialisation"]) {
