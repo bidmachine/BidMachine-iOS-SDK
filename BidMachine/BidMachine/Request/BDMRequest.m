@@ -48,6 +48,16 @@
     return self;
 }
 
+- (void)notifyMediationWin {
+    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.lurl type:0];
+    [BDMServerCommunicator.sharedCommunicator trackEvent:url];
+}
+
+- (void)notifyMediationLoss {
+    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.purl type:0];
+    [BDMServerCommunicator.sharedCommunicator trackEvent:url];
+}
+
 - (NSHashTable<id<BDMRequestDelegate>> *)delegates {
     if (!_delegates) {
         _delegates = [NSHashTable weakObjectsHashTable];
@@ -81,7 +91,7 @@
         weakSelf.state = BDMRequestStateAuction;
         [weakSelf.middleware startEvent:BDMEventAuction];
         // Make request by expiration timer
-        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:^(BDMAuctionBuilder *builder) {
+        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:self.timeout auctionBuilder:^(BDMAuctionBuilder *builder) {
             builder
             .appendPlacementBuilder(placementBuilder)
             .appendRequest(request)
@@ -118,6 +128,7 @@
 - (void)beginExpirationMonitoring {
     __weak typeof (self) weakSelf = self;
     BDMLog(@"Started monitoring for expiration for response: %@ of time: %1.2f s", self.response.identifier, self.response.expirationTime.doubleValue);
+    [self.middleware startEvent:BDMEventAuctionExpired];
     self.expirationTimer = [STKExpirationTimer expirationTimerWithExpirationTimeinterval:self.response.expirationTime.doubleValue
                                                                           observableItem:self.response
                                                                                   expire:^(id<BDMResponse> response) {
@@ -127,6 +138,7 @@
 }
 
 - (void)expire {
+    [self.middleware fulfillEvent:BDMEventAuctionExpired];
     self.state = BDMRequestStateExpired;
     [self invalidate];
     [self notifyDelegatesOnExpire];
@@ -188,6 +200,7 @@
 
 - (void)cancelExpirationTimer {
     BDMLog(@"Cancelling expiration timer for response: %@", self.response.identifier);
+    [self.middleware removeEvent:BDMEventAuctionExpired];
     self.expirationTimer = nil;
 }
 

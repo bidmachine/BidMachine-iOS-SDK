@@ -54,4 +54,14 @@
  Current targeting data for request
  */
 @property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
+
+@property (copy, nonatomic, readwrite, nullable) NSNumber *timeout;
+/**
+ Call when mediation win
+ */
+- (void)notifyMediationWin;
+/**
+ Call when mediation loss
+*/
+- (void)notifyMediationLoss;
 @end

@@ -127,7 +127,7 @@
         // Register initialisation event
         [weakSelf.middleware startEvent:BDMEventInitialisation];
         
-        [BDMServerCommunicator.sharedCommunicator makeInitRequest:^(BDMSessionBuilder *builder) {
+        [BDMServerCommunicator.sharedCommunicator makeInitRequest:nil sessionBuilder:^(BDMSessionBuilder *builder) {
             builder
             .appendBaseURL(weakSelf.configuration.baseURL)
             .appendSellerID(weakSelf.sellerID)

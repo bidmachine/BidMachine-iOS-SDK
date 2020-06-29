@@ -21,6 +21,8 @@
 @property (nonatomic, copy, readwrite) NSNumber * expirationTime;
 @property (nonatomic, copy, readwrite) NSString * cid;
 @property (nonatomic, copy, readwrite) NSString * deal;
+@property (nonatomic, copy, readwrite) NSString * purl;
+@property (nonatomic, copy, readwrite) NSString * lurl;
 
 @property (nonatomic, copy, readwrite) BDMCreative * creative;
 @property (nonatomic, strong) ORTBOpenrtb * message;
@@ -45,6 +47,8 @@
         self.identifier = bid.id_p;
         self.deal = bid.deal;
         self.cid = bid.cid;
+        self.purl = bid.purl;
+        self.lurl = bid.lurl;
         
         self.expirationTime = [@(bid.exp) isEqual:@(0)] ? [NSNumber numberWithInt:1740] : @(bid.exp);
         self.price = @(bid.price);

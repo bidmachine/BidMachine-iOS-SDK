@@ -36,6 +36,8 @@
 @property (nonatomic, copy, readonly) NSNumber * expirationTime;
 @property (nonatomic, copy, readonly) NSString * cid;
 @property (nonatomic, copy, readonly) NSString * deal;
+@property (nonatomic, copy, readonly) NSString * purl;
+@property (nonatomic, copy, readonly) NSString * lurl;
 
 @property (nonatomic, copy, readonly) id<BDMCreative> creative;
 

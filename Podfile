@@ -10,7 +10,7 @@ use_frameworks!
 install! 'cocoapods', :deterministic_uuids => false, :warn_for_multiple_pod_sources => false
 
 def protobuf
-  pod 'StackAPI/BidMachine', '~> 0.3.0', :inhibit_warnings => true
+  pod 'StackAPI/BidMachine', '~> 0.4.0', :inhibit_warnings => true
   pod 'Protobuf', :inhibit_warnings => true
 end
 
