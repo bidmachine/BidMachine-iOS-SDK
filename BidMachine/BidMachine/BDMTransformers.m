@@ -28,8 +28,7 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
 
 + (ADCOMDeviceType (^)(STKDeviceType))deviceType {
     return ^ADCOMDeviceType (STKDeviceType type){
-        BOOL isIphone = [UIDevice.currentDevice userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
-        return isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
+        return STKDevice.isIphone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
     };
 }
 
