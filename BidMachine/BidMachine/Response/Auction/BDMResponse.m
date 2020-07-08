@@ -86,6 +86,8 @@
     copy.deal = self.deal;
     copy.creative = self.creative;
     copy.message = self.message;
+    copy.purl = self.purl;
+    copy.lurl = self.lurl;
     
     return copy;
 }
