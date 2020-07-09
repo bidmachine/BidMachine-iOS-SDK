@@ -175,6 +175,7 @@
     BDMRequestExtension * ext = [BDMRequestExtension message];
     ext.sellerId = self.sellerID;
     ext.ifv = STKAd.vendorIdentifier;
+    ext.bmIfv = STKAd.generatedVendorIdentifier;
     ext.headerBiddingType = self.request.priceFloors > 0 ? BDMHeaderBiddingType_HeaderBiddingTypeDisabled : BDMHeaderBiddingType_HeaderBiddingTypeEnabled;
     GPBAny * extAny = [[GPBAny alloc] initWithMessage:ext error:nil];
     extAny ? [extensions addObject:extAny] : nil;
