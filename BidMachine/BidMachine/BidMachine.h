@@ -19,3 +19,5 @@
 #import <BidMachine/BDMAuctionInfo.h>
 #import <BidMachine/BDMNativeAd.h>
 #import <BidMachine/BDMUserRestrictions.h>
+#import <BidMachine/BDMRequestStorage.h>
+#import <BidMachine/BDMFetcher.h>

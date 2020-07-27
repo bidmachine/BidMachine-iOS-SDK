@@ -113,11 +113,7 @@ typedef NS_OPTIONS(NSUInteger, BDMNativeAdType) {
 };
 
 /**
- Supported ad units types configuration
- 
- - BDMNativeAdTypeIcon: Icon image
- - BDMNativeAdTypeImage: Promo image
- - BDMNativeAdTypeVideo: Video content
+ Supported ad units formats configuration
  */
 typedef NS_ENUM(NSInteger, BDMAdUnitFormat) {
     BDMAdUnitFormatUnknown = -1,
@@ -144,6 +140,13 @@ typedef NS_ENUM(NSInteger, BDMCreativeFormat) {
     BDMCreativeFormatBanner = 0,
     BDMCreativeFormatVideo,
     BDMCreativeFormatNative
+};
+
+typedef NS_ENUM(NSInteger, BDMInternalPlacementType) {
+    BDMInternalPlacementTypeInterstitial = 0,
+    BDMInternalPlacementTypeRewardedVideo,
+    BDMInternalPlacementTypeBanner,
+    BDMInternalPlacementTypeNative
 };
 
 typedef NSNumber BDMAdUnitFormatKey;

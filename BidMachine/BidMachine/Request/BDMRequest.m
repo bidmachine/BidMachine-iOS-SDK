@@ -176,6 +176,10 @@
 
 @implementation BDMRequest (Private)
 
+- (BDMInternalPlacementType)placementType {
+    return NSNotFound;
+}
+
 - (NSArray<BDMEventURL *> *)eventTrackers {
     return self.response.creative.trackers;
 }

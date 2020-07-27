@@ -18,6 +18,10 @@
     [super performWithRequest:self placementType:BDMInternalPlacementTypeBanner placementBuilder:builder];
 }
 
+- (BDMInternalPlacementType)placementType {
+    return BDMInternalPlacementTypeBanner;
+}
+
 @end
 
 @implementation BDMInterstitialRequest
@@ -33,6 +37,10 @@
     [self registerDelegate: delegate];
     id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement interstitialPlacementWithAdType:self.type];
     [self performWithRequest:self placementType:BDMInternalPlacementTypeInterstitial placementBuilder:builder];
+}
+
+- (BDMInternalPlacementType)placementType {
+    return BDMInternalPlacementTypeInterstitial;
 }
 
 @end
@@ -58,6 +66,10 @@
     [self performWithRequest:self placementType:BDMInternalPlacementTypeRewardedVideo placementBuilder:builder];
 }
 
+- (BDMInternalPlacementType)placementType {
+    return BDMInternalPlacementTypeRewardedVideo;
+}
+
 @end
 
 @implementation BDMNativeAdRequest
@@ -73,6 +85,10 @@
     [self registerDelegate: delegate];
     id<BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement nativePlacementWithAdType:self.type];
     [self performWithRequest:self placementType:BDMInternalPlacementTypeNative placementBuilder:builder];
+}
+
+- (BDMInternalPlacementType)placementType {
+    return BDMInternalPlacementTypeNative;
 }
 
 @end
