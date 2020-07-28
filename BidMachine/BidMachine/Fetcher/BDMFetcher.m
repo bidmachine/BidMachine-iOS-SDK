@@ -19,8 +19,8 @@ BDMFetcherRange BDMFetcherRangeMake(float _location, float _length) {
 }
 
 BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
-    BOOL atStart = _range.location >= value;
-    BOOL atFinish = (_range.location + _range.length) < value;
+    BOOL atStart = _range.location <= value;
+    BOOL atFinish = (_range.location + _range.length) > value;
     return atStart && atFinish;
 }
 
@@ -106,7 +106,7 @@ BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
         return [self priceFromFetcher:preset price:price];
     }
     
-    return [self priceFromFetcher:userFetcher price:price];
+    return [self priceFromFetcher:BDMDefaultFetcher.new price:price];
 }
 
 
@@ -137,7 +137,7 @@ BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
 @implementation BDMFetcher (Request)
 
 - (NSDictionary *)fetchParamsFromRequest:(BDMRequest *)request {
-    return [self fetchParamsFromRequest:request];
+    return [self fetchParamsFromRequest:request fetcher:nil];
 }
 
 - (NSDictionary *)fetchParamsFromRequest:(BDMRequest *)request fetcher:(id<BDMFetcherProtocol>)fetcher {

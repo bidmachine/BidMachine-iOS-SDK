@@ -1,3 +1,8 @@
+
+# Version 1.5.1 (July 28th, 2020)
+
+- append fetcher
+
 # Version 1.5.0 (July 10th, 2020)
 
 - SDK improvement
