@@ -102,6 +102,12 @@
                     "format": "banner_320x50"
                 },
                 {
+                    "orientation": "portrait",
+                    "ad_unit_id": "6yws53jyfjgoq1ghnuqb",
+                    "format": "interstitial_static"
+                },
+                {
+                    "orientation": "landscape",
                     "ad_unit_id": "6yws53jyfjgoq1ghnuqb",
                     "format": "interstitial_static"
                 }

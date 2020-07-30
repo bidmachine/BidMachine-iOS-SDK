@@ -27,7 +27,7 @@
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) Class<BDMNetwork> networkClass;
 @property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *initializationParams;
-@property (nonatomic, copy, readwrite) NSMutableDictionary <BDMAdUnitFormatKey *, NSDictionary *> *units;
+@property (nonatomic, copy, readwrite) NSMutableArray <BDMAdUnit *> *units;
 @property (nonatomic, assign, readwrite) NSTimeInterval preparationTimeout;
 
 @end 
@@ -50,25 +50,19 @@
     };
 }
 
-- (NSMutableDictionary<BDMAdUnitFormatKey *,NSDictionary *> *)units {
+- (NSMutableArray<BDMAdUnit *> *)units {
     if (!_units) {
-        _units = [NSMutableDictionary new];
+        _units = [NSMutableArray new];
     }
     return _units;
 }
 
-- (NSArray <BDMAdUnit *> *)adUnits {
-    NSMutableArray <BDMAdUnit *> *adUnits = [NSMutableArray arrayWithCapacity:self.units.count];
-    [self.units enumerateKeysAndObjectsUsingBlock:^(BDMAdUnitFormatKey *key, NSDictionary *params, BOOL *stop) {
-        BDMAdUnit *unit = [BDMAdUnit adUnitWithFormat:BDMAdUnitFormatFromKey(key) customParams:params];
-        [adUnits addObject:unit];
-    }];
-    return adUnits;
-}
-
 - (BDMAdNetworkConfigurationBuilder * (^)(BDMAdUnitFormat, NSDictionary<NSString *,id> *))appendAdUnit {
     return ^id(BDMAdUnitFormat fmt, NSDictionary *params) {
-        self.units[BDMAdUnitFormatKeyFromEnum(fmt)] = params;
+        BDMAdUnit *unit = [BDMAdUnit adUnitWithFormat:fmt customParams:params];
+        if (![self.units containsObject:unit]) {
+            [self.units addObject:unit];
+        }
         return self;
     };
 }
@@ -109,7 +103,7 @@
         self.name = builder.name;
         self.networkClass = builder.networkClass;
         self.initializationParams = builder.initializationParams;
-        self.adUnits = builder.adUnits;
+        self.adUnits = builder.units;
         self.timeout = builder.preparationTimeout;
     }
     return self;
