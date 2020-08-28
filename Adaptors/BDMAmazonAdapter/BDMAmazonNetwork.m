@@ -106,9 +106,9 @@
     bidding[@"amznrdr"] = [response[@"amznrdr"] firstObject];
     bidding[@"amznp"] = [response[@"amznp"] firstObject];
     bidding[@"dc"] = [response[@"dc"] firstObject];
-    if (self.completion) {
-        STK_RUN_BLOCK(self.completion, bidding, nil);
-    }
+    
+    STK_RUN_BLOCK(self.completion, bidding, nil);
+    self.completion = nil;
 }
 
 - (void)onFailure:(DTBAdError)error { }

@@ -45,13 +45,6 @@
     return operation;
 }
 
-- (dispatch_group_t)initializationGroup {
-    if (!_initializationGroup) {
-        _initializationGroup = dispatch_group_create();
-    }
-    return _initializationGroup;
-}
-
 - (void)complete {
     if (self.isFinished || self.isCancelled) {
         return;
@@ -59,6 +52,7 @@
     
     [super complete];
     [self.timer cancel];
+    self.initializationGroup = nil;
     self.executionTime = self.startTimestamp > 0 ? [NSDate stk_currentTimeInMilliseconds] - self.startTimestamp : 0;
 }
 
@@ -68,6 +62,7 @@
         return;
     }
     
+    self.initializationGroup = dispatch_group_create();
     self.startTimestamp = NSDate.stk_currentTimeInMilliseconds;
     [self.configs enumerateObjectsUsingBlock:^(BDMAdNetworkConfiguration *config, NSUInteger idx, BOOL *stop) {
         self.waitUntilFinished ? dispatch_group_enter(self.initializationGroup) : nil;
