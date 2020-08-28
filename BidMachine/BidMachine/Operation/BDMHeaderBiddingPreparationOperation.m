@@ -57,13 +57,6 @@
     return self.mutablePlacementAdUnits;
 }
 
-- (dispatch_group_t)preparationGroup {
-    if (!_preparationGroup) {
-        _preparationGroup = dispatch_group_create();
-    }
-    return _preparationGroup;
-}
-
 - (void)complete {
     if (self.isFinished || self.isCancelled) {
         return;
@@ -87,7 +80,7 @@
         [self complete];
         return;
     }
-    
+    self.preparationGroup = dispatch_group_create();
     self.startTimestamp = NSDate.stk_currentTimeInMilliseconds;
     [self.configs enumerateObjectsUsingBlock:^(BDMAdNetworkConfiguration *config, NSUInteger idx, BOOL *stop) {
         NSArray <BDMAdUnit *> *adUnits = BDMTransformers.adUnits(config, self.placement);
@@ -98,13 +91,14 @@
                                  placement:self.placement
                                    network:config.name
                                 completion:^(id<BDMPlacementAdUnit> placementUnit) {
-                                    if (placementUnit) {
-                                        @synchronized (weakSelf) {
-                                            [weakSelf.mutablePlacementAdUnits addObject:placementUnit];
-                                        }
-                                    }
-                                    weakSelf.preparationGroup ? dispatch_group_leave(weakSelf.preparationGroup) : nil;
-                                }];
+                if (placementUnit) {
+                    NSLock *lock = [NSLock new];
+                    [lock lock];
+                    [weakSelf.mutablePlacementAdUnits addObject:placementUnit];
+                    [lock unlock];
+                }
+                weakSelf.preparationGroup ? dispatch_group_leave(weakSelf.preparationGroup) : nil;
+            }];
         }];
     }];
     
@@ -114,6 +108,7 @@
     });
     
     self.timer = [STKTimer timerWithInterval:self.timeout periodic:NO block:^{
+        weakSelf.preparationGroup = nil;
         weakSelf.error = [NSError bdm_errorWithCode:BDMErrorCodeTimeout description:@"Preparing was canceled by timeout"];
         [weakSelf.configs enumerateObjectsUsingBlock:^(BDMAdNetworkConfiguration *config, NSUInteger idx, BOOL *stop) {
             NSArray <BDMAdUnit *> *adUnits = BDMTransformers.adUnits(config, self.placement);

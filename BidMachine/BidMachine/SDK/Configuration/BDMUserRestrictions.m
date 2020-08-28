@@ -11,12 +11,13 @@
 
 @interface BDMUserRestrictions ()
 
-@property (nonatomic, copy) NSString *userDefaultsUSPrivacyString;
 @property (nonatomic, copy) NSString *publisherDefinedUSPrivacyString;
-@property (nonatomic, copy) NSString *userDefaultsConsentString;
 @property (nonatomic, copy) NSString *publisherDefinedConsentString;
-@property (nonatomic, assign) BOOL userDefaultsSubjectToGDPR;
 @property (nonatomic, assign) BOOL publisherDefinedSubjectToGDPR;
+
+@property (atomic, copy) NSString *userDefaultsUSPrivacyString;
+@property (atomic, copy) NSString *userDefaultsConsentString;
+@property (atomic, assign) BOOL userDefaultsSubjectToGDPR;
 
 @end
 

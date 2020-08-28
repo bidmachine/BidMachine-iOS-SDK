@@ -178,7 +178,7 @@
     if (!_operationQueue) {
         _operationQueue = [BDMFactory.sharedFactory operationQueue];
         _operationQueue.maxConcurrentOperationCount = 1;
-        _operationQueue.qualityOfService = NSQualityOfServiceUtility;
+        _operationQueue.qualityOfService = NSQualityOfServiceBackground;
     }
     return _operationQueue;
 }

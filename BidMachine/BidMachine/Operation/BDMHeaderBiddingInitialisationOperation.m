@@ -37,8 +37,8 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     BDMHeaderBiddingInitialisationOperation *operation = [super operationOnThread:queue
                                                                            action:^(BDMAsyncOperation *operation) {
-                                                                               [(BDMHeaderBiddingInitialisationOperation *)operation execute];
-                                                                           }];
+        [(BDMHeaderBiddingInitialisationOperation *)operation execute];
+    }];
     operation.controller = controller;
     operation.waitUntilFinished = waitUntilFinished;
     operation.configs = networks;

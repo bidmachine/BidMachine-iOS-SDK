@@ -48,8 +48,11 @@ where Key == String, Value == Any {
             let _ = builder.appendInitializationParams(self)
             (self["ad_units"] as? [[String: Any]])?
                 .forEach { data in
-                    let _ = builder.appendAdUnit(BDMAdUnitFormatFromString(data["format"] as? String),
-                                                 data.filter { $0.key != "format" })
+                    let _ = builder.appendAdUnit(
+                        BDMAdUnitFormatFromString(data["format"] as? String),
+                        data.filter { $0.key != "format" },
+                        data.filter { $0.key != "format" }
+                    )
             }
         }
     }

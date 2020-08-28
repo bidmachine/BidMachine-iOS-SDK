@@ -86,7 +86,9 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
     };
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self prebidSmaatoAdapter:adUnitFormat adSpaceId:adSpaceId completion:smaatoCompletion];
+        [weakself prebidSmaatoAdapter:adUnitFormat
+                            adSpaceId:adSpaceId
+                           completion:[smaatoCompletion copy]];
     });
 }
 

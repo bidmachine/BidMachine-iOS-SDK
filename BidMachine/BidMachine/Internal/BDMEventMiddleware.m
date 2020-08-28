@@ -230,7 +230,12 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)startEvent:(BDMEvent)type
          placement:(BDMInternalPlacementType)placement
            network:(NSString *)network {
-    [self.eventObjects addObject:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+    BDMEventObject *event = [[BDMEventObject alloc] initWithEvent:type
+                                                          network:network
+                                                        placement:placement];
+    @synchronized (self) {
+        [self.eventObjects addObject:event];
+    }
 }
 
 #pragma mark - Fulfill
@@ -256,46 +261,49 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)fulfillEvent:(BDMEvent)type
            placement:(BDMInternalPlacementType)placement
              network:(NSString *)network {
-    BDMEventObject *event = ANY(self.eventObjects).filter(^BOOL(BDMEventObject *obj){
-        return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
-    }).array.firstObject;
-    
-    if (!event) {
-        return;
+    @synchronized (self) {
+        NSArray *events = [self.eventObjects copy];
+        BDMEventObject *event = ANY(events).filter(^BOOL(BDMEventObject *obj){
+            return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+        }).array.firstObject;
+        
+        if (!event) {
+            return;
+        }
+        
+        if (!event.isTracked) {
+            [self notifyProducerDelegateIfNeeded:type];
+        }
+        
+        [event updateTracked];
+        NSDate *finishTime = [NSDate date];
+        BDMLog(@"[Event] %@ event, timing: %1.2f sec", event.description, finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
+        
+        NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
+        BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
+        if (!URL) {
+            return;
+        }
+        
+        BDMEventURL *fallbackURL = [trackers bdm_searchTrackerOfType:BDMEventTrackingError];
+        
+        URL = URL
+        .extendedByStartTime(event.startTime)
+        .extendedByFinishTime(finishTime)
+        .extendedByType(NSStringFromBDMInternalPlacementType(placement))
+        .extendedByAdNetwork(network);
+        
+        __weak typeof(self) weakSelf = self;
+        [BDMServerCommunicator.sharedCommunicator trackEvent:URL
+                                                     success:nil
+                                                     failure:^(NSError * error) {
+            [weakSelf fallback:type
+                           url:fallbackURL
+                          code:error.code
+                     startTime:event.startTime
+                    finishTime:finishTime];
+        }];
     }
-    
-    if (!event.isTracked) {
-        [self notifyProducerDelegateIfNeeded:type];
-    }
-    
-    [event updateTracked];
-    NSDate *finishTime = [NSDate date];
-    BDMLog(@"[Event] %@ event, timing: %1.2f sec", event.description, finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
-    
-    NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
-    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
-    if (!URL) {
-        return;
-    }
-    
-    BDMEventURL *fallbackURL = [trackers bdm_searchTrackerOfType:BDMEventTrackingError];
-    
-    URL = URL
-    .extendedByStartTime(event.startTime)
-    .extendedByFinishTime(finishTime)
-    .extendedByType(NSStringFromBDMInternalPlacementType(placement))
-    .extendedByAdNetwork(network);
-    
-    __weak typeof(self) weakSelf = self;
-    [BDMServerCommunicator.sharedCommunicator trackEvent:URL
-                                                 success:nil
-                                                 failure:^(NSError * error) {
-                                                     [weakSelf fallback:type
-                                                                    url:fallbackURL
-                                                                   code:error.code
-                                                              startTime:event.startTime
-                                                             finishTime:finishTime];
-                                                 }];
 }
 
 #pragma mark - Reject
@@ -329,46 +337,51 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
           placement:(BDMInternalPlacementType)placement
             network:(NSString *)network
                code:(BDMErrorCode)code {
-    BDMEventObject *event = ANY(self.eventObjects).filter(^BOOL(BDMEventObject *obj){
-        return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
-    }).array.firstObject;
-    
-    if (!event) {
-        return;
+    @synchronized (self) {
+        NSArray *events = [self.eventObjects copy];
+        BDMEventObject *event = ANY(events).filter(^BOOL(BDMEventObject *obj){
+            return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+        }).array.firstObject;
+        
+        if (!event) {
+            return;
+        }
+        
+        NSDate *finishTime = [NSDate date];
+        @synchronized (self) {
+             [self.eventObjects removeObject:event];
+        }
+        BDMLog(@"[Event] lifecycle error: %@ for %@ event, timing: %1.2f sec",
+               NSStringFromBDMErrorCode(code),
+               event.description,
+               finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
+        
+        NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
+        BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
+        if (!URL) {
+            return;
+        }
+        
+        //TODO: server fraud filter
+        if (type == BDMEventAuction && code == BDMErrorCodeNoContent) {
+            return;
+        }
+        
+        URL = URL
+        .extendedByStartTime(event.startTime)
+        .extendedByFinishTime(finishTime)
+        .extendedByAction(type)
+        .extendedByErrorCode(code)
+        .extendedByType(NSStringFromBDMInternalPlacementType(placement))
+        .extendedByAdNetwork(network);
+        
+        [BDMServerCommunicator.sharedCommunicator trackEvent:URL];
     }
-    
-    NSDate *finishTime = [NSDate date];
-    [self.eventObjects removeObject:event];
-    BDMLog(@"[Event] lifecycle error: %@ for %@ event, timing: %1.2f sec",
-           NSStringFromBDMErrorCode(code),
-           event.description,
-           finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
-    
-    NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
-    BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
-    if (!URL) {
-        return;
-    }
-    
-    //TODO: server fraud filter
-    if (type == BDMEventAuction && code == BDMErrorCodeNoContent) {
-        return;
-    }
-    
-    URL = URL
-    .extendedByStartTime(event.startTime)
-    .extendedByFinishTime(finishTime)
-    .extendedByAction(type)
-    .extendedByErrorCode(code)
-    .extendedByType(NSStringFromBDMInternalPlacementType(placement))
-    .extendedByAdNetwork(network);
-    
-    [BDMServerCommunicator.sharedCommunicator trackEvent:URL];
 }
 
 - (void)rejectAll:(BDMErrorCode)code {
     NSArray *events = [self.eventObjects copy];
-    [events enumerateObjectsUsingBlock:^(BDMEventObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [events enumerateObjectsUsingBlock:^(BDMEventObject *obj, NSUInteger idx, BOOL *stop) {
         // Send trackers for requiered events
         if (obj.event != BDMEventViewable &&
             obj.event != BDMEventClosed &&
@@ -377,7 +390,9 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
             [self rejectEvent:obj.event code:code];
             // Just remove non required
         } else {
-            [self.eventObjects removeObject:obj];
+            @synchronized (self) {
+                [self.eventObjects removeObject:obj];
+            }
         }
     }];
 }
@@ -405,7 +420,12 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)removeEvent:(BDMEvent)type
           placement:(BDMInternalPlacementType)placement
             network:(NSString *)network {
-    [self.eventObjects removeObject:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+    BDMEventObject *event = [[BDMEventObject alloc] initWithEvent:type
+                                                          network:network
+                                                        placement:placement];
+    @synchronized (self) {
+        [self.eventObjects removeObject:event];
+    }
 }
 
 #pragma mark - Private

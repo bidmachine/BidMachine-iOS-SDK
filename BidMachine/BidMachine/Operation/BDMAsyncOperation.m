@@ -7,6 +7,7 @@
 //
 
 #import "BDMAsyncOperation.h"
+#import <StackFoundation/StackFoundation.h>
 
 typedef NS_ENUM(NSInteger, BDMAsyncOperationState){
     BDMAsyncOperationReady = 0,
@@ -79,11 +80,11 @@ typedef NS_ENUM(NSInteger, BDMAsyncOperationState){
 
 - (void)main {
     self.state = self.cancelled ? BDMAsyncOperationStateFinished : BDMAsyncOperationExecuting;
-    if (self.action) {
-        dispatch_async(self.thread ?: dispatch_get_main_queue(), ^{
-            self.action(self);
-        });
-    }
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(self.thread ?: dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        STK_RUN_BLOCK(strongSelf.action, strongSelf);
+    });
 }
 
 - (void)complete {
