@@ -34,7 +34,7 @@
             } else if (error) {
                 BDMLog(@"Header bidding network initialisation error: %@", error);
                 [weakSelf.middleware rejectEvent:BDMEventHeaderBiddingNetworkInitializing
-                                          network:config.name
+                                         network:config.name
                                             code:BDMErrorCodeHeaderBiddingNetwork];
             } else {
                 [weakSelf.middleware fulfillEvent:BDMEventHeaderBiddingNetworkInitializing

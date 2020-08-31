@@ -13,6 +13,7 @@
 
 @interface BDMCriteoAdNetwork ()
 
+@property (nonatomic, assign) BOOL hasBeenInitialized;
 @property (nonatomic, strong) NSMapTable *bidTokenStorage;
 
 @end
@@ -37,6 +38,11 @@
 
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError *))completion {
+    if (self.hasBeenInitialized) {
+        STK_RUN_BLOCK(completion, NO, nil);
+        return;
+    }
+    
     NSString *publisherId = parameters[@"publisher_id"];
     NSArray *bannerAdUnitsArray = parameters[@"banner_ad_units"];
     NSArray *interstitialAdUnitsArray = parameters[@"interstitial_ad_units"];
@@ -56,8 +62,10 @@
     
     NSArray *adUnits = [NSArray stk_concat:bannerAdUnits, interstitialAdUnits, nil];
     
+    self.hasBeenInitialized = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[Criteo sharedCriteo] registerCriteoPublisherId:publisherId withAdUnits:adUnits];
+        [Criteo.sharedCriteo registerCriteoPublisherId:publisherId
+                                           withAdUnits:adUnits];
         STK_RUN_BLOCK(completion, YES, nil);
     });
 }
@@ -65,10 +73,9 @@
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *adUnitId = parameters[@"ad_unit_id"];
-
+        
         if (!NSString.stk_isValid(adUnitId) || ![self isValidOrientation:parameters[@"orientation"]]) {
             NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                             description:@"Criteo adapter was not receive valid bidding data"];
@@ -121,12 +128,12 @@
 - (CRAdUnit *)adUnitByFormat:(BDMAdUnitFormat)format adUnitId:(NSString *)adUnitId {
     switch (format) {
         case BDMAdUnitFormatInLineBanner: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize320x50)]; break;
-            case BDMAdUnitFormatBanner320x50: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize320x50)]; break;
-            case BDMAdUnitFormatBanner728x90: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize728x90)]; break;
-            case BDMAdUnitFormatBanner300x250: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize300x250)]; break;
-            case BDMAdUnitFormatInterstitialStatic: return [self interstitialAdUnit:adUnitId]; break;
-            case BDMAdUnitFormatInterstitialVideo: return [self interstitialAdUnit:adUnitId]; break;
-            case BDMAdUnitFormatInterstitialUnknown: return [self interstitialAdUnit:adUnitId]; break;
+        case BDMAdUnitFormatBanner320x50: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize320x50)]; break;
+        case BDMAdUnitFormatBanner728x90: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize728x90)]; break;
+        case BDMAdUnitFormatBanner300x250: return [self bannerAdUnit:adUnitId size:CGSizeFromBDMSize(BDMBannerAdSize300x250)]; break;
+        case BDMAdUnitFormatInterstitialStatic: return [self interstitialAdUnit:adUnitId]; break;
+        case BDMAdUnitFormatInterstitialVideo: return [self interstitialAdUnit:adUnitId]; break;
+        case BDMAdUnitFormatInterstitialUnknown: return [self interstitialAdUnit:adUnitId]; break;
             
         default: return nil; break;
     }

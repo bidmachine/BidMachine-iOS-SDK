@@ -81,7 +81,6 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    [self syncMetadata];
     NSString *placement = [BDMVungleValueTransformer.new transformedValue:parameters[@"placement_id"]];
     
     if (!placement) {
@@ -94,6 +93,14 @@ typedef void(^VungleHeaderBiddingCompletion)(NSDictionary<NSString *,id> *, NSEr
     if (token) {
         NSDictionary *bidding = @{ @"placement_id": placement, @"token": token };
         STK_RUN_BLOCK(completion, bidding, nil);
+        return;
+    }
+    
+    if ([VungleSDK.sharedSDK isAdCachedForPlacementID:placement]) {
+        NSString *description = [NSString stringWithFormat:@"Vungle bid token is not available for placement %@", placement];
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeInternal
+                                        description:description];
+        STK_RUN_BLOCK(completion, nil, error);
         return;
     }
     

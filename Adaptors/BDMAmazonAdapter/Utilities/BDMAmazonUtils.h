@@ -9,6 +9,7 @@
 @import Foundation;
 @import BidMachine;
 @import BidMachine.Adapters;
+@import DTBiOSSDK;
 
 NS_ASSUME_NONNULL_BEGIN
 

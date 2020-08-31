@@ -60,19 +60,18 @@
     __weak typeof(self) weakSelf = self;
     [FBAudienceNetworkAds initializeWithSettings:settings
                                completionHandler:^(FBAdInitResults *results) {
-                                   NSError *error = results.success ? nil : [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                                                                           description:@"FBAudienceNetwork initialisation was unsuccessful"];
-                                   
-                                   weakSelf.isInitialised = results.success;
-                                   STK_RUN_BLOCK(weakSelf.initialisationCompletion, YES, error);
-                                   weakSelf.initialisationCompletion = nil;
-                               }];
+        NSError *error = results.success ? nil : [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                                                description:@"FBAudienceNetwork initialisation was unsuccessful"];
+        
+        weakSelf.isInitialised = results.success;
+        STK_RUN_BLOCK(weakSelf.initialisationCompletion, YES, error);
+        weakSelf.initialisationCompletion = nil;
+    }];
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    [self syncMetadata];
     NSString *placement = [BDMFacebookStringValueTransformer.new transformedValue:parameters[@"facebook_key"]];
     NSString *token = FBAdSettings.bidderToken;
     NSString *appId = self.appId;

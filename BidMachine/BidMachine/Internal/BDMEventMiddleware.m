@@ -276,9 +276,12 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
         }
         
         [event updateTracked];
+        @synchronized (self) {
+            [self.eventObjects removeObject:event];
+        }
         NSDate *finishTime = [NSDate date];
         BDMLog(@"[Event] %@ event, timing: %1.2f sec", event.description, finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
-        
+       
         NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
         BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
         if (!URL) {

@@ -68,7 +68,6 @@
 #pragma mark - Private
 
 - (void)syncMetadata {
-    
     MTRGPrivacy.userAgeRestricted = BDMSdk.sharedSdk.restrictions.coppa;
     
     if (BDMSdk.sharedSdk.restrictions.subjectToGDPR) {
