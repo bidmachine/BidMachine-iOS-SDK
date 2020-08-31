@@ -63,42 +63,38 @@
     NSArray *adUnits = [NSArray stk_concat:bannerAdUnits, interstitialAdUnits, nil];
     
     self.hasBeenInitialized = YES;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [Criteo.sharedCriteo registerCriteoPublisherId:publisherId
-                                           withAdUnits:adUnits];
-        STK_RUN_BLOCK(completion, YES, nil);
-    });
+    [Criteo.sharedCriteo registerCriteoPublisherId:publisherId
+                                       withAdUnits:adUnits];
+    STK_RUN_BLOCK(completion, YES, nil);
 }
 
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *adUnitId = parameters[@"ad_unit_id"];
-        
-        if (!NSString.stk_isValid(adUnitId) || ![self isValidOrientation:parameters[@"orientation"]]) {
-            NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                            description:@"Criteo adapter was not receive valid bidding data"];
-            STK_RUN_BLOCK(completion, nil, error);
-            return;
-        }
-        
-        CRAdUnit *adUnit = [self adUnitByFormat:adUnitFormat adUnitId:adUnitId];
-        CRBidResponse *bidResponse = [self bidResponseForAdUnit:adUnit];
-        if (!bidResponse) {
-            NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                            description:@"Criteo adapter bid response not ready"];
-            STK_RUN_BLOCK(completion, nil, error);
-            return;
-        }
-        
-        NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:2];
-        bidding[@"price"] = @(bidResponse.price);
-        bidding[@"ad_unit_id"] = adUnitId;
-        
-        [self.bidTokenStorage setObject:bidResponse.bidToken forKey:adUnitId];
-        STK_RUN_BLOCK(completion, bidding, nil);
-    });
+    NSString *adUnitId = parameters[@"ad_unit_id"];
+    
+    if (!NSString.stk_isValid(adUnitId) || ![self isValidOrientation:parameters[@"orientation"]]) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                        description:@"Criteo adapter was not receive valid bidding data"];
+        STK_RUN_BLOCK(completion, nil, error);
+        return;
+    }
+    
+    CRAdUnit *adUnit = [self adUnitByFormat:adUnitFormat adUnitId:adUnitId];
+    CRBidResponse *bidResponse = [self bidResponseForAdUnit:adUnit];
+    if (!bidResponse) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                        description:@"Criteo adapter bid response not ready"];
+        STK_RUN_BLOCK(completion, nil, error);
+        return;
+    }
+    
+    NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:2];
+    bidding[@"price"] = @(bidResponse.price);
+    bidding[@"ad_unit_id"] = adUnitId;
+    
+    [self.bidTokenStorage setObject:bidResponse.bidToken forKey:adUnitId];
+    STK_RUN_BLOCK(completion, bidding, nil);
 }
 
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk {

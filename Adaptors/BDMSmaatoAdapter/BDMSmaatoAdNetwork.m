@@ -37,13 +37,13 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
                       completion:(void (^)(BOOL, NSError * _Nullable))completion {
     [self syncMetadata];
-    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisher_id"]];
     
     if (self.initialized) {
         STK_RUN_BLOCK(completion, NO, nil);
         return;
     }
     
+    NSString *publisherId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"publisher_id"]];
     if (publisherId) {
         SMAConfiguration *configuration = [[SMAConfiguration alloc] initWithPublisherId:publisherId];
         configuration.logLevel = BDMSdkLoggingEnabled ? kSMALogLevelVerbose : kSMALogLevelError;
@@ -60,7 +60,6 @@ typedef void (^BDMSmaatoCompletionBlock)(SMAUbBid *bid, NSError *error);
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> * _Nullable, NSError * _Nullable))completion {
-    [self syncMetadata];
     NSString *adSpaceId = [BDMSmaatoStringValueTransformer.new transformedValue:parameters[@"ad_space_id"]];
     if (!adSpaceId) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
