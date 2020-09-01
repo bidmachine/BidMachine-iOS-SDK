@@ -35,6 +35,7 @@
 @property (nonatomic, strong) STKNetworkReachability *reachability;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) BDMHeaderBiddingController *headerBiddingController;
+@property (nonatomic, strong) BDMContextualController *contextualController;
 
 @property (nonatomic, copy) NSString *sellerID;
 @property (nonatomic, copy) BDMSdkConfiguration *configuration;
@@ -100,6 +101,9 @@
     if (STKLocation.locationTrackingEnabled) {
         [STKLocation startMonitoring];
     }
+    
+    //Start contextual controller
+    [self.contextualController start];
     
     // Just save data
     self.sellerID = sellerID;
@@ -193,6 +197,13 @@
         }];
     }
     return _middleware;
+}
+
+- (BDMContextualController *)contextualController {
+    if (!_contextualController) {
+        _contextualController = BDMContextualController.new;
+    }
+    return _contextualController;
 }
 
 #pragma mark - BDMHeaderBiddingControllerDelegate

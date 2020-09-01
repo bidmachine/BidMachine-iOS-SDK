@@ -10,6 +10,15 @@
 		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
 		37319DAE24CEEABE00765FE5 /* BDMFetcher+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DAD24CEEABE00765FE5 /* BDMFetcher+Private.h */; };
+		3743A5CA24FD0BBC003DD6BF /* BDMContextualData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5C824FD0BBC003DD6BF /* BDMContextualData.h */; };
+		3743A5CB24FD0BBC003DD6BF /* BDMContextualData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5C924FD0BBC003DD6BF /* BDMContextualData.m */; };
+		3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */; };
+		3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */; };
+		3743A5D224FD1252003DD6BF /* BDMPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */; };
+		3743A5D324FD1252003DD6BF /* BDMPrivateDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */; };
+		3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D424FD153F003DD6BF /* BDMEventObject.h */; };
+		3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D524FD153F003DD6BF /* BDMEventObject.m */; };
+		3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */; };
 		3781990F24CECD8E00E97FED /* BDMRequestStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781990D24CECD8E00E97FED /* BDMRequestStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781990E24CECD8E00E97FED /* BDMRequestStorage.m */; };
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
@@ -166,6 +175,15 @@
 		37319DA924CEE61900765FE5 /* BDMFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFetcher.h; sourceTree = "<group>"; };
 		37319DAA24CEE61900765FE5 /* BDMFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFetcher.m; sourceTree = "<group>"; };
 		37319DAD24CEEABE00765FE5 /* BDMFetcher+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFetcher+Private.h"; sourceTree = "<group>"; };
+		3743A5C824FD0BBC003DD6BF /* BDMContextualData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMContextualData.h; sourceTree = "<group>"; };
+		3743A5C924FD0BBC003DD6BF /* BDMContextualData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMContextualData.m; sourceTree = "<group>"; };
+		3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualController.h; sourceTree = "<group>"; };
+		3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMContextualController.m; sourceTree = "<group>"; };
+		3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMPrivateDefines.h; path = BidMachine/BDMPrivateDefines.h; sourceTree = SOURCE_ROOT; };
+		3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMPrivateDefines.m; path = BidMachine/BDMPrivateDefines.m; sourceTree = SOURCE_ROOT; };
+		3743A5D424FD153F003DD6BF /* BDMEventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventObject.h; sourceTree = "<group>"; };
+		3743A5D524FD153F003DD6BF /* BDMEventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventObject.m; sourceTree = "<group>"; };
+		3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualProtocol.h; sourceTree = "<group>"; };
 		3781990D24CECD8E00E97FED /* BDMRequestStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorage.h; sourceTree = "<group>"; };
 		3781990E24CECD8E00E97FED /* BDMRequestStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorage.m; sourceTree = "<group>"; };
 		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
@@ -338,6 +356,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3743A5C724FD0BBC003DD6BF /* Contextual */ = {
+			isa = PBXGroup;
+			children = (
+				3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */,
+				3743A5C824FD0BBC003DD6BF /* BDMContextualData.h */,
+				3743A5C924FD0BBC003DD6BF /* BDMContextualData.m */,
+				3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */,
+				3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */,
+			);
+			path = Contextual;
+			sourceTree = "<group>";
+		};
 		3781990C24CECD6A00E97FED /* Fetcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +446,8 @@
 		4218D91321ECE0740077B3E3 /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
+				3743A5D424FD153F003DD6BF /* BDMEventObject.h */,
+				3743A5D524FD153F003DD6BF /* BDMEventObject.m */,
 				422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */,
 				422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */,
 			);
@@ -581,6 +613,7 @@
 		9C2597251FB1DC91006F3FA7 /* BidMachine */ = {
 			isa = PBXGroup;
 			children = (
+				3743A5C724FD0BBC003DD6BF /* Contextual */,
 				3781990C24CECD6A00E97FED /* Fetcher */,
 				9C2597401FB1E9AA006F3FA7 /* Factory */,
 				9C71DBB01FB5F24F00D0DCCA /* Networking */,
@@ -596,6 +629,8 @@
 				429C045F2167585C000C5265 /* AdObjects */,
 				9C2597321FB1DFFF006F3FA7 /* BDMDefines.h */,
 				9C2597331FB1DFFF006F3FA7 /* BDMDefines.m */,
+				3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */,
+				3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */,
 				9C2597261FB1DC91006F3FA7 /* BidMachine.h */,
 				429C195D2160123C0048F400 /* Info.plist */,
 				42C3FDB921623E70004D3784 /* module.private.modulemap */,
@@ -729,6 +764,7 @@
 				9C2597521FB2002C006F3FA7 /* BDMSdk+Project.h in Headers */,
 				6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */,
 				4269D16921B01B0E00E3E13B /* NSError+BDMSdk.h in Headers */,
+				3743A5D224FD1252003DD6BF /* BDMPrivateDefines.h in Headers */,
 				9C71DBAE1FB5F03800D0DCCA /* BDMBannerView.h in Headers */,
 				3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */,
 				424BA2A02199CCD300E2745D /* BDMTransformers.h in Headers */,
@@ -745,8 +781,10 @@
 				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
 				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
 				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
+				3743A5CA24FD0BBC003DD6BF /* BDMContextualData.h in Headers */,
 				423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */,
 				9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */,
+				3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */,
 				42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */,
 				4269622521836145004D9B17 /* BDMFullscreenAdDisplayAd.h in Headers */,
 				427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */,
@@ -762,6 +800,7 @@
 				9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */,
 				6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */,
 				9C2597471FB1EA50006F3FA7 /* BDMNetworkProtocol.h in Headers */,
+				3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */,
 				9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */,
 				427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */,
 				4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */,
@@ -785,6 +824,7 @@
 				42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */,
 				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
 				422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */,
+				3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */,
 				65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */,
 				4269D16521B0019A00E3E13B /* ADCOMAd_Display_Native+BDMSdk.h in Headers */,
 				4227C0C3217A56420022C1D5 /* BDMViewabilityMetricProvider.h in Headers */,
@@ -981,6 +1021,8 @@
 				421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */,
 				426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */,
 				9C2597501FB1F8A0006F3FA7 /* BDMInterstitial.m in Sources */,
+				3743A5CB24FD0BBC003DD6BF /* BDMContextualData.m in Sources */,
+				3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */,
 				423CAF4E217DED98000FF60D /* BDMViewabilityMetricAppodeal.m in Sources */,
 				424BA2A12199CCD300E2745D /* BDMAuctionSettings.m in Sources */,
 				42515D992186F9CB0025C231 /* BDMBannerViewDisplayAd.m in Sources */,
@@ -1012,6 +1054,8 @@
 				422CAC3921AE7A38000A0D51 /* NSArray+BDMEventURL.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
+				3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */,
+				3743A5D324FD1252003DD6BF /* BDMPrivateDefines.m in Sources */,
 				6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */,
 				421AFFB622D898A3004DF0EB /* ADCOMAd+Private.m in Sources */,
 				3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */,

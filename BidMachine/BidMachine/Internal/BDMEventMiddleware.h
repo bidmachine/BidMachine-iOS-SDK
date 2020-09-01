@@ -10,29 +10,16 @@
 #import "BDMAdEventProducerProtocol.h"
 #import "BDMDefines.h"
 #import "BDMRequest+Private.h"
+#import "BDMPrivateDefines.h"
+#import "BDMContextualController.h"
 
 @class BDMEventURL;
-
-typedef NS_ENUM(NSInteger, BDMEvent) {
-    BDMEventCreativeLoading = 500,
-    BDMEventImpression = 501,
-    BDMEventViewable = 502,
-    BDMEventClick = 503,
-    BDMEventClosed = 504,
-    BDMEventDestroyed = 505,
-    BDMEventInitialisation = 506,
-    BDMEventAuction = 507,
-    BDMEventAuctionExpired = 509,
-    BDMEventAuctionDestroyed = 510,
-    BDMEventHeaderBiddingNetworkInitializing = 701,
-    BDMEventHeaderBiddingNetworkPreparing = 702,
-    BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared = 703
-};
 
 @interface BDMEventMiddlewareBuilder : NSObject
 
 @property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^events)(NSArray <BDMEventURL *>*(^)(void));
 @property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^producer)(id<BDMAdEventProducer>(^)(void));
+@property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^contextual)(BDMContextualController *);
 
 @end
 

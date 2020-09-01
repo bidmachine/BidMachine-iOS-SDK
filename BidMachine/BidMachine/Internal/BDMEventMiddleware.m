@@ -7,6 +7,7 @@
 //
 
 
+#import "BDMEventObject.h"
 #import "BDMEventMiddleware.h"
 #import "NSArray+BDMEventURL.h"
 #import "BDMServerCommunicator.h"
@@ -14,108 +15,11 @@
 #import <StackFoundation/StackFoundation.h>
 
 
-static NSInteger const BDMEventError = 1000;
-static NSInteger const BDMEventTrackingError = 1001;
-
-
-NSString *NSStringFromBDMEvent(BDMEvent event) {
-    switch (event) {
-        case BDMEventCreativeLoading: return @"Creative loading"; break;
-        case BDMEventClick: return @"User interaction"; break;
-        case BDMEventClosed: return @"Closing"; break;
-        case BDMEventViewable: return @"Viewable"; break;
-        case BDMEventDestroyed: return @"Destroying"; break;
-        case BDMEventImpression: return @"Impression"; break;
-        case BDMEventAuction: return @"Auction"; break;
-        case BDMEventAuctionExpired: return @"Auction Expired"; break;
-        case BDMEventAuctionDestroyed: return @"Auction Destroyed"; break;
-        case BDMEventInitialisation: return @"Initialisation"; break;
-        case BDMEventHeaderBiddingNetworkInitializing: return @"Header Bidding network initialisation"; break;
-        case BDMEventHeaderBiddingNetworkPreparing: return @"Header Bidding network preparing"; break;
-        case BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared: return @"Header Bidding preparation"; break;
-    }
-    return @"unspecified";
-}
-
-
-BDMEvent BDMEventFromNSString(NSString *event) {
-    if ([event isEqualToString:@"Creative loading"]) {
-        return BDMEventCreativeLoading;
-    } else if ([event isEqualToString:@"User interaction"]) {
-        return BDMEventClick;
-    } else if ([event isEqualToString:@"Closing"]) {
-        return BDMEventClosed;
-    } else if ([event isEqualToString:@"Viewable"]) {
-        return BDMEventViewable;
-    } else if ([event isEqualToString:@"Destroying"]) {
-        return BDMEventDestroyed;
-    } else if ([event isEqualToString:@"Impression"]) {
-        return BDMEventImpression;
-    } else if ([event isEqualToString:@"Auction"]) {
-        return BDMEventAuction;
-    } else if ([event isEqualToString:@"Auction Expired"]) {
-        return BDMEventAuctionExpired;
-    } else if ([event isEqualToString:@"Auction Destroyed"]) {
-        return BDMEventAuctionDestroyed;
-    } else if ([event isEqualToString:@"Initialisation"]) {
-        return BDMEventInitialisation;
-    } else if ([event isEqualToString:@"Header Bidding network initialisation"]) {
-        return BDMEventHeaderBiddingNetworkInitializing;
-    } else if ([event isEqualToString:@"Header Bidding network preparing"]) {
-        return BDMEventHeaderBiddingNetworkPreparing;
-    } else if ([event isEqualToString:@"Header Bidding preparation"]) {
-        return BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared;
-    }
-    return 0;
-}
-
-
-NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
-    switch (code) {
-        case BDMErrorCodeInternal: return @"Internal"; break;
-        case BDMErrorCodeTimeout: return @"Timeout"; break;
-        case BDMErrorCodeException: return @"Exception"; break;
-        case BDMErrorCodeNoContent: return @"No content"; break;
-        case BDMErrorCodeWasClosed: return @"Was closed"; break;
-        case BDMErrorCodeUnknown: return @"Unknown"; break;
-        case BDMErrorCodeBadContent: return @"Bad content"; break;
-        case BDMErrorCodeWasExpired: return @"Was expired"; break;
-        case BDMErrorCodeNoConnection: return @"No internet connection"; break;
-        case BDMErrorCodeWasDestroyed: return @"Was destroyed"; break;
-        case BDMErrorCodeHTTPBadRequest: return @"Bad request"; break;
-        case BDMErrorCodeHTTPServerError: return @"Internal server error"; break;
-        case BDMErrorCodeHeaderBiddingNetwork: return @"Ad Network specific error"; break;
-    }
-}
-
-NSString *NSStringFromBDMInternalPlacementType(BDMInternalPlacementType type) {
-    switch (type) {
-        case BDMInternalPlacementTypeInterstitial: return @"Interstitial"; break;
-        case BDMInternalPlacementTypeRewardedVideo: return  @"RewardedVideo"; break;
-        case BDMInternalPlacementTypeBanner: return @"Banner"; break;
-        case BDMInternalPlacementTypeNative: return @"Native"; break;
-    }
-    return @"Session";
-}
-
-BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
-    if ([type isEqualToString:@"Interstitial"]) {
-        return BDMInternalPlacementTypeInterstitial;
-    } else if ([type isEqualToString:@"RewardedVideo"]) {
-        return BDMInternalPlacementTypeRewardedVideo;
-    } else if ([type isEqualToString:@"Banner"]) {
-        return BDMInternalPlacementTypeBanner;
-    } else if ([type isEqualToString:@"Native"]) {
-        return BDMInternalPlacementTypeNative;
-    } else {
-        return 0;
-    }
-}
-
 @interface BDMEventMiddlewareBuilder ()
 
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
+@property (nonatomic, weak) BDMContextualController *contextualController;
 
 @end
 
@@ -135,55 +39,11 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     };
 }
 
-@end
-
-@interface BDMEventObject : NSObject
-
-@property (nonatomic, assign, readonly) BOOL isTracked;
-@property (nonatomic, assign, readonly) BDMEvent event;
-@property (nonatomic, strong, readonly) NSDate *startTime;
-@property (nonatomic, strong, readonly) NSString *network;
-@property (nonatomic, assign, readonly) BDMInternalPlacementType placement;
-
-@end
-
-@implementation BDMEventObject
-
-
-- (instancetype)initWithEvent:(BDMEvent)event
-                      network:(NSString *)network
-                    placement:(BDMInternalPlacementType)placement {
-    if (self = [super init]) {
-        _isTracked      = NO;
-        _event          = event;
-        _placement      = placement;
-        _startTime      = [NSDate date];
-        _network        = network ?: @"unspecified";
-    }
-    return self;
-    
-}
-
-- (void)updateTracked {
-    _isTracked = YES;
-}
-
-- (BOOL)isEqual:(BDMEventObject *)object {
-    if (![object isKindOfClass:BDMEventObject.class]) {
-        return NO;
-    }
-    NSString *network = object.network ?: @"unspecified";
-    return
-    self.event == object.event &&
-    self.placement == object.placement &&
-    [self.network isEqualToString:network];
-}
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%@:::%@:::%@",
-            NSStringFromBDMEvent(self.event),
-            NSStringFromBDMInternalPlacementType(self.placement),
-            self.network];
+- (BDMEventMiddlewareBuilder *(^)(BDMContextualController *))contextual {
+    return ^id(BDMContextualController *controller) {
+        self.contextualController = controller;
+        return self;
+    };
 }
 
 @end
@@ -192,8 +52,9 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 @interface BDMEventMiddleware ()
 
 @property (nonatomic, strong) NSMutableArray <BDMEventObject *> *eventObjects;
-@property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
-@property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
+@property (nonatomic,   weak) BDMContextualController *contextualController;
+@property (nonatomic,   copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
+@property (nonatomic,   copy) id<BDMAdEventProducer> (^updateProducer)(void);
 
 @end
 
@@ -230,9 +91,10 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)startEvent:(BDMEvent)type
          placement:(BDMInternalPlacementType)placement
            network:(NSString *)network {
-    BDMEventObject *event = [[BDMEventObject alloc] initWithEvent:type
-                                                          network:network
-                                                        placement:placement];
+    BDMEventObject *event = [[BDMEventObject alloc] initWithSessionId:@(self.hash).stringValue
+                                                                event:type
+                                                              network:network
+                                                            placement:placement];
     @synchronized (self) {
         [self.eventObjects addObject:event];
     }
@@ -264,7 +126,10 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     @synchronized (self) {
         NSArray *events = [self.eventObjects copy];
         BDMEventObject *event = ANY(events).filter(^BOOL(BDMEventObject *obj){
-            return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+            return [obj isEqual:[[BDMEventObject alloc] initWithSessionId:@(self.hash).stringValue
+                                                                    event:type
+                                                                  network:network
+                                                                placement:placement]];
         }).array.firstObject;
         
         if (!event) {
@@ -275,12 +140,8 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
             [self notifyProducerDelegateIfNeeded:type];
         }
         
-        [event updateTracked];
-        @synchronized (self) {
-            [self.eventObjects removeObject:event];
-        }
-        NSDate *finishTime = [NSDate date];
-        BDMLog(@"[Event] %@ event, timing: %1.2f sec", event.description, finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
+        [event complete];
+        [self.contextualController saveContextualData:event];
        
         NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
         BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
@@ -292,7 +153,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
         
         URL = URL
         .extendedByStartTime(event.startTime)
-        .extendedByFinishTime(finishTime)
+        .extendedByFinishTime(event.finishTime)
         .extendedByType(NSStringFromBDMInternalPlacementType(placement))
         .extendedByAdNetwork(network);
         
@@ -304,7 +165,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
                            url:fallbackURL
                           code:error.code
                      startTime:event.startTime
-                    finishTime:finishTime];
+                    finishTime:event.finishTime];
         }];
     }
 }
@@ -343,21 +204,21 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     @synchronized (self) {
         NSArray *events = [self.eventObjects copy];
         BDMEventObject *event = ANY(events).filter(^BOOL(BDMEventObject *obj){
-            return [obj isEqual:[[BDMEventObject alloc] initWithEvent:type network:network placement:placement]];
+            return [obj isEqual:[[BDMEventObject alloc] initWithSessionId:@(self.hash).stringValue
+                                                                    event:type
+                                                                  network:network
+                                                                placement:placement]];
         }).array.firstObject;
         
         if (!event) {
             return;
         }
         
-        NSDate *finishTime = [NSDate date];
+        [event reject:code];
+        
         @synchronized (self) {
              [self.eventObjects removeObject:event];
         }
-        BDMLog(@"[Event] lifecycle error: %@ for %@ event, timing: %1.2f sec",
-               NSStringFromBDMErrorCode(code),
-               event.description,
-               finishTime.timeIntervalSince1970 - event.startTime.timeIntervalSince1970);
         
         NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
         BDMEventURL *URL = [trackers bdm_searchTrackerOfType:BDMEventError];
@@ -372,7 +233,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
         
         URL = URL
         .extendedByStartTime(event.startTime)
-        .extendedByFinishTime(finishTime)
+        .extendedByFinishTime(event.finishTime)
         .extendedByAction(type)
         .extendedByErrorCode(code)
         .extendedByType(NSStringFromBDMInternalPlacementType(placement))
@@ -423,9 +284,10 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
 - (void)removeEvent:(BDMEvent)type
           placement:(BDMInternalPlacementType)placement
             network:(NSString *)network {
-    BDMEventObject *event = [[BDMEventObject alloc] initWithEvent:type
-                                                          network:network
-                                                        placement:placement];
+    BDMEventObject *event = [[BDMEventObject alloc] initWithSessionId:@(self.hash).stringValue
+                                                                event:type
+                                                              network:network
+                                                            placement:placement];
     @synchronized (self) {
         [self.eventObjects removeObject:event];
     }
@@ -438,6 +300,7 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
         self.updateEvents           = [builder.updateEvents copy];
         self.updateProducer         = [builder.updateProducer copy];
         self.eventObjects           = [[NSMutableArray alloc] init];
+        self.contextualController   = builder.contextualController;
     }
     return self;
 }

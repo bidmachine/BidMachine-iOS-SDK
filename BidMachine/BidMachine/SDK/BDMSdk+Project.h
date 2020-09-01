@@ -13,6 +13,7 @@
 #import "BDMAuctionSettings.h"
 #import "BDMPlacementAdUnit.h"
 #import "BDMRequest+Private.h"
+#import "BDMContextualController.h"
 #import "BDMAdNetworkConfiguration.h"
 
 
@@ -54,6 +55,8 @@
 
 @interface BDMSdk (Project) <BDMSdkContext, BDMSdkHeaderBiddingContext>
 
-@property (nonatomic, copy, readonly) NSURL *baseURL;
+@property (nonatomic,   copy, readonly) NSURL *baseURL;
+
+@property (nonatomic, strong, readonly) BDMContextualController *contextualController;
 
 @end

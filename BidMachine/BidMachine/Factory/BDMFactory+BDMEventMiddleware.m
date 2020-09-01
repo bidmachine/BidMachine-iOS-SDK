@@ -27,6 +27,8 @@
         builder.producer(^id<BDMAdEventProducer> {
             return weakProducer;
         });
+        
+        builder.contextual(BDMSdk.sharedSdk.contextualController);
     }];
 }
 
