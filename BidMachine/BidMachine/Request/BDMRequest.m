@@ -67,7 +67,6 @@
 }
 
 - (void)_performWithRequest:(BDMRequest *)request
-              placementType:(BDMInternalPlacementType)placementType
            placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
     if (!BDMSdk.sharedSdk.sellerID.length) {
         BDMLog(@"You should call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk was not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
@@ -81,11 +80,9 @@
         return;
     }
     
-    self.placementType = placementType;
-    
     __weak typeof(self) weakSelf = self;
     [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:self.networkConfigurations
-                                        placement:placementType
+                                        placement:self.placementType
                                        completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
         // Append header bidding
         placementBuilder.appendHeaderBidding(placememntAdUnits);
@@ -95,6 +92,7 @@
         [weakSelf.middleware startEvent:BDMEventAuction];
         // Make request by expiration timer
         [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:self.timeout auctionBuilder:^(BDMAuctionBuilder *builder) {
+            id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:self.placementType];
             builder
             .appendPlacementBuilder(placementBuilder)
             .appendRequest(request)
@@ -102,7 +100,8 @@
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
             .appendRestrictions(BDMSdk.sharedSdk.restrictions)
-            .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo);
+            .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo)
+            .appendContextualData(contextualData);
         } success:^(id<BDMResponse> response) {
             // Save response object
             weakSelf.response = response;
@@ -192,11 +191,8 @@
 }
 
 - (void)performWithRequest:(BDMRequest *)request
-             placementType:(BDMInternalPlacementType)placementType
           placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
-    [self _performWithRequest:request
-                placementType:placementType
-             placementBuilder:placementBuilder];
+    [self _performWithRequest:request placementBuilder:placementBuilder];
 }
 
 - (void)invalidate {

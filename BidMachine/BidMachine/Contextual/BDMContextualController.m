@@ -8,11 +8,46 @@
 
 #import "BDMContextualController.h"
 
+#import <StackFoundation/StackFoundation.h>
+
+
+@interface BDMContextualData : NSObject <BDMContextualProtocol>
+
+@property(nonatomic, assign) NSUInteger clicks;
+@property(nonatomic, assign) NSUInteger completions;
+@property(nonatomic, assign) NSUInteger impressions;
+@property(nonatomic, assign) NSUInteger lastClickForImpression;
+
+@property(nonatomic, assign) NSUInteger sessionDuration;
+@property(nonatomic, assign) NSUInteger clickRate;
+@property(nonatomic, assign) NSUInteger completionRate;
+
+@property(nonatomic,   copy) NSString *lastBundle;
+@property(nonatomic,   copy) NSString *lastAdomain;
+
+@end
+
+@implementation BDMContextualData
+
+- (id)copyWithZone:(NSZone *)zone {
+    BDMContextualData *copy = self.class.new;
+    copy.clicks = self.clicks;
+    copy.completions = self.completions;
+    copy.impressions = self.impressions;
+    copy.lastClickForImpression = self.lastClickForImpression;
+    copy.sessionDuration = self.sessionDuration;
+    copy.clickRate = self.clickRate;
+    copy.completionRate = self.completionRate;
+    copy.lastBundle = self.lastBundle.copy;
+    copy.lastAdomain = self.lastAdomain.copy;
+    return copy;
+}
+
+@end
+
 @interface BDMContextualController ()
 
-@property (nonatomic, strong) NSMapTable <NSString *, NSMutableSet <id<BDMContextualProtocol>>*> *contextualDatas;
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSString *> *lastBundles;
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSString *> *lastAdomain;
+@property (nonatomic, strong) NSMapTable <NSString *, BDMContextualData *> *contextualDatas;
 @property (nonatomic,   copy) NSDate *startDate;
 
 @end
@@ -21,41 +56,68 @@
 
 - (void)start {
     if (!self.startDate) {
-        self.startDate          = [NSDate date];
-        self.contextualDatas    = [NSMapTable strongToStrongObjectsMapTable];
-        self.lastBundles        = NSMutableDictionary.new;
-        self.lastAdomain        = NSMutableDictionary.new;
+        self.startDate = [NSDate date];
+        [self prepareContextualDatas];
     }
 }
 
-- (void)saveContextualData:(id<BDMContextualProtocol>)contextualData {
-    NSString *placement = NSStringFromBDMInternalPlacementType(contextualData.placement);
-    NSMutableSet <id<BDMContextualProtocol>>* contextualDatas = [self.contextualDatas objectForKey:placement];
-    if (!contextualDatas) {
-        contextualDatas = NSMutableSet.set;
-        [self.contextualDatas setObject:contextualDatas forKey:placement];
-    }
-    [contextualDatas addObject:contextualData];
+- (void)registerImpressionForPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
+    contextualData.impressions ++;
+    contextualData.lastClickForImpression = 0;
 }
 
-- (void)saveLastBundle:(NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement {
-    NSString *placementString = NSStringFromBDMInternalPlacementType(placement);
+- (void)registerClickForPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
+    if (!contextualData.lastClickForImpression) {
+        contextualData.clicks ++;
+    }
+    contextualData.lastClickForImpression = 1;
+}
+
+- (void)registerCompletionForPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
+    contextualData.completions ++;
+}
+
+- (void)regiserLastBundle:(NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
     if (lastBundle) {
-        self.lastBundles[placementString] = lastBundle;
+        contextualData.lastBundle = lastBundle;
     }
 }
 
-- (void)saveLastAdomain:(NSString *)lastAdomain forPlacement:(BDMInternalPlacementType)placement {
-    NSString *placementString = NSStringFromBDMInternalPlacementType(placement);
+- (void)registerLastAdomain:(NSString *)lastAdomain forPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
     if (lastAdomain) {
-        self.lastAdomain[placementString] = lastAdomain;
+        contextualData.lastAdomain = lastAdomain;
     }
 }
 
-#pragma mark - Generated
+- (id<BDMContextualProtocol>)contextualDataForPlacement:(BDMInternalPlacementType)placement {
+    BDMContextualData *contextualData = [self getContextualDataForPlacement:placement].copy;
+    contextualData.sessionDuration = NSDate.date.timeIntervalSince1970 - self.startDate.timeIntervalSince1970;
+    if (contextualData.impressions > 0) {
+        contextualData.clickRate = (@(contextualData.clicks).floatValue / @(contextualData.impressions).floatValue) * 100;
+        contextualData.completionRate = (@(contextualData.completions).floatValue / @(contextualData.impressions).floatValue) * 100;
+    }
+    
+    return contextualData;
+}
 
-- (BDMContextualData *)contextualDataWithUserData:(BDMContextualData *)userData {
-    return nil;
+- (BDMContextualData *)getContextualDataForPlacement:(BDMInternalPlacementType)placement {
+    NSString *placementName = NSStringFromBDMInternalPlacementType(placement);
+    return [self.contextualDatas objectForKey:placementName];
+}
+
+#pragma mark - Private
+
+- (void)prepareContextualDatas {
+    self.contextualDatas    = [NSMapTable strongToStrongObjectsMapTable];
+    for (NSUInteger placement = 0; placement <= BDMInternalPlacementTypeNative; placement ++) {
+        NSString *placementName = NSStringFromBDMInternalPlacementType(placement);
+        [self.contextualDatas setObject:BDMContextualData.new forKey:placementName];
+    }
 }
 
 @end

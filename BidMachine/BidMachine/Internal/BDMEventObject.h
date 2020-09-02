@@ -6,19 +6,19 @@
 //  Copyright © 2020 Appodeal. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "BDMContextualProtocol.h"
+#import "BDMPrivateDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BDMEventObjectProtocol <BDMContextualProtocol, NSCopying>
+@interface BDMEventObject : NSObject
 
+@property (nonatomic, assign, readonly) BDMInternalPlacementType placement;
+@property (nonatomic, assign, readonly) BDMEvent event;
 @property (nonatomic, assign, readonly) BOOL isTracked;
+@property (nonatomic,   copy, readonly) NSDate *finishTime;
+@property (nonatomic,   copy, readonly) NSDate *startTime;
+@property (nonatomic,   copy, readonly) NSString *sessionID;
 @property (nonatomic,   copy, readonly) NSString *network;
-
-@end
-
-@interface BDMEventObject : NSObject <BDMEventObjectProtocol>
 
 - (instancetype)initWithSessionId:(NSString *)sessionId
                             event:(BDMEvent)event

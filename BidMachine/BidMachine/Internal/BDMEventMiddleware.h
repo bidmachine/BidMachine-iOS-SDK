@@ -11,7 +11,6 @@
 #import "BDMDefines.h"
 #import "BDMRequest+Private.h"
 #import "BDMPrivateDefines.h"
-#import "BDMContextualController.h"
 
 @class BDMEventURL;
 
@@ -19,7 +18,6 @@
 
 @property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^events)(NSArray <BDMEventURL *>*(^)(void));
 @property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^producer)(id<BDMAdEventProducer>(^)(void));
-@property (nonatomic, copy, readonly) BDMEventMiddlewareBuilder *(^contextual)(BDMContextualController *);
 
 @end
 

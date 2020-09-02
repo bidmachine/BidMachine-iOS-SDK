@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, BDMRequestState) {
 @property (nonatomic, copy, readonly) NSArray<BDMEventURL *> *eventTrackers;
 
 - (void)performWithRequest:(BDMRequest *)request
-             placementType:(BDMInternalPlacementType)placementType
           placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder;
 - (void)registerDelegate:(id<BDMRequestDelegate>)delegate;
 - (void)cancelExpirationTimer;

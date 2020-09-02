@@ -10,6 +10,7 @@
 #import "BDMDefines.h"
 
 #import "NSError+BDMSdk.h"
+#import "BDMSdk+Project.h"
 #import "BDMNativeAdViewDisplayAd.h"
 #import "BDMFactory+BDMDisplayAd.h"
 #import "BDMFactory+BDMEventMiddleware.h"
@@ -153,10 +154,12 @@
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
+    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placementType];
     [self.middleware fulfillEvent:BDMEventViewable];
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
+    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placementType];
     [self.middleware fulfillEvent:BDMEventClick];
 }
 

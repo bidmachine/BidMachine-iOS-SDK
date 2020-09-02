@@ -19,7 +19,6 @@
 
 @property (nonatomic, copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic, copy) id<BDMAdEventProducer> (^updateProducer)(void);
-@property (nonatomic, weak) BDMContextualController *contextualController;
 
 @end
 
@@ -39,20 +38,12 @@
     };
 }
 
-- (BDMEventMiddlewareBuilder *(^)(BDMContextualController *))contextual {
-    return ^id(BDMContextualController *controller) {
-        self.contextualController = controller;
-        return self;
-    };
-}
-
 @end
 
 
 @interface BDMEventMiddleware ()
 
 @property (nonatomic, strong) NSMutableArray <BDMEventObject *> *eventObjects;
-@property (nonatomic,   weak) BDMContextualController *contextualController;
 @property (nonatomic,   copy) NSArray<BDMEventURL *> *(^updateEvents)(void);
 @property (nonatomic,   copy) id<BDMAdEventProducer> (^updateProducer)(void);
 
@@ -141,7 +132,6 @@
         }
         
         [event complete];
-        [self.contextualController saveContextualData:event];
        
         NSArray <BDMEventURL *> *trackers = STK_RUN_BLOCK(self.updateEvents);
         BDMEventURL *URL = [trackers bdm_searchTrackerOfType:type];
@@ -300,7 +290,6 @@
         self.updateEvents           = [builder.updateEvents copy];
         self.updateProducer         = [builder.updateProducer copy];
         self.eventObjects           = [[NSMutableArray alloc] init];
-        self.contextualController   = builder.contextualController;
     }
     return self;
 }

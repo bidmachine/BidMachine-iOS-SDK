@@ -156,6 +156,7 @@
 }
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
+    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placementType];
     [self.middleware fulfillEvent:BDMEventImpression];
     [self.delegate interstitialWillPresent:self];
 }
@@ -171,6 +172,7 @@
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
+    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placementType];
     [self.middleware fulfillEvent:BDMEventClick];
     [self.delegate interstitialRecieveUserInteraction:self];
 }

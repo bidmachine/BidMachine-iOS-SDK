@@ -21,6 +21,7 @@
 @property (nonatomic, strong) BDMPublisherInfo *publisherInfo;
 @property (nonatomic, strong) BDMUserRestrictions *restrictions;
 @property (nonatomic, strong) id<BDMAuctionSettings> auctionSettings;
+@property (nonatomic, strong) id<BDMContextualProtocol> contextualData;
 @property (nonatomic, strong) id<BDMPlacementRequestBuilder> placementBuilder;
 
 @end
@@ -72,6 +73,13 @@
 - (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo {
     return ^id(BDMPublisherInfo * publisherInfo) {
         self.publisherInfo = publisherInfo;
+        return self;
+    };
+}
+
+- (BDMAuctionBuilder *(^)(id<BDMContextualProtocol>))appendContextualData {
+    return ^id(id<BDMContextualProtocol> contextualData) {
+        self.contextualData = contextualData;
         return self;
     };
 }

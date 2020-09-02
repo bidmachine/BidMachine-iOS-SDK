@@ -20,6 +20,7 @@
 - (BDMAuctionBuilder *(^)(BDMRequest *))appendRequest;
 - (BDMAuctionBuilder *(^)(id<BDMAuctionSettings>))appendAuctionSettings;
 - (BDMAuctionBuilder *(^)(id<BDMPlacementRequestBuilder>))appendPlacementBuilder;
+- (BDMAuctionBuilder *(^)(id<BDMContextualProtocol>))appendContextualData;
 - (BDMAuctionBuilder *(^)(BOOL))appendTestMode;
 - (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions;
 - (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo;

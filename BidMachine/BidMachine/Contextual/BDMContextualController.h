@@ -7,7 +7,8 @@
 //
 
 #import "BDMContextualProtocol.h"
-#import "BDMContextualData.h"
+#import "BDMEventObject.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,13 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)start;
 
-- (void)saveContextualData:(id<BDMContextualProtocol>)contextualData;
+- (void)registerImpressionForPlacement:(BDMInternalPlacementType)placement;
 
-- (void)saveLastBundle:(nullable NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement;
+- (void)registerClickForPlacement:(BDMInternalPlacementType)placement;
 
-- (void)saveLastAdomain:(nullable NSString *)lastAdomain forPlacement:(BDMInternalPlacementType)placement;
+- (void)registerCompletionForPlacement:(BDMInternalPlacementType)placement;
 
-- (BDMContextualData *)contextualDataWithUserData:(nullable BDMContextualData *)userData;
+- (void)regiserLastBundle:(nullable NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement;
+
+- (void)registerLastAdomain:(nullable NSString *)lastAdomain forPlacement:(BDMInternalPlacementType)placement;
+
+- (nullable id<BDMContextualProtocol>)contextualDataForPlacement:(BDMInternalPlacementType)placement;
 
 @end
 

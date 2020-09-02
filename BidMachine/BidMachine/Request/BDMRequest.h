@@ -11,7 +11,7 @@
 #import <BidMachine/BDMPriceFloor.h>
 #import <BidMachine/BDMTargeting.h>
 #import <BidMachine/BDMAuctionInfo.h>
-
+#import <BidMachine/BDMContextualProtocol.h>
 
 @class BDMRequest;
 
@@ -54,7 +54,13 @@
  Current targeting data for request
  */
 @property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
-
+/**
+ Current user contextual data
+*/
+@property (copy, nonatomic, readwrite, nullable) id<BDMContextualProtocol> contextualData;
+/**
+ Request timeout interval
+*/
 @property (copy, nonatomic, readwrite, nullable) NSNumber *timeout;
 /**
  Call when mediation win

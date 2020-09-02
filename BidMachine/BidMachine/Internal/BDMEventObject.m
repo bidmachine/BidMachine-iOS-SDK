@@ -11,13 +11,13 @@
 
 @interface BDMEventObject ()
 
+@property (nonatomic, assign, readwrite) BDMInternalPlacementType placement;
 @property (nonatomic, assign, readwrite) BDMEvent event;
 @property (nonatomic, assign, readwrite) BOOL isTracked;
-@property (nonatomic, assign, readwrite) BDMInternalPlacementType placement;
-@property (nonatomic,   copy, readwrite) NSString *network;
 @property (nonatomic,   copy, readwrite) NSDate *finishTime;
 @property (nonatomic,   copy, readwrite) NSDate *startTime;
 @property (nonatomic,   copy, readwrite) NSString *sessionID;
+@property (nonatomic,   copy, readwrite) NSString *network;
 
 @property (nonatomic, assign) NSUInteger iteraction;
 
@@ -66,10 +66,11 @@
     if (![object isKindOfClass:BDMEventObject.class]) {
         return NO;
     }
+    NSString *network = object.network ?: @"unspecified";
     return
     self.event == object.event &&
     self.placement == object.placement &&
-    [self.sessionID isEqualToString:object.sessionID];
+    [self.network isEqualToString:network];
 }
 
 - (NSString *)description {
