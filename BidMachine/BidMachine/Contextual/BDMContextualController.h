@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)registerCompletionForPlacement:(BDMInternalPlacementType)placement;
 
-- (void)regiserLastBundle:(nullable NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement;
+- (void)registerLastBundle:(nullable NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement;
 
 - (void)registerLastAdomain:(nullable NSString *)lastAdomain forPlacement:(BDMInternalPlacementType)placement;
 

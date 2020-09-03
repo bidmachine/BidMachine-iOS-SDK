@@ -80,7 +80,7 @@
     contextualData.completions ++;
 }
 
-- (void)regiserLastBundle:(NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement {
+- (void)registerLastBundle:(NSString *)lastBundle forPlacement:(BDMInternalPlacementType)placement {
     BDMContextualData *contextualData = [self getContextualDataForPlacement:placement];
     if (lastBundle) {
         contextualData.lastBundle = lastBundle;
