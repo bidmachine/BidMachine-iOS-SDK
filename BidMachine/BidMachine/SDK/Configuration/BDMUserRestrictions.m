@@ -11,11 +11,13 @@
 
 @interface BDMUserRestrictions ()
 
-@property (nonatomic, copy) NSString *userDefaultsUSPrivacyString;
-@property (nonatomic, copy) NSString *userDefaultsConsentString;
+@property (nonatomic, copy) NSString *publisherDefinedUSPrivacyString;
 @property (nonatomic, copy) NSString *publisherDefinedConsentString;
-@property (nonatomic, assign) BOOL userDefaultsSubjectToGDPR;
 @property (nonatomic, assign) BOOL publisherDefinedSubjectToGDPR;
+
+@property (atomic, copy) NSString *userDefaultsUSPrivacyString;
+@property (atomic, copy) NSString *userDefaultsConsentString;
+@property (atomic, assign) BOOL userDefaultsSubjectToGDPR;
 
 @end
 
@@ -59,6 +61,10 @@
     self.publisherDefinedSubjectToGDPR = subjectToGDPR;
 }
 
+- (void)setUSPrivacyString:(NSString *)USPrivacyString {
+    self.publisherDefinedUSPrivacyString = USPrivacyString;
+}
+
 - (NSString *)consentString {
     return self.publisherDefinedConsentString ?: self.userDefaultsConsentString;
 }
@@ -68,7 +74,7 @@
 }
 
 - (NSString *)USPrivacyString {
-    return self.userDefaultsUSPrivacyString;
+    return self.publisherDefinedUSPrivacyString ?: self.userDefaultsUSPrivacyString;
 }
 
 - (BOOL)allowUserInformation {
@@ -82,10 +88,11 @@
 - (id)copyWithZone:(NSZone *)zone {
     BDMUserRestrictions *restrictionsCopy = [BDMUserRestrictions new];
     
-    restrictionsCopy.publisherDefinedConsentString  = self.publisherDefinedConsentString;
-    restrictionsCopy.publisherDefinedSubjectToGDPR  = self.publisherDefinedSubjectToGDPR;
-    restrictionsCopy.coppa                          = self.coppa;
-    restrictionsCopy.hasConsent                     = self.hasConsent;
+    restrictionsCopy.publisherDefinedConsentString   = self.publisherDefinedConsentString;
+    restrictionsCopy.publisherDefinedSubjectToGDPR   = self.publisherDefinedSubjectToGDPR;
+    restrictionsCopy.publisherDefinedUSPrivacyString = self.publisherDefinedUSPrivacyString;
+    restrictionsCopy.coppa                           = self.coppa;
+    restrictionsCopy.hasConsent                      = self.hasConsent;
     
     return restrictionsCopy;
 }
@@ -93,7 +100,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.publisherDefinedConsentString forKey:@"consentString"];
     [aCoder encodeBool:self.publisherDefinedSubjectToGDPR forKey:@"subjectToGDPR"];
-    [aCoder encodeObject:self.userDefaultsUSPrivacyString forKey:@"USPrivacyString"];
+    [aCoder encodeObject:self.publisherDefinedUSPrivacyString forKey:@"USPrivacyString"];
     [aCoder encodeBool:self.coppa forKey:@"coppa"];
     [aCoder encodeBool:self.hasConsent forKey:@"hasConsent"];
 }
@@ -103,7 +110,7 @@
     if (self) {
         self.publisherDefinedConsentString   = [aDecoder decodeObjectForKey:@"consentString"];
         self.publisherDefinedSubjectToGDPR   = [aDecoder decodeBoolForKey:@"subjectToGDPR"];
-        self.userDefaultsUSPrivacyString     = [aDecoder decodeObjectForKey:@"USPrivacyString"];
+        self.publisherDefinedUSPrivacyString = [aDecoder decodeObjectForKey:@"USPrivacyString"];
         self.coppa                           = [aDecoder decodeBoolForKey:@"coppa"];
         self.hasConsent                      = [aDecoder decodeBoolForKey:@"hasConsent"];
     }
