@@ -12,8 +12,6 @@
 
 @implementation BDMNASTNetwork
 
-#pragma mark - BDMNetwork
-
 - (NSString *)name {
     return @"nast";
 }

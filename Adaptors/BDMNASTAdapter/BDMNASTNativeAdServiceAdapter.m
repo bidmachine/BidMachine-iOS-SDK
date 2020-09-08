@@ -6,31 +6,29 @@
 //  Copyright © 2018 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMNASTNativeAdServiceAdapter.h"
-#import "BDMNASTNetwork.h"
-#import "BDMNASTDisplayAdapter.h"
-#import <BidMachine/NSError+BDMSdk.h>
-
 @import StackNASTKit;
 
+#import "BDMNASTNetwork.h"
+#import "BDMNASTDisplayAdapter.h"
+#import "BDMNASTNativeAdServiceAdapter.h"
 
 @implementation BDMNASTNativeAdServiceAdapter
 
+- (UIView *)adView {
+    return nil;
+}
+
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    STKNASTManager * manager = STKNASTManager.new;
-    __weak typeof(self) weakSelf = self;
+     __weak typeof(self) weakSelf = self;
+    STKNASTManager *manager = STKNASTManager.new;
     [manager parseAdFromJSON:contentInfo completion:^(STKNASTAd * ad, NSError * error) {
         if (error) {
             [weakSelf.loadingDelegate adapter:weakSelf failedToPrepareContentWithError: [error bdm_wrappedWithCode:BDMErrorCodeNoContent]];
         } else {
-            BDMNASTDisplayAdapter * adapter = [BDMNASTDisplayAdapter displayAdapterForAd:ad];
+            BDMNASTDisplayAdapter * adapter = [BDMNASTDisplayAdapter displayAdapterForAd:ad contentInfo:contentInfo];
             [weakSelf.loadingDelegate service:weakSelf didLoadNativeAds:@[adapter]];
         }
     }];
-}
-
-- (UIView *)adView {
-    return nil;
 }
 
 @end

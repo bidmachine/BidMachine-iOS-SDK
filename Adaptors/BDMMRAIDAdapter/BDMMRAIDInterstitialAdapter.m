@@ -81,7 +81,6 @@
 }
 
 - (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {
-    [self.displayDelegate adapterRegisterUserInteraction:self];
     [STKSpinnerScreen show];
     [self.productPresenter presentProductWithParameters:self.productParameters(url)];
 }
@@ -125,10 +124,12 @@
 }
 
 - (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
     [STKSpinnerScreen hide];
 }
 
 - (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
     [STKSpinnerScreen hide];
 }
 

@@ -6,49 +6,60 @@
 //  Copyright © 2018 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMNASTDisplayAdapter.h"
-
 @import StackUIKit;
 @import StackFoundation;
-@import StackRichMedia;
+
+#import "BDMNASTEventReducer.h"
+#import "BDMNASTDisplayAdapter.h"
+#import "BDMNASTMediaController.h"
+#import "BDMNASTActionController.h"
 
 
-@interface BDMNASTRichMediaAsset : STKVASTAsset <STKRichMediaAsset>
-
-@property (nonatomic, copy) NSURL *placeholderImageURL;
-
-+ (instancetype)assetWithNastAd:(STKNASTAd *)nastAd;
-
-@end
-
-@interface BDMNASTDisplayAdapter ()<STKRichMediaPlayerViewDelegate, UIGestureRecognizerDelegate>
+@interface BDMNASTDisplayAdapter ()<BDMNASTEventReducerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) STKNASTAd *ad;
-@property (nonatomic, strong) BDMNASTRichMediaAsset *asset;
-@property (nonatomic, strong) STKRichMediaPlayerView *richMedia;
-@property (nonatomic, strong) NSMutableArray<UITapGestureRecognizer *> *gestures;
+@property (nonatomic, strong) BDMNASTEventReducer *reducer;
+@property (nonatomic, strong) BDMNASTMediaController *mediaController;
+@property (nonatomic, strong) BDMNASTActionController *actionController;
 
 @end
 
 @implementation BDMNASTDisplayAdapter
 
-+ (instancetype)displayAdapterForAd:(STKNASTAd *)ad {
-    return [[self alloc] initWithNativeAd:ad];
++ (instancetype)displayAdapterForAd:(STKNASTAd *)ad contentInfo:(NSDictionary<NSString *,NSString *> *)contentInfo {
+    return [[self alloc] initWithNativeAd:ad contentInfo:contentInfo];
 }
 
-- (instancetype)initWithNativeAd:(STKNASTAd *)ad {
+- (instancetype)initWithNativeAd:(STKNASTAd *)ad contentInfo:(NSDictionary<NSString *,NSString *> *)contentInfo {
     if (self = [super init]) {
-        self.ad = ad;
-        self.asset = [BDMNASTRichMediaAsset assetWithNastAd:ad];
-        self.gestures = [NSMutableArray new];
+        BDMNASTEventReducer *reducer    = [[BDMNASTEventReducer alloc] initWithAd:ad delegate:self];
+
+        self.mediaController            = [[BDMNASTMediaController alloc] initWithAd:ad];
+        self.actionController           = [[BDMNASTActionController alloc] initWithAd:ad info:contentInfo];
+        
+        self.ad                         = ad;
+        self.reducer                    = reducer;
+        self.mediaController.reducer    = reducer;
+        self.actionController.reducer   = reducer;
     }
     return self;
 }
 
-- (UITapGestureRecognizer *)tapGestureRecognizer {
-    UITapGestureRecognizer * gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerTap)];
-    gesture.numberOfTouchesRequired = 1;
-    return gesture;
+#pragma mark - LifeCicle
+
+- (void)invalidate {
+    [self unregisterView];
+}
+
+- (void)unregisterView {
+    [self.actionController invalidate];
+    [self.mediaController invalidate];
+}
+
+#pragma mark - Event Tracker
+
+- (void)nativeAdDidTrackViewability {
+    [self.reducer trackImpression];
 }
 
 #pragma mark - BDMNativeAdAssets
@@ -78,16 +89,9 @@
 }
 
 - (BOOL)containsVideo {
-    return self.asset.contentURL != nil;
+    return self.mediaController.video;
 }
 
-- (STKRichMediaPlayerView *)richMedia {
-    if (!_richMedia) {
-        _richMedia = STKRichMediaPlayerView.new;
-        _richMedia.delegate = self;
-    }
-    return _richMedia;
-}
 
 #pragma mark - BDMNativeAd
 
@@ -105,96 +109,21 @@
     }
     
     if ([adRendering respondsToSelector:@selector(mediaContainerView)] && adRendering.mediaContainerView) {
-        [self.richMedia stk_edgesEqual:adRendering.mediaContainerView];
-        self.richMedia.rootViewController = controller;
-        [self.richMedia playAsset:self.asset];
+        [self.mediaController renderInContainer:adRendering.mediaContainerView controller:controller];
     }
     
+    NSMutableSet *viewSet = NSMutableSet.set;
+    [viewSet addObjectsFromArray:clickableViews?: @[]];
+    [viewSet addObject:adRendering.titleLabel];
+    [viewSet addObject:adRendering.callToActionLabel];
     
-    adRendering.titleLabel.userInteractionEnabled = YES;
-    [adRendering.titleLabel addGestureRecognizer:self.tapGestureRecognizer];
-    
-    adRendering.callToActionLabel.userInteractionEnabled = YES;
-    [adRendering.callToActionLabel addGestureRecognizer:self.tapGestureRecognizer];
-    
-    // Clicks
-    [clickableViews enumerateObjectsUsingBlock:^(UIView * tapView, NSUInteger idx, BOOL * stop) {
-        UITapGestureRecognizer *gesture = [self tapGestureRecognizer];
-        tapView.userInteractionEnabled = YES;
-        [tapView addGestureRecognizer:gesture];
-        [self.gestures addObject:gesture];
-    }];
-    
+    [self.actionController registerClickableViews:viewSet.allObjects];
 }
 
-- (void)invalidate {
-    [self unregisterView];
-}
+#pragma mark - BDMNASTEventReducerDelegate
 
-- (void)unregisterView {
-    [self.richMedia removeFromSuperview];
-    [self.gestures removeAllObjects];
-}
-
-#pragma mark - Trackers
-
-- (void)registerTap {
-    [STKSpinnerScreen show];
-    __weak typeof(self) weakSelf = self;
-    [STKProductPresentation openURLs:self.ad.clickThrough success:^(NSURL * productLink) {
-        [STKThirdPartyEventTracker sendTrackingEvents:weakSelf.ad.clickTrackers];
-        [weakSelf.delegate nativeAdAdapterTrackUserInteraction:weakSelf];
-        [STKSpinnerScreen hide];
-    } failure:^(NSError * error) {
-        [STKSpinnerScreen hide];
-    } completion:^{
-    }];
-}
-
-- (void)nativeAdDidTrackViewability {
-    [STKThirdPartyEventTracker sendTrackingEvents:self.ad.impressionTrackers];
-}
-
-- (void)nativeAdDidTrackFinish {
-    //no-op
-}
-
-- (void)nativeAdDidTrackImpression {
-    //no-op
-}
-
-#pragma mark - STKRichMediaPlayerViewDelegate
-
-- (void)playerViewWillPresentFullscreen:(STKRichMediaPlayerView *)playerView {
-    
-}
-
-- (void)playerViewDidDissmissFullscreen:(STKRichMediaPlayerView *)playerView {
-    
-}
-
-- (void)playerViewWillShowProduct:(STKRichMediaPlayerView *)playerView {
-    
-}
-
-- (void)playerViewDidInteract:(STKRichMediaPlayerView *)playerView {
-    [STKThirdPartyEventTracker sendTrackingEvents:self.ad.clickTrackers];
+- (void)eventReducerTrackAction:(BDMNASTEventReducer *)reducer {
     [self.delegate nativeAdAdapterTrackUserInteraction:self];
-}
-
-@end
-
-@implementation BDMNASTRichMediaAsset
-
-@dynamic track;
-
-+ (instancetype)assetWithNastAd:(STKNASTAd *)nastAd {
-    BDMNASTRichMediaAsset *_instance = [self assetWithInLine:nastAd.VASTInLineModel error:nil];
-    if (!_instance) {
-        _instance = BDMNASTRichMediaAsset.new;
-    }
-    _instance.placeholderImageURL = [NSURL URLWithString:nastAd.mainURLString];
-    return _instance;
 }
 
 @end

@@ -106,7 +106,6 @@
 
 - (void)vastControllerDidClick:(STKVASTController *)controller clickURL:(NSString *)clickURL {
     [STKSpinnerScreen show];
-    [self.displayDelegate adapterRegisterUserInteraction:self];
     [self.productPresenter presentProductWithParameters:self.productParameters(clickURL)];
 }
 
@@ -163,11 +162,13 @@
 }
 
 - (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [self.displayDelegate adapterRegisterUserInteraction:self];
     [STKSpinnerScreen hide];
 }
 
 - (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
-    [self.videoController resume];
+    [self.displayDelegate adapterRegisterUserInteraction:self];
+    [self.videoController pause];
     [STKSpinnerScreen hide];
 }
 
