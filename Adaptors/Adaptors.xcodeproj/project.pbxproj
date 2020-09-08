@@ -10,7 +10,7 @@
 		3706BBDBA118147D9CF5AFCA /* Pods_BDMCriteoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AF7F9997D3A54B519BAC06 /* Pods_BDMCriteoAdapter.framework */; };
 		3743A62C2507AFF2003DD6BF /* BDMNASTMediaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A62B2507AFF2003DD6BF /* BDMNASTMediaController.m */; };
 		3743A62F2507B033003DD6BF /* BDMNASTActionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A62E2507B033003DD6BF /* BDMNASTActionController.m */; };
-		3743A6322507BB6C003DD6BF /* BDMNASTEventReducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A6312507BB6C003DD6BF /* BDMNASTEventReducer.m */; };
+		3743A6322507BB6C003DD6BF /* BDMNASTEventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A6312507BB6C003DD6BF /* BDMNASTEventController.m */; };
 		4220558822E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */; };
 		4231D01D22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */; };
 		4231D02022E1D3E7002852CE /* BDMMyTargetCustomParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01F22E1D3E7002852CE /* BDMMyTargetCustomParams.m */; };
@@ -193,8 +193,8 @@
 		3743A62B2507AFF2003DD6BF /* BDMNASTMediaController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTMediaController.m; sourceTree = "<group>"; };
 		3743A62D2507B033003DD6BF /* BDMNASTActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTActionController.h; sourceTree = "<group>"; };
 		3743A62E2507B033003DD6BF /* BDMNASTActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTActionController.m; sourceTree = "<group>"; };
-		3743A6302507BB6C003DD6BF /* BDMNASTEventReducer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTEventReducer.h; sourceTree = "<group>"; };
-		3743A6312507BB6C003DD6BF /* BDMNASTEventReducer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTEventReducer.m; sourceTree = "<group>"; };
+		3743A6302507BB6C003DD6BF /* BDMNASTEventController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNASTEventController.h; sourceTree = "<group>"; };
+		3743A6312507BB6C003DD6BF /* BDMNASTEventController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNASTEventController.m; sourceTree = "<group>"; };
 		3BDF3F514C8E2BB96D7E941E /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1EF34CBA6F69C16569FF19 /* Pods-BDMAmazonAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAmazonAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAmazonAdapter/Pods-BDMAmazonAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -526,8 +526,8 @@
 				3743A62B2507AFF2003DD6BF /* BDMNASTMediaController.m */,
 				3743A62D2507B033003DD6BF /* BDMNASTActionController.h */,
 				3743A62E2507B033003DD6BF /* BDMNASTActionController.m */,
-				3743A6302507BB6C003DD6BF /* BDMNASTEventReducer.h */,
-				3743A6312507BB6C003DD6BF /* BDMNASTEventReducer.m */,
+				3743A6302507BB6C003DD6BF /* BDMNASTEventController.h */,
+				3743A6312507BB6C003DD6BF /* BDMNASTEventController.m */,
 			);
 			path = BDMNASTAdapter;
 			sourceTree = "<group>";
@@ -1256,7 +1256,7 @@
 				3743A62C2507AFF2003DD6BF /* BDMNASTMediaController.m in Sources */,
 				3743A62F2507B033003DD6BF /* BDMNASTActionController.m in Sources */,
 				428F5126218F7EED00BC9E2D /* BDMNASTDisplayAdapter.m in Sources */,
-				3743A6322507BB6C003DD6BF /* BDMNASTEventReducer.m in Sources */,
+				3743A6322507BB6C003DD6BF /* BDMNASTEventController.m in Sources */,
 				4248C20F218F793600279AE2 /* BDMNASTNativeAdServiceAdapter.m in Sources */,
 				4248C20C218F789A00279AE2 /* BDMNASTNetwork.m in Sources */,
 			);

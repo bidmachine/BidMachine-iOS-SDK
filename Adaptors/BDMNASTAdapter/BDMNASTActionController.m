@@ -85,12 +85,12 @@
 
 - (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
     [STKSpinnerScreen hide];
-    [self.reducer trackAction];
+    [self.eventController trackAction];
 }
 
 - (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
     [STKSpinnerScreen hide];
-    [self.reducer trackAction];
+    [self.eventController trackAction];
 }
 
 @end

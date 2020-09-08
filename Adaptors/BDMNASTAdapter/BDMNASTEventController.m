@@ -1,5 +1,5 @@
 //
-//  BDMNASTEventReducer.m
+//  BDMNASTEventController.m
 //  BDMNASTAdapter
 //
 //  Created by Ilia Lozhkin on 08.09.2020.
@@ -8,22 +8,22 @@
 
 @import StackFoundation;
 
-#import "BDMNASTEventReducer.h"
+#import "BDMNASTEventController.h"
 
 
-@interface BDMNASTEventReducer ()
+@interface BDMNASTEventController ()
 
 @property (nonatomic, copy) NSArray <NSURL *> *clickTracking;
 @property (nonatomic, copy) NSArray <NSURL *> *finishTracking;
 @property (nonatomic, copy) NSArray <NSURL *> *impressionTracking;
 @property (nonatomic, copy) NSArray <NSURL *> *viewabilityTracking;
-@property (nonatomic, weak) id<BDMNASTEventReducerDelegate> delegate;
+@property (nonatomic, weak) id<BDMNASTEventControllerDelegate> delegate;
 
 @end
 
-@implementation BDMNASTEventReducer
+@implementation BDMNASTEventController
 
-- (instancetype)initWithAd:(STKNASTAd *)ad delegate:(id<BDMNASTEventReducerDelegate>)delegate {
+- (instancetype)initWithAd:(STKNASTAd *)ad delegate:(id<BDMNASTEventControllerDelegate>)delegate {
     if (self = [super init]) {
         _delegate               = delegate;
         _clickTracking          = ad.clickTrackers;
@@ -38,29 +38,29 @@
 
 - (void)trackAction {
     [STKThirdPartyEventTracker sendTrackingEvents:self.clickTracking];
-    if ([self.delegate respondsToSelector:@selector(eventReducerTrackAction:)]) {
-        [self.delegate eventReducerTrackAction:self];
+    if ([self.delegate respondsToSelector:@selector(eventControllerTrackAction:)]) {
+        [self.delegate eventControllerTrackAction:self];
     }
 }
 
 - (void)trackFinish {
     [STKThirdPartyEventTracker sendTrackingEvents:self.finishTracking];
-    if ([self.delegate respondsToSelector:@selector(eventReducerTrackFinish:)]) {
-        [self.delegate eventReducerTrackFinish:self];
+    if ([self.delegate respondsToSelector:@selector(eventControllerTrackFinish:)]) {
+        [self.delegate eventControllerTrackFinish:self];
     }
 }
 
 - (void)trackImpression {
     [STKThirdPartyEventTracker sendTrackingEvents:self.impressionTracking];
-   if ([self.delegate respondsToSelector:@selector(eventReducerTrackImpression:)]) {
-        [self.delegate eventReducerTrackImpression:self];
+   if ([self.delegate respondsToSelector:@selector(eventControllerTrackImpression:)]) {
+        [self.delegate eventControllerTrackImpression:self];
     }
 }
 
 - (void)trackViewability {
     [STKThirdPartyEventTracker sendTrackingEvents:self.viewabilityTracking];
-    if ([self.delegate respondsToSelector:@selector(eventReducerTrackViewability:)]) {
-        [self.delegate eventReducerTrackViewability:self];
+    if ([self.delegate respondsToSelector:@selector(eventControllerTrackViewability:)]) {
+        [self.delegate eventControllerTrackViewability:self];
     }
 }
 

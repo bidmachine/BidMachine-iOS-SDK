@@ -9,16 +9,16 @@
 @import StackUIKit;
 @import StackFoundation;
 
-#import "BDMNASTEventReducer.h"
 #import "BDMNASTDisplayAdapter.h"
+#import "BDMNASTEventController.h"
 #import "BDMNASTMediaController.h"
 #import "BDMNASTActionController.h"
 
 
-@interface BDMNASTDisplayAdapter ()<BDMNASTEventReducerDelegate, UIGestureRecognizerDelegate>
+@interface BDMNASTDisplayAdapter ()<BDMNASTEventControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) STKNASTAd *ad;
-@property (nonatomic, strong) BDMNASTEventReducer *reducer;
+@property (nonatomic, strong) BDMNASTEventController *eventController;
 @property (nonatomic, strong) BDMNASTMediaController *mediaController;
 @property (nonatomic, strong) BDMNASTActionController *actionController;
 
@@ -32,20 +32,20 @@
 
 - (instancetype)initWithNativeAd:(STKNASTAd *)ad contentInfo:(NSDictionary<NSString *,NSString *> *)contentInfo {
     if (self = [super init]) {
-        BDMNASTEventReducer *reducer    = [[BDMNASTEventReducer alloc] initWithAd:ad delegate:self];
+        BDMNASTEventController *eventController     = [[BDMNASTEventController alloc] initWithAd:ad delegate:self];
 
-        self.mediaController            = [[BDMNASTMediaController alloc] initWithAd:ad];
-        self.actionController           = [[BDMNASTActionController alloc] initWithAd:ad info:contentInfo];
+        self.mediaController                        = [[BDMNASTMediaController alloc] initWithAd:ad];
+        self.actionController                       = [[BDMNASTActionController alloc] initWithAd:ad info:contentInfo];
         
-        self.ad                         = ad;
-        self.reducer                    = reducer;
-        self.mediaController.reducer    = reducer;
-        self.actionController.reducer   = reducer;
+        self.ad                                     = ad;
+        self.eventController                        = eventController;
+        self.mediaController.eventController        = eventController;
+        self.actionController.eventController       = eventController;
     }
     return self;
 }
 
-#pragma mark - LifeCicle
+#pragma mark - LifeCycle
 
 - (void)invalidate {
     [self unregisterView];
@@ -59,7 +59,7 @@
 #pragma mark - Event Tracker
 
 - (void)nativeAdDidTrackViewability {
-    [self.reducer trackImpression];
+    [self.eventController trackImpression];
 }
 
 #pragma mark - BDMNativeAdAssets
@@ -120,9 +120,9 @@
     [self.actionController registerClickableViews:viewSet.allObjects];
 }
 
-#pragma mark - BDMNASTEventReducerDelegate
+#pragma mark - BDMNASTEventControllerDelegate
 
-- (void)eventReducerTrackAction:(BDMNASTEventReducer *)reducer {
+- (void)eventControllerTrackAction:(BDMNASTEventController *)controller {
     [self.delegate nativeAdAdapterTrackUserInteraction:self];
 }
 

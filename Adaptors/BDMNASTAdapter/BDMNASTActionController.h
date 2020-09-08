@@ -6,14 +6,14 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMNASTEventReducer.h"
+#import "BDMNASTEventController.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMNASTActionController : NSObject
 
-@property(nonatomic, weak) id<BDMNASTEventActionReducer> reducer;
+@property(nonatomic, weak) id<BDMNASTActionEventController> eventController;
 
 - (instancetype)initWithAd:(STKNASTAd *)ad
                       info:(NSDictionary<NSString *,NSString *> *)info;

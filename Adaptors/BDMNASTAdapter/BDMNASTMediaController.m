@@ -91,7 +91,7 @@
 }
 
 - (void)playerViewDidInteract:(STKRichMediaPlayerView *)playerView {
-    [self.reducer trackAction];
+    [self.eventController trackAction];
 }
 
 @end
