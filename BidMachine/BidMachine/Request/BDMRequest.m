@@ -160,6 +160,17 @@
     return _middleware;
 }
 
+- (BDMInternalPlacementType)placementType {
+    return NSNotFound;
+}
+
+- (void)setPriceFloors:(NSArray<BDMPriceFloor *> *)priceFloors {
+    _priceFloors = priceFloors;
+    if (priceFloors.count > 0) {
+        BDMLog(@"You haven't disabled header bidding. Are you sure you want to use it with predefined price floor?");
+    }
+}
+
 #pragma mark - Delegate
 
 - (void)notifyDelegatesOnFail:(NSError *)error {
@@ -184,10 +195,6 @@
 
 @implementation BDMRequest (Private)
 
-- (BDMInternalPlacementType)placementType {
-    return NSNotFound;
-}
-
 - (NSArray<BDMEventURL *> *)eventTrackers {
     return self.response.creative.trackers;
 }
@@ -211,13 +218,6 @@
     BDMLog(@"Cancelling expiration timer for response: %@", self.response.identifier);
     [self.middleware removeEvent:BDMEventAuctionExpired];
     self.expirationTimer = nil;
-}
-
-- (void)setPriceFloors:(NSArray<BDMPriceFloor *> *)priceFloors {
-    _priceFloors = priceFloors;
-    if (priceFloors.count > 0) {
-        BDMLog(@"You haven't disabled header bidding. Are you sure you want to use it with predefined price floor?");
-    }
 }
 
 @end

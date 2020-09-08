@@ -7,18 +7,13 @@
 //
 
 #import "BDMMRAIDNetwork.h"
-#import "BDMMRAIDInterstitialAdapter.h"
 #import "BDMMRAIDBannerAdapter.h"
+#import "BDMMRAIDInterstitialAdapter.h"
 
 
-@interface BDMMRAIDNetwork ()
-
-@end
-
+NSString *const BDMMRAIDCreativeKey = @"creative";
 
 @implementation BDMMRAIDNetwork
-
-#pragma mark - BDMNetwork
 
 - (NSString *)name {
     return @"mraid";

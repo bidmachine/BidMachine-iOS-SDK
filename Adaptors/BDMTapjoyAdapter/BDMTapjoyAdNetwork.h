@@ -10,7 +10,10 @@
 @import BidMachine;
 @import BidMachine.Adapters;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdocumentation"
 #import <Tapjoy/Tapjoy.h>
+#pragma clang diagnostic pop
 
 
 NS_ASSUME_NONNULL_BEGIN

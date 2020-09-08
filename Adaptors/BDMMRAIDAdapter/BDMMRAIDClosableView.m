@@ -6,20 +6,19 @@
 //  Copyright © 2019 Stas Kochkin. All rights reserved.
 //
 
-#import "BDMMRAIDClosableView.h"
-
-@import StackUIKit;
 @import StackFoundation;
 
-static CGFloat const kBDMMRAIDCloseControlInset = 5.f;
-static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
+#import "BDMMRAIDClosableView.h"
 
+
+static CGFloat const kBDMMRAIDCloseControlInset     = 5.f;
+static CGFloat const kBDMMRAIDCloseControlSize      = 40.f;
 
 @interface BDMMRAIDClosableView ()
 
-@property (nonatomic, copy) void(^userActionCallback)(BDMMRAIDClosableView *);
-@property (nonatomic, strong) STKCircleTimerButton *button;
 @property (nonatomic, assign) NSTimeInterval timeout;
+@property (nonatomic, strong) STKCircleTimerButton *button;
+@property (nonatomic,   copy) void(^userActionCallback)(BDMMRAIDClosableView *);
 
 @end
 
@@ -31,8 +30,8 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
 
 - (instancetype)initWithTimeout:(NSTimeInterval)timeout action:(void (^)(BDMMRAIDClosableView *))action {
     if (self = [super init]) {
-        self.userActionCallback = [action copy];
         self.timeout = timeout;
+        self.userActionCallback = [action copy];
         [self addContentInsent:UIEdgeInsetsMake(kBDMMRAIDCloseControlInset,
                                                 kBDMMRAIDCloseControlInset,
                                                 kBDMMRAIDCloseControlInset,
@@ -46,8 +45,8 @@ static CGFloat const kBDMMRAIDCloseControlSize = 40.f;
         [self removeFromSuperview];
         [self.button removeFromSuperview];
     }
-    
     [self layoutInSuperview: superview];
+    
     __weak typeof(self) weakSelf = self;
     self.button = [STKCircleTimerButton timerWithTimeInterval:self.timeout completion:^(STKCircleTimerButton * button) {
         [weakSelf addTarget:weakSelf action:@selector(closeTouched:)];

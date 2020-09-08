@@ -6,8 +6,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSError (BDMMRAIDAdapter)
 
+/// Error NRAID category
+@interface NSError (BDMMRAIDAdapter)
+/// Create MRAID error with description
 + (NSError *(^)(NSString *))bdm_error;
 
 @end
