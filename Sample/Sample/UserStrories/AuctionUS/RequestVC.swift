@@ -52,7 +52,7 @@ private extension RequestVC {
             section.state = .expanded
             // Add pricefloors
             self.pricefloors.enumerated().forEach { pricefloor in
-                return section.addRow { [unowned self] row in
+                section.addRow { [unowned self] row in
                     let cell: DataTableViewCell = self.tableView.dequeueCell()
                     cell.entity = DataEntity(info: "Pricefloor",
                                              type:.string,
@@ -68,7 +68,7 @@ private extension RequestVC {
     
             // Add empty fields for pricefloors
             (self.pricefloors.count...self.pricefloors.count + 3).forEach { idx in
-                return section.addRow { [unowned self] row in
+                section.addRow { [unowned self] row in
                     let cell: DataTableViewCell = self.tableView.dequeueCell()
                     cell.entity = DataEntity(info: "Pricefloor",
                                              type:.string, value:nil)

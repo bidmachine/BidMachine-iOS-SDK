@@ -17,6 +17,7 @@
 NSString *const BDMAmazonAppIDKey   = @"app_key";
 NSString *const BDMAmazonSlotIdKey  = @"slot_uuid";
 
+
 @interface BDMAmazonNetwork()
 
 @property (nonatomic, assign) BOOL hasBeenInitialized;
@@ -65,12 +66,13 @@ NSString *const BDMAmazonSlotIdKey  = @"slot_uuid";
 - (void)collectHeaderBiddingParameters:(NSDictionary<NSString *,id> *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void (^)(NSDictionary<NSString *,id> *, NSError *))completion {
-    BDMAmazonAdLoader *loader = [[BDMAmazonAdLoader alloc] initWithFormat:adUnitFormat];
+    BDMAmazonAdLoader *loader = [[BDMAmazonAdLoader alloc] initWithFormat:adUnitFormat
+                                                         serverParameters:parameters];
     [self.loaders addObject:loader];
     __weak typeof(self) weakSelf = self;
-    [loader prepareWithParameters:parameters completion:^(BDMAmazonAdLoader *loader,
-                                                          NSDictionary<NSString *,id> *biddingParameters,
-                                                          NSError *error) {
+    [loader prepareWithCompletion:^(BDMAmazonAdLoader *loader,
+                                    NSDictionary<NSString *,id> *biddingParameters,
+                                    NSError *error) {
         [weakSelf.loaders removeObject:loader];
         STK_RUN_BLOCK(completion, parameters, error);
     }];
@@ -88,7 +90,7 @@ NSString *const BDMAmazonSlotIdKey  = @"slot_uuid";
 
 - (void)syncMetadata {
     [DTBAds.sharedInstance setLogLevel:BDMSdkLoggingEnabled ? DTBLogLevelAll : DTBLogLevelOff];
-
+    
     DTBAds.sharedInstance.mraidPolicy = CUSTOM_MRAID;
     DTBAds.sharedInstance.mraidCustomVersions = @[@"1.0", @"2.0", @"3.0"];
     

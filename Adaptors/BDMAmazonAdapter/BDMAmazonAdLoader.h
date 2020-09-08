@@ -6,6 +6,8 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <BidMachine/BidMachine.h>
 
 #import "BDMAmazonNetwork.h"
 
@@ -21,9 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMAmazonAdLoader : NSObject
 
-- (instancetype)initWithFormat:(BDMAdUnitFormat)format;
 
-- (void)prepareWithParameters:(NSDictionary <NSString *, id> *)parameters completion:(BDMAmazonAdLoaderCompletion)completion;
+- (instancetype)initWithFormat:(BDMAdUnitFormat)foramt
+              serverParameters:(NSDictionary<NSString *,id> *)parameters;
+
+- (void)prepareWithCompletion:(BDMAmazonAdLoaderCompletion)completion;
 
 @end
 

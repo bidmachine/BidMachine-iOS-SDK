@@ -6,67 +6,112 @@
 //  Copyright © 2020 Stas Kochkin. All rights reserved.
 //
 
+
 @import DTBiOSSDK;
 @import StackFoundation;
 @import BidMachine.Adapters;
 
-#import "BDMAmazonNetwork.h"
 #import "BDMAmazonAdLoader.h"
+
+
+#define dimension(phone, pad) UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? pad : phone
+
+
+@interface BDMAmazonCallbackProxy : NSObject <DTBAdCallback>
+
+@property (nonatomic, weak) id<DTBAdCallback> delegate;
+
+@end
+
+
+@implementation BDMAmazonCallbackProxy
+
+- (void)onSuccess:(DTBAdResponse *)adResponse {
+    [self.delegate onSuccess:adResponse];
+}
+
+- (void)onFailure:(DTBAdError)error {
+    [self.delegate onFailure:error];
+}
+
+@end
 
 
 @interface BDMAmazonAdLoader () <DTBAdCallback>
 
 @property (nonatomic, strong) DTBAdLoader *loader;
+@property (nonatomic, copy) BDMAmazonAdLoaderCompletion completion;
+@property (nonatomic, copy) NSDictionary <NSString *, id> *parameters;
 @property (nonatomic, assign) BDMAdUnitFormat format;
-@property (nonatomic,   copy) BDMAmazonAdLoaderCompletion completion;
+
 
 @end
 
 @implementation BDMAmazonAdLoader
 
-- (instancetype)initWithFormat:(BDMAdUnitFormat)format {
+- (instancetype)initWithFormat:(BDMAdUnitFormat)foramt
+              serverParameters:(NSDictionary<NSString *,id> *)parameters {
     if (self = [super init]) {
-        self.format = format;
+        self.format = foramt;
+        self.parameters = parameters;
     }
     return self;
 }
 
-- (void)prepareWithParameters:(NSDictionary<NSString *,id> *)parameters completion:(BDMAmazonAdLoaderCompletion)completion {
-    NSString *slotUUID = ANY(parameters).from(BDMAmazonSlotIdKey).string;
-    if (!slotUUID) {
-        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                        description:@"Amazon adapter was not receive valid bidding data"];
+- (void)prepareWithCompletion:(BDMAmazonAdLoaderCompletion)completion {
+    NSError *error;
+    DTBAdSize *adSize = [self adSizeWithError:&error];
+    if (error) {
         STK_RUN_BLOCK(completion, self, nil, error);
         return;
     }
     
-    DTBAdSize *adSize = [self configureAdSizeWith:slotUUID];
-    NSMutableArray *adSizes = [NSMutableArray arrayWithObject:adSize];
     self.completion = completion;
     self.loader = [DTBAdLoader new];
-    [self.loader setAdSizes:adSizes];
-    [self.loader loadAd:self];
+    
+    BDMAmazonCallbackProxy *proxy = [BDMAmazonCallbackProxy new];
+    proxy.delegate = self;
+    
+    @try {
+        [self.loader setAdSizes:@[adSize]];
+        [self.loader loadAd:proxy];
+    } @catch (NSException *exception) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                        description:exception.debugDescription];
+        STK_RUN_BLOCK(completion, self, nil, error);
+    }
 }
 
-#pragma mark - AdSize
+#pragma mark - Private
 
-- (DTBAdSize *)configureAdSizeWith:(NSString *)slotUUID {
-    CGSize size;
+- (DTBAdSize *)adSizeWithError:(NSError **)error {
+    NSString *slotUUID = ANY(self.parameters).from(BDMAmazonSlotIdKey).string;
+    if (!slotUUID) {
+        NSError *_error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                         description:@"Amazon adapter was not receive valid bidding data"];
+        STK_SET_AUTORELASE_VAR(error, _error);
+        return nil;
+    }
     DTBAdSize *adSize;
     switch (self.format) {
-        case BDMAdUnitFormatInLineBanner: size = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(728, 90) : CGSizeMake(320, 50); break;
-        case BDMAdUnitFormatBanner320x50: size = CGSizeMake(320, 50); break;
-        case BDMAdUnitFormatBanner728x90: size = CGSizeMake(728, 90); break;
-        case BDMAdUnitFormatBanner300x250: size = CGSizeMake(300, 250); break;
-        case BDMAdUnitFormatInterstitialUnknown: adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID: slotUUID]; break;
-        case BDMAdUnitFormatInterstitialStatic: adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID: slotUUID]; break;
-        case BDMAdUnitFormatInterstitialVideo: adSize = [[DTBAdSize alloc] initVideoAdSizeWithPlayerWidth:STKScreen.width
-                                                                                                   height:STKScreen.height
-                                                                                              andSlotUUID:slotUUID]; break;
-        default: break;
-    }
+        case BDMAdUnitFormatBanner300x250:          adSize = [[DTBAdSize alloc] initBannerAdSizeWithWidth:300 height:250 andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatBanner320x50:           adSize = [[DTBAdSize alloc] initBannerAdSizeWithWidth:320 height:50 andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatBanner728x90:           adSize = [[DTBAdSize alloc] initBannerAdSizeWithWidth:728 height:90 andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatInLineBanner:           adSize = [[DTBAdSize alloc] initBannerAdSizeWithWidth:dimension(320, 728) height:dimension(50, 90) andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatInterstitialVideo:      adSize = [[DTBAdSize alloc] initVideoAdSizeWithPlayerWidth:STKScreen.width height:STKScreen.height andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatInterstitialStatic:     adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatInterstitialUnknown:    adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatRewardedVideo:          adSize = [[DTBAdSize alloc] initVideoAdSizeWithPlayerWidth:STKScreen.width height:STKScreen.height andSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatRewardedPlayable:       adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID:slotUUID]; break;
+        case BDMAdUnitFormatRewardedUnknown:        adSize = [[DTBAdSize alloc] initInterstitialAdSizeWithSlotUUID:slotUUID]; break;
     
-    adSize = adSize ?: [[DTBAdSize alloc] initBannerAdSizeWithWidth:size.width height:size.height andSlotUUID:slotUUID];
+        default: {
+            NSError *_error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                             description:@"Amazon adapter was not receive valid bidding data"];
+            STK_SET_AUTORELASE_VAR(error, _error);
+            break;
+        }
+    }
     return adSize;
 }
 
