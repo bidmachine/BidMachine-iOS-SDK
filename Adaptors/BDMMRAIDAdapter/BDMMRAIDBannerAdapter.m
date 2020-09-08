@@ -35,17 +35,15 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    self.adContent                  = ANY(contentInfo).from(BDMMRAIDCreativeKey).string;
-    self.contentInfo                = contentInfo;
-    
     CGSize bannerSize               = [self sizeFromContentInfo:contentInfo];
     CGRect frame                    = (CGRect){.size = bannerSize};
     NSArray *mraidFeatures          = @[kMRAIDSupportsInlineVideo, kMRAIDSupportsLoging];
     
+    self.adContent                  = ANY(contentInfo).from(BDMMRAIDCreativeKey).string;
+    self.contentInfo                = contentInfo;
     self.ad                         = [STKMRAIDAd new];
     self.ad.delegate                = self;
     self.ad.service.delegate        = self;
-    
     self.presenter                  = [STKMRAIDViewPresenter new];
     self.presenter.delegate         = self;
     self.presenter.frame            = frame;

@@ -4,15 +4,20 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import BidMachine.Adapters;
 
 
-@interface BDMMRAIDInterstitialAdapter : NSObject <BDMFullscreenAdapter>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, weak) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
-@property (nonatomic, weak) id <BDMAdapterLoadingDelegate> loadingDelegate;
+@interface BDMMRAIDInterstitialAdapter : NSObject <BDMFullscreenAdapter>
 
 @property (nonatomic, assign, readwrite) BOOL rewarded;
 
+@property (nonatomic,  copy) NSString *adContent;
+@property (nonatomic,  weak) id <BDMAdapterLoadingDelegate> loadingDelegate;
+@property (nonatomic,  weak) id <BDMFullscreenAdapterDisplayDelegate> displayDelegate;
+
 @end
+
+NS_ASSUME_NONNULL_END

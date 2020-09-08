@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		139A484086553A9E474C5837 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF230351675665987981D7E /* Pods_BidMachine.framework */; };
 		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
 		37319DAE24CEEABE00765FE5 /* BDMFetcher+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DAD24CEEABE00765FE5 /* BDMFetcher+Private.h */; };
@@ -106,6 +107,7 @@
 		42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F86EDD21BAB7A400B58CB5 /* BDMPriceFloor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42FBC7322180A23300B1D324 /* BDMEventURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FBC7302180A23300B1D324 /* BDMEventURL.h */; };
 		42FBC7332180A23300B1D324 /* BDMEventURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBC7312180A23300B1D324 /* BDMEventURL.m */; };
+		470122CF0E041FE437E60C18 /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */; };
 		6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F1982183352400F528AD /* BDMAuctionBuilder.h */; };
 		6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F1992183352400F528AD /* BDMAuctionBuilder.m */; };
 		6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F19C2183461300F528AD /* BDMApiRequest.h */; };
@@ -154,8 +156,6 @@
 		9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBED2281FB3218D004C4669 /* BDMRequest.m */; };
 		9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2597231FB1DC91006F3FA7 /* BidMachine.framework */; };
 		9CFBD1831FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */; };
-		C41C59EB49949D4F91A14F31 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */; };
-		D69B3D605EB114A9D2B9D3CF /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,8 +327,8 @@
 		9CFBD1761FB982BE00C31DE6 /* BidMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BidMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMServerCommunicatorSpec.m; sourceTree = "<group>"; };
 		9D9D423B3923E5DEE08C92FD /* Pods-BidMachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCF230351675665987981D7E /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,7 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41C59EB49949D4F91A14F31 /* Pods_BidMachine.framework in Frameworks */,
+				139A484086553A9E474C5837 /* Pods_BidMachine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */,
-				D69B3D605EB114A9D2B9D3CF /* Pods_BidMachineTests.framework in Frameworks */,
+				470122CF0E041FE437E60C18 /* Pods_BidMachineTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,11 +575,11 @@
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		7247214142D2333C97AE9F1D /* Frameworks */ = {
+		97C6037CDDAE862240366D08 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C51FB29B394FC1312044BA13 /* Pods_BidMachine.framework */,
-				BBEC5B56824AACD244FCD2AD /* Pods_BidMachineTests.framework */,
+				BCF230351675665987981D7E /* Pods_BidMachine.framework */,
+				C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -590,8 +590,8 @@
 				9C2597251FB1DC91006F3FA7 /* BidMachine */,
 				9CFBD1771FB982BE00C31DE6 /* BidMachineTests */,
 				9C2597241FB1DC91006F3FA7 /* Products */,
-				7247214142D2333C97AE9F1D /* Frameworks */,
 				C5664C224456C18AE50C2A2A /* Pods */,
+				97C6037CDDAE862240366D08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

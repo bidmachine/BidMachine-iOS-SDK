@@ -11,7 +11,9 @@
 #import "BDMMRAIDInterstitialAdapter.h"
 
 
-NSString *const BDMMRAIDCreativeKey = @"creative";
+NSString *const BDMMRAIDCreativeKey     = @"creative";
+NSString *const BDMMRAIDSkipOffsetKey   = @"skip_offset";
+NSString *const BDMMRAIDNativeCloseKey  = @"use_native_close";
 
 @implementation BDMMRAIDNetwork
 

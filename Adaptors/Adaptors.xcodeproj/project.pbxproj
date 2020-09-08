@@ -7,18 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F2A8708B84E6A158E72A8C5 /* Pods_BDMSmaatoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED052A274720C99273087BFF /* Pods_BDMSmaatoAdapter.framework */; };
-		42039BA623632BE8001AB780 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42039BA523632BE8001AB780 /* BidMachine.framework */; };
+		3706BBDBA118147D9CF5AFCA /* Pods_BDMCriteoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AF7F9997D3A54B519BAC06 /* Pods_BDMCriteoAdapter.framework */; };
 		4220558822E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */; };
-		422E2B2D233512B300F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B2C233512B300F5C9DA /* BidMachine.framework */; };
-		422E2B2F233512C100F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B2E233512C100F5C9DA /* BidMachine.framework */; };
-		422E2B31233512C900F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B30233512C900F5C9DA /* BidMachine.framework */; };
-		422E2B33233512D300F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B32233512D300F5C9DA /* BidMachine.framework */; };
-		422E2B35233512DB00F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B34233512DB00F5C9DA /* BidMachine.framework */; };
-		422E2B37233512E200F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B36233512E200F5C9DA /* BidMachine.framework */; };
-		422E2B39233512E900F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B38233512E900F5C9DA /* BidMachine.framework */; };
-		422E2B3B233512F100F5C9DA /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B3A233512F100F5C9DA /* BidMachine.framework */; };
-		422E2B3D2335130800F5C9DA /* Pods_BDMAmazonAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422E2B3C2335130800F5C9DA /* Pods_BDMAmazonAdapter.framework */; };
 		4231D01D22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */; };
 		4231D02022E1D3E7002852CE /* BDMMyTargetCustomParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D01F22E1D3E7002852CE /* BDMMyTargetCustomParams.m */; };
 		4231D02322E1D93C002852CE /* BDMMyTargetBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4231D02222E1D93C002852CE /* BDMMyTargetBannerAdapter.m */; };
@@ -43,12 +33,11 @@
 		42B27F7F25076E6400DECFDF /* BDMAmazonAdObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B27F7C25076E6400DECFDF /* BDMAmazonAdObject.m */; };
 		42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */; };
 		42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */; };
-		42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */; };
 		42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */; };
 		42C3FDB521620EA2004D3784 /* BDMVASTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB221620EA2004D3784 /* BDMVASTNetwork.m */; };
 		42C3FDB621620EA2004D3784 /* BDMVASTVideoAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C3FDB321620EA2004D3784 /* BDMVASTVideoAdapter.m */; };
 		42D7311422DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */; };
-		42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */; };
+		53A473193074C06DD44D287B /* Pods_BDMSmaatoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1777E5CE955FA8824F507718 /* Pods_BDMSmaatoAdapter.framework */; };
 		658CA9032361A58E00B6D234 /* BDMSmaatoAdNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9022361A58E00B6D234 /* BDMSmaatoAdNetwork.m */; };
 		658CA9062361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA9052361AC8F00B6D234 /* BDMSmaatoBannerAdapter.m */; };
 		658CA90F2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 658CA90E2361AE6500B6D234 /* BDMSmaatoFullscreenAdapter.m */; };
@@ -58,17 +47,17 @@
 		65BA8E3F23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BA8E3E23854E4D0007F298 /* BDMFacebookNativeAdDisplayAdapter.m */; };
 		65CD8338241A08B200FCD4DB /* BDMCriteoBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CD8337241A08B200FCD4DB /* BDMCriteoBannerAdapter.m */; };
 		65CD833B241A08D400FCD4DB /* BDMCriteoInterstitialAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CD833A241A08D400FCD4DB /* BDMCriteoInterstitialAdapter.m */; };
-		6B47495757048052CFAE08D1 /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9760A28AAF36CBCE46A7B5F3 /* Pods_BDMFacebookAdapter.framework */; };
-		6B9407F81F0B5BCD15DE14FC /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 341B91B8A631D185022912B9 /* Pods_BDMMyTargetAdapter.framework */; };
-		A4F1C385F7E713C3CC10A8CF /* Pods_BDMTapjoyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */; };
-		A78745B359B5615739C35EC9 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */; };
-		C27FAD13AB5228EE6DB9523B /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2481E30D2E8778906F218F2 /* Pods_BDMVASTAdapter.framework */; };
+		6CC83995ABD790C29559B768 /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0809A71C48CA92567D5B3E58 /* Pods_BDMMRAIDAdapter.framework */; };
+		8B11086ED571434945942BA9 /* Pods_BDMFacebookAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BAE3F987D328803AF794B31 /* Pods_BDMFacebookAdapter.framework */; };
+		8F1EE211D4BDE3943DAA44A6 /* Pods_BDMNASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FC4F2A4008FA166B22B4D7 /* Pods_BDMNASTAdapter.framework */; };
+		959601F3457BBBFC392104A5 /* Pods_BDMAdColonyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDF3F514C8E2BB96D7E941E /* Pods_BDMAdColonyAdapter.framework */; };
+		B17E710318F61C37A8BCB698 /* Pods_BDMAmazonAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D359A94EFF2738C608C0A62 /* Pods_BDMAmazonAdapter.framework */; };
+		BF45CAF365A9BAAF66B85E0C /* Pods_BDMMyTargetAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB69B51905E288AE055BA079 /* Pods_BDMMyTargetAdapter.framework */; };
+		C74DECB2BA8C3A2B2E18CA28 /* Pods_BDMVungleAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA0A80F9259B951510016605 /* Pods_BDMVungleAdapter.framework */; };
 		D9403D1B2327D2550091E61E /* BDMAmazonNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = D9403D1A2327D2550091E61E /* BDMAmazonNetwork.m */; };
 		D9403D1C2327D2550091E61E /* BDMAmazonNetwork.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = D9403D192327D2550091E61E /* BDMAmazonNetwork.h */; };
-		DFB7CD87E6930A63790F0165 /* Pods_BDMVungleAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5376B6EAAFB07E239BE573FE /* Pods_BDMVungleAdapter.framework */; };
-		E3F73A7F5CA400864C01D58A /* Pods_BDMAdColonyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E28947A24DF67D4D9A4FFAD /* Pods_BDMAdColonyAdapter.framework */; };
-		ECA4BE3C13EDF56DDE8DACDB /* Pods_BDMCriteoAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */; };
-		FF45E0DD81229E6B82EB429E /* Pods_BDMMRAIDAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */; };
+		E1705820DFF0D7396A48A931 /* Pods_BDMVASTAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263AD093D0E815F414745D2E /* Pods_BDMVASTAdapter.framework */; };
+		E7EFEFE0638AAFC844B2983F /* Pods_BDMTapjoyAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EC3948098B217AD71590D10 /* Pods_BDMTapjoyAdapter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -189,24 +178,19 @@
 
 /* Begin PBXFileReference section */
 		0482996C7F3945E0F50244C1 /* Pods-BDMVungleAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.release.xcconfig"; sourceTree = "<group>"; };
+		0809A71C48CA92567D5B3E58 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1AE8A7058E35635EEE438C /* Pods-BDMCriteoAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMCriteoAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMCriteoAdapter/Pods-BDMCriteoAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		0D4C8D8C2E4BBE85E3FD04E1 /* Pods-BDMMRAIDAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		12CB78823522354016B45971 /* Pods-BDMAdColonyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		341B91B8A631D185022912B9 /* Pods_BDMMyTargetAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMyTargetAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1777E5CE955FA8824F507718 /* Pods_BDMSmaatoAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMSmaatoAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18AF7F9997D3A54B519BAC06 /* Pods_BDMCriteoAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMCriteoAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		263AD093D0E815F414745D2E /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BAE3F987D328803AF794B31 /* Pods_BDMFacebookAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMFacebookAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BDF3F514C8E2BB96D7E941E /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1EF34CBA6F69C16569FF19 /* Pods-BDMAmazonAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAmazonAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAmazonAdapter/Pods-BDMAmazonAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		3F30F3B440AF6ADD3A2CF023 /* Pods-BDMMRAIDAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMRAIDAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMRAIDAdapter/Pods-BDMMRAIDAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		42039BA523632BE8001AB780 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4220558622E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdColonyFullscreenAdapter.h; sourceTree = "<group>"; };
 		4220558722E1FD3700E1CA89 /* BDMAdColonyFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdColonyFullscreenAdapter.m; sourceTree = "<group>"; };
-		422E2B2C233512B300F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B2E233512C100F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B30233512C900F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B32233512D300F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B34233512DB00F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B36233512E200F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B38233512E900F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B3A233512F100F5C9DA /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		422E2B3C2335130800F5C9DA /* Pods_BDMAmazonAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_BDMAmazonAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4231D01B22E1C6E5002852CE /* BDMMyTargetFullscreenAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetFullscreenAdapter.h; sourceTree = "<group>"; };
 		4231D01C22E1C6E6002852CE /* BDMMyTargetFullscreenAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetFullscreenAdapter.m; sourceTree = "<group>"; };
 		4231D01E22E1D3E7002852CE /* BDMMyTargetCustomParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetCustomParams.h; sourceTree = "<group>"; };
@@ -252,10 +236,8 @@
 		42B27F7B25076E6400DECFDF /* BDMAmazonAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMAmazonAdLoader.h; sourceTree = "<group>"; };
 		42B27F7C25076E6400DECFDF /* BDMAmazonAdObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonAdObject.m; sourceTree = "<group>"; };
 		42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDInterstitialAdapter.h; sourceTree = "<group>"; };
-		42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BDMMRAIDAdapter.h"; sourceTree = "<group>"; };
 		42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDBannerAdapter.m; sourceTree = "<group>"; };
 		42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDBannerAdapter.h; sourceTree = "<group>"; };
-		42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BDMMRAIDAdapter.m"; sourceTree = "<group>"; };
 		42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDNetwork.h; sourceTree = "<group>"; };
 		42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDNetwork.m; sourceTree = "<group>"; };
 		42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDInterstitialAdapter.m; sourceTree = "<group>"; };
@@ -266,18 +248,13 @@
 		42D7310922DF5CF200AEB066 /* libBDMMyTargetAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMyTargetAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D7311222DF5D2E00AEB066 /* BDMMyTargetAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMyTargetAdNetwork.h; sourceTree = "<group>"; };
 		42D7311322DF5D2E00AEB066 /* BDMMyTargetAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMyTargetAdNetwork.m; sourceTree = "<group>"; };
-		42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMMRAIDClosableView.h; sourceTree = "<group>"; };
-		42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMMRAIDClosableView.m; sourceTree = "<group>"; };
 		44D3CEC6DB28E06E4E7949FD /* Pods-BDMNASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EC3948098B217AD71590D10 /* Pods_BDMTapjoyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMTapjoyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF8A4952623FC69B1A1F8EC /* Pods-BDMAmazonAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAmazonAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAmazonAdapter/Pods-BDMAmazonAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		4F3F81FD14F4880C5E02C6A1 /* Pods-BDMSmaatoAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMSmaatoAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMSmaatoAdapter/Pods-BDMSmaatoAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5376B6EAAFB07E239BE573FE /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51FC4F2A4008FA166B22B4D7 /* Pods_BDMNASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMNASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D42FCAB1F96A0542908BFC /* Pods-BDMSmaatoAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMSmaatoAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMSmaatoAdapter/Pods-BDMSmaatoAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMCriteoAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C360C6F2F6BFF146C6C6466 /* Pods-BDMTapjoyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		5E28947A24DF67D4D9A4FFAD /* Pods_BDMAdColonyAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAdColonyAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		658CA8F623619D7200B6D234 /* libBDMSmaatoAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMSmaatoAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		658CA9012361A58E00B6D234 /* BDMSmaatoAdNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSmaatoAdNetwork.h; sourceTree = "<group>"; };
 		658CA9022361A58E00B6D234 /* BDMSmaatoAdNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSmaatoAdNetwork.m; sourceTree = "<group>"; };
@@ -298,16 +275,14 @@
 		65CD8339241A08D400FCD4DB /* BDMCriteoInterstitialAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMCriteoInterstitialAdapter.h; sourceTree = "<group>"; };
 		65CD833A241A08D400FCD4DB /* BDMCriteoInterstitialAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMCriteoInterstitialAdapter.m; sourceTree = "<group>"; };
 		75B3E3BEE3C9A43EC392DC7C /* Pods-BDMTapjoyAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMTapjoyAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMTapjoyAdapter/Pods-BDMTapjoyAdapter.debug.xcconfig"; sourceTree = "<group>"; };
+		7D359A94EFF2738C608C0A62 /* Pods_BDMAmazonAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAmazonAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED90ACF6A2BB125301D0AD6 /* Pods-BDMCriteoAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMCriteoAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMCriteoAdapter/Pods-BDMCriteoAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMRAIDAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD14F681158E4205979212B /* Pods-BDMVASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		8DCA35F9472253FE4BB6B906 /* Pods-BDMNASTAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMNASTAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMNASTAdapter/Pods-BDMNASTAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		91025E1849D1EC144B762490 /* Pods-BDMVungleAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVungleAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVungleAdapter/Pods-BDMVungleAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		95C93ECC2AB534F4B7C3EDF0 /* Pods-BDMVASTAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMVASTAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMVASTAdapter/Pods-BDMVASTAdapter.debug.xcconfig"; sourceTree = "<group>"; };
-		9760A28AAF36CBCE46A7B5F3 /* Pods_BDMFacebookAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMFacebookAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E89893E04DC5053A339BD43 /* Pods-BDMMyTargetAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		B2481E30D2E8778906F218F2 /* Pods_BDMVASTAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVASTAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9593E65CEF634576321E12B /* Pods_BDMAmazonAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMAmazonAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0A80F9259B951510016605 /* Pods_BDMVungleAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMVungleAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91BAD9533A9000DB222A234 /* Pods-BDMFacebookAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		C9AF275D86EEF4063B093579 /* Pods-BDMMyTargetAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMMyTargetAdapter.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMMyTargetAdapter/Pods-BDMMyTargetAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		D018DEB957A24A69B05EECE5 /* Pods-BDMFacebookAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMFacebookAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMFacebookAdapter/Pods-BDMFacebookAdapter.release.xcconfig"; sourceTree = "<group>"; };
@@ -315,7 +290,7 @@
 		D9403D192327D2550091E61E /* BDMAmazonNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAmazonNetwork.h; sourceTree = "<group>"; };
 		D9403D1A2327D2550091E61E /* BDMAmazonNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAmazonNetwork.m; sourceTree = "<group>"; };
 		D99FF29C23069A030060FA8E /* libBDMMintegralAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBDMMintegralAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED052A274720C99273087BFF /* Pods_BDMSmaatoAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMSmaatoAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB69B51905E288AE055BA079 /* Pods_BDMMyTargetAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDMMyTargetAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB9B7001D10CD9B53A4F79AB /* Pods-BDMAdColonyAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDMAdColonyAdapter.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BDMAdColonyAdapter/Pods-BDMAdColonyAdapter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,8 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B33233512D300F5C9DA /* BidMachine.framework in Frameworks */,
-				E3F73A7F5CA400864C01D58A /* Pods_BDMAdColonyAdapter.framework in Frameworks */,
+				959601F3457BBBFC392104A5 /* Pods_BDMAdColonyAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,8 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B35233512DB00F5C9DA /* BidMachine.framework in Frameworks */,
-				DFB7CD87E6930A63790F0165 /* Pods_BDMVungleAdapter.framework in Frameworks */,
+				C74DECB2BA8C3A2B2E18CA28 /* Pods_BDMVungleAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,8 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B37233512E200F5C9DA /* BidMachine.framework in Frameworks */,
-				A4F1C385F7E713C3CC10A8CF /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
+				E7EFEFE0638AAFC844B2983F /* Pods_BDMTapjoyAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA4BE3C13EDF56DDE8DACDB /* Pods_BDMCriteoAdapter.framework in Frameworks */,
+				3706BBDBA118147D9CF5AFCA /* Pods_BDMCriteoAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,8 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B2D233512B300F5C9DA /* BidMachine.framework in Frameworks */,
-				FF45E0DD81229E6B82EB429E /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
+				6CC83995ABD790C29559B768 /* Pods_BDMMRAIDAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C27FAD13AB5228EE6DB9523B /* Pods_BDMVASTAdapter.framework in Frameworks */,
+				E1705820DFF0D7396A48A931 /* Pods_BDMVASTAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,8 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B2F233512C100F5C9DA /* BidMachine.framework in Frameworks */,
-				A78745B359B5615739C35EC9 /* Pods_BDMNASTAdapter.framework in Frameworks */,
+				8F1EE211D4BDE3943DAA44A6 /* Pods_BDMNASTAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,8 +355,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B39233512E900F5C9DA /* BidMachine.framework in Frameworks */,
-				6B47495757048052CFAE08D1 /* Pods_BDMFacebookAdapter.framework in Frameworks */,
+				8B11086ED571434945942BA9 /* Pods_BDMFacebookAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,8 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B31233512C900F5C9DA /* BidMachine.framework in Frameworks */,
-				6B9407F81F0B5BCD15DE14FC /* Pods_BDMMyTargetAdapter.framework in Frameworks */,
+				BF45CAF365A9BAAF66B85E0C /* Pods_BDMMyTargetAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,8 +371,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42039BA623632BE8001AB780 /* BidMachine.framework in Frameworks */,
-				1F2A8708B84E6A158E72A8C5 /* Pods_BDMSmaatoAdapter.framework in Frameworks */,
+				53A473193074C06DD44D287B /* Pods_BDMSmaatoAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +379,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B3D2335130800F5C9DA /* Pods_BDMAmazonAdapter.framework in Frameworks */,
+				B17E710318F61C37A8BCB698 /* Pods_BDMAmazonAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +387,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				422E2B3B233512F100F5C9DA /* BidMachine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +457,7 @@
 				658CA8F723619D7200B6D234 /* BDMSmaatoAdapter */,
 				429C19692160127A0048F400 /* Products */,
 				BFCA2E1CE2BD93ED3F976496 /* Pods */,
-				A42159B447762DCB7EC116EE /* Frameworks */,
+				86F5A514AB1665395942E1E1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -517,7 +483,6 @@
 		429C1979216014720048F400 /* BDMMRAIDAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				6500EE2221B00B0900E7D281 /* Supports */,
 				42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */,
 				42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */,
 				42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */,
@@ -588,17 +553,6 @@
 			path = BDMMyTargetAdapter;
 			sourceTree = "<group>";
 		};
-		6500EE2221B00B0900E7D281 /* Supports */ = {
-			isa = PBXGroup;
-			children = (
-				42DAE22222A54A370011E054 /* BDMMRAIDClosableView.h */,
-				42DAE22322A54A370011E054 /* BDMMRAIDClosableView.m */,
-				42C3FDA621620E95004D3784 /* NSError+BDMMRAIDAdapter.h */,
-				42C3FDA921620E95004D3784 /* NSError+BDMMRAIDAdapter.m */,
-			);
-			name = Supports;
-			sourceTree = "<group>";
-		};
 		658CA8F723619D7200B6D234 /* BDMSmaatoAdapter */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,30 +566,20 @@
 			path = BDMSmaatoAdapter;
 			sourceTree = "<group>";
 		};
-		A42159B447762DCB7EC116EE /* Frameworks */ = {
+		86F5A514AB1665395942E1E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				42039BA523632BE8001AB780 /* BidMachine.framework */,
-				422E2B3C2335130800F5C9DA /* Pods_BDMAmazonAdapter.framework */,
-				422E2B3A233512F100F5C9DA /* BidMachine.framework */,
-				422E2B38233512E900F5C9DA /* BidMachine.framework */,
-				422E2B36233512E200F5C9DA /* BidMachine.framework */,
-				422E2B34233512DB00F5C9DA /* BidMachine.framework */,
-				422E2B32233512D300F5C9DA /* BidMachine.framework */,
-				422E2B30233512C900F5C9DA /* BidMachine.framework */,
-				422E2B2E233512C100F5C9DA /* BidMachine.framework */,
-				422E2B2C233512B300F5C9DA /* BidMachine.framework */,
-				B9593E65CEF634576321E12B /* Pods_BDMAmazonAdapter.framework */,
-				8AB56E632941241FD0461A22 /* Pods_BDMMRAIDAdapter.framework */,
-				515F8B54394B6A1AE78352C8 /* Pods_BDMNASTAdapter.framework */,
-				4D96961115DE7E7A9E686542 /* Pods_BDMTapjoyAdapter.framework */,
-				588CF24A91669DB00A53AA22 /* Pods_BDMCriteoAdapter.framework */,
-				5E28947A24DF67D4D9A4FFAD /* Pods_BDMAdColonyAdapter.framework */,
-				9760A28AAF36CBCE46A7B5F3 /* Pods_BDMFacebookAdapter.framework */,
-				341B91B8A631D185022912B9 /* Pods_BDMMyTargetAdapter.framework */,
-				B2481E30D2E8778906F218F2 /* Pods_BDMVASTAdapter.framework */,
-				5376B6EAAFB07E239BE573FE /* Pods_BDMVungleAdapter.framework */,
-				ED052A274720C99273087BFF /* Pods_BDMSmaatoAdapter.framework */,
+				3BDF3F514C8E2BB96D7E941E /* Pods_BDMAdColonyAdapter.framework */,
+				7D359A94EFF2738C608C0A62 /* Pods_BDMAmazonAdapter.framework */,
+				18AF7F9997D3A54B519BAC06 /* Pods_BDMCriteoAdapter.framework */,
+				2BAE3F987D328803AF794B31 /* Pods_BDMFacebookAdapter.framework */,
+				0809A71C48CA92567D5B3E58 /* Pods_BDMMRAIDAdapter.framework */,
+				FB69B51905E288AE055BA079 /* Pods_BDMMyTargetAdapter.framework */,
+				51FC4F2A4008FA166B22B4D7 /* Pods_BDMNASTAdapter.framework */,
+				1777E5CE955FA8824F507718 /* Pods_BDMSmaatoAdapter.framework */,
+				4EC3948098B217AD71590D10 /* Pods_BDMTapjoyAdapter.framework */,
+				263AD093D0E815F414745D2E /* Pods_BDMVASTAdapter.framework */,
+				BA0A80F9259B951510016605 /* Pods_BDMVungleAdapter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1276,8 +1220,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C3FDAD21620E95004D3784 /* BDMMRAIDBannerAdapter.m in Sources */,
-				42DAE22422A54A370011E054 /* BDMMRAIDClosableView.m in Sources */,
-				42C3FDAE21620E95004D3784 /* NSError+BDMMRAIDAdapter.m in Sources */,
 				42C3FDAF21620E95004D3784 /* BDMMRAIDNetwork.m in Sources */,
 				42BE023422A56A6000D391CC /* BDMMRAIDInterstitialAdapter.m in Sources */,
 			);

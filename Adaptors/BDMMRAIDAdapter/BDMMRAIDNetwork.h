@@ -13,6 +13,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSString *const BDMMRAIDCreativeKey;
+FOUNDATION_EXPORT NSString *const BDMMRAIDSkipOffsetKey;
+FOUNDATION_EXPORT NSString *const BDMMRAIDNativeCloseKey;
 
 @interface BDMMRAIDNetwork : NSObject <BDMNetwork>
 

@@ -4,30 +4,22 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#define DEFAULT_SKIP_INTERVAL 3
-
-#import "BDMMRAIDInterstitialAdapter.h"
-#import "BDMMRAIDNetwork.h"
-#import "NSError+BDMMRAIDAdapter.h"
-#import "BDMMRAIDClosableView.h"
-#import <BidMachine/NSError+BDMSdk.h>
-
-
 @import StackUIKit;
 @import StackMRAIDKit;
+@import StackFoundation;
+
+#import "BDMMRAIDNetwork.h"
+#import "BDMMRAIDInterstitialAdapter.h"
 
 
 @interface BDMMRAIDInterstitialAdapter () <STKMRAIDAdDelegate, STKMRAIDServiceDelegate, STKMRAIDInterstitialPresenterDelegate, STKProductControllerDelegate>
 
 @property (nonatomic, strong) STKMRAIDAd *ad;
-@property (nonatomic, strong) STKMRAIDInterstitialPresenter *presenter;
-
 @property (nonatomic, strong) STKProductController *productPresenter;
-@property (nonatomic, strong) STKSpinnerWindow *activityWindow;
+@property (nonatomic, strong) STKMRAIDInterstitialPresenter *presenter;
+@property (nonatomic,   copy) NSDictionary<NSString *,NSString *> * contentInfo;
 
-@property (nonatomic, strong) STKMRAIDPresentationConfiguration *configuration;
 @property (nonatomic, assign) NSTimeInterval skipOffset;
-@property (nonatomic, copy) NSString *adContent;
 
 @end
 
@@ -38,35 +30,28 @@
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    self.adContent          = contentInfo[@"creative"];
-    self.configuration      = STKMRAIDPresentationConfiguration.new;
-    self.configuration.closeInterval = [contentInfo[@"skip_offset"] floatValue];
-    self.configuration.ignoreUseCustomClose = [contentInfo[@"use_native_close"] boolValue];
+    NSArray *mraidFeatures      = @[kMRAIDSupportsInlineVideo, kMRAIDSupportsLoging, kMRAIDPreloadURL];
+
+    self.adContent              = ANY(contentInfo).from(BDMMRAIDCreativeKey).string;
+    self.contentInfo            = contentInfo;
+    self.ad                     = [STKMRAIDAd new];
+    self.ad.delegate            = self;
+    self.ad.service.delegate    = self;
+    self.presenter              = [STKMRAIDInterstitialPresenter new];
+    self.presenter.delegate     = self;
     
-    NSArray *mraidFeatures  = @[
-                                kMRAIDSupportsInlineVideo,
-                                kMRAIDSupportsLoging,
-                                kMRAIDPreloadURL
-                                ];
-    
-    self.ad = [STKMRAIDAd new];
-    self.ad.delegate = self;
-    self.ad.service.delegate = self;
     [self.ad.service.configuration registerServices:mraidFeatures];
-    
-    self.presenter = [STKMRAIDInterstitialPresenter new];
-    self.presenter.delegate = self;
     [self.ad loadHTML:self.adContent];
 }
 
 - (void)present {
-    self.presenter.configuration = self.configuration;
+    self.presenter.configuration = ({
+        STKMRAIDPresentationConfiguration *configuration        = STKMRAIDPresentationConfiguration.new;
+        configuration.closeInterval                             = ANY(self.contentInfo).from(BDMMRAIDSkipOffsetKey).number.floatValue;
+        configuration.ignoreUseCustomClose                      = ANY(self.contentInfo).from(BDMMRAIDNativeCloseKey).number.boolValue; 
+        configuration;
+    });
     [self.presenter presentAd:self.ad];
-}
-
-- (void)hideActivityWindow {
-    self.activityWindow.hidden = YES;
-    self.activityWindow = nil;
 }
 
 - (STKProductController *)productPresenter {
@@ -75,6 +60,14 @@
         _productPresenter.delegate = self;
     }
     return _productPresenter;
+}
+
+- (NSDictionary *(^)(NSURL *))productParameters {
+    return ^NSDictionary *(NSURL *url){
+        NSMutableDictionary *productParameters = self.contentInfo.mutableCopy;
+        productParameters[STKProductParameterClickThrough] = url;
+        return productParameters.copy;
+    };
 }
 
 #pragma mark - AMKAdDelegate
@@ -89,20 +82,12 @@
 
 - (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {
     [self.displayDelegate adapterRegisterUserInteraction:self];
-    NSArray <NSURL *> *urls = url ? @[url] : @[];
     [STKSpinnerScreen show];
-    [self.productPresenter presentUrls:urls];
+    [self.productPresenter presentProductWithParameters:self.productParameters(url)];
 }
 
-#pragma mark - AMKWebServiceDelegate
-
-- (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
-    BDMLog(@"%@", message);
-}
-
-- (void)mraidServicePreloadProductUrl:(NSURL *)url {
-    NSArray <NSURL *> *urls = url ? @[url] : @[];
-    [self.productPresenter prepareUrls:urls];
+- (UIViewController *)presenterRootViewController {
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
 #pragma mark - AMKInterstitialPresenterDelegate
@@ -123,28 +108,28 @@
     [self.displayDelegate adapter:self failedToPresentAdWithError:wrappedError];
 }
 
-#pragma mark - STKProductControllerDelegate
+#pragma mark - AMKWebServiceDelegate
 
-- (UIViewController *)presenterRootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
+- (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
+    BDMLog(@"%@", message);
 }
+
+- (void)mraidServicePreloadProductUrl:(NSURL *)url {
+    [self.productPresenter loadProductWithParameters:self.productParameters(url)];
+}
+
+#pragma mark - STKProductControllerDelegate
 
 - (void)controller:(STKProductController *)controller didFailToPresentWithError:(NSError *)error {
     [STKSpinnerScreen hide];
 }
 
-- (void)controller:(STKProductController *)controller willLeaveApplicationToProduct:(NSURL *)productURL {
+- (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
     [STKSpinnerScreen hide];
 }
 
-- (void)controller:(STKProductController *)controller willPresentProduct:(NSURL *)productURL {
+- (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
     [STKSpinnerScreen hide];
 }
-
-- (void)controller:(STKProductController *)controller didDismissProduct:(NSURL *)productURL {}
-
-- (void)controller:(nonnull STKProductController *)controller didPreloadProduct:(nonnull NSURL *)productURL {}
-
-- (void)controllerDidCompleteProcessing:(nonnull STKProductController *)controller {}
 
 @end

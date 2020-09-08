@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.6.0-beta2"
+  s.version      = "1.6.0-beta4"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Core' do |ss|
     ss.vendored_frameworks = "BidMachine.framework"
-    ss.dependency 'StackModules', '~> 0.7'
+    ss.dependency 'StackModules', '~> 0.8.0.3-Beta'
     ss.dependency 'StackIAB', '~> 0.5.0'
     ss.dependency 'Protobuf', '~> 3.9'
   end
