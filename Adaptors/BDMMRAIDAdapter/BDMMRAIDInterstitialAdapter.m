@@ -70,7 +70,7 @@
     };
 }
 
-#pragma mark - AMKAdDelegate
+#pragma mark - STKMRAIDAdDelegate
 
 - (void)didLoadAd:(STKMRAIDAd *)ad {
     [self.loadingDelegate adapterPreparedContent:self];
@@ -90,7 +90,7 @@
     return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
-#pragma mark - AMKInterstitialPresenterDelegate
+#pragma mark - STKMRAIDInterstitialPresenterDelegate
 
 - (void)presenterDidAppear:(id<STKMRAIDPresenter>)presenter {
     [self.displayDelegate adapterWillPresent:self];
@@ -108,7 +108,7 @@
     [self.displayDelegate adapter:self failedToPresentAdWithError:wrappedError];
 }
 
-#pragma mark - AMKWebServiceDelegate
+#pragma mark - STKMRAIDServiceDelegate
 
 - (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
     BDMLog(@"%@", message);

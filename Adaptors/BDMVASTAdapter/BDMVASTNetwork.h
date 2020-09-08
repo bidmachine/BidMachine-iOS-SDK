@@ -6,10 +6,20 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+@import Foundation;
 @import BidMachine.Adapters;
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSString *const BDMVASTCreativeKey;
+FOUNDATION_EXPORT NSString *const BDMVASTMaxDurationKey;
+FOUNDATION_EXPORT NSString *const BDMVASTUseNativeCloseKey;
+FOUNDATION_EXPORT NSString *const BDMVASTVideoSkipOffsetKey;
+FOUNDATION_EXPORT NSString *const BDMVASTCompanionSkipOffsetKey;
 
 @interface BDMVASTNetwork : NSObject <BDMNetwork>
 
 @end
+
+NS_ASSUME_NONNULL_END

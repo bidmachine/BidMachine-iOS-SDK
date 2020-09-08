@@ -483,12 +483,12 @@
 		429C1979216014720048F400 /* BDMMRAIDAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */,
+				42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */,
 				42C3FDA821620E95004D3784 /* BDMMRAIDBannerAdapter.h */,
 				42C3FDA721620E95004D3784 /* BDMMRAIDBannerAdapter.m */,
 				42C3FDA521620E95004D3784 /* BDMMRAIDInterstitialAdapter.h */,
 				42C3FDAC21620E95004D3784 /* BDMMRAIDInterstitialAdapter.m */,
-				42C3FDAA21620E95004D3784 /* BDMMRAIDNetwork.h */,
-				42C3FDAB21620E95004D3784 /* BDMMRAIDNetwork.m */,
 			);
 			path = BDMMRAIDAdapter;
 			sourceTree = "<group>";

@@ -92,7 +92,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     };
 }
 
-#pragma mark - AMKAdDelegate
+#pragma mark - STKMRAIDAdDelegate
 
 - (void)didLoadAd:(STKMRAIDAd *)ad {
     [self.loadingDelegate adapterPreparedContent:self];
@@ -112,7 +112,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
     return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
 }
 
-#pragma mark - AMKWebServiceDelegate
+#pragma mark - STKMRAIDServiceDelegate
 
 - (void)mraidServiceDidReceiveLogMessage:(NSString *)message {
     BDMLog(@"%@", message);

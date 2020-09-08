@@ -6,47 +6,56 @@
 //  Copyright © 2018 Appodeal. All rights reserved.
 //
 
-#import "BDMVASTVideoAdapter.h"
-#import "BDMVASTNetwork.h"
-
-@import BidMachine.Adapters;
-@import StackVASTKit;
 @import StackUIKit;
+@import StackVASTKit;
+@import StackFoundation;
+@import BidMachine.Adapters;
+
+#import "BDMVASTNetwork.h"
+#import "BDMVASTVideoAdapter.h"
 
 
-@interface BDMVASTVideoAdapter () <STKVASTControllerDelegate>
+@interface BDMVASTVideoConfiguration : NSObject
+
+@property (nonatomic, assign) BOOL useNativeClose;
+@property (nonatomic, assign) NSTimeInterval maxDuration;
+@property (nonatomic, assign) NSTimeInterval videoSkipOffset;
+@property (nonatomic, assign) NSTimeInterval companionSkipOffset;
+
+@end
+
+@implementation BDMVASTVideoConfiguration
+
+- (NSTimeInterval)maxDuration {
+    return _maxDuration > 0 ? _maxDuration : 180;
+}
+
+@end
+
+@interface BDMVASTVideoAdapter () <STKVASTControllerDelegate, STKProductControllerDelegate>
 
 @property (nonatomic, strong) STKVASTController *videoController;
-@property (nonatomic, copy) NSNumber *maxDuration;
-@property (nonatomic, copy) NSNumber *skipOffset;
-@property (nonatomic, copy) NSNumber *companionSkipOffset;
-@property (nonatomic, assign) BOOL useNativeClose;
+@property (nonatomic, strong) STKProductController *productPresenter;
+@property (nonatomic, strong) BDMVASTVideoConfiguration *configuration;
+@property (nonatomic,   copy) NSDictionary<NSString *,NSString *> * contentInfo;
 
 @end
 
 @implementation BDMVASTVideoAdapter
-
-- (instancetype)init {
-    if (self = [super init]) {
-        _maxDuration = @(180);
-    }
-    return self;
-}
 
 - (UIView *)adView {
     return self.videoController.view;
 }
 
 - (void)prepareContent:(NSDictionary<NSString *,NSString *> *)contentInfo {
-    NSString * rawXML = contentInfo[@"creative"];
-    self.maxDuration = contentInfo[@"max_duration"] ? @(contentInfo[@"max_duration"].floatValue) : self.maxDuration;
-    self.skipOffset = @(contentInfo[@"skip_offset"].floatValue);
-    self.companionSkipOffset = @(contentInfo[@"companion_skip_offset"].floatValue);
-    self.useNativeClose = contentInfo[@"use_native_close"].boolValue;
-    NSData * xmlData = [rawXML dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *rawXML        = ANY(contentInfo).from(BDMVASTCreativeKey).string;
+    NSData *xmlData         = [rawXML dataUsingEncoding:NSUTF8StringEncoding];
     
-    self.videoController = [STKVASTController new];
-    self.videoController.delegate = self;
+    self.configuration      = [self configurationFrom:contentInfo];
+    self.videoController    = [STKVASTController new];
+    self.contentInfo        = contentInfo;
+    
+    [self.videoController setDelegate:self];
     [self.videoController loadForVastXML:xmlData];
 }
 
@@ -56,31 +65,32 @@
 
 #pragma mark - Private
 
-- (NSNumber *)closeTime {
-    return self.companionSkipOffset;
+- (STKProductController *)productPresenter {
+    if (!_productPresenter) {
+        _productPresenter = [STKProductController new];
+        _productPresenter.delegate = self;
+    }
+    return _productPresenter;
 }
 
-- (BOOL)forceCloseTime {
-    return self.useNativeClose;
+- (BDMVASTVideoConfiguration *)configurationFrom:(NSDictionary<NSString *,NSString *> *)contentInfo {
+    BDMVASTVideoConfiguration *configuration    = BDMVASTVideoConfiguration.new;
+    configuration.maxDuration                   = ANY(contentInfo).from(BDMVASTMaxDurationKey).number.doubleValue;
+    configuration.useNativeClose                = ANY(contentInfo).from(BDMVASTUseNativeCloseKey).number.boolValue;
+    configuration.videoSkipOffset               = ANY(contentInfo).from(BDMVASTVideoSkipOffsetKey).number.doubleValue;
+    configuration.companionSkipOffset           = ANY(contentInfo).from(BDMVASTCompanionSkipOffsetKey).number.doubleValue;
+    return configuration;
 }
 
-- (NSNumber *)videoCloseTime {
-    return self.skipOffset;
+- (NSDictionary *(^)(NSString *))productParameters {
+    return ^NSDictionary *(NSString *url){
+        NSMutableDictionary *productParameters = self.contentInfo.mutableCopy;
+        productParameters[STKProductParameterClickThrough] = url;
+        return productParameters.copy;
+    };
 }
 
-- (BOOL)isAutoclose {
-    return NO;
-}
-
-- (BOOL)isRewarded {
-    return self.rewarded;
-}
-
-- (UIViewController *)rootViewController {
-    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
-}
-
-#pragma mark - AVKControllerDelegate
+#pragma mark - STKVASTControllerDelegate
 
 - (void)vastControllerReady:(STKVASTController *)controller {
     [self.loadingDelegate adapterPreparedContent:self];
@@ -95,20 +105,9 @@
 }
 
 - (void)vastControllerDidClick:(STKVASTController *)controller clickURL:(NSString *)clickURL {
+    [STKSpinnerScreen show];
     [self.displayDelegate adapterRegisterUserInteraction:self];
-    NSURL *productLink = clickURL ? [NSURL URLWithString:clickURL] : nil;
-    if (productLink) {
-        [controller pause];
-        [STKSpinnerScreen show];
-        __weak typeof(controller) weakController = controller;
-        [STKProductPresentation openURLs:@[productLink] success:^(NSURL *link) {
-            [STKSpinnerScreen hide];
-        } failure:^(NSError *error) {
-            [STKSpinnerScreen hide];
-        } completion:^{
-            [weakController resume];
-        }];
-    }
+    [self.productPresenter presentProductWithParameters:self.productParameters(clickURL)];
 }
 
 - (void)vastControllerDidDismiss:(STKVASTController *)controller {
@@ -123,7 +122,57 @@
     [self.displayDelegate adapterWillPresent:self];
 }
 
-/// Noop
-- (void)vastControllerDidSkip:(STKVASTController *)controller {}
+- (void)vastControllerDidSkip:(STKVASTController *)controller {
+    // NO-OP
+}
+
+#pragma mark - STKVASTControllerDelegate parameters
+
+- (NSNumber *)closeTime {
+    return @(self.configuration.companionSkipOffset);
+}
+
+- (BOOL)forceCloseTime {
+    return self.configuration.useNativeClose;
+}
+
+- (NSNumber *)videoCloseTime {
+    return @(self.configuration.videoSkipOffset);
+}
+
+- (NSNumber *)maxDuration {
+    return @(self.configuration.maxDuration);
+}
+
+- (BOOL)isAutoclose {
+    return NO;
+}
+
+- (BOOL)isRewarded {
+    return self.rewarded;
+}
+
+- (UIViewController *)rootViewController {
+    return [self.displayDelegate rootViewControllerForAdapter:self] ?: UIViewController.stk_topPresentedViewController;
+}
+
+#pragma mark - STKProductControllerDelegate
+
+- (void)controller:(STKProductController *)controller didFailToPresentWithError:(NSError *)error {
+    [STKSpinnerScreen hide];
+}
+
+- (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [STKSpinnerScreen hide];
+}
+
+- (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [self.videoController resume];
+    [STKSpinnerScreen hide];
+}
+
+- (void)controller:(STKProductController *)controller didDismissProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+     [self.videoController resume];
+}
 
 @end

@@ -9,10 +9,12 @@
 #import "BDMVASTNetwork.h"
 #import "BDMVASTVideoAdapter.h"
 
-@interface BDMVASTNetwork ()
 
-@end
-
+NSString *const BDMVASTCreativeKey                  = @"creative";
+NSString *const BDMVASTMaxDurationKey               = @"max_duration";
+NSString *const BDMVASTUseNativeCloseKey            = @"use_native_close";
+NSString *const BDMVASTVideoSkipOffsetKey           = @"skip_offset";
+NSString *const BDMVASTCompanionSkipOffsetKey       = @"companion_skip_offset";
 
 @implementation BDMVASTNetwork
 
