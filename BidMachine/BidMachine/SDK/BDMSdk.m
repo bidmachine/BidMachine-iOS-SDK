@@ -58,8 +58,10 @@
     self = [super init];
     if (self) {
         // Create registry
-        self.auctionSettings    = [BDMOpenRTBAuctionSettings defaultAuctionSettings];
-        self.registry           = [BDMFactory.sharedFactory registry];
+        _auctionSettings    = [BDMOpenRTBAuctionSettings defaultAuctionSettings];
+        _registry           = [BDMFactory.sharedFactory registry];
+        // Prepare models
+        _restrictions       = BDMUserRestrictions.new;
         // Register viewability
         [BDMViewabilityMetricProvider registerMetric:BDMViewabilityMetricAppodeal.class];
     }

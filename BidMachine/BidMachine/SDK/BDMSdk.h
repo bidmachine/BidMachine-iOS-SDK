@@ -25,7 +25,7 @@
 /**
  Restrictions
  */
-@property (copy, nonatomic, readwrite, nullable) BDMUserRestrictions *restrictions;
+@property (copy, nonatomic, readonly, nonnull) BDMUserRestrictions *restrictions;
 /**
  Publisher info
  */

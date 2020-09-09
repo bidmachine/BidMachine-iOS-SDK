@@ -99,7 +99,7 @@
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
-            .appendRestrictions(BDMSdk.sharedSdk.restrictions ?: BDMUserRestrictions.new)
+            .appendRestrictions(BDMSdk.sharedSdk.restrictions)
             .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo)
             .appendContextualData(contextualData);
         } success:^(id<BDMResponse> response) {
