@@ -23,8 +23,6 @@
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
 		3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781991224CED19200E97FED /* BDMRequestStorageItem.m */; };
 		3781991624CED29600E97FED /* BDMRequestStorage+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991524CED29600E97FED /* BDMRequestStorage+Private.h */; };
-		420476932135483600FA2261 /* BDMRuntimeExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 420476912135483600FA2261 /* BDMRuntimeExtensions.h */; };
-		420476942135483600FA2261 /* BDMRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 420476922135483600FA2261 /* BDMRuntimeExtensions.m */; };
 		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
 		421137F021E880D200B65454 /* BDMAdRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137EE21E880D200B65454 /* BDMAdRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		421137F121E880D200B65454 /* BDMAdRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421137EF21E880D200B65454 /* BDMAdRequests.m */; };
@@ -185,8 +183,6 @@
 		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
 		3781991224CED19200E97FED /* BDMRequestStorageItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorageItem.m; sourceTree = "<group>"; };
 		3781991524CED29600E97FED /* BDMRequestStorage+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequestStorage+Private.h"; sourceTree = "<group>"; };
-		420476912135483600FA2261 /* BDMRuntimeExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRuntimeExtensions.h; sourceTree = "<group>"; };
-		420476922135483600FA2261 /* BDMRuntimeExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRuntimeExtensions.m; sourceTree = "<group>"; };
 		420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMProtoAPI-Umbrella.h"; sourceTree = "<group>"; };
 		421137EE21E880D200B65454 /* BDMAdRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdRequests.h; sourceTree = "<group>"; };
 		421137EF21E880D200B65454 /* BDMAdRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdRequests.m; sourceTree = "<group>"; };
@@ -382,8 +378,6 @@
 			children = (
 				65CE5DA321B15F0400652496 /* BDMRetryTimer.h */,
 				65CE5DA421B15F0400652496 /* BDMRetryTimer.m */,
-				420476912135483600FA2261 /* BDMRuntimeExtensions.h */,
-				420476922135483600FA2261 /* BDMRuntimeExtensions.m */,
 				9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */,
 				424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */,
 				422CAC3621AE7A38000A0D51 /* NSArray+BDMEventURL.h */,
@@ -788,7 +782,6 @@
 				42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */,
 				421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */,
 				42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */,
-				420476932135483600FA2261 /* BDMRuntimeExtensions.h in Headers */,
 				426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */,
 				9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */,
 				6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */,
@@ -1041,7 +1034,6 @@
 				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
 				651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
-				420476942135483600FA2261 /* BDMRuntimeExtensions.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
 				422CAC3921AE7A38000A0D51 /* NSArray+BDMEventURL.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,

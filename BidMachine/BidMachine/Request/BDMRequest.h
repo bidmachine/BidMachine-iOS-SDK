@@ -53,7 +53,7 @@
 /**
  Current targeting data for request
  */
-@property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting;
+@property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting __deprecated_msg("deprecated Use: BDMSdkConfiguration.targeting at the start of the SDK");
 /**
  Current user contextual data
 */
