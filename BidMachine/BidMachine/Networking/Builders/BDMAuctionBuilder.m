@@ -144,6 +144,7 @@
                                                     @"make"        : @"device.make",
                                                     @"model"       : @"device.model",
                                                     @"lang"        : @"device.lang",
+                                                    @"ua"          : @"device.ua",
                                                     };
     
     
@@ -368,8 +369,6 @@
     extension[@"atts"]              = @(STKAd.trackingAuthorizationStatus);
     GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
-//    extension[@"bluetooth"] =
-//    extension[@"bluetoothname"] =
 }
 
 
