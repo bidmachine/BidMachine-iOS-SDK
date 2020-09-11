@@ -17,6 +17,7 @@
 
 NSString *const BDMMyTargetSlotIDKey    = @"slot_id";
 NSString *const BDMMyTargetBidIDKey     = @"bid_id";
+NSString *const BDMMyTargetBidTokenKey  = @"bidder_token";
 
 
 @implementation BDMMyTargetAdNetwork
@@ -41,12 +42,12 @@ NSString *const BDMMyTargetBidIDKey     = @"bid_id";
                                                  NSError *error))completion {
     [self syncMetadata];
     NSString *slotId = ANY(parameters).from(BDMMyTargetSlotIDKey).string;
-    NSString *bidId = MTRGManager.getBidderToken;
+    NSString *bidToken = MTRGManager.getBidderToken;
     NSDictionary *clientParams;
     NSError *error;
-    if (slotId.length && bidId) {
-        clientParams = @{ BDMMyTargetSlotIDKey : slotId,
-                          BDMMyTargetBidIDKey  : bidId };
+    if (slotId.length && bidToken) {
+        clientParams = @{ BDMMyTargetSlotIDKey    : slotId,
+                          BDMMyTargetBidTokenKey  : bidToken };
     } else {
         error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
                                description:@"MyTarget ad unit not contains valid slot id"];

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSString *const BDMMyTargetSlotIDKey;
 FOUNDATION_EXPORT NSString *const BDMMyTargetBidIDKey;
+FOUNDATION_EXPORT NSString *const BDMMyTargetBidTokenKey;
 
 @interface BDMMyTargetAdNetwork : NSObject <BDMNetwork>
 
