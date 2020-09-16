@@ -29,8 +29,8 @@
 
 - (void)makeRequest:(BDMNativeAdRequest *)request {
     NSAssert(BDMNativeAdRequest.stk_isValid(request), @"BDMNativeAd request should be kind of class BDMNativeAdRequest");
-    self.middleware = [BDMFactory.sharedFactory middlewareWithRequest:self.currentRequest eventProducer:self];
     self.currentRequest = request;
+    self.middleware = [BDMFactory.sharedFactory middlewareWithRequest:self.currentRequest eventProducer:self];
     switch (self.currentRequest.state) {
         case BDMRequestStateIdle: {
             [self.currentRequest performWithDelegate:self];
