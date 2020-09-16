@@ -39,9 +39,11 @@
         return;
     }
     
-    self.banner = [[MTRGAdView alloc] initWithSlotId:slotId adSize:[self bannerSize]];
+    self.banner = [MTRGAdView adViewWithSlotId:slotId shouldRefreshAd:NO];
     self.banner.viewController = [self.displayDelegate rootViewControllerForAdapter:self];
     self.banner.delegate = self;
+    self.banner.adSize = self.bannerSize;
+    self.banner.frame = (CGRect){.size = self.bannerSize.size};
 
     [BDMMyTargetCustomParams populate:self.banner.customParams];
     [self.banner loadFromBid:bid];
@@ -81,14 +83,14 @@
     [self.displayDelegate adapterDidDismissScreen:self];
 }
 
-- (MTRGAdSize)bannerSize {
+- (MTRGAdSize *)bannerSize {
     CGSize bannerSize = [self.displayDelegate sizeForAdapter:self];
-    MTRGAdSize adSize = MTRGAdSize_320x50;
+    MTRGAdSize *adSize = nil;
     switch ((int)bannerSize.width) {
-        case 320: adSize = MTRGAdSize_320x50; break;
-        case 300: adSize = MTRGAdSize_300x250; break;
-        case 728: adSize = MTRGAdSize_728x90; break;
-        default: adSize = MTRGAdSize_320x50; break;
+        case 320: adSize = MTRGAdSize.adSize320x50; break;
+        case 300: adSize = MTRGAdSize.adSize300x250; break;
+        case 728: adSize = MTRGAdSize.adSize728x90; break;
+        default: adSize = MTRGAdSize.adSize320x50; break;
     }
     return adSize;
 }

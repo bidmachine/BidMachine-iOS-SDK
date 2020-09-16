@@ -1,9 +1,9 @@
 # Version 1.6.0 (Aug 27th, 2020)
 
-- Vungle 6.5.2 - 6.7.0
-- Adcolony 4.1.4 - 4.3.0
+- Vungle 6.5.2 - 6.7.1
+- Adcolony 4.1.4 - 4.3.1
 - TapjoySDK 12.4.2 - 12.6.1
-- MyTarget 5.4.2 - 5.7.1
+- MyTarget 5.4.2 - 5.8.0
 - Smaato-ios-sdk 21.2.2 - 21.5.2
 - Append request HB support
 - Remove MintegralAdSDK adapter

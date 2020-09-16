@@ -38,15 +38,15 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '6.7.0'
+  pod 'VungleSDK-iOS', '6.7.1'
 end
 
 def adcolony
-  pod 'AdColony', '4.3.0'
+  pod 'AdColony', '4.3.1'
 end
 
 def my_target 
-  pod 'myTargetSDK', '5.7.1'
+  pod 'myTargetSDK', '5.8.0'
 end
 
 def tapjoy
