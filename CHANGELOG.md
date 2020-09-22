@@ -7,6 +7,8 @@
 - Smaato-ios-sdk 21.2.2 - 21.6.1
 - Append request HB support
 - Remove MintegralAdSDK adapter
+- Deprecated BDMRequest.targeting
+- SDK improvements
 
 # Version 1.5.3 (Sep 4th, 2020)
 - Small fixes on thread safety
