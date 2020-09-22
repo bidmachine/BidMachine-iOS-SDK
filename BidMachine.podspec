@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.6.0-beta6"
+  s.version      = "1.6.0"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -22,8 +22,8 @@ Pod::Spec.new do |s|
   
   s.subspec 'Core' do |ss|
     ss.vendored_frameworks = "BidMachine.framework"
-    ss.dependency 'StackModules', '~> 0.8.0.3-Beta'
-    ss.dependency 'StackIAB', '~> 0.5.0'
+    ss.dependency 'StackModules', '~> 1.0.0'
+    ss.dependency 'StackIAB', '~> 0.6.0'
     ss.dependency 'Protobuf', '~> 3.9'
   end
 
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   s.subspec 'AdColonyAdapter' do |ss|
     ss.vendored_libraries = 'libBDMAdColonyAdapter.a'
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'AdColony', '4.3.0'
+    ss.dependency 'AdColony', '4.3.1'
   end
 
   s.subspec 'FacebookAdapter' do |ss|
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   s.subspec 'MyTargetAdapter' do |ss|
     ss.vendored_libraries = 'libBDMMyTargetAdapter.a'
     ss.dependency 'BidMachine/Core' 
-    ss.dependency 'myTargetSDK', '5.7.1'
+    ss.dependency 'myTargetSDK', '5.8.0'
   end
 
   s.subspec 'TapjoyAdapter' do |ss|
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   s.subspec 'VungleAdapter' do |ss|
     ss.vendored_libraries = 'libBDMVungleAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'VungleSDK-iOS', '6.7.0'
+    ss.dependency 'VungleSDK-iOS', '6.7.1'
   end
 
   s.subspec 'CriteoAdapter' do |ss|
@@ -84,7 +84,7 @@ Pod::Spec.new do |s|
   s.subspec 'SmaatoAdapter' do |ss|
     ss.vendored_libraries = 'libBDMSmaatoAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'smaato-ios-sdk', '21.5.2'
-    ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.5.2'
+    ss.dependency 'smaato-ios-sdk', '21.6.1'
+    ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
   end
 end

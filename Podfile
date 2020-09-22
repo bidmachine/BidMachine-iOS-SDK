@@ -15,16 +15,16 @@ def protobuf
 end
 
 def nast
-  pod 'StackIAB/StackNASTKit', '~> 0.5.0'
-  pod 'StackIAB/StackRichMedia', '~> 0.5.0'
+  pod 'StackIAB/StackNASTKit', '~> 0.6.0'
+  pod 'StackIAB/StackRichMedia', '~> 0.6.0'
 end
 
 def mraid
-  pod 'StackIAB/StackMRAIDKit', '~> 0.5.0'
+  pod 'StackIAB/StackMRAIDKit', '~> 0.6.0'
 end
 
 def vast 
-  pod 'StackIAB/StackVASTKit', '~> 0.5.0'
+  pod 'StackIAB/StackVASTKit', '~> 0.6.0'
 end
 
 def toasts
@@ -32,9 +32,9 @@ def toasts
 end
 
 def stack_modules
-  pod 'StackModules', '~> 0.8.0.3-Beta'
-  pod 'StackModules/StackFoundation', '~> 0.8.0.3-Beta'
-  pod 'StackModules/StackUIKit', '~> 0.8.0.3-Beta'
+  pod 'StackModules', '~> 1.0.0'
+  pod 'StackModules/StackFoundation', '~> 1.0.0'
+  pod 'StackModules/StackUIKit', '~> 1.0.0'
 end
 
 def vungle
@@ -66,8 +66,8 @@ def amazon
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '21.5.2'
-  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.5.2'
+  pod 'smaato-ios-sdk', '21.6.1'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
 end
 
 # Targets configuration

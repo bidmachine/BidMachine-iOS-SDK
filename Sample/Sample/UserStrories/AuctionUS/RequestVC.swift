@@ -36,7 +36,6 @@ class RequestVC <T:BDMRequest>: DataTableViewController {
     
     @IBAction private func saveAndCloseTouched(_ sender: Any) {
         request?.priceFloors = pricefloors.map { $0 ?? BDMPriceFloor() }
-        request?.targeting = SdkContext.shared.targeting
         
         onUpdateRequest?(request)
         SdkContext.shared.synchronise()

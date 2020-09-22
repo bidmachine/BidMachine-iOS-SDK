@@ -1,106 +1,106 @@
 PODS:
-  - AdColony (4.3.0)
+  - AdColony (4.3.1)
   - CriteoPublisherSdk (3.4.1)
   - DTBiOSSDK (3.0.0)
   - FBAudienceNetwork (5.10.1):
     - FBSDKCoreKit/Basics (>= 5.6.0)
   - FBSDKCoreKit/Basics (7.1.1)
   - Kiwi (3.0.0)
-  - myTargetSDK (5.7.1)
+  - myTargetSDK (5.8.0)
   - Protobuf (3.13.0)
-  - smaato-ios-sdk (21.5.2):
-    - smaato-ios-sdk/Full (= 21.5.2)
-  - smaato-ios-sdk/Banner (21.5.2):
+  - smaato-ios-sdk (21.6.1):
+    - smaato-ios-sdk/Full (= 21.6.1)
+  - smaato-ios-sdk/Banner (21.6.1):
     - smaato-ios-sdk/Modules/Banner
     - smaato-ios-sdk/Modules/Core
     - smaato-ios-sdk/Modules/RichMedia
-  - smaato-ios-sdk/Full (21.5.2):
+  - smaato-ios-sdk/Full (21.6.1):
     - smaato-ios-sdk/Banner
     - smaato-ios-sdk/Interstitial
     - smaato-ios-sdk/Native
     - smaato-ios-sdk/RewardedAds
-  - smaato-ios-sdk/Interstitial (21.5.2):
+  - smaato-ios-sdk/Interstitial (21.6.1):
     - smaato-ios-sdk/Modules/Interstitial
     - smaato-ios-sdk/Modules/RichMedia
     - smaato-ios-sdk/Modules/Video
-  - smaato-ios-sdk/Modules/Banner (21.5.2):
+  - smaato-ios-sdk/Modules/Banner (21.6.1):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/Core (21.5.2)
-  - smaato-ios-sdk/Modules/Interstitial (21.5.2):
+  - smaato-ios-sdk/Modules/Core (21.6.1)
+  - smaato-ios-sdk/Modules/Interstitial (21.6.1):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/Native (21.5.2):
+  - smaato-ios-sdk/Modules/Native (21.6.1):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/OpenMeasurement (21.5.2):
+  - smaato-ios-sdk/Modules/OpenMeasurement (21.6.1):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/RewardedAds (21.5.2):
+  - smaato-ios-sdk/Modules/RewardedAds (21.6.1):
     - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/RichMedia (21.5.2):
-    - smaato-ios-sdk/Modules/Core
-    - smaato-ios-sdk/Modules/OpenMeasurement
-  - smaato-ios-sdk/Modules/UnifiedBidding (21.5.2):
-    - smaato-ios-sdk/Modules/Core
-  - smaato-ios-sdk/Modules/Video (21.5.2):
+  - smaato-ios-sdk/Modules/RichMedia (21.6.1):
     - smaato-ios-sdk/Modules/Core
     - smaato-ios-sdk/Modules/OpenMeasurement
-  - smaato-ios-sdk/Native (21.5.2):
+  - smaato-ios-sdk/Modules/UnifiedBidding (21.6.1):
+    - smaato-ios-sdk/Modules/Core
+  - smaato-ios-sdk/Modules/Video (21.6.1):
+    - smaato-ios-sdk/Modules/Core
+    - smaato-ios-sdk/Modules/OpenMeasurement
+  - smaato-ios-sdk/Native (21.6.1):
     - smaato-ios-sdk/Modules/Core
     - smaato-ios-sdk/Modules/Native
-  - smaato-ios-sdk/RewardedAds (21.5.2):
+  - smaato-ios-sdk/RewardedAds (21.6.1):
     - smaato-ios-sdk/Modules/RewardedAds
     - smaato-ios-sdk/Modules/Video
   - StackAPI/BidMachine (0.5.0):
     - Protobuf (~> 3.12)
-  - StackIAB/StackMRAIDKit (0.5.17):
-    - StackModules (~> 0.6)
-  - StackIAB/StackNASTKit (0.5.17):
+  - StackIAB/StackMRAIDKit (0.6.0):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackNASTKit (0.6.0):
     - StackIAB/StackVASTKit
-    - StackModules (~> 0.6)
-  - StackIAB/StackRichMedia (0.5.17):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackRichMedia (0.6.0):
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
-    - StackModules (~> 0.6)
-  - StackIAB/StackVASTAssets (0.5.17):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackVASTAssets (0.6.0):
     - StackIAB/StackXML
-    - StackModules (~> 0.6)
-  - StackIAB/StackVASTKit (0.5.17):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackVASTKit (0.6.0):
     - StackIAB/StackMRAIDKit
     - StackIAB/StackVASTAssets
     - StackIAB/StackVideoPlayer
-    - StackModules (~> 0.6)
-  - StackIAB/StackVideoPlayer (0.5.17):
-    - StackModules (~> 0.6)
-  - StackIAB/StackXML (0.5.17):
-    - StackModules (~> 0.6)
-  - StackModules (0.8.0.4-Beta):
-    - StackModules/StackUIKit (= 0.8.0.4-Beta)
-  - StackModules/StackFoundation (0.8.0.4-Beta)
-  - StackModules/StackUIKit (0.8.0.4-Beta):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackVideoPlayer (0.6.0):
+    - StackModules (~> 1.0.0)
+  - StackIAB/StackXML (0.6.0):
+    - StackModules (~> 1.0.0)
+  - StackModules (1.0.0):
+    - StackModules/StackUIKit (= 1.0.0)
+  - StackModules/StackFoundation (1.0.0)
+  - StackModules/StackUIKit (1.0.0):
     - StackModules/StackFoundation
   - TapjoySDK (12.6.1)
   - Toast-Swift (4.0.1)
-  - VungleSDK-iOS (6.7.0)
+  - VungleSDK-iOS (6.7.1)
 
 DEPENDENCIES:
-  - AdColony (= 4.3.0)
+  - AdColony (= 4.3.1)
   - CriteoPublisherSdk (= 3.4.1)
   - DTBiOSSDK (= 3.0.0)
   - FBAudienceNetwork (= 5.10.1)
   - Kiwi
-  - myTargetSDK (= 5.7.1)
+  - myTargetSDK (= 5.8.0)
   - Protobuf
-  - smaato-ios-sdk (= 21.5.2)
-  - smaato-ios-sdk/Modules/UnifiedBidding (= 21.5.2)
+  - smaato-ios-sdk (= 21.6.1)
+  - smaato-ios-sdk/Modules/UnifiedBidding (= 21.6.1)
   - StackAPI/BidMachine (~> 0.5.0)
-  - StackIAB/StackMRAIDKit (~> 0.5.0)
-  - StackIAB/StackNASTKit (~> 0.5.0)
-  - StackIAB/StackRichMedia (~> 0.5.0)
-  - StackIAB/StackVASTKit (~> 0.5.0)
-  - StackModules (~> 0.8.0.3-Beta)
-  - StackModules/StackFoundation (~> 0.8.0.3-Beta)
-  - StackModules/StackUIKit (~> 0.8.0.3-Beta)
+  - StackIAB/StackMRAIDKit (~> 0.6.0)
+  - StackIAB/StackNASTKit (~> 0.6.0)
+  - StackIAB/StackRichMedia (~> 0.6.0)
+  - StackIAB/StackVASTKit (~> 0.6.0)
+  - StackModules (~> 1.0.0)
+  - StackModules/StackFoundation (~> 1.0.0)
+  - StackModules/StackUIKit (~> 1.0.0)
   - TapjoySDK (= 12.6.1)
   - Toast-Swift (~> 4.0.0)
-  - VungleSDK-iOS (= 6.7.0)
+  - VungleSDK-iOS (= 6.7.1)
 
 SPEC REPOS:
   https://github.com/appodeal/CocoaPods.git:
@@ -117,28 +117,27 @@ SPEC REPOS:
     - myTargetSDK
     - Protobuf
     - smaato-ios-sdk
-    - StackIAB
     - TapjoySDK
     - Toast-Swift
     - VungleSDK-iOS
 
 SPEC CHECKSUMS:
-  AdColony: dd17468f79dce5955d2079342d260aef1ca1e4f1
+  AdColony: 526a7bfe223dea50b9193d215d4b6fcbfc1515d1
   CriteoPublisherSdk: 9ea61c4f6facafd5bc003258d569e6510e06614c
   DTBiOSSDK: 2591119b1fdccf1226bf53957d8f21aea5e0ce1b
   FBAudienceNetwork: 6cdcc40aa475e8045ab14398e181a3dc90a5014e
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
-  myTargetSDK: d9352d173ddb0002468d5e35a54060cbff8a66d1
+  myTargetSDK: e142b182317f4a0a376754619cfcc633150b827d
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
-  smaato-ios-sdk: 2be81511a3fe8adb27c08804b12c6c7f956963ac
+  smaato-ios-sdk: 081e29d0f55e48d6d65f445e036899a5f97b9aca
   StackAPI: 0c48d817256cdde98f50d65c729a4c5c8ac1b1d1
-  StackIAB: e30a4523f384d02fcfda16b8e593b7dd0f9c83a2
-  StackModules: ea97863124ad65ac6aca810f1ae959a77fce17d3
+  StackIAB: b35fe8e371bfa3c1f784a4b6e7daa0f95b75d7df
+  StackModules: f80c0c2a4a7b69e80776d57e40ee5c49de5495fc
   TapjoySDK: ab02725a55e84c2fdd6fafc872cb00bd58e8adb2
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
-  VungleSDK-iOS: 85456e060a3f26a0e03f9d4841495976326a7d05
+  VungleSDK-iOS: e9d4f16042b14a24a5bee290c1eb21452e9a81cf
 
-PODFILE CHECKSUM: d8ca89f538be9f16be585ce8ad43017c0d9dec8e
+PODFILE CHECKSUM: 85c517d788681f2546fcd45e0ada0565004b29c3
 
 COCOAPODS: 1.9.1

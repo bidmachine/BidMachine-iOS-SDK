@@ -67,7 +67,6 @@ class SdkContext: NSObject {
         NSKeyedArchiver.archive(restriction, Names.restriction)
         NSKeyedArchiver.archive(publisherInfo, Names.publisher)
         UserDefaults.standard.set(sellerId, forKey: Names.sellerId)
-        BDMSdk.shared().restrictions = restriction
     }
     
     private func startReceivingLocationChanges() {

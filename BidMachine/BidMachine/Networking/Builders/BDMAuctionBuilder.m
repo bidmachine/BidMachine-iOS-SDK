@@ -14,10 +14,12 @@
 
 @interface BDMAuctionBuilder ()
 
-@property (nonatomic, copy) NSString * sellerID;
 @property (nonatomic, assign) BOOL testMode;
 
-@property (nonatomic, strong) BDMRequest *request;
+@property (nonatomic,   copy) NSString *sellerID;
+@property (nonatomic,   copy) NSArray<BDMPriceFloor *> *priceFloors;
+
+@property (nonatomic, strong) BDMTargeting *targeting;
 @property (nonatomic, strong) BDMPublisherInfo *publisherInfo;
 @property (nonatomic, strong) BDMUserRestrictions *restrictions;
 @property (nonatomic, strong) id<BDMAuctionSettings> auctionSettings;
@@ -28,9 +30,9 @@
 
 @implementation BDMAuctionBuilder
 
-- (BDMAuctionBuilder *(^)(BDMRequest *))appendRequest {
-    return ^id(BDMRequest *request) {
-        self.request = request;
+- (BDMAuctionBuilder *(^)(BDMTargeting *))appendTargeting {
+    return ^id(BDMTargeting *targeting) {
+        self.targeting = targeting;
         return self;
     };
 }
@@ -59,6 +61,13 @@
 - (BDMAuctionBuilder *(^)(BOOL))appendTestMode {
     return ^id(BOOL testMode) {
         self.testMode = testMode;
+        return self;
+    };
+}
+
+- (BDMAuctionBuilder *(^)(NSArray<BDMPriceFloor *> *))appendPriceFloors {
+    return ^id(NSArray<BDMPriceFloor *> *priceFloors) {
+        self.priceFloors = priceFloors;
         return self;
     };
 }
@@ -185,7 +194,7 @@
     ext.sellerId = self.sellerID;
     ext.ifv = STKAd.vendorIdentifier;
     ext.bmIfv = STKAd.generatedVendorIdentifier;
-    ext.headerBiddingType = self.request.priceFloors > 0 ? BDMHeaderBiddingType_HeaderBiddingTypeDisabled : BDMHeaderBiddingType_HeaderBiddingTypeEnabled;
+    ext.headerBiddingType = self.priceFloors > 0 ? BDMHeaderBiddingType_HeaderBiddingTypeDisabled : BDMHeaderBiddingType_HeaderBiddingTypeEnabled;
     GPBAny * extAny = [[GPBAny alloc] initWithMessage:ext error:nil];
     extAny ? [extensions addObject:extAny] : nil;
     return extensions;
@@ -194,7 +203,7 @@
 #pragma mark - Item
 
 - (NSMutableArray <ORTBRequest_Item *> *)requestItemsMessage {
-    NSArray <BDMPriceFloor *> * pricefloors = self.request.priceFloors.count ? self.request.priceFloors : @[BDMPriceFloor.new]; // Use default pricfloor
+    NSArray <BDMPriceFloor *> * pricefloors = self.priceFloors.count ? self.priceFloors : @[BDMPriceFloor.new]; // Use default pricfloor
     ORTBRequest_Item *itemMessage   = [ORTBRequest_Item message];
     itemMessage.qty                 = 1;
     itemMessage.id_p                = NSUUID.UUID.UUIDString; // For Parallel Bidding it should be ad unit id
@@ -227,9 +236,9 @@
     
     contextMessage.restrictions = ({
         ADCOMContext_Restrictions *restrictions = [ADCOMContext_Restrictions message];
-        restrictions.bcatArray = self.request.targeting.blockedCategories.mutableCopy;
-        restrictions.badvArray = self.request.targeting.blockedAdvertisers.mutableCopy;
-        restrictions.bappArray = self.request.targeting.blockedApps.mutableCopy;
+        restrictions.bcatArray = self.targeting.blockedCategories.mutableCopy;
+        restrictions.badvArray = self.targeting.blockedAdvertisers.mutableCopy;
+        restrictions.bappArray = self.targeting.blockedApps.mutableCopy;
         restrictions;
     });
     
@@ -244,9 +253,9 @@
 
 - (ADCOMContext_App *)adcomContextAppMessage {
     ADCOMContext_App *app = [ADCOMContext_App message];
-    app.storeid         = self.request.targeting.storeId;
-    app.storeurl        = self.request.targeting.storeURL.absoluteString;
-    app.paid            = self.request.targeting.paid;
+    app.storeid         = self.targeting.storeId;
+    app.storeurl        = self.targeting.storeURL.absoluteString;
+    app.paid            = self.targeting.paid;
     app.pub             = self.adcomContextAppPublisherMessage;
     app.bundle          = STKBundle.ID;
     app.ver             = STKBundle.bundleVersion;
@@ -274,7 +283,7 @@
     device.model        = STKDevice.name;
     device.lang         = STKDevice.language;
     
-    device.geo          = BDMTransformers.geoMessage(self.request.targeting.deviceLocation);
+    device.geo          = BDMTransformers.geoMessage(self.targeting.deviceLocation);
     device.ext          = self.deviceExtension;
     
     if (self.restrictions.subjectToGDPR && !self.restrictions.hasConsent) {
@@ -288,10 +297,10 @@
 
 - (ADCOMContext_User *)adcomContextUserMessage {
     ADCOMContext_User *user = [ADCOMContext_User message];
-    user.gender         = BDMTransformers.gender(self.request.targeting.gender);
-    user.yob            = self.request.targeting.yearOfBirth.unsignedIntValue;
-    user.keywords       = self.request.targeting.keywords;
-    user.id_p           = self.request.targeting.userId;
+    user.gender         = BDMTransformers.gender(self.targeting.gender);
+    user.yob            = self.targeting.yearOfBirth.unsignedIntValue;
+    user.keywords       = self.targeting.keywords;
+    user.id_p           = self.targeting.userId;
     user.ext            = self.userExtension;
     
     if (self.restrictions.consentString) {
@@ -302,9 +311,9 @@
     
     user.geo = ({
         ADCOMContext_Geo *geo = [ADCOMContext_Geo message];
-        geo.country     = self.request.targeting.country;
-        geo.city        = self.request.targeting.city;
-        geo.zip         = self.request.targeting.zip;
+        geo.country     = self.targeting.country;
+        geo.city        = self.targeting.city;
+        geo.zip         = self.targeting.zip;
         geo;
     });
     return user;
@@ -339,7 +348,7 @@
     
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:3];
     extension[@"version"]           = @"2.0";
-    extension[@"sourceapp"]         = self.request.targeting.storeId;
+    extension[@"sourceapp"]         = self.targeting.storeId;
     extension[@"skadnetids"]        = STKBundle.registeredSKAdNetworkIdentifiers;
     extension = @{@"skadn" : extension }.mutableCopy;
     GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
@@ -357,7 +366,6 @@
     extension[@"batterylevel"]      = BDMTransformers.batteryLevel(STKDevice.batteryLevel);
     extension[@"batterysaver"]      = @(STKDevice.lowPowerMode);
     extension[@"darkmode"]          = @([STKInterface.style isEqualToString:@"dark"]);
-    extension[@"devicename"]        = STKDevice.userName;
     extension[@"time"]              = @(NSDate.stk_currentTimeInSeconds);
     extension[@"screenbright"]      = @(STKDevice.brightness);
     extension[@"jailbreak"]         = @(STKDevice.isJailbroken);
@@ -367,6 +375,13 @@
     extension[@"headsetname"]       = STKDevice.audioOutput;
     extension[@"totalmem"]          = @(STKDevice.totalRAM);
     extension[@"atts"]              = @(STKAd.trackingAuthorizationStatus);
+    
+    BOOL isGDPRRestricted = self.restrictions.subjectToGDPR && !self.restrictions.hasConsent;
+    BOOL isCoppa = self.restrictions.coppa;
+    
+    if (!isGDPRRestricted && !isCoppa) {
+        extension[@"devicename"]    = STKDevice.userName;
+    }
     GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }
@@ -375,9 +390,9 @@
 
 - (GPBStruct *)appExtension {
     NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:3];
-    extension[@"storecat"]          = self.request.targeting.storeCategory;
-    extension[@"storesubcat"]       = self.request.targeting.storeSubcategory;
-    extension[@"fmwname"]           = self.request.targeting.frameworkName;
+    extension[@"storecat"]          = self.targeting.storeCategory;
+    extension[@"storesubcat"]       = self.targeting.storeSubcategory;
+    extension[@"fmwname"]           = self.targeting.frameworkName;
     GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }

@@ -16,13 +16,14 @@
 
 @property (nonatomic, readonly) GPBMessage *message;
 
-- (BDMAuctionBuilder *(^)(NSString *))appendSellerID;
-- (BDMAuctionBuilder *(^)(BDMRequest *))appendRequest;
-- (BDMAuctionBuilder *(^)(id<BDMAuctionSettings>))appendAuctionSettings;
-- (BDMAuctionBuilder *(^)(id<BDMPlacementRequestBuilder>))appendPlacementBuilder;
-- (BDMAuctionBuilder *(^)(id<BDMContextualProtocol>))appendContextualData;
 - (BDMAuctionBuilder *(^)(BOOL))appendTestMode;
-- (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions;
+- (BDMAuctionBuilder *(^)(NSString *))appendSellerID;
+- (BDMAuctionBuilder *(^)(BDMTargeting *))appendTargeting;
 - (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo;
+- (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions;
+- (BDMAuctionBuilder *(^)(NSArray <BDMPriceFloor *> *))appendPriceFloors;
+- (BDMAuctionBuilder *(^)(id<BDMAuctionSettings>))appendAuctionSettings;
+- (BDMAuctionBuilder *(^)(id<BDMContextualProtocol>))appendContextualData;
+- (BDMAuctionBuilder *(^)(id<BDMPlacementRequestBuilder>))appendPlacementBuilder;
 
 @end

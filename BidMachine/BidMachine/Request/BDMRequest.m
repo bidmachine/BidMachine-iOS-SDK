@@ -87,7 +87,6 @@
         // Append header bidding
         placementBuilder.appendHeaderBidding(placememntAdUnits);
         // Populate targeting
-        request.targeting = request.targeting ?: BDMSdk.sharedSdk.targeting;
         weakSelf.state = BDMRequestStateAuction;
         [weakSelf.middleware startEvent:BDMEventAuction];
         // Make request by expiration timer
@@ -95,7 +94,14 @@
             id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:self.placementType];
             builder
             .appendPlacementBuilder(placementBuilder)
-            .appendRequest(request)
+            .appendPriceFloors(request.priceFloors)
+            
+            //TODO: remove next release
+            #pragma GCC diagnostic push
+            #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+            .appendTargeting(request.targeting ?: BDMSdk.sharedSdk.targeting)
+            #pragma GCC diagnostic pop
+            
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendTestMode(BDMSdk.sharedSdk.testMode)

@@ -146,7 +146,6 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
             geo.lon = desiredLocation.coordinate.longitude;
         }
         
-        geo.utcoffset = ([[NSTimeZone systemTimeZone] secondsFromGMT] / 60.0);
         return geo;
     };
 }

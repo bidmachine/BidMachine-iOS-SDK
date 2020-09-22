@@ -36,10 +36,12 @@ class InitializationVC: UIViewController {
     
     @IBAction func initialiseSdk(_ sender: Any) {
         SdkContext.shared.sellerId = sellerIdTextField.text!
-        BDMSdk.shared().restrictions = SdkContext.shared.restriction
+        BDMSdk.shared().restrictions.coppa = SdkContext.shared.restriction.coppa
+        BDMSdk.shared().restrictions.hasConsent = SdkContext.shared.restriction.hasConsent
+        BDMSdk.shared().restrictions.consentString = SdkContext.shared.restriction.consentString
+        BDMSdk.shared().restrictions.subjectToGDPR = SdkContext.shared.restriction.subjectToGDPR
         BDMSdk.shared().publisherInfo = SdkContext.shared.publisherInfo
         BDMSdk.shared().enableLogging = SdkContext.shared.appConfiguration.logging
-        
         BDMSdk.shared().startSession(withSellerID:SdkContext.shared.sellerId,
                                      configuration:SdkContext.shared.configuration){
                                         SdkContext.shared.synchronise()
