@@ -8,6 +8,9 @@
 - Append request HB support
 - Remove MintegralAdSDK adapter
 
+# Version 1.5.3 (Sep 4th, 2020)
+- Small fixes on thread safety
+
 # Version 1.5.2 (Aug 3th, 2020)
 
 - Append Criteo rotation unit logic
