@@ -8,6 +8,8 @@
 - Append request HB support
 - Remove MintegralAdSDK adapter
 - Deprecated BDMRequest.targeting
+- Added additional targeting fields
+- BDMSdk.restrictions now readonly property
 - SDK improvements
 
 # Version 1.5.3 (Sep 4th, 2020)
