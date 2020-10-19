@@ -115,6 +115,7 @@ NSString *const BDMFacebookBidPayloadIDKey      = @"bid_payload";
 - (void)syncMetadata {
     [FBAdSettings setLogLevel:BDMSdkLoggingEnabled ? FBAdLogLevelVerbose : FBAdLogLevelNone];
     [FBAdSettings setMixedAudience:BDMSdk.sharedSdk.restrictions.coppa];
+    [FBAdSettings setAdvertiserTrackingEnabled: ![STKAd.advertisingIdentifier isEqual:@"00000000-0000-0000-0000-000000000000"]];
     
     if (BDMSdk.sharedSdk.restrictions.subjectToCCPA) {
         if (BDMSdk.sharedSdk.restrictions.hasCCPAConsent) {
