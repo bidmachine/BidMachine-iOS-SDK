@@ -146,14 +146,16 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
 }
 
 - (void)populateRenderingInfo:(NSMutableDictionary <NSString *, NSString *> *)info withBid:(ORTBResponse_Seatbid_Bid *)bid {
-    NSDictionary *bidExtension = bid.ext.fields.copy;
-    info[STKProductParameterItemIdentifier]                      = bidExtension[@"sourceapp"];
-    info[STKProductParameterClickThrough]                        = bidExtension[@"?"];
-    info[STKProductParameterAdNetworkAttributionSignature]       = bidExtension[@"signature"];
-    info[STKProductParameterAdNetworkCampaignIdentifier]         = bidExtension[@"campaign"];
-    info[STKProductParameterAdNetworkIdentifier]                 = bidExtension[@"network"];
-    info[STKProductParameterAdNetworkNonce]                      = bidExtension[@"nonce"];
-    info[STKProductParameterAdNetworkTimestamp]                  = bidExtension[@"timestamp"];
+    NSDictionary <NSString*, GPBValue*> *bidStructFields = bid.ext.fields[@"skadn"].structValue.fields;
+    info[STKProductParameterItemIdentifier]                      = bidStructFields[@"itunesitem"].stringValue;
+    info[STKProductParameterAdNetworkSourceAppStoreIdentifier]   = bidStructFields[@"sourceapp"].stringValue;
+    info[STKProductParameterAdNetworkVersion]                    = bidStructFields[@"version"].stringValue;
+    info[STKProductParameterClickThrough]                        = bidStructFields[@"?"].stringValue;
+    info[STKProductParameterAdNetworkAttributionSignature]       = bidStructFields[@"signature"].stringValue;
+    info[STKProductParameterAdNetworkCampaignIdentifier]         = bidStructFields[@"campaign"].stringValue;
+    info[STKProductParameterAdNetworkIdentifier]                 = bidStructFields[@"network"].stringValue;
+    info[STKProductParameterAdNetworkNonce]                      = bidStructFields[@"nonce"].stringValue;
+    info[STKProductParameterAdNetworkTimestamp]                  = bidStructFields[@"timestamp"].stringValue;
 }
 
 #pragma mark - NSCopying
