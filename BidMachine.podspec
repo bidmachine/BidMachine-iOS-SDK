@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.6.0"
+  s.version      = "1.6.1"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
   s.subspec 'FacebookAdapter' do |ss|
     ss.vendored_libraries = 'libBDMFacebookAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'FBAudienceNetwork', '5.10.1'
+    ss.dependency 'FBAudienceNetwork', '6.0.0'
   end
 
   s.subspec 'MyTargetAdapter' do |ss|

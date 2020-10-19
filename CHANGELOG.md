@@ -1,3 +1,8 @@
+# Version 1.6.1 (Oct 19th, 2020)
+
+- Update FBAudienceNetwork 6.0.0
+- Small fixes
+
 # Version 1.6.0 (Sep 22th, 2020)
 
 - Vungle 6.5.2 - 6.7.1
