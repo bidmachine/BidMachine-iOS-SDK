@@ -2,3 +2,4 @@
 [submodule "BidMachine-iOS-Adaptors"]
 	path = BidMachine-iOS-Adaptors
 	url = git@github.com:bidmachine/BidMachine-iOS-Adaptors.git
+	branch = master
