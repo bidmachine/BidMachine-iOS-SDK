@@ -1,4 +1,4 @@
 
-[submodule "Adaptors"]
-	path = Adaptors
-	url =  git@github.com:bidmachine/BidMachine-iOS-Adaptors.git
+[submodule "BidMachine-iOS-Adaptors"]
+	path = BidMachine-iOS-Adaptors
+	url = git@github.com:bidmachine/BidMachine-iOS-Adaptors.git
