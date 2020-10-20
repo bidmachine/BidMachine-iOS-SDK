@@ -1,0 +1,4 @@
+
+[submodule "Adaptors"]
+	path = Adaptors
+	url =  git@github.com:bidmachine/BidMachine-iOS-Adaptors
