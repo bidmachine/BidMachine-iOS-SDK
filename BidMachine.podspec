@@ -87,4 +87,8 @@ Pod::Spec.new do |s|
     ss.dependency 'smaato-ios-sdk', '21.6.1'
     ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
   end
+
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  
 end
