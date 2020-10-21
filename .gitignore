@@ -2,8 +2,8 @@
 .DS_Store
 
 # Xcode
-build/
-Release/
+BidMachineRelease/build/
+BidMachineRelease/Release/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -36,6 +36,7 @@ Carthage
 # `pod install` in .travis.yml
 #
 Pods/
+Podfile.lock
 
 # Protobuf
 Proto/protobuf
