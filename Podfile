@@ -62,7 +62,7 @@ def criteo
 end
 
 def amazon
-  pod 'DTBiOSSDK', '3.0.0'
+  pod 'AmazonPublisherServicesSDK', '3.3.0'
 end
 
 def smaato
@@ -78,73 +78,73 @@ target 'BidMachine' do
 end
 
 target 'BDMMRAIDAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   stack_modules
   mraid
 end
 
 target 'BDMNASTAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   stack_modules
   nast
 end
 
 target 'BDMCriteoAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   criteo
   stack_modules
 end
 
 target 'BDMVASTAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   stack_modules
   vast
 end
 
 target 'BDMMyTargetAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   my_target
   stack_modules
 end
 
 target 'BDMAdColonyAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   adcolony
   stack_modules
 end
 
 target 'BDMVungleAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   vungle
   stack_modules
 end
 
 target 'BDMTapjoyAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   tapjoy
   stack_modules
 end
 
 target 'BDMFacebookAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   facebook
   stack_modules
 end
 
 target 'BDMAmazonAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   amazon
   stack_modules
 end
 
 target 'BDMSmaatoAdapter' do
-  project 'Adaptors/Adaptors.xcodeproj'
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   smaato
   stack_modules
 end
 
 target 'Sample' do
-  project 'Sample/Sample.xcodeproj'
+  project 'BidMachineSample/Sample.xcodeproj'
   mraid
   vast
   nast

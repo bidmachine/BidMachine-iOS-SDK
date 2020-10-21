@@ -5,10 +5,10 @@
       location = "group:BidMachine/BidMachine.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Adaptors/Adaptors.xcodeproj">
+      location = "group:BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Sample/Sample.xcodeproj">
+      location = "group:BidMachineSample/Sample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
