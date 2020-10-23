@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3784410A2541BE39006028F7 /* libBDMMRAIDAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */; };
 		42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */; };
 		421429B622A9280D0019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B522A9280D0019BAA1 /* AppDelegate.swift */; };
 		4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */; };
@@ -15,7 +16,6 @@
 		424047DE21CB6EB9005C16E1 /* NavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424047DC21CB6EB9005C16E1 /* NavigationTitle.swift */; };
 		424047E021CB7392005C16E1 /* CornerCases.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 424047DF21CB7392005C16E1 /* CornerCases.storyboard */; };
 		424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6721B82647008335EE /* BidMachine.framework */; };
-		424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6B21B82647008335EE /* libBDMMRAIDAdapter.a */; };
 		424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6D21B82647008335EE /* libBDMNASTAdapter.a */; };
 		424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 424A9F6F21B82647008335EE /* libBDMVASTAdapter.a */; };
 		424A9F7121B8264F008335EE /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 651D7334218C47BB0001227B /* libxml2.2.tbd */; };
@@ -84,6 +84,7 @@
 /* Begin PBXFileReference section */
 		2465525C1AE09FD9EE054AA7 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		2F370CB65E2C78152C295470 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
+		378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMCriteoAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		421429B522A9280D0019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAdColonyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3784410A2541BE39006028F7 /* libBDMMRAIDAdapter.a in Frameworks */,
 				658CA9002361A2F300B6D234 /* libBDMSmaatoAdapter.a in Frameworks */,
 				424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */,
 				D971E2C1232927BE004E549F /* libBDMAmazonAdapter.a in Frameworks */,
@@ -183,7 +185,6 @@
 				42675D9122E216CE008298F5 /* libBDMVungleAdapter.a in Frameworks */,
 				4220558522E1F26200E1CA89 /* libBDMAdColonyAdapter.a in Frameworks */,
 				4231D01722E0CAFC002852CE /* libBDMMyTargetAdapter.a in Frameworks */,
-				424A9F6C21B82647008335EE /* libBDMMRAIDAdapter.a in Frameworks */,
 				424A9F6E21B82647008335EE /* libBDMNASTAdapter.a in Frameworks */,
 				424A9F7021B82647008335EE /* libBDMVASTAdapter.a in Frameworks */,
 				42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */,
@@ -319,6 +320,7 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */,
 				658CA8FF2361A2F300B6D234 /* libBDMSmaatoAdapter.a */,
 				D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */,
 				42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */,
