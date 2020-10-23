@@ -7,32 +7,18 @@
 # Environment variables
 export BUILD_NAME=""
 export VERSION=""
-export PROJECT_DIR=$(PWD)
+export PROJECT_DIR=$(cd -P .. && pwd -P)
 export SHOULD_UPDATE_PODS="NO"
 export SHOULD_COMPRESS_RESULTS="YES"
 export WITHOUT_ADAPTERS="NO"
 export SHOULD_UPLOAD_TO_S3="YES"
-export RELEASE_DIR=$PROJECT_DIR/Release
-export TEMP_DIR=$PROJECT_DIR/build
+export RELEASE_DIR=$PROJECT_DIR/BidMachineRelease/Release
+export TEMP_DIR=$PROJECT_DIR/BidMachineRelease/build
 
 export COMPONENTS=(
     "BidMachine.framework/BidMachine"
-    "libBDMMRAIDAdapter.a"
-    "libBDMNASTAdapter.a"
-    "libBDMVASTAdapter.a"
     "StackAPI.framework/StackAPI"
 )
-
-export ADAPTERS=(
-    "BDMMyTargetAdapter"
-    "BDMFacebookAdapter"
-    "BDMAdColonyAdapter"
-    "BDMVungleAdapter"
-    "BDMTapjoyAdapter"
-    "BDMCriteoAdapter"
-    "BDMAmazonAdapter"
-    "BDMSmaatoAdapter"
-    )
 
 # Utility 
 export ERROR='\033[0;31m'   # Red color
@@ -95,10 +81,6 @@ function rebuild_components {
     for component in ${COMPONENTS[@]}; do
       lipo -create "$device_temp_dir/$component" "$simulator_temp_dir/$component" -output "$universal_temp_dir/$component"
     done
-
-    for adapter in ${ADAPTERS[@]}; do
-      lipo -create "$device_temp_dir/lib$adapter.a" "$simulator_temp_dir/lib$adapter.a" -output "$universal_temp_dir/lib$adapter.a"
-    done
 }
 
 function merge_components {
@@ -116,21 +98,6 @@ function merge_components {
 
     libtool -static -o "$universal_temp_dir/BidMachine.framework/BidMachine" "${components_paths[@]}" "${dependencies_paths[@]}"
     mv "$universal_temp_dir/BidMachine.framework" "$RELEASE_DIR/BidMachine.framework"
-}
-
-function copy_adapters {
-    local universal_temp_dir=$TEMP_DIR/universal
-    echo -e "${INFO}Copy $adapter${INFO}"    
-
-    for adapter in ${ADAPTERS[@]}; do 
-        if [[ "$adapter" == "BDMAmazonAdapter" ]]; then
-            mkdir "$RELEASE_DIR/$adapter.embeddedframework"
-            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/$adapter.embeddedframework/lib$adapter.a"
-            cp -r "$PROJECT_DIR/Pods/DTBiOSSDK/DTBiOSSDK.framework" "$RELEASE_DIR/$adapter.embeddedframework"
-        else
-            mv "$universal_temp_dir/lib$adapter.a" "$RELEASE_DIR/lib$adapter.a"
-        fi
-    done
 }
 
 function compress_and_upload {
@@ -262,7 +229,6 @@ echo -e "${WARNING}🔨 Build release framework modules${INFO}"
 rebuild_components
 echo -e "${WARNING}📦 Link statically release framework modules${INFO}"
 merge_components
-copy_adapters
 echo -e "${WARNING}🚀 Compress and upload results${INFO}"
 compress_and_upload
 end=`date +%s`
