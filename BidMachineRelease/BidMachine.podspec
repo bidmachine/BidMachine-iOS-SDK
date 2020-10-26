@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                     = "BidMachine"
-  spec.version                  = "1.6.1"
+  spec.version                  = "1.7.0.0-beta"
   spec.summary                  = "BidMachine iOS SDK"
 
   spec.description              = <<-DESC
@@ -19,8 +19,6 @@ Pod::Spec.new do |spec|
   spec.frameworks               = "AdSupport", "SystemConfiguration", "CoreTelephony", "SafariServices", "StoreKit"
   spec.libraries                = "xml2", "z"
   
-  spec.frameworks               = "AdSupport", "SystemConfiguration", "CoreTelephony", "SafariServices", "StoreKit"
-  spec.libraries                = "xml2", "z"
   spec.pod_target_xcconfig      = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   spec.user_target_xcconfig     = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
