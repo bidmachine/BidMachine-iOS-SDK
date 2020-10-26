@@ -1,3 +1,8 @@
+# Version 1.6.2 (Oct 26th, 2020)
+
+- Fix NativeAds (update asset ID)
+- Small fixes
+
 # Version 1.6.1 (Oct 19th, 2020)
 
 - Update FBAudienceNetwork 6.0.0

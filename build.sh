@@ -43,7 +43,8 @@ export WARNING='\033[0;33m' # Orange color
 function build_mangled_binary {
     local scheme_id=$1
     local sdk_id=$2
-    local output=$3
+    local arch=$3
+    local output=$4
 
     touch "$output/$scheme_id-$sdk_id-build.log"
     # STRIP_INSTALLED_PRODUCT, DEPLOYMENT_POSTPROCESSING            - clear warnings of .pcm files
@@ -57,6 +58,7 @@ function build_mangled_binary {
                 -scheme "$scheme_id" \
                 -sdk "$sdk_id" \
                 -configuration Release \
+                ARCHS="$arch" \
                 STRIP_INSTALLED_PRODUCT=YES \
                 LINK_FRAMEWORKS_AUTOMATICALLY=NO \
                 CLANG_DEBUG_INFORMATION_LEVEL="-gline-tables-only" \
@@ -84,8 +86,8 @@ function rebuild_components {
 
     local scheme="BidMachine" 
     # Build for all archs (i386, x86-64), (armv7, armv7s)
-    build_mangled_binary "$scheme" iphonesimulator "$simulator_temp_dir"
-    build_mangled_binary "$scheme" iphoneos "$device_temp_dir"
+    build_mangled_binary "$scheme" iphonesimulator "i386 x86_64" "$simulator_temp_dir"
+    build_mangled_binary "$scheme" iphoneos "arm64 arm64e armv7 armv7s" "$device_temp_dir"
 
     find $device_temp_dir -type d -iname "*.framework" -exec cp -r {} $universal_temp_dir \;
     cp -r $device_temp_dir/BidMachine.framework $universal_temp_dir
