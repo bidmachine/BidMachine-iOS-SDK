@@ -356,7 +356,7 @@
 }
 
 - (GPBStruct *)deviceExtension {
-    NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:1];
+    NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:20];
     extension[@"ifv"]               = STKAd.vendorIdentifier;
     extension[@"inputlanguage"]     = STKDevice.inputLanguage;
     extension[@"diskspace"]         = BDMTransformers.bytesToMb(STKDevice.freeDiskSpaceBytes);

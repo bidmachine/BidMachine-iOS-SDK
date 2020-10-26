@@ -118,49 +118,49 @@
             BDMNativeFormatBuilder *native = BDMNativeFormatBuilder.new;
             native.appendTitle(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(0);
+                fmt.appendId(123);
                 fmt.appendReq(1);
                 fmt;
             }))
             .appendIcon(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(1);
+                fmt.appendId(124);
                 fmt.appendReq(type & BDMNativeAdTypeIcon);
                 fmt;
             }))
             .appendImage(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(2);
+                fmt.appendId(128);
                 fmt.appendReq(type & BDMNativeAdTypeImage);
                 fmt;
             }))
             .appendDescription(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(3);
+                fmt.appendId(127);
                 fmt.appendReq(1);
                 fmt;
             }))
             .appendCta(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(4);
+                fmt.appendId(8);
                 fmt.appendReq(1);
                 fmt;
             }))
             .appendRating(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(5);
+                fmt.appendId(7);
                 fmt.appendReq(0);
                 fmt;
             }))
             .appendSponsored(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(6);
+                fmt.appendId(0);
                 fmt.appendReq(0);
                 fmt;
             }))
             .appendVideo(({
                 BDMNativeFormatTypeBuilder *fmt = BDMNativeFormatTypeBuilder.new;
-                fmt.appendId(7);
+                fmt.appendId(4);
                 fmt.appendReq(type & BDMNativeAdTypeVideo);
                 fmt;
             }));
