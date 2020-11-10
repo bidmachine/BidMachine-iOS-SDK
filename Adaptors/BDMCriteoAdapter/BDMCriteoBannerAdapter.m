@@ -40,18 +40,18 @@
     }
     
     CRBannerAdUnit *adUnit = [[CRBannerAdUnit alloc] initWithAdUnitId:adUnitId size:[self.displayDelegate sizeForAdapter:self]];
-    CRBidToken *bidToken = [self.provider bidTokenForAdUnitId:adUnitId];
+    CRBid *bid = [self.provider bidForAdUnitId:adUnitId];
     
-    if (!bidToken) {
+    if (!bid) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
-                                        description:@"Criteo bid token nil"];
+                                        description:@"Criteo bid nil"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
         return;
     }
     
-    self.bannerView = [[CRBannerView alloc] initWithAdUnit:adUnit];
+    self.bannerView = [[CRBannerView new] initWithAdUnit:adUnit];
     self.bannerView.delegate = self;
-    [self.bannerView loadAdWithBidToken:bidToken];
+    [self.bannerView loadAdWithBid:bid];
 }
 
 - (void)presentInContainer:(UIView *)container {

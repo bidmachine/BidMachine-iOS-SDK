@@ -21,7 +21,7 @@ FOUNDATION_EXPORT NSString *const BDMCriteoInterstitialAdUnitsKey;
 
 @protocol BDMCriteoAdNetworkProvider <NSObject>
 
-- (nullable CRBidToken *)bidTokenForAdUnitId:(NSString *)adUnitId;
+- (nullable CRBid *)bidForAdUnitId:(NSString *)adUnitId;
 
 @end
 

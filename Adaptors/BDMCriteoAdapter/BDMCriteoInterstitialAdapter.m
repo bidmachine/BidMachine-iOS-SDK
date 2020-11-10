@@ -40,9 +40,9 @@
     }
     
     CRInterstitialAdUnit *adUnit = [[CRInterstitialAdUnit alloc] initWithAdUnitId:adUnitId];
-    CRBidToken *bidToken = [self.provider bidTokenForAdUnitId:adUnitId];
+    CRBid *bid = [self.provider bidForAdUnitId:adUnitId];
     
-    if (!bidToken) {
+    if (!bid) {
         NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeBadContent
                                         description:@"Criteo bid token nil"];
         [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
@@ -51,7 +51,7 @@
     
     self.interstitial = [[CRInterstitial alloc] initWithAdUnit:adUnit];
     self.interstitial.delegate = self;
-    [self.interstitial loadAdWithBidToken:bidToken];
+    [self.interstitial loadAdWithBid:bid];
 }
 
 - (void)present {
@@ -84,14 +84,6 @@
 
 - (void)interstitialWasClicked:(CRInterstitial *)interstitial {
     [self.displayDelegate adapterRegisterUserInteraction:self];
-}
-
-- (void)interstitialIsReadyToPresent:(CRInterstitial *)interstitial {
-    //
-}
-
-- (void)interstitial:(CRInterstitial *)interstitial didFailToReceiveAdContentWithError:(NSError *)error {
-    [self.loadingDelegate adapter:self failedToPrepareContentWithError:error];
 }
 
 @end

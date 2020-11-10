@@ -21,7 +21,7 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
 @interface BDMCriteoAdNetwork ()
 
 @property (nonatomic, assign) BOOL hasBeenInitialized;
-@property (nonatomic, strong) NSMapTable *bidTokenStorage;
+@property (nonatomic, strong) NSMapTable *bidStorage;
 
 @end
 
@@ -36,11 +36,11 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
     return @"3.4.1";
 }
 
-- (NSMapTable *)bidTokenStorage {
-    if (!_bidTokenStorage) {
-        _bidTokenStorage = [NSMapTable strongToStrongObjectsMapTable];
+- (NSMapTable *)bidStorage {
+    if (!_bidStorage) {
+        _bidStorage = [NSMapTable strongToStrongObjectsMapTable];
     }
-    return _bidTokenStorage;
+    return _bidStorage;
 }
 
 - (void)initialiseWithParameters:(NSDictionary<NSString *,id> *)parameters
@@ -90,21 +90,22 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
     }
     [self syncMetadata];
     
+    __weak typeof(self) weakSelf = self;
     CRAdUnit *adUnit = [self adUnitByFormat:adUnitFormat adUnitId:adUnitId];
-    CRBidResponse *bidResponse = [self bidResponseForAdUnit:adUnit];
-    if (!bidResponse) {
-        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
-                                        description:@"Criteo adapter bid response not ready"];
-        STK_RUN_BLOCK(completion, nil, error);
-        return;
-    }
-    
-    NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:2];
-    bidding[BDMCriteoPriceKey] = @(bidResponse.price);
-    bidding[BDMCriteoAdUnitIDKey] = adUnitId;
-    
-    [self.bidTokenStorage setObject:bidResponse.bidToken forKey:adUnitId];
-    STK_RUN_BLOCK(completion, bidding, nil);
+    [[Criteo sharedCriteo] loadBidForAdUnit:adUnit responseHandler:^(CRBid * _Nullable bid) {
+        if (!bid) {
+            NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeHeaderBiddingNetwork
+                                            description:@"Criteo adapter bid response not ready"];
+            STK_RUN_BLOCK(completion, nil, error);
+        } else {
+            NSMutableDictionary *bidding = [[NSMutableDictionary alloc] initWithCapacity:2];
+            bidding[BDMCriteoPriceKey] = @(bid.price);
+            bidding[BDMCriteoAdUnitIDKey] = adUnitId;
+            
+            [weakSelf.bidStorage setObject:bid forKey:adUnitId];
+            STK_RUN_BLOCK(completion, bidding, nil);
+        }
+    }];
 }
 
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk {
@@ -115,10 +116,10 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
     return [[BDMCriteoInterstitialAdapter alloc] initWithProvider:self];
 }
 
-- (CRBidToken *)bidTokenForAdUnitId:(NSString *)adUnitId {
-    CRBidToken *bidToken = [self.bidTokenStorage objectForKey:adUnitId];
-    [self.bidTokenStorage removeObjectForKey:adUnitId];
-    return bidToken;
+- (CRBid *)bidForAdUnitId:(NSString *)adUnitId {
+    CRBid *bid = [self.bidStorage objectForKey:adUnitId];
+    [self.bidStorage removeObjectForKey:adUnitId];
+    return bid;
 }
 
 - (void)syncMetadata {
@@ -149,15 +150,6 @@ NSString *const BDMCriteoInterstitialAdUnitsKey     = @"interstitial_ad_units";
             
         default: return nil; break;
     }
-}
-
-- (CRBidResponse *)bidResponseForAdUnit:(CRAdUnit *)adUnit {
-    if (!adUnit) {
-        return nil;
-    }
-    
-    CRBidResponse *bidResponse = [[Criteo sharedCriteo] getBidResponseForAdUnit:adUnit];
-    return bidResponse.bidSuccess ? bidResponse : nil;
 }
 
 - (BOOL)isValidOrientation:(NSString *)orientation {
