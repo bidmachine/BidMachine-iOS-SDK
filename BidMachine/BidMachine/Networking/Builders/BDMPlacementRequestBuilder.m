@@ -305,6 +305,7 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
 - (id<BDMNativeFormatBuilder> (^)(id<BDMNativeFormatTypeBuilder>))appendIcon {
     return ^id<BDMNativeFormatBuilder> (id<BDMNativeFormatTypeBuilder>builder){
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat *img = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat.new;
+        [img setMimeArray:@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"].mutableCopy];
         [img setType:ADCOMNativeImageAssetType_NativeImageAssetTypeIconImage];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setImg:img];
         [self.format.assetArray stk_addObject:builder.format];
@@ -316,6 +317,7 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
     return ^id<BDMNativeFormatBuilder> (id<BDMNativeFormatTypeBuilder>builder){
         ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat *img = ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat_ImageAssetFormat.new;
         [img setType:ADCOMNativeImageAssetType_NativeImageAssetTypeMainImage];
+        [img setMimeArray:@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"].mutableCopy];
         [(ADCOMPlacement_DisplayPlacement_NativeFormat_AssetFormat *)builder.format setImg:img];
         [self.format.assetArray stk_addObject:builder.format];
         return self;

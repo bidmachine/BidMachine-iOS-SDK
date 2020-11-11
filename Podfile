@@ -58,7 +58,7 @@ def facebook
 end
 
 def criteo
-  pod 'CriteoPublisherSdk', '3.4.1'
+  pod 'CriteoPublisherSdk', '4.0.1'
 end
 
 def amazon

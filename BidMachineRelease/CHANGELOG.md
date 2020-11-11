@@ -1,3 +1,7 @@
+# Version 1.6.3 (Nov 11th, 2020)
+
+- Criteo 3.4.1 - 4.0.1
+
 # Version 1.6.2 (Oct 26th, 2020)
 
 - Fix NativeAds (update asset ID)
