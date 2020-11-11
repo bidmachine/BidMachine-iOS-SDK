@@ -15,16 +15,16 @@ def protobuf
 end
 
 def nast
-  pod 'StackIAB/StackNASTKit', '~> 0.6.0'
-  pod 'StackIAB/StackRichMedia', '~> 0.6.0'
+  pod 'StackIAB/StackNASTKit', '~> 1.1.0'
+  pod 'StackIAB/StackRichMedia', '~> 1.1.0'
 end
 
 def mraid
-  pod 'StackIAB/StackMRAIDKit', '~> 0.6.0'
+  pod 'StackIAB/StackMRAIDKit', '~> 1.1.0'
 end
 
 def vast 
-  pod 'StackIAB/StackVASTKit', '~> 0.6.0'
+  pod 'StackIAB/StackVASTKit', '~> 1.1.0'
 end
 
 def toasts
@@ -38,23 +38,23 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '6.7.1'
+  pod 'VungleSDK-iOS', '6.8.1'
 end
 
 def adcolony
-  pod 'AdColony', '4.3.1'
+  pod 'AdColony', '4.4.1.1'
 end
 
 def my_target 
-  pod 'myTargetSDK', '5.8.0'
+  pod 'myTargetSDK', '5.9.3'
 end
 
 def tapjoy
-  pod 'TapjoySDK', '12.6.1'
+  pod 'TapjoySDK', '12.7.0'
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '6.0.0'
+  pod 'FBAudienceNetwork', '6.2.0'
 end
 
 def criteo
@@ -66,8 +66,8 @@ def amazon
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '21.6.1'
-  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
+  pod 'smaato-ios-sdk', '21.6.6'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.6'
 end
 
 # Targets configuration
