@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BidMachine"
-  s.version      = "1.6.2"
+  s.version      = "1.6.3"
   s.summary      = "BidMachine iOS SDK"
 
   s.description  = <<-DESC
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
   s.subspec 'CriteoAdapter' do |ss|
     ss.vendored_libraries = 'libBDMCriteoAdapter.a' 
     ss.dependency 'BidMachine/Core'
-    ss.dependency 'CriteoPublisherSdk', '3.4.1'
+    ss.dependency 'CriteoPublisherSdk', '4.0.1'
   end
 
   s.subspec 'AmazonAdapter' do |ss|
@@ -88,7 +88,7 @@ Pod::Spec.new do |s|
     ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
   end
 
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.pod_target_xcconfig      = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s', 'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  s.user_target_xcconfig     = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s', 'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   
 end
