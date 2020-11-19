@@ -15,5 +15,7 @@
 @property (nonatomic, copy, readonly) NSURL *auctionURL;
 @property (nonatomic, copy, readonly) NSArray <BDMEventURL *> *eventURLs;
 
+@property (nonatomic, assign, readonly) NSTimeInterval sessionDelay;
+
 @end
 

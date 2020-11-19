@@ -137,6 +137,7 @@
             builder
             .appendBaseURL(weakSelf.configuration.baseURL)
             .appendSellerID(weakSelf.sellerID)
+            .appendSessionID(weakSelf.contextualController.sessionId)
             .appendTargeting(weakSelf.configuration.targeting);
         } success:^(id<BDMInitialisationResponse> response) {
             // Save auction config
@@ -146,6 +147,8 @@
             weakSelf.auctionSettings.eventURLs = response.eventURLs;
             // Fulfill initialisation
             [weakSelf.middleware fulfillEvent:BDMEventInitialisation];
+            // Update session time to life
+            [weakSelf.contextualController updateSessionDelayInterval:response.sessionDelay];
             timer.stop();
         } failure:^(NSError *error) {
             // Reject initialisation

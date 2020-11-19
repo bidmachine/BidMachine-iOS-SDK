@@ -17,6 +17,7 @@
 @property (nonatomic, assign) BOOL testMode;
 
 @property (nonatomic,   copy) NSString *sellerID;
+@property (nonatomic,   copy) NSString *sessionID;
 @property (nonatomic,   copy) NSArray<BDMPriceFloor *> *priceFloors;
 
 @property (nonatomic, strong) BDMTargeting *targeting;
@@ -40,6 +41,13 @@
 - (BDMAuctionBuilder *(^)(NSString *))appendSellerID {
     return ^id(NSString * sellerID) {
         self.sellerID = sellerID;
+        return self;
+    };
+}
+
+- (BDMAuctionBuilder *(^)(NSString *))appendSessionID {
+    return ^id(NSString * sessionID) {
+        self.sessionID = sessionID;
         return self;
     };
 }
@@ -192,6 +200,7 @@
     NSMutableArray <GPBAny *> * extensions = [NSMutableArray arrayWithCapacity:1];
     BDMRequestExtension * ext = [BDMRequestExtension message];
     ext.sellerId = self.sellerID;
+    ext.sessionId = self.sessionID;
     ext.ifv = STKAd.vendorIdentifier;
     ext.bmIfv = STKAd.generatedVendorIdentifier;
     ext.headerBiddingType = self.priceFloors > 0 ? BDMHeaderBiddingType_HeaderBiddingTypeDisabled : BDMHeaderBiddingType_HeaderBiddingTypeEnabled;

@@ -47,18 +47,43 @@
 
 @interface BDMContextualController ()
 
+@property (nonatomic, assign) NSTimeInterval timeToLife;
+@property (nonatomic, copy, readwrite, nullable) NSString *sessionId;
+
 @property (nonatomic, strong) NSMapTable <NSString *, BDMContextualData *> *contextualDatas;
 @property (nonatomic,   copy) NSDate *startDate;
+@property (nonatomic,   copy) NSDate *timeToEnterBackground;
 
 @end
 
 @implementation BDMContextualController
 
+- (instancetype)init {
+    if (self = [super init]) {
+        _timeToLife = 0;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [self unsubscribeApplicationNotification];
+}
+
 - (void)start {
     if (!self.startDate) {
-        self.startDate = [NSDate date];
-        [self prepareContextualDatas];
+        [self subscribeApplicationNotification];
+        [self restart];
     }
+}
+
+- (void)restart {
+    self.startDate = [NSDate date];
+    self.sessionId = NSUUID.UUID.UUIDString;
+    [self prepareContextualDatas];
+}
+
+- (void)updateSessionDelayInterval:(NSTimeInterval)interval {
+    self.timeToLife = interval;
 }
 
 - (void)registerImpressionForPlacement:(BDMInternalPlacementType)placement {
@@ -118,6 +143,39 @@
         NSString *placementName = NSStringFromBDMInternalPlacementType(placement);
         [self.contextualDatas setObject:BDMContextualData.new forKey:placementName];
     }
+}
+
+#pragma mark - Application Lifecycle
+
+- (void)didEnterBackground {
+    self.timeToEnterBackground = NSDate.date;
+}
+
+- (void)willEnterForeground {
+    if (self.timeToLife == 0) {
+        return;
+    }
+    
+    if ((NSDate.date.timeIntervalSince1970 - self.timeToEnterBackground.timeIntervalSince1970) > self.timeToLife) {
+        [self restart];
+    }
+}
+
+- (void)subscribeApplicationNotification {
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(didEnterBackground)
+                                               name:UIApplicationDidEnterBackgroundNotification
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(willEnterForeground)
+                                               name:UIApplicationWillEnterForegroundNotification
+                                             object:nil];
+}
+
+- (void)unsubscribeApplicationNotification {
+    @try {
+        [NSNotificationCenter.defaultCenter removeObserver:self];
+    } @catch (NSException *exception) {}
 }
 
 @end

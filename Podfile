@@ -10,7 +10,7 @@ use_frameworks!
 install! 'cocoapods', :deterministic_uuids => false, :warn_for_multiple_pod_sources => false
 
 def protobuf
-  pod 'StackAPI/BidMachine', '~> 0.5.0', :inhibit_warnings => true
+  pod 'StackAPI/BidMachine', '~> 0.6.0', :inhibit_warnings => true
   pod 'Protobuf', :inhibit_warnings => true
 end
 
@@ -68,6 +68,10 @@ end
 def smaato
   pod 'smaato-ios-sdk', '21.6.6'
   pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.6'
+end
+
+def approll
+  pod 'AppRollSDK', '3.1.1'
 end
 
 # Targets configuration
@@ -142,6 +146,12 @@ target 'BDMSmaatoAdapter' do
   smaato
   stack_modules
 end
+
+# target 'BDMAppRollAdapter' do
+#   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
+#   approll
+#   stack_modules
+# end
 
 target 'Sample' do
   project 'BidMachineSample/Sample.xcodeproj'

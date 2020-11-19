@@ -16,6 +16,7 @@
 
 @property (nonatomic, copy) NSURL *baseURL;
 @property (nonatomic, copy) NSString *sellerID;
+@property (nonatomic, copy) NSString *sessionID;
 @property (nonatomic, copy) BDMTargeting *targeting;
 
 @end
@@ -25,6 +26,13 @@
 - (BDMSessionBuilder *(^)(NSString *))appendSellerID {
     return ^id(NSString * sellerID) {
         self.sellerID = sellerID;
+        return self;
+    };
+}
+
+- (BDMSessionBuilder *(^)(NSString *))appendSessionID {
+    return ^id(NSString * sessionID) {
+        self.sessionID = sessionID;
         return self;
     };
 }
@@ -49,6 +57,7 @@
     
     BDMInitRequest *requestMessage = BDMInitRequest.message;
     requestMessage.sellerId = self.sellerID;
+    requestMessage.sessionId = self.sessionID;
     requestMessage.bundle = STKBundle.ID;
     requestMessage.os = BDMTransformers.osType(STKDevice.os);
     requestMessage.osv = STKDevice.osv;

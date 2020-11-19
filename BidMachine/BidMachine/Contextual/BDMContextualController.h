@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMContextualController : NSObject
 
+@property (nonatomic, copy, readonly, nullable) NSString *sessionId;
+
 - (void)start;
+
+- (void)updateSessionDelayInterval:(NSTimeInterval)interval;
 
 - (void)registerImpressionForPlacement:(BDMInternalPlacementType)placement;
 

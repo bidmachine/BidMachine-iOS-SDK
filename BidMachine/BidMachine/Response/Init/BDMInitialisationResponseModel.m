@@ -17,6 +17,8 @@
 @property (nonatomic, copy, readwrite) NSURL *auctionURL;
 @property (nonatomic, copy, readwrite) NSArray <BDMEventURL *> *eventURLs;
 
+@property (nonatomic, assign, readwrite) NSTimeInterval sessionDelay;
+
 @end
 
 
@@ -31,6 +33,7 @@
     BDMInitialisationResponseModel * model = BDMInitialisationResponseModel.new;
     model.auctionURL = responseMessage.endpoint ? [NSURL URLWithString:responseMessage.endpoint] : nil;
     model.eventURLs = BDMTransformers.eventURLs(responseMessage.eventArray);
+    model.sessionDelay = responseMessage.sessionResetAfter;
     
     return model;
 }

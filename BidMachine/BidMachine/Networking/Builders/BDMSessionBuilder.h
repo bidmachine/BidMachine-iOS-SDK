@@ -18,6 +18,7 @@
 
 - (BDMSessionBuilder *(^)(NSURL *))appendBaseURL;
 - (BDMSessionBuilder *(^)(NSString *))appendSellerID;
+- (BDMSessionBuilder *(^)(NSString *))appendSessionID;
 - (BDMSessionBuilder *(^)(BDMTargeting *))appendTargeting;
 
 @end

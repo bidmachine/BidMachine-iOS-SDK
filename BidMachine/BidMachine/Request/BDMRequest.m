@@ -104,6 +104,7 @@
             
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
+            .appendSessionID(BDMSdk.sharedSdk.contextualController.sessionId)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
             .appendRestrictions(BDMSdk.sharedSdk.restrictions)
             .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo)
