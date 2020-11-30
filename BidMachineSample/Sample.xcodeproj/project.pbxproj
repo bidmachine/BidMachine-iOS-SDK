@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37022BD6256D262200A9ACAC /* libBDMAppRollAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37022BD5256D262200A9ACAC /* libBDMAppRollAdapter.a */; };
 		3784410A2541BE39006028F7 /* libBDMMRAIDAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */; };
 		42022FB8232A439D00D75E2B /* libBDMCriteoAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */; };
 		421429B622A9280D0019BAA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421429B522A9280D0019BAA1 /* AppDelegate.swift */; };
@@ -84,7 +85,9 @@
 /* Begin PBXFileReference section */
 		2465525C1AE09FD9EE054AA7 /* Pods-Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.debug.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		2F370CB65E2C78152C295470 /* Pods-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample.release.xcconfig"; path = "Target Support Files/Pods-Sample/Pods-Sample.release.xcconfig"; sourceTree = "<group>"; };
+		37022BD5256D262200A9ACAC /* libBDMAppRollAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAppRollAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMMRAIDAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A3EA3D25627AB20027DF27 /* libBDMAppRollAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAppRollAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		42022FB7232A439D00D75E2B /* libBDMCriteoAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMCriteoAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		421429B522A9280D0019BAA1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4220558422E1F26200E1CA89 /* libBDMAdColonyAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBDMAdColonyAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37022BD6256D262200A9ACAC /* libBDMAppRollAdapter.a in Frameworks */,
 				3784410A2541BE39006028F7 /* libBDMMRAIDAdapter.a in Frameworks */,
 				658CA9002361A2F300B6D234 /* libBDMSmaatoAdapter.a in Frameworks */,
 				424A9F6821B82647008335EE /* BidMachine.framework in Frameworks */,
@@ -320,6 +324,8 @@
 		ABBBB8C34D78D07CCC36518F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37022BD5256D262200A9ACAC /* libBDMAppRollAdapter.a */,
+				37A3EA3D25627AB20027DF27 /* libBDMAppRollAdapter.a */,
 				378441092541BE39006028F7 /* libBDMMRAIDAdapter.a */,
 				658CA8FF2361A2F300B6D234 /* libBDMSmaatoAdapter.a */,
 				D971E2C0232927BE004E549F /* libBDMAmazonAdapter.a */,
@@ -435,6 +441,7 @@
 			buildConfigurationList = D91F84B32175CC12005A92F1 /* Build configuration list for PBXNativeTarget "Sample" */;
 			buildPhases = (
 				61ED3B1B5E0695C11837A4A2 /* [CP] Check Pods Manifest.lock */,
+				7E09CD200B9706D6C930802E /* [CP] Prepare Artifacts */,
 				D91F849D2175CC11005A92F1 /* Sources */,
 				D91F849E2175CC11005A92F1 /* Frameworks */,
 				D91F849F2175CC11005A92F1 /* Resources */,
@@ -457,7 +464,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Yaroslav Skachkov";
 				TargetAttributes = {
 					D91F84A02175CC11005A92F1 = {
@@ -550,6 +557,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E09CD200B9706D6C930802E /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample/Pods-Sample-artifacts.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AEC1BF259906E4EAA4E16271 /* [CP] Copy Pods Resources */ = {
@@ -666,6 +690,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -727,6 +752,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -768,7 +794,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -799,7 +825,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -71,7 +71,7 @@ def smaato
 end
 
 def approll
-  pod 'AppRollSDK', '3.1.1'
+  pod 'AppRollSDK', '3.1.2'
 end
 
 # Targets configuration
@@ -147,11 +147,11 @@ target 'BDMSmaatoAdapter' do
   stack_modules
 end
 
-# target 'BDMAppRollAdapter' do
-#   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-#   approll
-#   stack_modules
-# end
+target 'BDMAppRollAdapter' do
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
+  approll
+  stack_modules
+end
 
 target 'Sample' do
   project 'BidMachineSample/Sample.xcodeproj'
@@ -166,6 +166,7 @@ target 'Sample' do
   amazon
   smaato
   criteo
+  approll
   stack_modules
   protobuf
   toasts
