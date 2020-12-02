@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                     = "BidMachine"
-  spec.version                  = "1.7.0.0-beta"
+  spec.version                  = "1.7.0.1-Beta"
   spec.summary                  = "BidMachine iOS SDK"
 
   spec.description              = <<-DESC
@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
   spec.license                  = { :type => 'GPL 3.0', :file => 'LICENSE' }
   spec.author                   = { "Stack" => "https://explorestack.com/bidmachine/" }
 
-  spec.platform                 = :ios, '9.0'
+  spec.platform                 = :ios, '10.0'
   spec.source                   = { :http => "https://s3-us-west-1.amazonaws.com/appodeal-ios/BidMachine/#{spec.version}/BidMachine-SDK-iOS-#{spec.version}.zip" }
 
   spec.frameworks               = "AdSupport", "SystemConfiguration", "CoreTelephony", "SafariServices", "StoreKit"

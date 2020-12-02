@@ -49,7 +49,7 @@ function build_mangled_binary {
                 LINK_FRAMEWORKS_AUTOMATICALLY=NO \
                 CLANG_DEBUG_INFORMATION_LEVEL="-gline-tables-only" \
                 OTHER_CFLAGS="-fembed-bitcode -Qunused-arguments" \
-                IPHONEOS_DEPLOYMENT_TARGET=9.0 \
+                IPHONEOS_DEPLOYMENT_TARGET=10.0 \
                 MACH_O_TYPE=staticlib \
                 DEPLOYMENT_POSTPROCESSING=YES \
                 GCC_GENERATE_DEBUGGING_SYMBOLS=NO \
@@ -73,7 +73,7 @@ function rebuild_components {
     local scheme="BidMachine" 
     # Build for all archs (i386, x86-64), (armv7, armv7s)
     build_mangled_binary "$scheme" iphonesimulator "i386 x86_64" "$simulator_temp_dir"
-    build_mangled_binary "$scheme" iphoneos "arm64 arm64e armv7 armv7s" "$device_temp_dir"
+    build_mangled_binary "$scheme" iphoneos "arm64 armv7" "$device_temp_dir"
 
     find $device_temp_dir -type d -iname "*.framework" -exec cp -r {} $universal_temp_dir \;
     cp -r $device_temp_dir/BidMachine.framework $universal_temp_dir
