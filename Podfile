@@ -46,7 +46,7 @@ def adcolony
 end
 
 def my_target 
-  pod 'myTargetSDK', '5.9.3'
+  pod 'myTargetSDK', '5.9.7'
 end
 
 def tapjoy
@@ -66,8 +66,8 @@ def amazon
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '21.6.6'
-  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.6'
+  pod 'smaato-ios-sdk', '21.6.8'
+  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.8'
 end
 
 def approll

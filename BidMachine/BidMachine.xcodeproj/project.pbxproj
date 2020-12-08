@@ -829,7 +829,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C25972B1FB1DC91006F3FA7 /* Build configuration list for PBXNativeTarget "BidMachine" */;
 			buildPhases = (
-				C43C06997D5090DD0B747B31 /* [CP] Check Pods Manifest.lock */,
+				66318D3C9C21A3C9E55DFDDC /* [CP] Check Pods Manifest.lock */,
 				9C25971E1FB1DC91006F3FA7 /* Sources */,
 				9C25971F1FB1DC91006F3FA7 /* Frameworks */,
 				9C2597201FB1DC91006F3FA7 /* Headers */,
@@ -960,16 +960,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C43C06997D5090DD0B747B31 /* [CP] Check Pods Manifest.lock */ = {
+		66318D3C9C21A3C9E55DFDDC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-BidMachine-checkManifestLockResult.txt",
 			);
@@ -1099,6 +1103,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1159,6 +1164,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1194,6 +1200,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -1237,6 +1244,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
