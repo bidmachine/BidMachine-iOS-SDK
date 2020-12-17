@@ -48,19 +48,20 @@
     BOOL isCoppa = BDMSdk.sharedSdk.restrictions.coppa;
     
     BDMInitRequest *requestMessage = BDMInitRequest.message;
-    requestMessage.sellerId = self.sellerID;
-    requestMessage.bundle = STKBundle.ID;
+    requestMessage.sellerId = ANY(self.sellerID).string;
+    requestMessage.bundle = ANY(STKBundle.ID).string;
     requestMessage.os = BDMTransformers.osType(STKDevice.os);
-    requestMessage.osv = STKDevice.osv;
+    requestMessage.osv = ANY(STKDevice.osv).string;
     requestMessage.sdk = @"BidMachine SDK";
     requestMessage.sdkver = kBDMVersion;
     requestMessage.geo = self.geoMessage;
     requestMessage.deviceType = BDMTransformers.deviceType(STKDevice.type);
-    requestMessage.ifv = STKAd.vendorIdentifier;
-    requestMessage.appVer = STKBundle.bundleVersion;
+    requestMessage.ifv = ANY(STKAd.vendorIdentifier).string;
+    requestMessage.bmIfv = ANY(STKAd.generatedVendorIdentifier).string;
+    requestMessage.appVer = ANY(STKBundle.bundleVersion).string;
     
     if (!isGDPRRestricted && !isCoppa) {
-        requestMessage.ifa = STKAd.advertisingIdentifier;
+        requestMessage.ifa = ANY(STKAd.advertisingIdentifier).string;
     }
     
     if (!isCoppa) {
@@ -80,9 +81,9 @@
         geoMessage = ADCOMContext_Geo.message;
     } else {
         geoMessage = BDMTransformers.geoMessage(self.targeting.deviceLocation);
-        geoMessage.country = self.targeting.country;
-        geoMessage.city    = self.targeting.city;
-        geoMessage.zip     = self.targeting.zip;
+        geoMessage.country = ANY(self.targeting.country).string;
+        geoMessage.city    = ANY(self.targeting.city).string;
+        geoMessage.zip     = ANY(self.targeting.zip).string;
     }
     
     geoMessage.utcoffset = (int)STKLocation.utc;
