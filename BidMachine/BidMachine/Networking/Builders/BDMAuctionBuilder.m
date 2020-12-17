@@ -95,15 +95,15 @@
 
 - (GPBMessage *)message {
     ORTBOpenrtb *openRtbMessage = [ORTBOpenrtb message];
-    openRtbMessage.ver         = self.auctionSettings.protocolVersion;
-    openRtbMessage.domainspec  = self.auctionSettings.domainSpec;
-    openRtbMessage.domainver   = self.auctionSettings.domainVersion;
+    openRtbMessage.ver         = ANY(self.auctionSettings.protocolVersion).string;
+    openRtbMessage.domainspec  = ANY(self.auctionSettings.domainSpec).string;
+    openRtbMessage.domainver   = ANY(self.auctionSettings.domainVersion).string;
     openRtbMessage.request     = ({
         ORTBRequest *requestMessage    = [ORTBRequest message];
         requestMessage.test            = self.testMode;
         requestMessage.tmax            = self.auctionSettings.tmax;
         requestMessage.at              = (uint32_t)self.auctionSettings.auctionType;
-        requestMessage.curArray        = [NSMutableArray arrayWithObject:self.auctionSettings.auctionCurrency];
+        requestMessage.curArray        = ANY(self.auctionSettings.auctionCurrency).array.mutableCopy;
         // Setup context
         requestMessage.context         = self.adcomContextMessage;
         // Setup items
@@ -189,44 +189,42 @@
 }
 
 - (NSMutableArray <GPBAny *> *)requestExtensionsMessage {
-    NSMutableArray <GPBAny *> * extensions = [NSMutableArray arrayWithCapacity:1];
-    BDMRequestExtension * ext = [BDMRequestExtension message];
-    ext.sellerId = self.sellerID;
-    ext.ifv = STKAd.vendorIdentifier;
-    ext.bmIfv = STKAd.generatedVendorIdentifier;
+    BDMRequestExtension *ext = [BDMRequestExtension message];
+    ext.sellerId = ANY(self.sellerID).string;
+    ext.ifv = ANY(STKAd.vendorIdentifier).string;
+    ext.bmIfv = ANY(STKAd.generatedVendorIdentifier).string;
     ext.headerBiddingType = self.priceFloors > 0 ? BDMHeaderBiddingType_HeaderBiddingTypeDisabled : BDMHeaderBiddingType_HeaderBiddingTypeEnabled;
-    GPBAny * extAny = [[GPBAny alloc] initWithMessage:ext error:nil];
-    extAny ? [extensions addObject:extAny] : nil;
-    return extensions;
+    return ANY([[GPBAny alloc] initWithMessage:ext error:nil]).array.mutableCopy;
 }
 
 #pragma mark - Item
 
 - (NSMutableArray <ORTBRequest_Item *> *)requestItemsMessage {
-    NSArray <BDMPriceFloor *> * pricefloors = self.priceFloors.count ? self.priceFloors : @[BDMPriceFloor.new]; // Use default pricfloor
+    NSArray <BDMPriceFloor *> *pricefloors = self.priceFloors.count ? self.priceFloors : @[BDMPriceFloor.new]; // Use default pricfloor
+    NSArray <ORTBRequest_Item_Deal *> *dealArray = [pricefloors stk_transform:^ORTBRequest_Item_Deal *(BDMPriceFloor * floor, NSUInteger idx) {
+        ORTBRequest_Item_Deal *deal = ORTBRequest_Item_Deal.message;
+        deal.id_p   = ANY(floor.ID).string;
+        deal.flr    = floor.value.doubleValue;
+        deal.flrcur = ANY(self.auctionSettings.auctionCurrency).string;
+        return deal;
+    }];
+    
     ORTBRequest_Item *itemMessage   = [ORTBRequest_Item message];
     itemMessage.qty                 = 1;
-    itemMessage.id_p                = NSUUID.UUID.UUIDString; // For Parallel Bidding it should be ad unit id
+    itemMessage.id_p                = ANY(NSUUID.UUID.UUIDString).string; // For Parallel Bidding it should be ad unit id
     itemMessage.spec                = self.adcomPlacementMessage;
-    itemMessage.dealArray           = [pricefloors stk_transform:^ORTBRequest_Item_Deal *(BDMPriceFloor * floor, NSUInteger idx) {
-        ORTBRequest_Item_Deal * deal = ORTBRequest_Item_Deal.message;
-        deal.id_p   = floor.ID;
-        deal.flr    = floor.value.doubleValue;
-        deal.flrcur = self.auctionSettings.auctionCurrency;
-        return deal;
-    }].mutableCopy;
-    return [NSMutableArray arrayWithObject:itemMessage];
+    itemMessage.dealArray           = dealArray.mutableCopy;
+    return ANY(itemMessage).array.mutableCopy;
 }
 
 #pragma mark - ADCOM Placements
 
 - (GPBAny *)adcomPlacementMessage {
-    ADCOMPlacement * placement = (ADCOMPlacement *)self.placementBuilder.placement;
-    placement.secure = !STKDevice.isHTTPSupport;
-    placement.ext = self.skAdNetworkExtension;
+    ADCOMPlacement *placement   = (ADCOMPlacement *)self.placementBuilder.placement;
+    placement.secure            = !STKDevice.isHTTPSupport;
+    placement.ext               = self.skAdNetworkExtension;
     
-    GPBAny *placementMessageAny = [GPBAny anyWithMessage:placement error:nil];
-    return placementMessageAny;
+    return [GPBAny anyWithMessage:placement error:nil];
 }
 
 #pragma mark - ADCOM Context
@@ -236,9 +234,9 @@
     
     contextMessage.restrictions = ({
         ADCOMContext_Restrictions *restrictions = [ADCOMContext_Restrictions message];
-        restrictions.bcatArray = self.targeting.blockedCategories.mutableCopy;
-        restrictions.badvArray = self.targeting.blockedAdvertisers.mutableCopy;
-        restrictions.bappArray = self.targeting.blockedApps.mutableCopy;
+        restrictions.bcatArray = ANY(self.targeting.blockedCategories).arrayOfString.mutableCopy;
+        restrictions.badvArray = ANY(self.targeting.blockedAdvertisers).arrayOfString.mutableCopy;
+        restrictions.bappArray = ANY(self.targeting.blockedApps).arrayOfString.mutableCopy;
         restrictions;
     });
     
@@ -246,20 +244,19 @@
     contextMessage.device          = self.adcomContextDeviceMessage;
     contextMessage.user            = self.adcomContextUserMessage;
     contextMessage.regs            = self.adcomContextRegsMessage;
-    
-    GPBAny * contextMessageAny = [GPBAny anyWithMessage:contextMessage error:nil];
-    return contextMessageAny;
+
+    return [GPBAny anyWithMessage:contextMessage error:nil];
 }
 
 - (ADCOMContext_App *)adcomContextAppMessage {
     ADCOMContext_App *app = [ADCOMContext_App message];
-    app.storeid         = self.targeting.storeId;
-    app.storeurl        = self.targeting.storeURL.absoluteString;
+    app.storeid         = ANY(self.targeting.storeId).string;
+    app.storeurl        = ANY(self.targeting.storeURL.absoluteString).string;
     app.paid            = self.targeting.paid;
     app.pub             = self.adcomContextAppPublisherMessage;
-    app.bundle          = STKBundle.ID;
-    app.ver             = STKBundle.bundleVersion;
-    app.name            = [NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey];
+    app.bundle          = ANY(STKBundle.ID).string;
+    app.ver             = ANY(STKBundle.bundleVersion).string;
+    app.name            = ANY([NSBundle.mainBundle objectForInfoDictionaryKey:(NSString *)kCFBundleNameKey]).string;
     app.ext             = self.appExtension;
     return app;
 }
@@ -267,29 +264,29 @@
 - (ADCOMContext_Device *)adcomContextDeviceMessage {
     ADCOMContext_Device *device = [ADCOMContext_Device message];
     device.type         = BDMTransformers.deviceType(STKDevice.type);
-    device.ua           = STKDevice.userAgent;
+    device.ua           = ANY(STKDevice.userAgent).string;
     device.lmt          = !STKAd.advertisingTrackingEnabled;
     device.contype      = BDMTransformers.connectionType(STKConnection.statusName);
-    device.mccmnc       = STKConnection.mccmnc;
-    device.carrier      = STKConnection.carrierName;
+    device.mccmnc       = ANY(STKConnection.mccmnc).string;
+    device.carrier      = ANY(STKConnection.carrierName).string;
     device.w            = STKScreen.width * STKScreen.ratio;
     device.h            = STKScreen.height * STKScreen.ratio;
     device.ppi          = STKScreen.ppi;
     device.pxratio      = STKScreen.ratio;
     device.os           = BDMTransformers.osType(STKDevice.os);
-    device.osv          = STKDevice.osv;
-    device.hwv          = STKDevice.hardwarev;
-    device.make         = STKDevice.maker;
-    device.model        = STKDevice.name;
-    device.lang         = STKDevice.language;
+    device.osv          = ANY(STKDevice.osv).string;
+    device.hwv          = ANY(STKDevice.hardwarev).string;
+    device.make         = ANY(STKDevice.maker).string;
+    device.model        = ANY(STKDevice.name).string;
+    device.lang         = ANY(STKDevice.language).string;
     
     device.geo          = BDMTransformers.geoMessage(self.targeting.deviceLocation);
     device.ext          = self.deviceExtension;
     
     if (self.restrictions.subjectToGDPR && !self.restrictions.hasConsent) {
-        device.ifa = @"00000000-0000-0000-0000-000000000000";
+        device.ifa      = ANY(@"00000000-0000-0000-0000-000000000000").string;
     } else {
-        device.ifa      = STKAd.advertisingIdentifier;
+        device.ifa      = ANY(STKAd.advertisingIdentifier).string;
     }
     
     return device;
@@ -297,23 +294,23 @@
 
 - (ADCOMContext_User *)adcomContextUserMessage {
     ADCOMContext_User *user = [ADCOMContext_User message];
-    user.gender         = BDMTransformers.gender(self.targeting.gender);
+    user.gender         = ANY(BDMTransformers.gender(self.targeting.gender)).string;
     user.yob            = self.targeting.yearOfBirth.unsignedIntValue;
-    user.keywords       = self.targeting.keywords;
-    user.id_p           = self.targeting.userId;
+    user.keywords       = ANY(self.targeting.keywords).string;
+    user.id_p           = ANY(self.targeting.userId).string;
     user.ext            = self.userExtension;
     
     if (self.restrictions.consentString) {
-        user.consent    = self.restrictions.consentString;
+        user.consent    = ANY(self.restrictions.consentString).string;
     } else {
         user.consent    = self.restrictions.hasConsent ? @"1" : @"0";
     }
     
     user.geo = ({
         ADCOMContext_Geo *geo = [ADCOMContext_Geo message];
-        geo.country     = self.targeting.country;
-        geo.city        = self.targeting.city;
-        geo.zip         = self.targeting.zip;
+        geo.country     = ANY(self.targeting.country).string;
+        geo.city        = ANY(self.targeting.city).string;
+        geo.zip         = ANY(self.targeting.zip).string;
         geo;
     });
     return user;
@@ -322,20 +319,20 @@
 - (ADCOMContext_Regs *)adcomContextRegsMessage {
     ADCOMContext_Regs *regs = [ADCOMContext_Regs message];
     BDMRegsCcpaExtension *ccpa = [BDMRegsCcpaExtension message];
-    ccpa.usPrivacy      = self.restrictions.USPrivacyString;
+    ccpa.usPrivacy      = ANY(self.restrictions.USPrivacyString).string;
     regs.coppa          = self.restrictions.coppa;
     regs.gdpr           = self.restrictions.subjectToGDPR;
-    regs.extProtoArray  = @[ccpa].mutableCopy;
+    regs.extProtoArray  = ANY(ccpa).array.mutableCopy;
     
     return regs;
 }
 
 - (ADCOMContext_App_Publisher *)adcomContextAppPublisherMessage {
     ADCOMContext_App_Publisher *publisher = [ADCOMContext_App_Publisher message];
-    publisher.id_p = self.publisherInfo.publisherId;
-    publisher.name = self.publisherInfo.publisherName;
-    publisher.domain = self.publisherInfo.publisherDomain;
-    publisher.catArray = self.publisherInfo.publisherCategories.mutableCopy;
+    publisher.id_p = ANY(self.publisherInfo.publisherId).string;
+    publisher.name = ANY(self.publisherInfo.publisherName).string;
+    publisher.domain = ANY(self.publisherInfo.publisherDomain).string;
+    publisher.catArray = ANY(self.publisherInfo.publisherCategories).arrayOfString.mutableCopy;
     return publisher;
 }
 
