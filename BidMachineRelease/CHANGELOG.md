@@ -1,3 +1,8 @@
+# Version 1.6.4 (Dec 18th, 2020)
+
+- Append support IAB TCF 2.0
+- Fixed a potential type incompatibility crash
+
 # Version 1.6.3 (Nov 11th, 2020)
 
 - Criteo 3.4.1 - 4.0.1

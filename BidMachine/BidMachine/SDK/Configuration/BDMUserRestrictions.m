@@ -18,8 +18,12 @@ NSString * const BDMCCPANegativeCode = @"1n";
 @property (nonatomic, assign) BOOL publisherDefinedSubjectToGDPR;
 
 @property (atomic, copy) NSString *userDefaultsUSPrivacyString;
+//v1
 @property (atomic, copy) NSString *userDefaultsConsentString;
 @property (atomic, assign) BOOL userDefaultsSubjectToGDPR;
+//v2
+@property (atomic, copy) NSString *userDefaultsTCFConsentString;
+@property (atomic, assign) BOOL userDefaultsTCFSubjectToGDPR;
 
 @end
 
@@ -28,9 +32,13 @@ NSString * const BDMCCPANegativeCode = @"1n";
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.userDefaultsUSPrivacyString    = [NSUserDefaults.standardUserDefaults objectForKey:@"IABUSPrivacy_String"];
+        //v1
         self.userDefaultsSubjectToGDPR      = [NSUserDefaults.standardUserDefaults boolForKey:@"IABConsent_SubjectToGDPR"];
         self.userDefaultsConsentString      = [NSUserDefaults.standardUserDefaults objectForKey:@"IABConsent_ConsentString"];
-        self.userDefaultsUSPrivacyString    = [NSUserDefaults.standardUserDefaults objectForKey:@"IABUSPrivacy_String"];
+        //v2
+        self.userDefaultsTCFSubjectToGDPR   = [NSUserDefaults.standardUserDefaults boolForKey:@"IABTCF_gdprApplies"];
+        self.userDefaultsTCFConsentString   = [NSUserDefaults.standardUserDefaults objectForKey:@"IABTCF_TCString"];
         self.coppa = NO;
         [self observeUserDefaults];
     }
@@ -50,9 +58,13 @@ NSString * const BDMCCPANegativeCode = @"1n";
 
 - (void)userDefaultsDidChangeNotification:(NSNotification *)notification {
     NSUserDefaults *defaults = (NSUserDefaults *)[notification object];
+    self.userDefaultsUSPrivacyString = [defaults objectForKey:@"IABUSPrivacy_String"];
+    //v1
     self.userDefaultsSubjectToGDPR = [defaults boolForKey:@"IABConsent_SubjectToGDPR"];
     self.userDefaultsConsentString = [defaults objectForKey:@"IABConsent_ConsentString"];
-    self.userDefaultsUSPrivacyString = [defaults objectForKey:@"IABUSPrivacy_String"];
+    //v2
+    self.userDefaultsTCFSubjectToGDPR   = [defaults boolForKey:@"IABTCF_gdprApplies"];
+    self.userDefaultsTCFConsentString   = [defaults objectForKey:@"IABTCF_TCString"];
 }
 
 - (void)setConsentString:(NSString *)consentString {
@@ -68,11 +80,12 @@ NSString * const BDMCCPANegativeCode = @"1n";
 }
 
 - (NSString *)consentString {
-    return self.publisherDefinedConsentString ?: self.userDefaultsConsentString;
+    NSString *defaults = self.userDefaultsTCFConsentString ?: self.userDefaultsConsentString;
+    return self.publisherDefinedConsentString ?: defaults;
 }
 
 - (BOOL)subjectToGDPR {
-    return self.publisherDefinedSubjectToGDPR || self.userDefaultsSubjectToGDPR;
+    return self.publisherDefinedSubjectToGDPR || self.userDefaultsTCFSubjectToGDPR || self.userDefaultsSubjectToGDPR;
 }
 
 - (NSString *)USPrivacyString {
