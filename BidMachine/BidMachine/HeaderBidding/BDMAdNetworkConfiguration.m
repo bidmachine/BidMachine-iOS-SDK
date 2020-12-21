@@ -13,11 +13,9 @@
 
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) Class<BDMNetwork> networkClass;
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *initializationParams;
+@property (nonatomic, copy, readwrite) BDMStringToStringMap *params;
 @property (nonatomic, copy, readwrite) NSArray <BDMAdUnit *> *adUnits;
 @property (nonatomic, assign, readwrite) NSTimeInterval timeout;
-
-- (instancetype)initWithBuilder:(BDMAdNetworkConfigurationBuilder *)builder;
 
 @end
 
@@ -26,9 +24,9 @@
 
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) Class<BDMNetwork> networkClass;
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *initializationParams;
+@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *params;
 @property (nonatomic, copy, readwrite) NSMutableArray <BDMAdUnit *> *units;
-@property (nonatomic, assign, readwrite) NSTimeInterval preparationTimeout;
+@property (nonatomic, assign, readwrite) NSTimeInterval timeout;
 
 @end 
 
@@ -37,18 +35,13 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        // TODO: Timeout for all ad types is 5 sec
-        self.preparationTimeout = 5000;
+        self.timeout = 5000;
+        self.units = NSMutableArray.new;
     }
     return self;
 }
 
-- (BDMAdNetworkConfigurationBuilder * (^)(NSTimeInterval))appendTimeout {
-    return ^id(NSTimeInterval timeout){
-        self.preparationTimeout = timeout;
-        return self;
-    };
-}
+#pragma mark - Builders
 
 - (BDMAdNetworkConfigurationBuilder *(^)(NSString *))appendName {
     return ^id(NSString *name) {
@@ -57,19 +50,9 @@
     };
 }
 
-- (NSMutableArray<BDMAdUnit *> *)units {
-    if (!_units) {
-        _units = [NSMutableArray new];
-    }
-    return _units;
-}
-
-- (BDMAdNetworkConfigurationBuilder * (^)(BDMAdUnitFormat, NSDictionary<NSString *,id> *, NSDictionary<NSString *,id> *))appendAdUnit {
-    return ^id(BDMAdUnitFormat fmt, NSDictionary *params, NSDictionary *extras) {
-        BDMAdUnit *unit = [[BDMAdUnit alloc] initWithFormat:fmt customParams:params extras:extras];
-        if (![self.units containsObject:unit]) {
-            [self.units addObject:unit];
-        }
+- (BDMAdNetworkConfigurationBuilder * (^)(NSTimeInterval))appendTimeout {
+    return ^id(NSTimeInterval timeout){
+        self.timeout = timeout;
         return self;
     };
 }
@@ -81,9 +64,19 @@
     };
 }
 
-- (BDMAdNetworkConfigurationBuilder *(^)(NSDictionary<NSString *,id> *))appendInitializationParams {
-    return ^id(NSDictionary<NSString *,id> *params) {
-        self.initializationParams = params;
+- (BDMAdNetworkConfigurationBuilder *(^)(BDMStringToStringMap *))appendParams {
+    return ^id(BDMStringToStringMap *params) {
+        self.params = params;
+        return self;
+    };
+}
+
+- (BDMAdNetworkConfigurationBuilder *(^)(BDMAdUnitFormat, BDMStringToStringMap *, BDMStringToObjectMap *))appendAdUnit {
+    return ^id(BDMAdUnitFormat fmt, BDMStringToStringMap *params, BDMStringToObjectMap *extras) {
+        BDMAdUnit *unit = [BDMAdUnit adUnitWithFormat:fmt params:params extras:extras];
+        if (![self.units containsObject:unit]) {
+            [self.units addObject:unit];
+        }
         return self;
     };
 }
@@ -107,14 +100,16 @@
 
 - (instancetype)initWithBuilder:(BDMAdNetworkConfigurationBuilder *)builder {
     if (self = [super init]) {
-        self.name = builder.name;
-        self.networkClass = builder.networkClass;
-        self.initializationParams = builder.initializationParams;
-        self.adUnits = builder.units;
-        self.timeout = builder.preparationTimeout;
+        self.name           = builder.name;
+        self.params         = builder.params;
+        self.adUnits        = builder.units;
+        self.timeout        = builder.timeout;
+        self.networkClass   = builder.networkClass;
     }
     return self;
 }
+
+#pragma mark - Coding
 
 + (BOOL)supportsSecureCoding {
     return YES;
@@ -122,30 +117,32 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:@"name"];
-    [aCoder encodeObject:NSStringFromClass(self.networkClass) forKey:@"networkClass"];
-    [aCoder encodeObject:self.initializationParams forKey:@"params"];
-    [aCoder encodeObject:self.adUnits forKey:@"ad_units"];
+    [aCoder encodeObject:self.params forKey:@"params"];
     [aCoder encodeDouble:self.timeout forKey:@"timeout"];
+    [aCoder encodeObject:self.adUnits forKey:@"ad_units"];
+    [aCoder encodeObject:NSStringFromClass(self.networkClass) forKey:@"networkClass"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super init]) {
-        self.name                               = [aDecoder decodeObjectForKey:@"name"];
-        self.networkClass                       = [aDecoder decodeObjectForKey:@"networkClass"] ? NSClassFromString([aDecoder decodeObjectForKey:@"networkClass"]) : nil;
-        self.initializationParams               = [aDecoder decodeObjectForKey:@"params"];
-        self.adUnits                            = [aDecoder decodeObjectForKey:@"ad_units"];
-        self.timeout                            = [aDecoder decodeDoubleForKey:@"timeout"];
+        self.name            = [aDecoder decodeObjectForKey:@"name"];
+        self.params          = [aDecoder decodeObjectForKey:@"params"];
+        self.timeout         = [aDecoder decodeDoubleForKey:@"timeout"];
+        self.adUnits         = [aDecoder decodeObjectForKey:@"ad_units"];
+        self.networkClass    = [aDecoder decodeObjectForKey:@"networkClass"] ? NSClassFromString([aDecoder decodeObjectForKey:@"networkClass"]) : nil;
     }
     return self;
 }
 
+#pragma mark - Coping
+
 - (id)copyWithZone:(NSZone *)zone {
     return [BDMAdNetworkConfiguration buildWithBuilder:^(BDMAdNetworkConfigurationBuilder *builder) {
         builder.appendName(self.name);
-        builder.appendInitializationParams(self.initializationParams);
+        builder.appendParams(self.params);
         builder.appendNetworkClass(self.networkClass);
-        [self.adUnits enumerateObjectsUsingBlock:^(BDMAdUnit *obj, NSUInteger idx, BOOL *stop) {
-            builder.appendAdUnit(obj.format, obj.customParams, obj.extras);
+        [self.adUnits enumerateObjectsUsingBlock:^(BDMAdUnit *unit, NSUInteger idx, BOOL *stop) {
+            builder.appendAdUnit(unit.format, unit.params, unit.extras);
         }];
     }];
 }
