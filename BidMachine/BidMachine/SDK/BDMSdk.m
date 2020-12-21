@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, strong) BDMHeaderBiddingController *headerBiddingController;
 @property (nonatomic, strong) BDMContextualController *contextualController;
+@property (nonatomic, strong) NSArray<BDMAdNetworkConfiguration *> *networkConfigurations;
 
 @property (nonatomic, copy) NSString *sellerID;
 @property (nonatomic, copy) BDMSdkConfiguration *configuration;
@@ -111,19 +112,6 @@
     self.sellerID = sellerID;
     self.configuration = configuration;
     
-    // Parallel bidding
-    [self registerNetworks];
-    [self.registry initNetworks];
-    
-    NSArray <BDMAdNetworkConfiguration *> *networkConfigs = self.configuration.networkConfigurations;
-    if (!networkConfigs.count) {
-        self.initialized = YES;
-        STK_RUN_BLOCK(completion);
-    } else {
-        [self initializeNetworks:networkConfigs
-                      completion:completion];
-    }
-    
     if (self.retryTimer) {
         return;
     }
@@ -149,6 +137,21 @@
             [weakSelf.middleware fulfillEvent:BDMEventInitialisation];
             // Update session time to life
             [weakSelf.contextualController updateSessionDelayInterval:response.sessionDelay];
+            // Update network congiguration
+            weakSelf.networkConfigurations = response.networkConfigurations;
+            // Parallel bidding
+            [weakSelf registerNetworks];
+            [weakSelf.registry initNetworks];
+            
+            NSArray <BDMAdNetworkConfiguration *> *networkConfigs = weakSelf.networkConfigurations;
+            if (!networkConfigs.count) {
+                weakSelf.initialized = YES;
+                STK_RUN_BLOCK(completion);
+            } else {
+                [weakSelf initializeNetworks:networkConfigs
+                                  completion:completion];
+            }
+            
             timer.stop();
         } failure:^(NSError *error) {
             // Reject initialisation
@@ -211,6 +214,10 @@
     return _contextualController;
 }
 
+- (NSArray<BDMAdNetworkConfiguration *> *)networkConfigurations {
+    return self.configuration.networkConfigurations.count ? self.configuration.networkConfigurations : _networkConfigurations;
+}
+
 #pragma mark - BDMHeaderBiddingControllerDelegate
 
 - (id<BDMNetwork>)networkWithName:(NSString *)name controller:(BDMHeaderBiddingController *)controller {
@@ -253,7 +260,7 @@
 - (void)registerNetworks {
     // Register networks first
     NSArray <NSString *> *embeddedNetworks = @[ @"BDMMRAIDNetwork", @"BDMVASTNetwork", @"BDMNASTNetwork" ];
-    NSMutableArray <Class<BDMNetwork>> *networkClasses = ANY(self.configuration.networkConfigurations)
+    NSMutableArray <Class<BDMNetwork>> *networkClasses = ANY(self.networkConfigurations)
     .flatMap(^id(BDMAdNetworkConfiguration *config){
         return config.networkClass;
     }).array.mutableCopy ?: [NSMutableArray arrayWithCapacity:3];
@@ -289,7 +296,7 @@
     [self.middleware startEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
                       placement:placementType];
     
-    NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = configs.count ? configs : self.configuration.networkConfigurations;
+    NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = configs.count ? configs : self.networkConfigurations;
     BDMHeaderBiddingInitialisationOperation *initialisation = [BDMFactory.sharedFactory initialisationOperationForNetworks:networkConfigurations
                                                                                                                 controller:self.headerBiddingController
                                                                                                          waitUntilFinished:YES];

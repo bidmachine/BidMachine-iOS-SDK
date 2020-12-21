@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BDMEventURL.h"
+#import "BDMAdNetworkConfiguration.h"
 
 
 @protocol BDMInitialisationResponse <NSObject>
 
 @property (nonatomic, copy, readonly) NSURL *auctionURL;
 @property (nonatomic, copy, readonly) NSArray <BDMEventURL *> *eventURLs;
+@property (nonatomic, copy, readonly) NSArray <BDMAdNetworkConfiguration *> *networkConfigurations;
 
 @property (nonatomic, assign, readonly) NSTimeInterval sessionDelay;
 
