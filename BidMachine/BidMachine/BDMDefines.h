@@ -21,6 +21,9 @@ FOUNDATION_EXPORT NSString * const kBDMVersion;
 
 #define BDMLog(fmt, ...)  BDMSdkLoggingEnabled ? NSLog(@"[BidMachine][%@] "fmt, kBDMVersion, ##__VA_ARGS__) : nil
 
+typedef NSDictionary <NSString *, NSString *> BDMStringToStringMap;
+typedef NSDictionary <NSString *, id> BDMStringToObjectMap;
+
 typedef NSString BDMFmwName;
 FOUNDATION_EXPORT BDMFmwName * const BDMNativeFramework;
 FOUNDATION_EXPORT BDMFmwName * const BDMNUnityFramework;

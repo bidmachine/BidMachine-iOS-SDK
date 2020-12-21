@@ -12,33 +12,34 @@
 @interface BDMAdUnit ()
 
 @property (nonatomic, assign, readwrite) BDMAdUnitFormat format;
-@property (nonatomic, copy,   readwrite) NSDictionary <NSString *, id> *customParams;
-@property (nonatomic, copy,   readwrite) NSDictionary <NSString *, id> *extras;
+@property (nonatomic, copy,   readwrite) BDMStringToStringMap *params;
+@property (nonatomic, copy,   readwrite) BDMStringToObjectMap *extras;
 
 @end
 
 
 @implementation BDMAdUnit
 
++ (instancetype)adUnitWithFormat:(BDMAdUnitFormat)format
+                          params:(BDMStringToStringMap *)params
+                          extras:(BDMStringToObjectMap *)extras {
+    return [[self alloc] initWithFormat:format
+                                 params:params
+                                 extras:extras];
+}
+
 - (instancetype)initWithFormat:(BDMAdUnitFormat)format
-                  customParams:(NSDictionary<NSString *,id> *)customParams
-                        extras:(NSDictionary<NSString *,id> *)extras {
+                        params:(BDMStringToStringMap *)params
+                        extras:(BDMStringToObjectMap *)extras {
     if (self = [super init]) {
         self.format = format;
-        self.customParams = customParams;
+        self.params = params;
         self.extras = extras;
     }
     return self;
 }
 
-- (instancetype)initWithFormat:(BDMAdUnitFormat)format
-                  customParams:(NSDictionary<NSString *,id> *)customParams {
-    return [self initWithFormat:format customParams:customParams extras:nil];
-}
-
-+ (instancetype)adUnitWithFormat:(BDMAdUnitFormat)type customParams:(NSDictionary<NSString *,id> *)customParams {
-    return [[self alloc] initWithFormat:type customParams:customParams];
-}
+#pragma mark - Coding
 
 + (BOOL)supportsSecureCoding {
     return YES;
@@ -46,26 +47,31 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInteger:self.format forKey:@"format"];
-    [aCoder encodeObject:self.customParams forKey:@"params"];
     [aCoder encodeObject:self.extras forKey:@"extras"];
+    [aCoder encodeObject:self.params forKey:@"params"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     BDMAdUnitFormat format = [aDecoder decodeIntegerForKey:@"format"];
-    NSDictionary *params = [aDecoder decodeObjectForKey:@"params"];
     NSDictionary *extras = [aDecoder decodeObjectForKey:@"extras"];
-    
-    return [self initWithFormat:format customParams:params extras:extras];
+    NSDictionary *params = [aDecoder decodeObjectForKey:@"params"];
+    return [self initWithFormat:format params:params extras:extras];
 }
 
+#pragma mark - Coping
+
 - (id)copyWithZone:(nullable NSZone *)zone {
-    return [[self.class alloc] initWithFormat:self.format customParams:self.customParams extras:self.extras];
+    return [[self.class alloc] initWithFormat:self.format
+                                       params:self.params
+                                       extras:self.extras];
 }
+
+#pragma mark - Equals
 
 - (BOOL)isEqual:(id)object {
     return [object isKindOfClass:BDMAdUnit.class] &&
     [(BDMAdUnit *)object format] == self.format &&
-    [[(BDMAdUnit *)object customParams] isEqual:self.customParams] &&
+    [[(BDMAdUnit *)object params] isEqual:self.params] &&
     [[(BDMAdUnit *)object extras] isEqual:self.extras];
 }
 

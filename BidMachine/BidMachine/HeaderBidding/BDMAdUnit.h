@@ -15,18 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BDMAdUnit : NSObject <NSSecureCoding, NSCopying>
 
 @property (nonatomic, assign, readonly) BDMAdUnitFormat format;
-@property (nonatomic, copy,   readonly) NSDictionary <NSString *, id> *customParams;
-@property (nonatomic, copy,   readonly, nullable) NSDictionary <NSString *, id> *extras;
-
-- (instancetype)initWithFormat:(BDMAdUnitFormat)format
-                  customParams:(NSDictionary <NSString *, id> *)customParams;
-
-- (instancetype)initWithFormat:(BDMAdUnitFormat)format
-                  customParams:(NSDictionary <NSString *, id> *)customParams
-                        extras:(nullable NSDictionary <NSString *, id> *)extras;
+@property (nonatomic, copy,   readonly,  nonnull) BDMStringToStringMap *params;
+@property (nonatomic, copy,   readonly, nullable) BDMStringToObjectMap *extras;
 
 + (instancetype)adUnitWithFormat:(BDMAdUnitFormat)format
-                    customParams:(NSDictionary <NSString *, id> *)customParams;
+                          params:(nonnull  BDMStringToStringMap *)params
+                          extras:(nullable BDMStringToObjectMap *)extras;
+                          
 
 @end
 
