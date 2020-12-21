@@ -146,7 +146,7 @@
             NSArray <BDMAdNetworkConfiguration *> *networkConfigs = weakSelf.networkConfigurations;
             if (!networkConfigs.count) {
                 weakSelf.initialized = YES;
-                STK_RUN_BLOCK(completion);
+                completion ? dispatch_async(dispatch_get_main_queue(), completion) : nil;
             } else {
                 [weakSelf initializeNetworks:networkConfigs
                                   completion:completion];
