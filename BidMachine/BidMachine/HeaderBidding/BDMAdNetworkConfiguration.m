@@ -22,10 +22,10 @@
 
 @interface BDMAdNetworkConfigurationBuilder ()
 
-@property (nonatomic, copy, readwrite) NSString *name;
-@property (nonatomic, copy, readwrite) Class<BDMNetwork> networkClass;
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *params;
-@property (nonatomic, copy, readwrite) NSMutableArray <BDMAdUnit *> *units;
+@property (nonatomic, strong, readwrite) NSString *name;
+@property (nonatomic, strong, readwrite) Class<BDMNetwork> networkClass;
+@property (nonatomic, strong, readwrite) NSDictionary <NSString *, id> *params;
+@property (nonatomic, strong, readwrite) NSMutableArray <BDMAdUnit *> *units;
 @property (nonatomic, assign, readwrite) NSTimeInterval timeout;
 
 @end 

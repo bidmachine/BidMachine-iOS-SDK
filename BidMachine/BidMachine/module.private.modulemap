@@ -1,4 +1,5 @@
 explicit module BidMachine.Adapters {
+    header "BDMAdUnit.h"
     header "BDMAdapterProtocol.h"
     header "BDMNetworkProtocol.h"
     header "NSError+BDMSdk.h"

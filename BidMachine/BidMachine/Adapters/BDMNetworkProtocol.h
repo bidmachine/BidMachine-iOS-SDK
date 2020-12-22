@@ -11,81 +11,49 @@
 #import <BidMachine/BDMDefines.h>
 
 @class BDMSdk;
+@class BDMAdUnit;
 @protocol BDMNetwork;
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^BDMCollectBiddingParamtersBlock)(BDMStringToStringMap *_Nullable, NSError *_Nullable);
+typedef void(^BDMInitializeBiddingNetworkBlock)(BOOL, NSError *_Nullable);
+
 @protocol BDMNetwork <NSObject>
-/**
- Ad network name
- */
-@property (nonatomic, copy, readonly) NSString *name;
 
-/**
- Available initialiser
- 
- @return Instance of network
- */
 - (instancetype)init;
-/**
- Available initialiser
- 
- @return Instance of network
- */
 + (instancetype)new;
-/**
- Indicates SDK version
- */
-@property (nonatomic, copy, readonly) NSString *sdkVersion;
 
+/// Ad network name
+@property (nonatomic, copy, readonly) NSString *name;
+/// Indicates SDK version
+@property (nonatomic, copy, readonly) NSString *sdkVersion;
 @optional
-/**
- Starts session in ad network
- 
- @param parameters Custom dictionary that contains parameters for network initialisation
- @param completion Triggers when network completes initialisation
- */
-- (void)initialiseWithParameters:(BDMStringToStringMap *)parameters
-                      completion:(void(^_Nonnull)(BOOL, NSError *_Nullable))completion;
-/**
- Transfoms and populate adunit information for auction
- Need to implement if Third party SDK contains several info
- that BidMachine SDK doesn't have
- 
- @param parameters Received information
- @param adUnitFormat AdUnitFormat
- @param completion Block that fires when ad network finished collecting information
- */
-- (void)collectHeaderBiddingParameters:(BDMStringToStringMap *)parameters
-                          adUnitFormat:(BDMAdUnitFormat)adUnitFormat
-                            completion:(void(^_Nonnull)(NSDictionary <NSString *, id> *_Nullable, NSError *_Nullable))completion;
-/**
- Returns banner adapter
- 
- @param sdk Current sdk
- @return Banner adapter
- */
+/// Starts session in ad network
+/// @param parameters Custom dictionary that contains parameters for network initialization
+/// @param units Array of all initialized ad untits
+/// @param completion Triggers when network completes initialisation (return YES if network was initialized first time)
+- (void)initializeWithParameters:(BDMStringToStringMap *)parameters
+                           units:(NSArray <BDMAdUnit *> *)units
+                      completion:(BDMInitializeBiddingNetworkBlock)completion;
+/// Transfoms and populate adunit information for auction
+/// Need to implement if Third party SDK contains several info
+/// that BidMachine SDK doesn't have
+/// @param unit Current adUnit
+/// @param completion Block that fires when ad network finished collecting information
+- (void)collectHeaderBiddingParameters:(BDMAdUnit *)unit
+                            completion:(BDMCollectBiddingParamtersBlock)completion;
+/// Returns banner adapter
+/// @param sdk Current sdk
 - (id<BDMBannerAdapter>)bannerAdapterForSdk:(BDMSdk *)sdk;
-/**
- Returns interstitial adapter
- 
- @param sdk Current sdk
- @return Interstitial adapter
- */
+/// Returns interstitial adapter
+/// @param sdk Current sdk
 - (id<BDMFullscreenAdapter>)interstitialAdAdapterForSdk:(BDMSdk *)sdk;
-/**
- Returns video adapter
- 
- @param sdk Current sdk
- @return Video adapter
- */
+/// Returns video adapter
+/// @param sdk Current sdk
 - (id<BDMFullscreenAdapter>)videoAdapterForSdk:(BDMSdk *)sdk;
-/**
- Returns native ad adapter
- 
- @param sdk Current sdk
- @return Native ad adapter
- */
+/// Returns native ad adapter
+/// @param sdk Native ad adapter
 - (id<BDMNativeAdServiceAdapter>)nativeAdAdapterForSdk:(BDMSdk *)sdk;
 @end
 

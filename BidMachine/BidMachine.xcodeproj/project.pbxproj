@@ -23,6 +23,7 @@
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
 		3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781991224CED19200E97FED /* BDMRequestStorageItem.m */; };
 		3781991624CED29600E97FED /* BDMRequestStorage+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991524CED29600E97FED /* BDMRequestStorage+Private.h */; };
+		37C0D70A259200D300586859 /* BDMNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
 		421137F021E880D200B65454 /* BDMAdRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137EE21E880D200B65454 /* BDMAdRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		421137F121E880D200B65454 /* BDMAdRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421137EF21E880D200B65454 /* BDMAdRequests.m */; };
@@ -132,7 +133,6 @@
 		9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25973E1FB1E4E5006F3FA7 /* BDMResponseProtocol.h */; };
 		9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597411FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h */; };
 		9C2597441FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2597421FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m */; };
-		9C2597471FB1EA50006F3FA7 /* BDMNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597461FB1EA50006F3FA7 /* BDMNetworkProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597491FB1EC49006F3FA7 /* BDMSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25974A1FB1EC49006F3FA7 /* BDMSdk.m */; };
 		9C25974F1FB1F8A0006F3FA7 /* BDMInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -300,7 +300,6 @@
 		9C25973E1FB1E4E5006F3FA7 /* BDMResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMResponseProtocol.h; sourceTree = "<group>"; };
 		9C2597411FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMServerCommunicator.h"; sourceTree = "<group>"; };
 		9C2597421FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMServerCommunicator.m"; sourceTree = "<group>"; };
-		9C2597461FB1EA50006F3FA7 /* BDMNetworkProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNetworkProtocol.h; sourceTree = "<group>"; };
 		9C2597491FB1EC49006F3FA7 /* BDMSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSdk.h; sourceTree = "<group>"; };
 		9C25974A1FB1EC49006F3FA7 /* BDMSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSdk.m; sourceTree = "<group>"; };
 		9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInterstitial.h; sourceTree = "<group>"; };
@@ -702,7 +701,6 @@
 		9CBED22B1FB3269A004C4669 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
-				9C2597461FB1EA50006F3FA7 /* BDMNetworkProtocol.h */,
 				42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */,
 				9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */,
 			);
@@ -785,7 +783,6 @@
 				426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */,
 				9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */,
 				6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */,
-				9C2597471FB1EA50006F3FA7 /* BDMNetworkProtocol.h in Headers */,
 				3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */,
 				9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */,
 				427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */,
@@ -801,6 +798,7 @@
 				425EF00F2164C897004B1839 /* BDMSdkConfiguration.h in Headers */,
 				9C2597281FB1DC91006F3FA7 /* BidMachine.h in Headers */,
 				420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */,
+				37C0D70A259200D300586859 /* BDMNetworkProtocol.h in Headers */,
 				9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */,
 				9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */,
 				65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */,

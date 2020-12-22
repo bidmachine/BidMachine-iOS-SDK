@@ -1,145 +1,200 @@
 [
     {
-        "approll_id": "40f6d541-b128-4015-9a93-767bb8995669",
         "network": "approll",
-        "network_class": "BDMAppRollAdNetwork"
+        "network_class": "BDMAppRollAdNetwork",
+        "params" :
+        {
+            "approll_id": "40f6d541-b128-4015-9a93-767bb8995669"
+        }
     },
     {
-        "ad_units": [
-            {
-                "placement_id": "95298PL39048",
-                "format": "interstitial"
-            }
-        ],
-        "app_id": "5a35a75845eaab51250070a5",
         "network": "vungle",
-        "network_class": "BDMVungleAdNetwork"
-    },
-    {
+        "network_class": "BDMVungleAdNetwork",
+        "params" :
+        {
+            "app_id": "5a35a75845eaab51250070a5"
+        },
         "ad_units": [
             {
-                "unit_id": "140138",
-                "format": "interstitial"
+                "format": "interstitial",
+                "params" :
+                {
+                    "placement_id": "95298PL39048"
+                }
+            }
+        ]
+    },
+    {
+        "network": "my_target",
+        "network_class": "BDMMyTargetAdNetwork",
+        "ad_units": [
+            {
+                "format": "banner_300x250",
+                "params" :
+                {
+                    "slot_id": "576962"
+                }
+            }
+        ]
+    },
+    {
+        "network": "facebook",
+        "network_class": "BDMFacebookAdNetwork",
+        "params" :
+        {
+            "app_id": "1525692904128549"
+        },
+        "ad_units": [
+            {
+                "format": "rewarded",
+                "params" :
+                {
+                    "facebook_key": "1525692904128549_2395742753790222"
+                }
             },
             {
-                "unit_id": "140136",
-                "format": "rewarded"
+                "format": "interstitial",
+                "params" :
+                {
+                    "facebook_key": "1525692904128549_2395740550457109"
+                }
+            },
+            {
+                "format": "banner",
+                "params" :
+                {
+                    "facebook_key": "1525692904128549_2395736947124136"
+                }
             }
-        ],
-        "app_id": "117851",
-        "api_key": "8627b127f51e01875ba2e2fd71a88f95",
-        "network": "mintegral",
-        "network_class": "BDMMintegralAdNetwork"
+        ]
     },
     {
-        "ad_units": [
-            {
-                "slot_id": "576962",
-                "format": "banner_300x250"
-            }
-        ],
-        "network": "my_target",
-        "network_class": "BDMMyTargetAdNetwork"
-    },
-    {
-        "ad_units": [
-            {
-                "facebook_key": "323042751509018_640127076467249",
-                "format": "rewarded"
-            }
-        ],
-        "app_id": "323042751509018",
-        "placement_ids": [
-            "323042751509018_640127076467249"
-        ],
-        "network": "facebook",
-        "network_class": "BDMFacebookAdNetwork"
-    },
-    {
-        "ad_units": [
-            {
-                "placement_name": "video_without_cap_pb",
-                "format": "interstitial_video"
-            }
-        ],
-        "sdk_key": "6gwG-HstT_aLMpZXUXlhNgEBja6Q5bq7i4GtdFMJoarOufnp36PaVlG2OBmw",
         "network": "tapjoy",
-        "network_class": "BDMTapjoyAdNetwork"
+        "network_class": "BDMTapjoyAdNetwork",
+        "params" :
+        {
+            "sdk_key": "6gwG-HstT_aLMpZXUXlhNgEBja6Q5bq7i4GtdFMJoarOufnp36PaVlG2OBmw"
+        },
+        "ad_units": [
+            {
+                "format": "interstitial_video",
+                "params" :
+                {
+                    "placement_name": "video_without_cap_pb"
+                }
+            }
+        ]
     },
     {
+        "network": "adcolony",
+        "network_class": "BDMAdColonyAdNetwork",
+        "params" :
+        {
+            "app_id": "app327320f8ced14e61b2"
+        },
         "ad_units": [
             {
                 "format": "rewarded_video",
-                "zone_id": "vzf07cd496be04483cad"
+                "params" :
+                {
+                    "zone_id": "vzf07cd496be04483cad"
+                }
             },
             {
                 "format": "interstitial_video",
-                "zone_id": "vz7fdef471647c416682"
+                "params" :
+                {
+                    "zone_id": "vz7fdef471647c416682"
+                }
             }
-        ],
-        "app_id": "app327320f8ced14e61b2",
-        "zones": [
-            "vzf07cd496be04483cad",
-            "vz7fdef471647c416682"
-        ],
-        "network": "adcolony",
-        "network_class": "BDMAdColonyAdNetwork"
+        ]
     },
     {
-        "ad_units": [
-            {
-                "slot_uuid": "54fb2d08-c222-40b1-8bbe-4879322dc04b",
-                "format": "banner_300x250"
-            },
-            {
-                "slot_uuid": "4e918ac0-5c68-4fe1-8d26-4e76e8f74831",
-                "format": "interstitial_static"
-            }
-        ],
-        "app_key": "a9_onboarding_app_id",
         "network": "amazon",
-        "network_class": "BDMAmazonNetwork"
-    },
-    {
+        "network_class": "BDMAmazonNetwork",
+        "params" :
+        {
+            "app_key": "a9_onboarding_app_id"
+        },
         "ad_units": [
             {
-                "ad_unit_id": "30s6zt3ayypfyemwjvmp",
-                "format": "banner_320x50"
+                "format": "banner_300x250",
+                "params" :
+                {
+                    "slot_uuid": "54fb2d08-c222-40b1-8bbe-4879322dc04b"
+                }
             },
             {
-                "orientation": "portrait",
-                "ad_unit_id": "6yws53jyfjgoq1ghnuqb",
-                "format": "interstitial_static"
-            },
-            {
-                "orientation": "landscape",
-                "ad_unit_id": "6yws53jyfjgoq1ghnuqb",
-                "format": "interstitial_static"
+                "format": "interstitial_static",
+                "params" :
+                {
+                    "slot_uuid": "4e918ac0-5c68-4fe1-8d26-4e76e8f74831"
+                }
             }
-        ],
-        "publisher_id": "B-057601",
-        "banner_ad_units": ["30s6zt3ayypfyemwjvmp"],
-        "interstitial_ad_units": ["6yws53jyfjgoq1ghnuqb"],
+        ]
+    },
+    {
         "network": "criteo",
-        "network_class": "BDMCriteoAdNetwork"
-    },
-    {
+        "network_class": "BDMCriteoAdNetwork",
+        "params" :
+        {
+            "publisher_id": "B-057601"
+        },
         "ad_units": [
             {
-                "ad_space_id": "130563103",
-                "format": "banner_320x50"
+                "format": "banner_320x50",
+                "params" :
+                {
+                    "ad_unit_id": "30s6zt3ayypfyemwjvmp"
+                }
             },
             {
-                "ad_space_id": "130626426",
-                "format": "interstitial_static"
+                "format": "interstitial_static",
+                "params" :
+                {
+                    "orientation": "portrait",
+                    "ad_unit_id": "6yws53jyfjgoq1ghnuqb"
+                }
             },
             {
-                "ad_space_id": "130626428",
-                "format": "rewarded"
+                "format": "interstitial_static",
+                "params" :
+                {
+                    "orientation": "landscape",
+                    "ad_unit_id": "6yws53jyfjgoq1ghnuqb"
+                }
             }
-        ],
-        "publisher_id": "1100042525",
+        ]
+    },
+    {
         "network": "smaato",
-        "network_class": "BDMSmaatoAdNetwork"
+        "network_class": "BDMSmaatoAdNetwork",
+        "params" :
+        {
+            "publisher_id": "1100042525"
+        },
+        "ad_units": [
+            {
+                "format": "banner_320x50",
+                "params" :
+                {
+                    "ad_space_id": "130563103"
+                }
+            },
+            {
+                "format": "interstitial_static",
+                "params" :
+                {
+                    "ad_space_id": "130626426"
+                }
+            },
+            {
+                "format": "rewarded",
+                "params" :
+                {
+                    "ad_space_id": "130626428"
+                }
+            }
+        ]
     }
 ]

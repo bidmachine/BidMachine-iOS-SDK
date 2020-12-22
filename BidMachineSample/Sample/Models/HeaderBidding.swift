@@ -45,13 +45,13 @@ where Key == String, Value == Any {
                 .flatMap { builder.appendNetworkClass($0) }
             let _ = (self["network"] as? String)
                 .flatMap(builder.appendName)
-            let _ = builder.appendInitializationParams(self)
+            let _ = builder.appendParams(self["params"] as? [String: String] ?? [:])
             (self["ad_units"] as? [[String: Any]])?
                 .forEach { data in
                     let _ = builder.appendAdUnit(
                         BDMAdUnitFormatFromString(data["format"] as? String),
-                        data.filter { $0.key != "format" },
-                        data.filter { $0.key != "format" }
+                        data["params"] as? [String: String] ?? [:],
+                        data["params"] as? [String: String] 
                     )
             }
         }
