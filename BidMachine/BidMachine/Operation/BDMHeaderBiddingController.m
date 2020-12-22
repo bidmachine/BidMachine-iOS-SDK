@@ -27,7 +27,7 @@
                         network:config.name];
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [network initialiseWithParameters:config.initializationParams completion:^(BOOL hasAttempt, NSError *error) {
+        [network initialiseWithParameters:config.params completion:^(BOOL hasAttempt, NSError *error) {
             if (!hasAttempt) {
                 [weakSelf.middleware removeEvent:BDMEventHeaderBiddingNetworkInitializing
                                          network:config.name];
@@ -57,7 +57,7 @@
                         network:network];
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [adNetwork collectHeaderBiddingParameters:adUnit.customParams
+        [adNetwork collectHeaderBiddingParameters:adUnit.params
                                      adUnitFormat:adUnit.format
                                        completion:^(NSDictionary<NSString *,id> *bidding, NSError *error) {
             if (error || !bidding.count) {

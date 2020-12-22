@@ -93,7 +93,7 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
         BDMHeaderBiddingPlacement_AdUnit *message = [BDMHeaderBiddingPlacement_AdUnit message];
         message.bidder = unit.bidder;
         message.bidderSdkver = unit.bidderSdkVersion;
-        message.clientParams = BDMTransformers.protobufMap(unit.clientParams);
+        message.clientParams = unit.clientParams.mutableCopy;
         return message;
     }).array.mutableCopy;
     

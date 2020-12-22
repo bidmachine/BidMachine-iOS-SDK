@@ -14,20 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BDMPlacementAdUnit <NSObject>
 
-@property (nonatomic, copy, readonly) NSString *bidder;
-@property (nonatomic, copy, readonly, nullable) NSString *bidderSdkVersion;
-@property (nonatomic, copy, readonly) NSDictionary <NSString *, id> *clientParams;
 @property (nonatomic, assign, readonly) BDMAdUnitFormat format;
+@property (nonatomic, copy,   readonly) NSString *bidder;
+@property (nonatomic, copy,   readonly) NSString *bidderSdkVersion;
+@property (nonatomic, copy,   readonly) BDMStringToStringMap *clientParams;
 
 @end
 
-
 @interface BDMPlacementAdUnitBuilder: NSObject
 
+@property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendBidder)(NSString *);
 @property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendAdUnit)(BDMAdUnit *);
 @property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendSdkVersion)(NSString *);
-@property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendBidder)(NSString *);
-@property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendClientParamters)(NSDictionary <NSString *, id> *);
+@property (nonatomic, readonly) BDMPlacementAdUnitBuilder *(^appendClientParamters)(BDMStringToStringMap *);
 
 + (id<BDMPlacementAdUnit>)placementAdUnitWithBuild:(void(^)(BDMPlacementAdUnitBuilder *))build;
 

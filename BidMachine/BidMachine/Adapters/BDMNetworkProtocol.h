@@ -33,19 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
  @return Instance of network
  */
 + (instancetype)new;
-
-@optional
 /**
  Indicates SDK version
  */
 @property (nonatomic, copy, readonly) NSString *sdkVersion;
+
+@optional
 /**
  Starts session in ad network
  
  @param parameters Custom dictionary that contains parameters for network initialisation
  @param completion Triggers when network completes initialisation
  */
-- (void)initialiseWithParameters:(NSDictionary <NSString *, id>*)parameters
+- (void)initialiseWithParameters:(BDMStringToStringMap *)parameters
                       completion:(void(^_Nonnull)(BOOL, NSError *_Nullable))completion;
 /**
  Transfoms and populate adunit information for auction
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param adUnitFormat AdUnitFormat
  @param completion Block that fires when ad network finished collecting information
  */
-- (void)collectHeaderBiddingParameters:(NSDictionary <NSString *, id> *)parameters
+- (void)collectHeaderBiddingParameters:(BDMStringToStringMap *)parameters
                           adUnitFormat:(BDMAdUnitFormat)adUnitFormat
                             completion:(void(^_Nonnull)(NSDictionary <NSString *, id> *_Nullable, NSError *_Nullable))completion;
 /**

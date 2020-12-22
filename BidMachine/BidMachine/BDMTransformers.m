@@ -173,26 +173,6 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
     };
 }
 
-+ (NSDictionary<NSString *,NSString *> *(^)(NSMutableDictionary<NSString *,NSString *> *))jsonObject {
-    return ^id(NSMutableDictionary<NSString *,NSString *> *protobufMap) {
-        return protobufMap ?: @{};
-    };
-}
-
-+ (NSMutableDictionary<NSString *,NSString *> *(^)(NSDictionary<NSString *,id> *))protobufMap {
-    return ^id(NSDictionary<NSString *,id> *jsonObject) {
-        NSMutableDictionary <NSString *, NSString *> *protobufMap = [NSMutableDictionary dictionaryWithCapacity:jsonObject.count];
-        [jsonObject enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-            if ([obj isKindOfClass:NSString.class]) {
-                protobufMap[key] = (NSString *)obj;
-            } else if ([obj isKindOfClass:NSNumber.class]) {
-                protobufMap[key] = [(NSNumber *)obj stringValue];
-            }
-        }];
-        return protobufMap;
-    };
-}
-
 + (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMInternalPlacementType))adUnits {
     return ^NSArray *(BDMAdNetworkConfiguration *config, BDMInternalPlacementType placement) {
         return ANY(config.adUnits).filter(^BOOL(BDMAdUnit *unit){

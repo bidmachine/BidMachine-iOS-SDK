@@ -6,30 +6,24 @@
 //  Copyright © 2019 Appodeal. All rights reserved.
 //
 
-#import "BDMPlacementAdUnit.h"
 #import "BDMAdUnit.h"
+#import "BDMPlacementAdUnit.h"
 
 #import <StackFoundation/StackFoundation.h>
 
 
 @interface BDMAdUnitExtended : BDMAdUnit <BDMPlacementAdUnit>
 
-@property (nonatomic, copy, readwrite) NSString *bidderSdkVersion;
 @property (nonatomic, copy, readwrite) NSString *bidder;
-@property (nonatomic, copy, readwrite) NSDictionary <NSString *, id> *clientParams;
+@property (nonatomic, copy, readwrite) NSString *bidderSdkVersion;
+@property (nonatomic, copy, readwrite) BDMStringToStringMap *clientParams;
 
 @end
 
 
 @implementation BDMAdUnitExtended
 
-- (id)copyWithZone:(NSZone *)zone {
-    BDMAdUnitExtended *copy = [super copyWithZone:zone];
-    copy.bidderSdkVersion = self.bidderSdkVersion;
-    copy.clientParams = self.clientParams;
-    copy.bidder = self.bidder;
-    return copy;
-}
+#pragma mark - Coding
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -48,15 +42,25 @@
     [aCoder encodeObject:self.bidder forKey:@"bidder"];
 }
 
+#pragma mark - Coping
+
+- (id)copyWithZone:(NSZone *)zone {
+    BDMAdUnitExtended *copy = [super copyWithZone:zone];
+    copy.bidderSdkVersion = self.bidderSdkVersion;
+    copy.clientParams = self.clientParams;
+    copy.bidder = self.bidder;
+    return copy;
+}
+
 @end
 
 
 @interface BDMPlacementAdUnitBuilder ()
 
-@property (nonatomic, copy) BDMAdUnit *adUnit;
-@property (nonatomic, copy) NSString *sdkVer;
 @property (nonatomic, copy) NSString *bidder;
-@property (nonatomic, copy) NSDictionary <NSString *, id> *clientParams;
+@property (nonatomic, copy) NSString *sdkVer;
+@property (nonatomic, copy) BDMAdUnit *adUnit;
+@property (nonatomic, copy) BDMStringToStringMap *clientParams;
 
 @end
 
@@ -66,12 +70,12 @@
 + (id<BDMPlacementAdUnit>)placementAdUnitWithBuild:(void (^)(BDMPlacementAdUnitBuilder *))build {
     BDMPlacementAdUnitBuilder *builder = [BDMPlacementAdUnitBuilder new];
     build(builder);
-    BDMAdUnitExtended *placementAdUnit = [[BDMAdUnitExtended alloc] initWithFormat:builder.adUnit.format
-                                                                      customParams:builder.adUnit.customParams
-                                                                            extras:builder.adUnit.extras];
-    placementAdUnit.bidder = builder.bidder;
-    placementAdUnit.bidderSdkVersion = builder.sdkVer;
-    placementAdUnit.clientParams = [builder clientParamsWithExtras:builder.adUnit.extras];
+    BDMAdUnitExtended *placementAdUnit = [BDMAdUnitExtended adUnitWithFormat:builder.adUnit.format
+                                                                      params:builder.adUnit.params
+                                                                      extras:builder.adUnit.extras];
+    placementAdUnit.bidder             = builder.bidder;
+    placementAdUnit.bidderSdkVersion   = builder.sdkVer;
+    placementAdUnit.clientParams       = [builder clientParamsWithExtras:builder.adUnit.extras];
 
     return placementAdUnit;
 }
@@ -97,14 +101,14 @@
     };
 }
 
-- (BDMPlacementAdUnitBuilder *(^)(NSDictionary<NSString *,id> *))appendClientParamters {
-    return ^id(NSDictionary<NSString *,id> *clientParams) {
+- (BDMPlacementAdUnitBuilder *(^)(BDMStringToStringMap *))appendClientParamters {
+    return ^id(BDMStringToStringMap *clientParams) {
         self.clientParams = clientParams;
         return self;
     };
 }
 
-- (NSDictionary *)clientParamsWithExtras:(NSDictionary <NSString *, id> *)extras {
+- (NSDictionary *)clientParamsWithExtras:(BDMStringToObjectMap *)extras {
     NSMutableDictionary *params = self.clientParams.mutableCopy;
     if (extras.count) {
         NSData *data = [STKJSONSerialization dataWithJSONObject:extras options:NSJSONWritingFragmentsAllowed error:nil];

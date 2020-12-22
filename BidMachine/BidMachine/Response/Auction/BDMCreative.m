@@ -117,11 +117,12 @@ static NSString * const kBDMSkipOffset                  = @"skip_offset";
         }
         
         self.displaymanager = headerBiddingAd.bidder;
-        [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.clientParams)];
-        [renderingInfo addEntriesFromDictionary:BDMTransformers.jsonObject(headerBiddingAd.serverParams)];
+        [renderingInfo addEntriesFromDictionary:headerBiddingAd.clientParams ?: @{}];
+        [renderingInfo addEntriesFromDictionary:headerBiddingAd.serverParams ?: @{}];
     }
     
-    NSMutableDictionary *customParams = BDMTransformers.jsonObject(extensions.customParams).mutableCopy;
+    NSMutableDictionary *customParams = NSMutableDictionary.new;
+    [customParams addEntriesFromDictionary:extensions.customParams ?: @{}];
     if (headerBiddingAd.clientParams) {
         NSMutableDictionary *extDict = NSMutableDictionary.new;
         NSString *extString = headerBiddingAd.clientParams[@"bdm_ext"];

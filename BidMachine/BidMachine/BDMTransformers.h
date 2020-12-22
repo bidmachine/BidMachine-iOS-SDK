@@ -41,10 +41,6 @@
 
 + (NSArray <BDMEventURL *> *(^)(NSArray <ADCOMAd_Event *> *))eventURLs;
 
-+ (NSDictionary <NSString *, NSString *> *(^)(NSMutableDictionary <NSString *, NSString *> *))jsonObject;
-
-+ (NSMutableDictionary <NSString *, NSString *> *(^)(NSDictionary <NSString *, id> *))protobufMap;
-
 + (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMInternalPlacementType))adUnits;
 
 @end

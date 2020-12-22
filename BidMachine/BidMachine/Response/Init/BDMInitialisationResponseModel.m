@@ -38,8 +38,8 @@
     model.networkConfigurations = [responseMessage.adNetworksArray stk_transform:^BDMAdNetworkConfiguration *(BDMAdNetwork *adNetwork, NSUInteger idx) {
         BDMAdNetworkConfiguration *configuration = [BDMAdNetworkConfiguration buildWithBuilder:^(BDMAdNetworkConfigurationBuilder *builer) {
             builer.appendName(adNetwork.name);
+            builer.appendParams(adNetwork.customParams);
             builer.appendNetworkClass(NSClassFromString(adNetwork.className_p));
-            builer.appendInitializationParams(adNetwork.customParams);
             [adNetwork.adUnitsArray enumerateObjectsUsingBlock:^(BDMAdNetwork_AdUnit *obj, NSUInteger idx, BOOL *stop) {
                 builer.appendAdUnit(BDMAdUnitFormatFromString(obj.adFormat), obj.customParams, nil);
             }];
