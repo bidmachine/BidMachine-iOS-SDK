@@ -72,7 +72,7 @@
     return [object isKindOfClass:BDMAdUnit.class] &&
     [(BDMAdUnit *)object format] == self.format &&
     [[(BDMAdUnit *)object params] isEqual:self.params] &&
-    [[(BDMAdUnit *)object extras] isEqual:self.extras];
+    ([[(BDMAdUnit *)object extras] isEqual:self.extras] || (![(BDMAdUnit *)object extras] && !self.extras));
 }
 
 @end
