@@ -51,6 +51,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// Builds configuration for ad network adapter
 /// @param builder Builder block
 + (nullable instancetype)buildWithBuilder:(void(^)(BDMAdNetworkConfigurationBuilder *))builder;
+// Create configuration from JSON
+//"network": "name",                            // required unique network name
+//"network_class": "BDMNetworkClass",           // required network class name
+//"timeout": 5000,                              // optional time in ms
+//"params" : { String to String map },          // optional network initalize params
+//"ad_units": [{
+//  "format": "interstitial",                   // required can be: unknown,
+//                                              banner, banner_320x50, banner_728x90, banner_300x250
+//                                              interstitial_video, interstitial_static, interstitial
+//                                              rewarded_video, rewarded_static, rewarded
+//
+//  "params" : { String to String map },        // optional network prepare params
+//  "custom_params" : { String to Object map }  // optional publisher params. Back in request.auctionInfo.customParams
+//  }]
++ (nullable instancetype)configurationWithJSON:(nullable BDMStringToObjectMap *)json;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

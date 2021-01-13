@@ -8,6 +8,7 @@
 
 #import "BDMAdNetworkConfiguration.h"
 
+#import <StackFoundation/StackFoundation.h>
 
 @interface BDMAdNetworkConfiguration ()
 
@@ -85,6 +86,22 @@
 
 
 @implementation BDMAdNetworkConfiguration
+
++ (instancetype)configurationWithJSON:(BDMStringToObjectMap *)json {
+    return [BDMAdNetworkConfiguration buildWithBuilder:^(BDMAdNetworkConfigurationBuilder *builder) {
+        builder.appendName(ANY(json).from(@"network").string);
+        builder.appendNetworkClass(NSClassFromString(ANY(json).from(@"network_class").string));
+        builder.appendTimeout(ANY(json).from(@"timeout").number.doubleValue);
+        builder.appendParams(ANY(json).from(@"params").value);
+        ANY(json).from(@"ad_units").flatMap(^id(id unitJson) {
+            builder.appendAdUnit(
+                                 BDMAdUnitFormatFromString(ANY(unitJson).from(@"format").string),
+                                 ANY(unitJson).from(@"params").value,
+                                 ANY(unitJson).from(@"custom_params").value);
+            return nil;
+        });
+    }];
+}
 
 + (BDMAdNetworkConfiguration *)buildWithBuilder:(void (^)(BDMAdNetworkConfigurationBuilder *))builder {
     BDMAdNetworkConfigurationBuilder *build = [BDMAdNetworkConfigurationBuilder new];

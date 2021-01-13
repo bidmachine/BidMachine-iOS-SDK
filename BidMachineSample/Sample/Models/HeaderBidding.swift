@@ -27,33 +27,9 @@ final class HeaderBiddingProvider {
     func getConfigEntities(completion: @escaping ([BDMAdNetworkConfigEntity]) -> Void) {
         DispatchQueue.global().async {
             let entities:[BDMAdNetworkConfigEntity] = self.json
-                .compactMap { $0.adConfig() }
+                .compactMap { BDMAdNetworkConfiguration(json: $0) }
                 .map { ($0, false) }
             DispatchQueue.main.async { completion(entities) }
-        }
-    }
-}
-
-
-fileprivate extension Dictionary
-where Key == String, Value == Any {
-    func adConfig() -> BDMAdNetworkConfiguration? {
-        return BDMAdNetworkConfiguration.build { builder in
-            let _ = (self["network_class"] as? String)
-                .flatMap { NSClassFromString($0) }
-                .flatMap { $0 as? BDMNetwork.Type }
-                .flatMap { builder.appendNetworkClass($0) }
-            let _ = (self["network"] as? String)
-                .flatMap(builder.appendName)
-            let _ = builder.appendParams(self["params"] as? [String: String] ?? [:])
-            (self["ad_units"] as? [[String: Any]])?
-                .forEach { data in
-                    let _ = builder.appendAdUnit(
-                        BDMAdUnitFormatFromString(data["format"] as? String),
-                        data["params"] as? [String: String] ?? [:],
-                        data["params"] as? [String: String] 
-                    )
-            }
         }
     }
 }
