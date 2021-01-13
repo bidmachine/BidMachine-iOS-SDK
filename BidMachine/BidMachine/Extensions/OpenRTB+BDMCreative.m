@@ -210,7 +210,7 @@
     renderingInfo[kBDMControlCountdown]                 = self.countdown.bdmJSONRepresentation;
     renderingInfo[kBDMControlCloseButton]               = self.closeButton.bdmJSONRepresentation;
 
-    return nil;
+    return renderingInfo;
 }
 
 @end
