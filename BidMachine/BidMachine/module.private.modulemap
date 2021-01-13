@@ -3,6 +3,7 @@ explicit module BidMachine.Adapters {
     header "BDMAdapterProtocol.h"
     header "BDMNetworkProtocol.h"
     header "NSError+BDMSdk.h"
+    header "BDMAdapterDefines.h"
     export *
 }
 

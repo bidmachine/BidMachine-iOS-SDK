@@ -114,21 +114,21 @@
         "network_class": "BDMAmazonNetwork",
         "params" :
         {
-            "app_key": "a9_onboarding_app_id"
+            "app_key": "c5f20fe6e37146b08749d09bb2b6a4dd"
         },
         "ad_units": [
             {
-                "format": "banner_300x250",
+                "format": "banner_320x50",
                 "params" :
                 {
-                    "slot_uuid": "54fb2d08-c222-40b1-8bbe-4879322dc04b"
+                    "slot_uuid": "88e6293b-0bf0-43fc-947b-925babe7bf3f"
                 }
             },
             {
                 "format": "interstitial_static",
                 "params" :
                 {
-                    "slot_uuid": "4e918ac0-5c68-4fe1-8d26-4e76e8f74831"
+                    "slot_uuid": "424c37b6-38e0-4076-94e6-0933a6213496"
                 }
             }
         ]

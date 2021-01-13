@@ -61,7 +61,7 @@
     requestMessage.bundle = ANY(STKBundle.ID).string;
     requestMessage.os = BDMTransformers.osType(STKDevice.os);
     requestMessage.osv = ANY(STKDevice.osv).string;
-    requestMessage.sdk = @"BidMachine SDK";
+    requestMessage.sdk = @"BidMachine";
     requestMessage.sdkver = kBDMVersion;
     requestMessage.geo = self.geoMessage;
     requestMessage.deviceType = BDMTransformers.deviceType(STKDevice.type);

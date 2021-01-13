@@ -18,7 +18,7 @@
 @property (nonatomic, copy, readwrite, nullable) NSString * cID;
 @property (nonatomic, copy, readwrite, nullable) NSString * dealID;
 @property (nonatomic, copy, readwrite, nullable) NSArray <NSString *> * adDomains;
-@property (nonatomic, copy, readwrite, nullable) NSDictionary <NSString *, id> *customParams;
+@property (nonatomic, copy, readwrite, nullable) BDMStringToObjectMap *customParams;
 @property (nonatomic, copy, readwrite, nullable) NSString * demandSource;
 @property (nonatomic, copy, readwrite, nullable) NSNumber * price;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;

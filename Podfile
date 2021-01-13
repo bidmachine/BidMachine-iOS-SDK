@@ -15,16 +15,16 @@ def protobuf
 end
 
 def nast
-  pod 'StackIAB/StackNASTKit', '~> 1.1.0'
-  pod 'StackIAB/StackRichMedia', '~> 1.1.0'
+  pod 'StackIAB/StackNASTKit', '~> 1.2.0-Beta'
+  pod 'StackIAB/StackRichMedia', '~> 1.2.0-Beta'
 end
 
 def mraid
-  pod 'StackIAB/StackMRAIDKit', '~> 1.1.0'
+  pod 'StackIAB/StackMRAIDKit', '~> 1.2.0-Beta'
 end
 
 def vast 
-  pod 'StackIAB/StackVASTKit', '~> 1.1.0'
+  pod 'StackIAB/StackVASTKit', '~> 1.2.0-Beta'
 end
 
 def toasts

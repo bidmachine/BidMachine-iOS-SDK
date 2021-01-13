@@ -7,6 +7,7 @@
 //
 
 #import <BidMachine/BDMNativeAd.h>
+#import <BidMachine/BDMDefines.h>
 
 @protocol BDMAdapter;
 @protocol BDMFullscreenAdapter;
@@ -45,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly, nullable) UIView *adView;
 /// Call this method if adapter need to prepare content
 /// @param contentInfo Custom content info
-- (void)prepareContent:(NSDictionary <NSString *, NSString *> *)contentInfo;
+- (void)prepareContent:(BDMStringToObjectMap *)contentInfo;
 
 @end
 /// Banner adapter protocol delegate for rendering inline banner ad
