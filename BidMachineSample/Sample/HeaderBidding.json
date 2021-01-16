@@ -50,21 +50,21 @@
         },
         "ad_units": [
             {
-                "format": "rewarded",
+                "format": "rewarded_video",
                 "params" :
                 {
                     "facebook_key": "1525692904128549_2395742753790222"
                 }
             },
             {
-                "format": "interstitial",
+                "format": "interstitial_static",
                 "params" :
                 {
                     "facebook_key": "1525692904128549_2395740550457109"
                 }
             },
             {
-                "format": "banner",
+                "format": "banner_320x50",
                 "params" :
                 {
                     "facebook_key": "1525692904128549_2395736947124136"
