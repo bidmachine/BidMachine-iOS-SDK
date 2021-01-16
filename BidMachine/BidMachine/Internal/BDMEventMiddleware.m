@@ -9,7 +9,7 @@
 
 #import "BDMEventObject.h"
 #import "BDMEventMiddleware.h"
-#import "NSArray+BDMEventURL.h"
+#import "NSArray+BDMExtension.h"
 #import "BDMServerCommunicator.h"
 
 #import <StackFoundation/StackFoundation.h>

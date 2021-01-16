@@ -21,6 +21,7 @@
 #import "BDMRetryTimer.h"
 #import "BDMAuctionSettings.h"
 #import "BDMEventMiddleware.h"
+#import "NSArray+BDMExtension.h"
 
 #import <StackFoundation/StackFoundation.h>
 
@@ -37,6 +38,7 @@
 @property (nonatomic, strong) BDMHeaderBiddingController *headerBiddingController;
 @property (nonatomic, strong) BDMContextualController *contextualController;
 @property (nonatomic, strong) NSArray<BDMAdNetworkConfiguration *> *networkConfigurations;
+@property (nonatomic, strong) NSArray<BDMAdNetworkConfiguration *> *uniqServerNetworkConfigurations;
 
 @property (nonatomic, copy) NSString *sellerID;
 @property (nonatomic, copy) BDMSdkConfiguration *configuration;
@@ -138,17 +140,20 @@
             // Update session time to life
             [weakSelf.contextualController updateSessionDelayInterval:response.sessionDelay];
             // Update network congiguration
-            weakSelf.networkConfigurations = response.networkConfigurations;
+            NSArray *networkConfiguration = weakSelf.configuration.networkConfigurations ?: @[];
+            weakSelf.networkConfigurations = [networkConfiguration bdm_configurationConcat:response.networkConfigurations];
+            weakSelf.uniqServerNetworkConfigurations = ANY(weakSelf.networkConfigurations).flatMap(^id (id obj) {
+                return ![ weakSelf.configuration.networkConfigurations containsObject:obj] ? obj : nil;
+            }).array;
             // Parallel bidding
             [weakSelf registerNetworks];
             [weakSelf.registry initNetworks];
             
-            NSArray <BDMAdNetworkConfiguration *> *networkConfigs = weakSelf.networkConfigurations;
-            if (!networkConfigs.count) {
+            if (!weakSelf.networkConfigurations.count) {
                 weakSelf.initialized = YES;
                 completion ? dispatch_async(dispatch_get_main_queue(), completion) : nil;
             } else {
-                [weakSelf initializeNetworks:networkConfigs
+                [weakSelf initializeNetworks:weakSelf.networkConfigurations
                                   completion:completion];
             }
             
@@ -212,10 +217,6 @@
         _contextualController = BDMContextualController.new;
     }
     return _contextualController;
-}
-
-- (NSArray<BDMAdNetworkConfiguration *> *)networkConfigurations {
-    return self.configuration.networkConfigurations.count ? self.configuration.networkConfigurations : _networkConfigurations;
 }
 
 #pragma mark - BDMHeaderBiddingControllerDelegate
@@ -296,7 +297,12 @@
     [self.middleware startEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
                       placement:placementType];
     
-    NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = configs.count ? configs : self.networkConfigurations;
+    NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = nil;
+    if (configs.count) {
+        networkConfigurations = [self.uniqServerNetworkConfigurations bdm_configurationConcat:configs];
+    } else {
+        networkConfigurations = self.networkConfigurations;
+    }
     BDMHeaderBiddingInitialisationOperation *initialisation = [BDMFactory.sharedFactory initialisationOperationForNetworks:networkConfigurations
                                                                                                                 controller:self.headerBiddingController
                                                                                                          waitUntilFinished:YES];

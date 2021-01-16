@@ -23,6 +23,8 @@
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
 		3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781991224CED19200E97FED /* BDMRequestStorageItem.m */; };
 		3781991624CED29600E97FED /* BDMRequestStorage+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991524CED29600E97FED /* BDMRequestStorage+Private.h */; };
+		3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */; };
+		3799E95E25B2F92800CE997E /* NSArray+BDMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */; };
 		37AEA4ED25935E8F00176D9E /* BDMAdapterDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 37AEA4EB25935E8F00176D9E /* BDMAdapterDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		37AEA4EE25935E8F00176D9E /* BDMAdapterDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */; };
 		37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */; };
@@ -46,8 +48,6 @@
 		4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */ = {isa = PBXBuildFile; fileRef = 4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */; };
 		422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */; };
 		422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */; };
-		422CAC3821AE7A38000A0D51 /* NSArray+BDMEventURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 422CAC3621AE7A38000A0D51 /* NSArray+BDMEventURL.h */; };
-		422CAC3921AE7A38000A0D51 /* NSArray+BDMEventURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 422CAC3721AE7A38000A0D51 /* NSArray+BDMEventURL.m */; };
 		423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 423A823A21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h */; };
 		423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A823B21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m */; };
 		423CAF4D217DED98000FF60D /* BDMViewabilityMetricAppodeal.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CAF4B217DED98000FF60D /* BDMViewabilityMetricAppodeal.h */; };
@@ -183,6 +183,8 @@
 		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
 		3781991224CED19200E97FED /* BDMRequestStorageItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorageItem.m; sourceTree = "<group>"; };
 		3781991524CED29600E97FED /* BDMRequestStorage+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequestStorage+Private.h"; sourceTree = "<group>"; };
+		3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BDMExtension.h"; sourceTree = "<group>"; };
+		3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BDMExtension.m"; sourceTree = "<group>"; };
 		37AEA4EB25935E8F00176D9E /* BDMAdapterDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdapterDefines.h; sourceTree = "<group>"; };
 		37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdapterDefines.m; sourceTree = "<group>"; };
 		37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenRTB+BDMCreative.h"; sourceTree = "<group>"; };
@@ -205,8 +207,6 @@
 		4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMRewarded.m; sourceTree = "<group>"; };
 		422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventMiddleware.h; sourceTree = "<group>"; };
 		422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventMiddleware.m; sourceTree = "<group>"; };
-		422CAC3621AE7A38000A0D51 /* NSArray+BDMEventURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BDMEventURL.h"; sourceTree = "<group>"; };
-		422CAC3721AE7A38000A0D51 /* NSArray+BDMEventURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BDMEventURL.m"; sourceTree = "<group>"; };
 		423A823A21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMEventMiddleware.h"; sourceTree = "<group>"; };
 		423A823B21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMEventMiddleware.m"; sourceTree = "<group>"; };
 		423CAF4B217DED98000FF60D /* BDMViewabilityMetricAppodeal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMViewabilityMetricAppodeal.h; sourceTree = "<group>"; };
@@ -379,8 +379,8 @@
 				65CE5DA421B15F0400652496 /* BDMRetryTimer.m */,
 				9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */,
 				424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */,
-				422CAC3621AE7A38000A0D51 /* NSArray+BDMEventURL.h */,
-				422CAC3721AE7A38000A0D51 /* NSArray+BDMEventURL.m */,
+				3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */,
+				3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */,
 				37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */,
 				37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */,
 				4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */,
@@ -759,7 +759,6 @@
 				9C6A651C2031D7F000D5A98A /* BDMFactory+BDMOperation.h in Headers */,
 				42B65DA42162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h in Headers */,
 				3781991624CED29600E97FED /* BDMRequestStorage+Private.h in Headers */,
-				422CAC3821AE7A38000A0D51 /* NSArray+BDMEventURL.h in Headers */,
 				9C6A65142031A1BE00D5A98A /* BDMAsyncOperation.h in Headers */,
 				421137F021E880D200B65454 /* BDMAdRequests.h in Headers */,
 				422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */,
@@ -817,6 +816,7 @@
 				427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */,
 				651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */,
 				9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */,
+				3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1005,7 @@
 				9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */,
 				422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */,
 				9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */,
+				3799E95E25B2F92800CE997E /* NSArray+BDMExtension.m in Sources */,
 				9C71DBAF1FB5F03800D0DCCA /* BDMBannerView.m in Sources */,
 				421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */,
 				426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */,
@@ -1036,7 +1037,6 @@
 				651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
-				422CAC3921AE7A38000A0D51 /* NSArray+BDMEventURL.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
 				3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */,
