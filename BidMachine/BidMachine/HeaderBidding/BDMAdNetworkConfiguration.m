@@ -36,7 +36,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.timeout = 5000;
         self.units = NSMutableArray.new;
     }
     return self;
@@ -120,7 +119,7 @@
         self.name           = builder.name;
         self.params         = builder.params;
         self.adUnits        = builder.units;
-        self.timeout        = builder.timeout;
+        self.timeout        = builder.timeout > 0 ? builder.timeout : 5000;
         self.networkClass   = builder.networkClass;
     }
     return self;
@@ -156,6 +155,7 @@
 - (id)copyWithZone:(NSZone *)zone {
     return [BDMAdNetworkConfiguration buildWithBuilder:^(BDMAdNetworkConfigurationBuilder *builder) {
         builder.appendName(self.name);
+        builder.appendTimeout(self.timeout);
         builder.appendParams(self.params);
         builder.appendNetworkClass(self.networkClass);
         [self.adUnits enumerateObjectsUsingBlock:^(BDMAdUnit *unit, NSUInteger idx, BOOL *stop) {
