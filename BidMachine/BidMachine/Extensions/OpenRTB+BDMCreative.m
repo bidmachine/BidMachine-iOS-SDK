@@ -228,7 +228,7 @@
     renderingInfo[kBDMAssetOpacity]                     = @(self.opacity);
     renderingInfo[kBDMAssetOutlined]                    = @(self.outlined);
     renderingInfo[kBDMAssetPadding]                     = self.padding;
-    renderingInfo[kBDMAssetContent]                     = self.content;
+    renderingInfo[kBDMAssetContent]                     = ![self.content isEqualToString:@""] ? self.content : nil;
     renderingInfo[kBDMAssetPositionX]                   = self.x;
     renderingInfo[kBDMAssetPositionY]                   = self.y;
     renderingInfo[kBDMAssetHideAfter]                   = @(self.hideafter);
