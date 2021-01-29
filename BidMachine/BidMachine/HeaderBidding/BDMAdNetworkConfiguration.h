@@ -67,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 //  }]
 + (nullable instancetype)configurationWithJSON:(nullable BDMStringToObjectMap *)json;
 
+- (BDMStringToObjectMap *)jsonConfiguration;
+
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 

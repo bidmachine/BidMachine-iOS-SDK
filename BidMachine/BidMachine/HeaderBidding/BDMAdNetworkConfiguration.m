@@ -125,6 +125,22 @@
     return self;
 }
 
+- (BDMStringToObjectMap *)jsonConfiguration {
+    NSMutableDictionary *configuration = NSMutableDictionary.new;
+    configuration[@"network"] = self.name;
+    configuration[@"network_class"] = NSStringFromClass(self.networkClass);
+    configuration[@"timeout"] = @(self.timeout);
+    configuration[@"params"] = self.params;
+    configuration[@"ad_units"] = ANY(self.adUnits).flatMap(^id(BDMAdUnit *unit){
+        NSMutableDictionary *adUnitJson = NSMutableDictionary.new;
+        adUnitJson[@"format"] = NSStringFromBDMAdUnitFormat(unit.format);
+        adUnitJson[@"params"] = unit.params;
+        adUnitJson[@"custom_params"] = unit.extras;
+        return adUnitJson;
+    }).array;
+    return configuration;
+}
+
 #pragma mark - Coding
 
 + (BOOL)supportsSecureCoding {

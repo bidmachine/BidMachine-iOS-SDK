@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		139A484086553A9E474C5837 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF230351675665987981D7E /* Pods_BidMachine.framework */; };
+		3727034B25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3727034C25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */; };
 		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
 		37319DAE24CEEABE00765FE5 /* BDMFetcher+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DAD24CEEABE00765FE5 /* BDMFetcher+Private.h */; };
@@ -18,6 +20,8 @@
 		3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D424FD153F003DD6BF /* BDMEventObject.h */; };
 		3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D524FD153F003DD6BF /* BDMEventObject.m */; };
 		3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3775F17625C02F5900893729 /* BDMExternalAdapterRequestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3775F17725C02F5900893729 /* BDMExternalAdapterRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */; };
 		3781990F24CECD8E00E97FED /* BDMRequestStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781990D24CECD8E00E97FED /* BDMRequestStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781990E24CECD8E00E97FED /* BDMRequestStorage.m */; };
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
@@ -168,6 +172,8 @@
 
 /* Begin PBXFileReference section */
 		07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.release.xcconfig"; sourceTree = "<group>"; };
+		3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfiguration.h; sourceTree = "<group>"; };
+		3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterConfiguration.m; sourceTree = "<group>"; };
 		37319DA924CEE61900765FE5 /* BDMFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFetcher.h; sourceTree = "<group>"; };
 		37319DAA24CEE61900765FE5 /* BDMFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFetcher.m; sourceTree = "<group>"; };
 		37319DAD24CEEABE00765FE5 /* BDMFetcher+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFetcher+Private.h"; sourceTree = "<group>"; };
@@ -178,6 +184,8 @@
 		3743A5D424FD153F003DD6BF /* BDMEventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventObject.h; sourceTree = "<group>"; };
 		3743A5D524FD153F003DD6BF /* BDMEventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventObject.m; sourceTree = "<group>"; };
 		3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualProtocol.h; sourceTree = "<group>"; };
+		3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterRequestController.h; sourceTree = "<group>"; };
+		3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterRequestController.m; sourceTree = "<group>"; };
 		3781990D24CECD8E00E97FED /* BDMRequestStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorage.h; sourceTree = "<group>"; };
 		3781990E24CECD8E00E97FED /* BDMRequestStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorage.m; sourceTree = "<group>"; };
 		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
@@ -541,6 +549,10 @@
 				426AA21822E89A06003FA6AF /* BDMAdUnit.m */,
 				42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */,
 				42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */,
+				3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */,
+				3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */,
+				3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */,
+				3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */,
 			);
 			path = HeaderBidding;
 			sourceTree = "<group>";
@@ -763,6 +775,7 @@
 				421137F021E880D200B65454 /* BDMAdRequests.h in Headers */,
 				422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */,
 				65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */,
+				3727034B25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h in Headers */,
 				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
 				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
 				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
@@ -803,6 +816,7 @@
 				65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */,
 				42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */,
 				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
+				3775F17625C02F5900893729 /* BDMExternalAdapterRequestController.h in Headers */,
 				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
 				42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */,
 				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
@@ -873,6 +887,7 @@
 				TargetAttributes = {
 					9C2597221FB1DC91006F3FA7 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1230;
 						ProvisioningStyle = Automatic;
 					};
 					9CFBD1751FB982BE00C31DE6 = {
@@ -999,6 +1014,7 @@
 				4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */,
 				65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */,
 				9C25973D1FB1E25C006F3FA7 /* BDMFactory.m in Sources */,
+				3775F17725C02F5900893729 /* BDMExternalAdapterRequestController.m in Sources */,
 				9C2597351FB1DFFF006F3FA7 /* BDMDefines.m in Sources */,
 				9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */,
 				4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */,
@@ -1036,6 +1052,7 @@
 				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
 				651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
+				3727034C25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
@@ -1197,6 +1214,7 @@
 			baseConfigurationReference = 76EB7CD6CDD10BD42CC42D42 /* Pods-BidMachine.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
@@ -1232,6 +1250,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1241,6 +1261,7 @@
 			baseConfigurationReference = 4600EF1607127158ACF8109E /* Pods-BidMachine.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CODE_SIGN_IDENTITY = "";
@@ -1276,6 +1297,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

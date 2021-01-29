@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '10.0'
 workspace 'BidMachine.xcworkspace'
 
 # Use Appodeal CocoaPods repo for adapters dependencies
