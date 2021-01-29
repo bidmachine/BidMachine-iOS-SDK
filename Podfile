@@ -38,7 +38,7 @@ def stack_modules
 end
 
 def vungle
-  pod 'VungleSDK-iOS', '6.8.1'
+  pod 'VungleSDK-iOS', '6.9.1'
 end
 
 def adcolony
@@ -46,7 +46,7 @@ def adcolony
 end
 
 def my_target 
-  pod 'myTargetSDK', '5.9.7'
+  pod 'myTargetSDK', '5.9.11'
 end
 
 def tapjoy
@@ -54,7 +54,7 @@ def tapjoy
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '6.2.0'
+  pod 'FBAudienceNetwork', '6.2.1'
 end
 
 def criteo
