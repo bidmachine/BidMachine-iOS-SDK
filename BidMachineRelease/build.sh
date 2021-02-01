@@ -102,6 +102,12 @@ function merge_components {
     mv "$universal_temp_dir/BidMachine.framework" "$RELEASE_DIR/BidMachine.framework"
 }
 
+function create_dummy {
+	cat > Dummy.swift <<- "EOF"
+	import Foundation
+	EOF
+}
+
 function compress_and_upload {
     cp "LICENSE" "$RELEASE_DIR/LICENSE"
     cp "CHANGELOG.md" "$RELEASE_DIR/CHANGELOG.md"
