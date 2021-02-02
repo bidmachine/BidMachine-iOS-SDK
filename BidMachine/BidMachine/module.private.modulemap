@@ -12,7 +12,12 @@ explicit module BidMachine.HeaderBidding {
     header "BDMAdNetworkConfiguration.h"
     header "BDMSdkConfiguration+HeaderBidding.h"
     header "BDMRequest+HeaderBidding.h"
+    export *
+}
+
+explicit module BidMachine.ExternalAdapterUtils {
     header "BDMExternalAdapterConfiguration.h"
     header "BDMExternalAdapterRequestController.h"
+    header "BDMExternalAdapterKeywordsTransformer.h"
     export *
 }

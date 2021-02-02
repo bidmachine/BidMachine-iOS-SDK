@@ -136,25 +136,6 @@ BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
 
 @implementation BDMFetcher (Request)
 
-- (NSString *)fetchKeywordsParamsFromRequest:(BDMRequest *)request {
-    return [self fetchKeywordsParamsFromRequest:request fetcher:nil];
-}
-
-- (NSString *)fetchKeywordsParamsFromRequest:(BDMRequest *)request fetcher:(id<BDMFetcherProtocol>)fetcher {
-    NSDictionary *params = [self fetchParamsFromRequest:request fetcher:fetcher];
-    if (!NSDictionary.stk_isValid(params)) {
-        return nil;
-    }
-    
-    NSMutableArray *keywords = [NSMutableArray arrayWithCapacity:[(NSDictionary *)params count]];
-    [(NSDictionary *)params enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-        NSString *keyword = [NSString stringWithFormat:@"%@:%@", key, obj];
-        [keywords addObject:keyword];
-    }];
-    
-    return [keywords componentsJoinedByString:@","];
-}
-
 - (NSDictionary *)fetchParamsFromRequest:(BDMRequest *)request {
     return [self fetchParamsFromRequest:request fetcher:nil];
 }
