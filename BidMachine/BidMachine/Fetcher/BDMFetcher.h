@@ -37,6 +37,17 @@ BDMFetcherRange BDMFetcherRangeMake(float _location, float _length);
 
 @end
 
+@interface BDMDefaultFetcherPresset : NSObject <BDMFetcherPresetProtocol>
+
+@property (nonatomic, strong) NSString *format;
+@property (nonatomic, assign) NSNumberFormatterRoundingMode roundingMode;
+@property (nonatomic, assign) BDMInternalPlacementType type;
+@property (nonatomic, assign) BDMFetcherRange range;
+
+- (void)registerPresset;
+
+@end
+
 @interface BDMFetcher : NSObject
 
 + (instancetype)shared;
@@ -54,6 +65,14 @@ BDMFetcherRange BDMFetcherRangeMake(float _location, float _length);
  Return fetched params
 */
 - (nullable NSDictionary *)fetchParamsFromRequest:(nullable BDMRequest *)request fetcher:(nullable id<BDMFetcherProtocol>)fetcher;
+/**
+ Return keywords fetched params "key:value,key:value"
+*/
+- (nullable NSString *)fetchKeywordsParamsFromRequest:(nullable BDMRequest *)request;
+/**
+ Return keywords fetched params "key:value,key:value"
+*/
+- (nullable NSString *)fetchKeywordsParamsFromRequest:(nullable BDMRequest *)request fetcher:(nullable id<BDMFetcherProtocol>)fetcher;
 
 @end
 
