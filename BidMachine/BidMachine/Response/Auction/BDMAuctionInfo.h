@@ -49,15 +49,15 @@ BDM_SUBCLASSING_RESTRICTED
 /**
  Creative custom parameters
 */
-@property (nonatomic, copy, readonly, nullable) BDMStringToObjectMap *customParams;
+@property (nonatomic, copy, readonly, nonnull) BDMStringToObjectMap *customParams;
 /**
  Transform model to key-value map
 */
-- (nonnull NSDictionary *)extras;
+- (nonnull NSDictionary *)extras __deprecated_msg("Will be removed in future versions");
 /**
  Transform model to key-value map
 */
-- (nonnull NSDictionary *)extrasWithCustomParams:(nullable NSDictionary *)params;
+- (nonnull NSDictionary *)extrasWithCustomParams:(nullable NSDictionary *)params __deprecated_msg("Will be removed in future versions");
 
 @end
 

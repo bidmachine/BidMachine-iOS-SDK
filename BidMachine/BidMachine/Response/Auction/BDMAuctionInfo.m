@@ -8,7 +8,6 @@
 
 #import "BDMAuctionInfo.h"
 #import "BDMAuctionInfo+Project.h"
-#import "BDMFetcher+Private.h"
 
 
 @interface BDMAuctionInfo ()
@@ -18,7 +17,7 @@
 @property (nonatomic, copy, readwrite, nullable) NSString * cID;
 @property (nonatomic, copy, readwrite, nullable) NSString * dealID;
 @property (nonatomic, copy, readwrite, nullable) NSArray <NSString *> * adDomains;
-@property (nonatomic, copy, readwrite, nullable) BDMStringToObjectMap *customParams;
+@property (nonatomic, copy, readwrite, nullable) BDMStringToObjectMap * serverParams;
 @property (nonatomic, copy, readwrite, nullable) NSString * demandSource;
 @property (nonatomic, copy, readwrite, nullable) NSNumber * price;
 @property (nonatomic, assign, readwrite) BDMCreativeFormat format;
@@ -37,7 +36,7 @@
         self.creativeID     = response.creative.ID;
         self.adDomains      = response.creative.adDomains;
         self.format         = response.creative.format;
-        self.customParams   = response.creative.customParams;
+        self.serverParams   = response.creative.customParams;
     }
     return self;
 }
@@ -54,31 +53,41 @@
     copy.dealID         = self.dealID;
     copy.adDomains      = self.adDomains;
     copy.format         = self.format;
-    copy.customParams   = self.customParams;
+    copy.serverParams   = self.serverParams;
     return copy;
 }
 
 #pragma mark - Transform
+
+- (NSNumberFormatter *)formatter {
+    static NSNumberFormatter *roundingFormater = nil;
+    if (!roundingFormater) {
+        roundingFormater = [NSNumberFormatter new];
+        roundingFormater.numberStyle = NSNumberFormatterDecimalStyle;
+        roundingFormater.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        roundingFormater.roundingMode = NSNumberFormatterRoundCeiling;
+        roundingFormater.positiveFormat = @"0.00";
+    }
+    return roundingFormater;
+}
+
+- (BDMStringToObjectMap *)customParams {
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    params[@"bm_id"] = self.bidID;
+    params[@"bm_pf"] = [self.formatter stringFromNumber:self.price];
+    params[@"bm_ad_type"] = NSStringFromBDMCreativeFormat(self.format);
+    
+    [params addEntriesFromDictionary:self.serverParams ?: @{}];
+    return params;
+}
 
 - (NSDictionary *)extras {
     return [self extrasWithCustomParams:nil];
 }
 
 - (NSDictionary *)extrasWithCustomParams:(NSDictionary *)params {
-    NSMutableDictionary *extras = [NSMutableDictionary new];
-    extras[@"bm_id"] = self.bidID;
-    extras[@"bm_pf"] = [BDMFetcher.shared fetchPrice:self.price
-                                                type:NSNotFound
-                                       serverPresets:nil
-                                         userFetcher:nil];
-    extras[@"bm_ad_type"] = NSStringFromBDMCreativeFormat(self.format);
-    
-    if (params) {
-        [extras addEntriesFromDictionary:params];
-    }
-    if (self.customParams) {
-        [extras addEntriesFromDictionary:self.customParams];
-    }
+    NSMutableDictionary *extras = params.mutableCopy ?: NSMutableDictionary.new;
+    [extras addEntriesFromDictionary:self.customParams];
     return extras;
 }
 

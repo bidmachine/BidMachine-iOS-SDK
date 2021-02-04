@@ -6,10 +6,12 @@
 //  Copyright © 2020 Appodeal. All rights reserved.
 //
 
-#import "BDMFetcher+Private.h"
-#import <StackFoundation/StackFoundation.h>
-#import "BDMRequestStorage+Private.h"
+#import "BDMFetcher.h"
+#import "BDMRequestStorage.h"
 #import "BDMRequest+Private.h"
+
+#import <StackFoundation/StackFoundation.h>
+
 
 BDMFetcherRange BDMFetcherRangeMake(float _location, float _length) {
     BDMFetcherRange res;
@@ -149,7 +151,7 @@ BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
                                   type:request.placementType
                          serverPresets:nil
                            userFetcher:fetcher];
-    [[BDMRequestStorage shared] saveRequest:request withPrice:price type:request.placementType];
+    [[BDMRequestStorage shared] saveRequest:request withPrice:price];
     
     NSMutableDictionary *extras = [NSMutableDictionary new];
     extras[@"bm_id"] = request.info.bidID;

@@ -6,8 +6,12 @@
 //  Copyright © 2020 Appodeal. All rights reserved.
 //
 
-#import "BDMRequestStorage+Private.h"
+#import "BDMRequestStorage.h"
+#import "BDMRequest+Private.h"
 #import "BDMRequestStorageItem.h"
+
+#import <StackFoundation/StackFoundation.h>
+
 
 @interface BDMRequestStorage () <BDMRequestStorageItemDelegate>
 
@@ -32,12 +36,16 @@
     return storage;
 }
 
-- (void)saveRequest:(BDMRequest *)request withPrice:(nonnull NSString *)price type:(BDMInternalPlacementType)type {
+- (void)saveRequest:(BDMRequest *)request {
+    [self saveRequest:request withPrice:ANY(request.info.customParams).from(@"bm_pf").string];
+}
+
+- (void)saveRequest:(BDMRequest *)request withPrice:(NSString *)price {
     if (!request.info.bidID || !price) {
         return;
     }
     
-    BDMRequestStorageItem *item = [[BDMRequestStorageItem alloc] initWithRequest:request price:price type:type];
+    BDMRequestStorageItem *item = [[BDMRequestStorageItem alloc] initWithRequest:request price:price type:request.placementType];
     item.delegate = self;
     [self.storedObjects addObject:item];
 }
@@ -48,19 +56,6 @@
         if (type == obj.type && [price isEqualToString:obj.price] && (!item || (item.creationDate < obj.creationDate))) {
             item = obj;
         }
-    }];
-    BDMRequest *request = item.request;
-    [self.storedObjects removeObject:item];
-    return request;
-}
-
-- (BDMRequest *)requestForBidId:(NSString *)bidId {
-    __block BDMRequestStorageItem *item = nil;
-    [self.storedObjects enumerateObjectsUsingBlock:^(BDMRequestStorageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.request.info.bidID isEqualToString:bidId]) {
-            item = obj;
-        }
-        *stop = item != nil;
     }];
     BDMRequest *request = item.request;
     [self.storedObjects removeObject:item];

@@ -15,11 +15,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BDMRequestStorage : NSObject
 
 + (instancetype)shared;
-
+/// Saves request for future use
+/// Will be removed in future versions
+/// @param request Current request
+/// @param price Rounded price
+- (void)saveRequest:(BDMRequest *)request withPrice:(NSString *)price __deprecated_msg("Will be removed in future versions use: saveRequest:");
+/// Saves request for future use
+/// @param request Current request
+- (void)saveRequest:(BDMRequest *)request;
+/// Gets saved request
+/// @param price Rounded price
+/// @param type Creative type
 - (nullable BDMRequest *)requestForPrice:(NSString *)price type:(BDMInternalPlacementType)type;
-
-- (nullable BDMRequest *)requestForBidId:(NSString *)bidId;
-
+/// Returns the value of prebeid integration
+/// @param type Creative type
 - (BOOL)isPrebidRequestsForType:(BDMInternalPlacementType)type;
 
 @end
