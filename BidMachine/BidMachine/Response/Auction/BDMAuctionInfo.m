@@ -76,6 +76,7 @@
     params[@"bm_id"] = self.bidID;
     params[@"bm_pf"] = [self.formatter stringFromNumber:self.price];
     params[@"bm_ad_type"] = NSStringFromBDMCreativeFormat(self.format);
+    params[@"bm_platform"] = @"ios";
     
     [params addEntriesFromDictionary:self.serverParams ?: @{}];
     return params;
