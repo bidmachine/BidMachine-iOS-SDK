@@ -72,7 +72,7 @@ FOUNDATION_EXPORT NSString *const kBDMExtLoggingKey;
 @property (nonatomic, strong, readonly) NSString *ID;
 @property (nonatomic, strong, readonly) NSString *type;
 
-+ (BDMExternalAdapterConfiguration *)configurationWithJSON:(nullable NSDictionary *)jsonConfiguration;
++ (instancetype)configurationWithJSON:(nullable NSDictionary *)jsonConfiguration;
 
 - (NSDictionary *)jsonConfiguration;
 

@@ -60,7 +60,7 @@ NSString *const kBDMExtTypeKey                      = @"bm_ad_type";
 
 @implementation BDMExternalAdapterConfiguration
 
-+ (BDMExternalAdapterConfiguration *)configurationWithJSON:(NSDictionary *)jsonConfiguration {
++ (instancetype)configurationWithJSON:(NSDictionary *)jsonConfiguration {
     return [[self alloc] initWithJSON:jsonConfiguration];
 }
 
