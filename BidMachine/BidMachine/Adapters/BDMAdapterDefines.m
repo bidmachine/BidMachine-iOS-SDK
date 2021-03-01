@@ -8,6 +8,8 @@
 
 #import "BDMAdapterDefines.h"
 
+NSString *const kBDMOMPartnerName                       = @"Appodeal";
+
 NSString *const kBDMCreativeAdm                         = @"kBDMCreativeAdm";
 NSString *const kBDMCreativeWidth                       = @"kBDMCreativeWidth";
 NSString *const kBDMCreativeHeight                      = @"kBDMCreativeHeight";

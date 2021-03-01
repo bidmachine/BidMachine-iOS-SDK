@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXPORT NSString *const kBDMOMPartnerName;
+
 FOUNDATION_EXPORT NSString *const kBDMCreativeAdm;
 FOUNDATION_EXPORT NSString *const kBDMCreativeWidth;
 FOUNDATION_EXPORT NSString *const kBDMCreativeHeight;
