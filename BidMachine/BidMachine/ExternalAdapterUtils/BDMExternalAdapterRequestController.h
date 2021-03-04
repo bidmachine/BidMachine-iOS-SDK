@@ -28,9 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithType:(BDMInternalPlacementType)type
                     delegate:(id<BDMExternalAdapterRequestControllerDelegate>)delegate;
 
-+ (void)startBidMachineSDKWithConfiguration:(nullable BDMExternalAdapterConfiguration *)configuration
-                                 completion:(void(^_Nullable)(NSError *_Nullable))completion;
-
 - (void)prepareRequestWithConfiguration:(nullable BDMExternalAdapterConfiguration *)configuration;
 
 + (instancetype)new NS_UNAVAILABLE;

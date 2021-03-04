@@ -7,7 +7,7 @@
 //
 
 #import "BDMExternalAdapterRequestController.h"
-#import "BDMRequest+HeaderBidding.h"
+#import "BDMExternalAdapterSDKController.h"
 
 #import <StackFoundation/StackFoundation.h>
 
@@ -29,32 +29,11 @@
     return self;
 }
 
-+ (void)startBidMachineSDKWithConfiguration:(BDMExternalAdapterConfiguration *)configuration
-                                 completion:(void (^)(NSError * _Nullable))completion {
-    BDMSdk *sdk = [BDMSdk sharedSdk];
-    [self sdk:sdk updateConfiguration:configuration];
-    
-    if ([sdk isInitialized]) {
-        STK_RUN_BLOCK(completion, nil);
-        return;
-    }
-    
-    if (!NSString.stk_isValid(configuration.sellerId)) {
-        NSError *error = [STKError errorWithDescription:@"The sellerId is nil or not valid string"];
-        STK_RUN_BLOCK(completion, error);
-        return;
-    }
-    
-    [sdk startSessionWithSellerID:configuration.sellerId
-                    configuration:configuration.sdkConfiguration
-                       completion:^{ STK_RUN_BLOCK(completion, nil); }];
-}
-
 - (void)prepareRequestWithConfiguration:(BDMExternalAdapterConfiguration *)configuration {
     BOOL isPrebid = [BDMRequestStorage.shared isPrebidRequestsForType:self.type];
     
-    if (isPrebid && configuration.price) {
-        BDMRequest *auctionRequest = [BDMRequestStorage.shared requestForPrice:configuration.price type:self.type];
+    if (isPrebid && configuration.requestPrice) {
+        BDMRequest *auctionRequest = [BDMRequestStorage.shared requestForPrice:configuration.requestPrice type:self.type];
         if ([self request:auctionRequest isKindOfType:self.type]) {
             [self.delegate controller:self didPrepareRequest:auctionRequest];
         } else {
@@ -63,7 +42,7 @@
         }
     } else {
         __weak typeof(self) weakSelf = self;
-        [self.class startBidMachineSDKWithConfiguration:configuration completion:^(NSError *error) {
+        [BDMExternalAdapterSDKController.shared startControllerWithConfiguration:configuration completion:^(NSError *error) {
             if (error) {
                 [weakSelf.delegate controller:weakSelf didFailPrepareRequest:error];
             } else {
@@ -75,22 +54,6 @@
 }
 
 #pragma mark - Private
-
-+ (void)sdk:(BDMSdk *)sdk updateConfiguration:(BDMExternalAdapterConfiguration *)configuration {
-    if (!configuration) {
-        return;
-    }
-    
-    sdk.enableLogging = configuration.logging;
-    sdk.publisherInfo = configuration.publisherInfo;
-    
-    sdk.restrictions.hasConsent = configuration.restriction.hasConsent;
-    sdk.restrictions.subjectToGDPR = configuration.restriction.subjectToGDPR;
-    sdk.restrictions.consentString = configuration.restriction.consentString;
-    sdk.restrictions.coppa = configuration.restriction.coppa;
-    
-    sdk.configuration.targeting = configuration.sdkConfiguration.targeting;
-}
 
 - (BOOL)request:(BDMRequest *)request isKindOfType:(BDMInternalPlacementType)type {
     Class typeClass;
@@ -105,7 +68,7 @@
 }
 
 - (BDMRequest *)requestWithType:(BDMInternalPlacementType)type
-                  configuration:(BDMExternalAdapterConfiguration *)configuration {
+                  configuration:(id<BDMExternalAdapterRequestConfigurationProtocol>)configuration {
     BDMRequest *auctionRequest = nil;
     switch (type) {
         case BDMInternalPlacementTypeInterstitial:  auctionRequest = ({
@@ -115,7 +78,7 @@
         }); break;
         case BDMInternalPlacementTypeBanner:            auctionRequest = ({
             BDMBannerRequest *request = BDMBannerRequest.new;
-            [request setAdSize: [self bannerSizeFromSize:configuration.bannerSize]];
+            [request setAdSize: [self bannerSizeFromSize:configuration.adSize]];
             request;
         }); break;
         case BDMInternalPlacementTypeRewardedVideo:     auctionRequest = ({
@@ -124,13 +87,12 @@
         }); break;
         case BDMInternalPlacementTypeNative:            auctionRequest = ({
             BDMNativeAdRequest *request = BDMNativeAdRequest.new;
-            request.type = configuration.nativeType;
+            request.type = configuration.nativeAdType;
             request;
         }); break;
         default: break;
     }
-    auctionRequest.priceFloors = configuration.priceFloor;
-    auctionRequest.networkConfigurations = configuration.sdkConfiguration.networkConfigurations;
+    auctionRequest.priceFloors = configuration.priceFloors;
     return auctionRequest;
 }
 
