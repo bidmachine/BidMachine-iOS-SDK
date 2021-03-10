@@ -22,6 +22,5 @@ explicit module BidMachine.ExternalAdapterUtils {
     header "BDMExternalAdapterConfiguration.h"
     header "BDMExternalAdapterSDKController.h"
     header "BDMExternalAdapterRequestController.h"
-    header "BDMExternalAdapterKeywordsTransformer.h"
     export *
 }
