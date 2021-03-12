@@ -8,7 +8,7 @@
 
 #import "BDMDefines.h"
 
-NSString * const kBDMVersion = @"1.7.0";
+NSString * const kBDMVersion = @"1.7.0.3-Beta";
 
 NSString * const kBDMUserGenderMale     = @"M";
 NSString * const kBDMUserGenderFemale   = @"F";
@@ -56,7 +56,13 @@ BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key) {
                          @"interstitial",
                          @"rewarded_video",
                          @"rewarded_static",
-                         @"rewarded"
+                         @"rewarded",
+                         @"nativeAd_icon",
+                         @"nativeAd_image",
+                         @"nativeAd_video",
+                         @"nativeAd_icon_video",
+                         @"nativeAd_icon_image",
+                         @"nativeAd",
                          ];
     NSUInteger idx = key ? [adTypes indexOfObject:key] : NSNotFound;
     return idx == NSNotFound ? BDMAdUnitFormatUnknown : (BDMAdUnitFormat)idx;
@@ -76,6 +82,13 @@ NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt) {
         case BDMAdUnitFormatRewardedVideo: return @"rewarded_video"; break;
         case BDMAdUnitFormatRewardedPlayable: return @"rewarded_static"; break;
         case BDMAdUnitFormatRewardedUnknown: return @"rewarded"; break;
+        case BDMAdUnitFormatNativeAdIcon: return @"nativeAd_icon"; break;
+        case BDMAdUnitFormatNativeAdImage: return @"nativeAd_image"; break;
+        case BDMAdUnitFormatNativeAdVideo: return @"nativeAd_video"; break;
+        case BDMAdUnitFormatNativeAdIconAndImage: return @"nativeAd_icon_image"; break;
+        case BDMAdUnitFormatNativeAdIconAndVideo: return @"nativeAd_icon_video"; break;
+        case BDMAdUnitFormatNativeAdImageAndVideo: return @"nativeAd_image_video"; break;
+        case BDMAdUnitFormatNativeAdUnknown: return @"nativeAd"; break;
     }
 }
 

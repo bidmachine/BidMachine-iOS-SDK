@@ -292,10 +292,10 @@
 }
 
 - (void)collectHeaderBiddingAdUnits:(NSArray<BDMAdNetworkConfiguration *> *)configs
-                          placement:(BDMInternalPlacementType)placementType
+                          placement:(BDMPlacement *)placement
                          completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion {
     [self.middleware startEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
-                      placement:placementType];
+                      placement:placement.type];
     
     NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = nil;
     if (configs.count) {
@@ -308,13 +308,13 @@
                                                                                                          waitUntilFinished:YES];
     BDMHeaderBiddingPreparationOperation *preparation = [BDMFactory.sharedFactory preparationOperationForNetworks:networkConfigurations
                                                                                                        controller:self.headerBiddingController
-                                                                                                        placement:placementType];
+                                                                                                        placement:placement];
     [preparation addDependency:initialisation];
     __weak typeof(preparation) weakPreparation = preparation;
     __weak typeof(self) weakSelf = self;
     preparation.completionBlock = ^{
         [weakSelf.middleware fulfillEvent:BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared
-                                placement:placementType];
+                                placement:placement.type];
         STK_RUN_BLOCK(completion, weakPreparation.result);
     };
     [self.operationQueue addOperation:initialisation];

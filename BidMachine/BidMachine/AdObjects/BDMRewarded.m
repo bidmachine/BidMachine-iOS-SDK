@@ -154,13 +154,13 @@
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {}
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
-    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placementType];
+    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placement.type];
     [self.middleware fulfillEvent:BDMEventClick];
     [self.delegate rewardedRecieveUserInteraction:self];
 }
 
 - (void)displayAdLogStartView:(id<BDMDisplayAd>)displayAd {
-    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placementType];
+    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placement.type];
     [self.middleware fulfillEvent:BDMEventImpression];
     [self.delegate rewardedWillPresent:self];
 }
@@ -180,7 +180,7 @@
 }
 
 - (void)displayAdCompleteRewardAction:(id<BDMDisplayAd>)displayAd {
-    [BDMSdk.sharedSdk.contextualController registerCompletionForPlacement:self.currentRequest.placementType];
+    [BDMSdk.sharedSdk.contextualController registerCompletionForPlacement:self.currentRequest.placement.type];
     [self.middleware fulfillEvent:BDMEventViewable];
     [self.delegate rewardedFinishRewardAction:self];
 }

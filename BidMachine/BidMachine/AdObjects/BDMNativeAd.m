@@ -154,12 +154,12 @@
 }
 
 - (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
-    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placementType];
+    [BDMSdk.sharedSdk.contextualController registerImpressionForPlacement:self.currentRequest.placement.type];
     [self.middleware fulfillEvent:BDMEventViewable];
 }
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
-    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placementType];
+    [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placement.type];
     [self.middleware fulfillEvent:BDMEventClick];
 }
 

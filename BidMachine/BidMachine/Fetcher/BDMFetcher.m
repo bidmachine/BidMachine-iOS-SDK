@@ -148,7 +148,7 @@ BOOL BDMFetcherRangeContains(BDMFetcherRange _range, float value) {
     }
     
     NSString *price = [self fetchPrice:request.info.price
-                                  type:request.placementType
+                                  type:request.placement.type
                          serverPresets:nil
                            userFetcher:fetcher];
     [[BDMRequestStorage shared] saveRequest:request withPrice:price];

@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)preparationOperationForNetworks:(NSArray <BDMAdNetworkConfiguration *> *)networks
                                      controller:(BDMHeaderBiddingController *)controller
-                                      placement:(BDMInternalPlacementType)placement;
+                                      placement:(BDMPlacement *)placement;
 
 @end
 

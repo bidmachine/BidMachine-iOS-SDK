@@ -10,8 +10,8 @@
 #import <UIKit/UIKit.h>
 
 #import "BDMDefines.h"
+#import "BDMPlacement.h"
 #import "BDMHeaderBiddingController.h"
-#import "BDMRequest+Private.h"
 
 
 @class BDMSdk;
@@ -36,6 +36,6 @@
 
 - (BDMHeaderBiddingPreparationOperation *)preparationOperationForNetworks:(NSArray <BDMAdNetworkConfiguration *> *)networks
                                                                controller:(BDMHeaderBiddingController *)controller
-                                                                placement:(BDMInternalPlacementType)placement;
+                                                                placement:(BDMPlacement *)placement;
 
 @end

@@ -153,6 +153,13 @@
                 }
             },
             {
+                "format": "banner_300x250",
+                "params" :
+                {
+                    "ad_unit_id": "30s6zt3ayypfyemwjvmp"
+                }
+            },
+            {
                 "format": "interstitial_static",
                 "params" :
                 {

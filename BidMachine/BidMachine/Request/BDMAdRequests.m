@@ -8,18 +8,23 @@
 
 #import "BDMAdRequests.h"
 #import "BDMRequest+Private.h"
-#import "BDMAdTypePlacement.h"
+
+#import <StackFoundation/StackFoundation.h>
+
 
 @implementation BDMBannerRequest
 
-- (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
-    [self registerDelegate: delegate];
-    id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement bannerPlacementWithAdSize:self.adSize];
-    [super performWithRequest:self placementBuilder:builder];
+- (instancetype)init {
+    if (self = [super init]) {
+        self.adSize = STKDevice.isIPhone ? BDMBannerAdSize320x50 : BDMBannerAdSize728x90;
+    }
+    return self;
 }
 
-- (BDMInternalPlacementType)placementType {
-    return BDMInternalPlacementTypeBanner;
+- (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
+    BDMBannerPlacement *placement = [[BDMBannerPlacement alloc] initWithBannerType:self.adSize];
+    [self registerDelegate: delegate];
+    [super performWithRequest:self withPlacement:placement];
 }
 
 @end
@@ -34,13 +39,9 @@
 }
 
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
+    BDMInterstitialPlacement *placement = [[BDMInterstitialPlacement alloc] initWithIntersitialType:self.type];
     [self registerDelegate: delegate];
-    id <BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement interstitialPlacementWithAdType:self.type];
-    [self performWithRequest:self placementBuilder:builder];
-}
-
-- (BDMInternalPlacementType)placementType {
-    return BDMInternalPlacementTypeInterstitial;
+    [super performWithRequest:self withPlacement:placement];
 }
 
 @end
@@ -61,13 +62,9 @@
 }
 
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
+    BDMRewardedPlacement *placement = [[BDMRewardedPlacement alloc] initWithRewardedType:self.type];
     [self registerDelegate: delegate];
-    id<BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement rewardedPlacementWithAdType:self.type];
-    [self performWithRequest:self placementBuilder:builder];
-}
-
-- (BDMInternalPlacementType)placementType {
-    return BDMInternalPlacementTypeRewardedVideo;
+    [super performWithRequest:self withPlacement:placement];
 }
 
 @end
@@ -82,13 +79,9 @@
 }
 
 - (void)performWithDelegate:(id<BDMRequestDelegate>)delegate {
+    BDMNativeAdPlacement *placement = [[BDMNativeAdPlacement alloc] initWithNativeAdType:self.type];
     [self registerDelegate: delegate];
-    id<BDMPlacementRequestBuilder> builder = [BDMAdTypePlacement nativePlacementWithAdType:self.type];
-    [self performWithRequest:self placementBuilder:builder];
-}
-
-- (BDMInternalPlacementType)placementType {
-    return BDMInternalPlacementTypeNative;
+    [super performWithRequest:self withPlacement:placement];
 }
 
 @end

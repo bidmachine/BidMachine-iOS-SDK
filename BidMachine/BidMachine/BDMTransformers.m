@@ -5,27 +5,11 @@
 //
 
 #import "BDMTransformers.h"
+
 #import <UIKit/UIKit.h>
 
-@implementation BDMTransformers
 
-BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDMAdUnitFormat fmt) {
-    switch (fmt) {
-        case BDMAdUnitFormatUnknown: return NO; break;
-        case BDMAdUnitFormatRewardedVideo: return placement == BDMInternalPlacementTypeRewardedVideo; break;
-        case BDMAdUnitFormatRewardedPlayable: return placement == BDMInternalPlacementTypeRewardedVideo; break;
-        case BDMAdUnitFormatRewardedUnknown: return placement == BDMInternalPlacementTypeRewardedVideo; break;
-            
-        case BDMAdUnitFormatInterstitialVideo: return placement == BDMInternalPlacementTypeInterstitial; break;
-        case BDMAdUnitFormatInterstitialStatic: return placement == BDMInternalPlacementTypeInterstitial; break;
-        case BDMAdUnitFormatInterstitialUnknown: return placement == BDMInternalPlacementTypeInterstitial; break;
-            
-        case BDMAdUnitFormatInLineBanner: return placement == BDMInternalPlacementTypeBanner; break;
-        case BDMAdUnitFormatBanner320x50: return placement == BDMInternalPlacementTypeBanner; break;
-        case BDMAdUnitFormatBanner728x90: return placement == BDMInternalPlacementTypeBanner; break;
-        case BDMAdUnitFormatBanner300x250: return placement == BDMInternalPlacementTypeBanner; break;
-    }
-}
+@implementation BDMTransformers
 
 + (ADCOMDeviceType (^)(STKDeviceType))deviceType {
     return ^ADCOMDeviceType (STKDeviceType type){
@@ -173,10 +157,10 @@ BOOL isBDMAdUnitFormatSatisfyToPlacement(BDMInternalPlacementType placement, BDM
     };
 }
 
-+ (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMInternalPlacementType))adUnits {
-    return ^NSArray *(BDMAdNetworkConfiguration *config, BDMInternalPlacementType placement) {
++ (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMPlacement *))adUnits {
+    return ^NSArray *(BDMAdNetworkConfiguration *config, BDMPlacement * placement) {
         return ANY(config.adUnits).filter(^BOOL(BDMAdUnit *unit){
-                return isBDMAdUnitFormatSatisfyToPlacement(placement, unit.format);
+            return [placement isSupportedFormat:unit.format];
             }).array ?: @[];
     };
 }

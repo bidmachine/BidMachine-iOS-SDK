@@ -12,6 +12,7 @@
 #import "BDMTargeting.h"
 #import "BDMEventURL.h"
 #import "BDMRequest+Private.h"
+#import "BDMPlacement.h"
 #import "BDMAdNetworkConfiguration.h"
 
 
@@ -41,6 +42,6 @@
 
 + (NSArray <BDMEventURL *> *(^)(NSArray <ADCOMAd_Event *> *))eventURLs;
 
-+ (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMInternalPlacementType))adUnits;
++ (NSArray <BDMAdUnit *> *(^)(BDMAdNetworkConfiguration *, BDMPlacement *))adUnits;
 
 @end

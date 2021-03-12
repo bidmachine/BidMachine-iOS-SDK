@@ -10,6 +10,7 @@
 #import "BDMSdk.h"
 #import "BDMRequest.h"
 #import "BDMRegistry.h"
+#import "BDMPlacement.h"
 #import "BDMAuctionSettings.h"
 #import "BDMPlacementAdUnit.h"
 #import "BDMRequest+Private.h"
@@ -42,7 +43,7 @@
 @property (nonatomic, copy, readonly) NSString *ssp;
 
 - (void)collectHeaderBiddingAdUnits:(NSArray <BDMAdNetworkConfiguration *> *)configs
-                          placement:(BDMInternalPlacementType)placementType
+                          placement:(BDMPlacement *)placement
                          completion:(void (^)(NSArray<id<BDMPlacementAdUnit>> *))completion;
 
 - (void)initializeNetworks:(NSArray <BDMAdNetworkConfiguration *> *)configs

@@ -7,8 +7,8 @@
 //
 
 #import "BDMRequest.h"
-#import "BDMRequest+HeaderBidding.h"
 #import "BDMRequest+Private.h"
+#import "BDMRequest+HeaderBidding.h"
 
 #import "BDMServerCommunicator.h"
 
@@ -19,6 +19,8 @@
 
 #import <StackFoundation/StackFoundation.h>
 #import "BDMFactory+BDMEventMiddleware.h"
+
+#import "BDMPlacement+Builder.h"
 
 @interface BDMRequest ()
 
@@ -33,9 +35,9 @@
 
 @property (nonatomic, strong) STKExpirationTimer *expirationTimer;
 @property (nonatomic, strong) BDMEventMiddleware *middleware;
-@property (nonatomic, assign) BDMInternalPlacementType placementType;
 @property (nonatomic, strong) NSHashTable <id<BDMRequestDelegate>> *delegates;
 @property (nonatomic, copy) id <BDMResponse> response;
+@property (nonatomic, copy) BDMPlacement *placement;
 
 @end
 
@@ -66,8 +68,9 @@
     return _delegates;
 }
 
-- (void)_performWithRequest:(BDMRequest *)request
-           placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
+- (void)_performWithRequest:(BDMRequest *)request withPlacement:(BDMPlacement *)placement {
+    self.placement = placement;
+    
     if (!BDMSdk.sharedSdk.sellerID.length) {
         BDMLog(@"You should call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk was not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
         NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"No seller ID"];
@@ -82,26 +85,23 @@
     
     __weak typeof(self) weakSelf = self;
     [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:self.networkConfigurations
-                                        placement:self.placementType
+                                        placement:self.placement
                                        completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
         // Append header bidding
+        id<BDMPlacementRequestBuilder> placementBuilder = [self.placement builder];
         placementBuilder.appendHeaderBidding(placememntAdUnits);
         // Populate targeting
         weakSelf.state = BDMRequestStateAuction;
         [weakSelf.middleware startEvent:BDMEventAuction];
+        // Contextual data
+        id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:self.placement.type];
         // Make request by expiration timer
-        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:self.timeout auctionBuilder:^(BDMAuctionBuilder *builder) {
-            id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:self.placementType];
+        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:self.timeout
+                                                      auctionBuilder:^(BDMAuctionBuilder *builder)
+        {
             builder
             .appendPlacementBuilder(placementBuilder)
             .appendPriceFloors(request.priceFloors)
-            
-            //TODO: remove next release
-            #pragma GCC diagnostic push
-            #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-            .appendTargeting(request.targeting ?: BDMSdk.sharedSdk.targeting)
-            #pragma GCC diagnostic pop
-            
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendSessionID(BDMSdk.sharedSdk.contextualController.sessionId)
@@ -136,8 +136,8 @@
 }
 
 - (void)saveContextualData {
-    [BDMSdk.sharedSdk.contextualController registerLastBundle:self.response.creative.bundles.firstObject forPlacement:self.placementType];
-    [BDMSdk.sharedSdk.contextualController registerLastAdomain:self.response.creative.adDomains.firstObject forPlacement:self.placementType];
+    [BDMSdk.sharedSdk.contextualController registerLastBundle:self.response.creative.bundles.firstObject forPlacement:self.placement.type];
+    [BDMSdk.sharedSdk.contextualController registerLastAdomain:self.response.creative.adDomains.firstObject forPlacement:self.placement.type];
 }
 
 - (void)beginExpirationMonitoring {
@@ -165,10 +165,6 @@
                                                         eventProducer:nil];
     }
     return _middleware;
-}
-
-- (BDMInternalPlacementType)placementType {
-    return NSNotFound;
 }
 
 - (void)setPriceFloors:(NSArray<BDMPriceFloor *> *)priceFloors {
@@ -210,9 +206,8 @@
     [self.delegates addObject:delegate];
 }
 
-- (void)performWithRequest:(BDMRequest *)request
-          placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder {
-    [self _performWithRequest:request placementBuilder:placementBuilder];
+- (void)performWithRequest:(BDMRequest *)request withPlacement:(BDMPlacement *)placement {
+    [self _performWithRequest:request withPlacement:placement];
 }
 
 - (void)invalidate {
@@ -237,7 +232,7 @@
         STK_SET_AUTORELASE_VAR(error, [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"Request was not successful. Cannot create display ad!"]);
     }
     return [BDMFactory.sharedFactory displayAdWithResponse:self.response
-                                             plecementType:self.placementType];
+                                             plecementType:self.placement.type];
 }
 
 @end

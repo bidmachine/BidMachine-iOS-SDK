@@ -45,7 +45,7 @@
         return;
     }
     
-    BDMRequestStorageItem *item = [[BDMRequestStorageItem alloc] initWithRequest:request price:price type:request.placementType];
+    BDMRequestStorageItem *item = [[BDMRequestStorageItem alloc] initWithRequest:request price:price type:request.placement.type];
     item.delegate = self;
     [self.storedObjects addObject:item];
 }

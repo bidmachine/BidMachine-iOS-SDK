@@ -113,10 +113,13 @@ typedef NS_ENUM(NSInteger, BDMBannerAdSize) {
  - BDMNativeAdTypeVideo: Video content
  */
 typedef NS_OPTIONS(NSUInteger, BDMNativeAdType) {
-    BDMNativeAdTypeIcon     = 1 << 0,
-    BDMNativeAdTypeImage    = 1 << 1,
-    BDMNativeAdTypeVideo    = 1 << 2,
-    BDMNativeAdTypeAllMedia = BDMNativeAdTypeIcon | BDMNativeAdTypeImage | BDMNativeAdTypeVideo
+    BDMNativeAdTypeIcon             = 1 << 0,
+    BDMNativeAdTypeImage            = 1 << 1,
+    BDMNativeAdTypeVideo            = 1 << 2,
+    BDMNativeAdTypeIconAndVideo     = BDMNativeAdTypeIcon | BDMNativeAdTypeVideo,
+    BDMNativeAdTypeIconAndImage     = BDMNativeAdTypeIcon | BDMNativeAdTypeImage,
+    BDMNativeAdTypeImageAndVideo    = BDMNativeAdTypeImage | BDMNativeAdTypeVideo,
+    BDMNativeAdTypeAllMedia         = BDMNativeAdTypeIcon | BDMNativeAdTypeImage | BDMNativeAdTypeVideo
 };
 
 /**
@@ -133,7 +136,14 @@ typedef NS_ENUM(NSInteger, BDMAdUnitFormat) {
     BDMAdUnitFormatInterstitialUnknown,
     BDMAdUnitFormatRewardedVideo,
     BDMAdUnitFormatRewardedPlayable,
-    BDMAdUnitFormatRewardedUnknown
+    BDMAdUnitFormatRewardedUnknown,
+    BDMAdUnitFormatNativeAdIcon,
+    BDMAdUnitFormatNativeAdImage,
+    BDMAdUnitFormatNativeAdVideo,
+    BDMAdUnitFormatNativeAdIconAndVideo,
+    BDMAdUnitFormatNativeAdIconAndImage,
+    BDMAdUnitFormatNativeAdImageAndVideo,
+    BDMAdUnitFormatNativeAdUnknown
 };
 
 /**

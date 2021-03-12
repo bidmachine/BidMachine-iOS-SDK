@@ -51,10 +51,6 @@
  */
 @property (copy, nonatomic, readwrite, nonnull) NSArray <BDMPriceFloor *> *priceFloors;
 /**
- Current targeting data for request
- */
-@property (copy, nonatomic, readwrite, nullable) BDMTargeting *targeting __deprecated_msg("deprecated Use: BDMSdkConfiguration.targeting at the start of the SDK");
-/**
  Current user contextual data
 */
 @property (copy, nonatomic, readwrite, nullable) id<BDMContextualProtocol> contextualData;

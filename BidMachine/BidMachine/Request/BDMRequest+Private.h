@@ -7,8 +7,7 @@
 //
 
 #import "BDMRequest.h"
-#import "BDMDefines.h"
-#import "BDMPlacementRequestBuilderProtocol.h"
+#import "BDMPlacement.h"
 
 @class BDMEventURL;
 
@@ -22,12 +21,10 @@ typedef NS_ENUM(NSInteger, BDMRequestState) {
 
 @interface BDMRequest (Private)
 
-@property (nonatomic, assign, readonly) BDMInternalPlacementType placementType;
 @property (nonatomic, assign, readonly) BDMRequestState state;
 @property (nonatomic, copy, readonly) NSArray<BDMEventURL *> *eventTrackers;
 
-- (void)performWithRequest:(BDMRequest *)request
-          placementBuilder:(id<BDMPlacementRequestBuilder>)placementBuilder;
+- (void)performWithRequest:(BDMRequest *)request withPlacement:(BDMPlacement *)placement;
 - (void)registerDelegate:(id<BDMRequestDelegate>)delegate;
 - (void)cancelExpirationTimer;
 - (void)invalidate;
@@ -37,5 +34,11 @@ typedef NS_ENUM(NSInteger, BDMRequestState) {
 @interface BDMRequest (DisplayAd)
 
 - (id)displayAdWithError:(NSError *__autoreleasing *)error;
+
+@end
+
+@interface BDMRequest (Placement)
+
+- (BDMPlacement *)placement;
 
 @end

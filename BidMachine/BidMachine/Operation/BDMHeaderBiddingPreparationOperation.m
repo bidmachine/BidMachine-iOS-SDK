@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSMutableArray <id<BDMPlacementAdUnit>> *mutablePlacementAdUnits;
 @property (nonatomic, strong) STKTimer *timer;
 
-@property (nonatomic, assign) BDMInternalPlacementType placement;
+@property (nonatomic,   copy) BDMPlacement *placement;
 @property (nonatomic, assign) NSTimeInterval startTimestamp;
 @property (nonatomic, assign) NSTimeInterval executionTime;
 
@@ -35,7 +35,7 @@
 
 + (instancetype)preparationOperationForNetworks:(NSArray<BDMAdNetworkConfiguration *> *)networks
                                      controller:(BDMHeaderBiddingController *)controller
-                                      placement:(BDMInternalPlacementType)placement {
+                                      placement:(BDMPlacement *)placement {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     BDMHeaderBiddingPreparationOperation *operation = [super operationOnThread:queue action:^(BDMAsyncOperation *operation) {
         [(BDMHeaderBiddingPreparationOperation *)operation execute];
@@ -90,7 +90,7 @@
             __weak typeof(self) weakSelf = self;
             @autoreleasepool {
                 [self.controller prepareAdUnit:adUnit
-                                     placement:self.placement
+                                     placement:self.placement.type
                                        network:config.name
                                     completion:^(id<BDMPlacementAdUnit> placementUnit) {
                     if (placementUnit) {
@@ -117,7 +117,7 @@
             NSArray <BDMAdUnit *> *adUnits = BDMTransformers.adUnits(config, self.placement);
             [adUnits enumerateObjectsUsingBlock:^(BDMAdUnit *adUnit, NSUInteger idx, BOOL *stop) {
                 [weakSelf.controller invalidateAdUnit:adUnit
-                                            placement:weakSelf.placement
+                                            placement:weakSelf.placement.type
                                               network:config.name];
             }];
         }];

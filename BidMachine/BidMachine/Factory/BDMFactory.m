@@ -42,7 +42,7 @@
 
 - (BDMHeaderBiddingPreparationOperation *)preparationOperationForNetworks:(NSArray<BDMAdNetworkConfiguration *> *)networks
                                                                controller:(BDMHeaderBiddingController *)controller
-                                                                placement:(BDMInternalPlacementType)placement {
+                                                                placement:(BDMPlacement *)placement {
     return [BDMHeaderBiddingPreparationOperation preparationOperationForNetworks:networks
                                                                       controller:controller
                                                                        placement:placement];
