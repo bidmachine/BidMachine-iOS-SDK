@@ -77,6 +77,7 @@ NSString *NSStringFromBDMErrorCode(BDMErrorCode code) {
         case BDMErrorCodeHTTPBadRequest: return @"Bad request"; break;
         case BDMErrorCodeHTTPServerError: return @"Internal server error"; break;
         case BDMErrorCodeHeaderBiddingNetwork: return @"Ad Network specific error"; break;
+        default: return @"Unspecified error"; break;
     }
 }
 
