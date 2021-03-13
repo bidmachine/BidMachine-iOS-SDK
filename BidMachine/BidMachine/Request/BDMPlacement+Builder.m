@@ -46,7 +46,7 @@
 
 - (void)populateBuilder:(BDMPlacementRequestBuilder *)builder withInterstitialPlacement:(BDMInterstitialPlacement *)placement {
     if (placement.interstitialType & BDMFullsreenAdTypeBanner) {
-        builder = builder.appendDisplayPlacement(({
+        builder.appendDisplayPlacement(({
             BDMDisplayPlacementBuilder *display = BDMDisplayPlacementBuilder.new;
             display.appendPos(7);
             display.appendInstl(YES);
@@ -59,7 +59,7 @@
         }));
     }
     if (placement.interstitialType & BDMFullscreenAdTypeVideo) {
-        builder = builder.appendVideoPlacement(({
+        builder.appendVideoPlacement(({
             BDMVideoPlacementBuilder *video = BDMVideoPlacementBuilder.new;
             video.appendPos(7);
             video.appendskip(YES);
@@ -80,7 +80,7 @@
 
 - (void)populateBuilder:(BDMPlacementRequestBuilder *)builder withRewardedPlacement:(BDMRewardedPlacement *)placement {
     if (placement.rewardedType & BDMFullsreenAdTypeBanner) {
-        builder = builder.appendDisplayPlacement(({
+        builder.appendDisplayPlacement(({
             BDMDisplayPlacementBuilder *display = BDMDisplayPlacementBuilder.new;
             display.appendPos(7);
             display.appendInstl(YES);
@@ -94,7 +94,7 @@
     }
     
     if (placement.rewardedType & BDMFullscreenAdTypeVideo) {
-        builder = builder.appendVideoPlacement(({
+        builder.appendVideoPlacement(({
             BDMVideoPlacementBuilder *video = BDMVideoPlacementBuilder.new;
             video.appendPos(7);
             video.appendskip(false);
