@@ -24,12 +24,14 @@ BOOL BDMSdkLoggingEnabled = NO;
 
 
 CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize) {
+    CGSize defaultSize = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(728, 90) : CGSizeMake(320, 50);
     switch (adSize) {
         case BDMBannerAdSize320x50: return CGSizeMake(320, 50); break;
         case BDMBannerAdSize300x250: return CGSizeMake(300, 250); break;
         case BDMBannerAdSize728x90: return CGSizeMake(728, 90); break;
-        case BDMBannerAdSizeUnknown: return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(728, 90) : CGSizeMake(320, 50);
+        case BDMBannerAdSizeUnknown: return defaultSize;
     }
+    return defaultSize;
 }
 
 
@@ -90,6 +92,7 @@ NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt) {
         case BDMAdUnitFormatNativeAdImageAndVideo: return @"nativeAd_image_video"; break;
         case BDMAdUnitFormatNativeAdUnknown: return @"nativeAd"; break;
     }
+    return @"unknown";
 }
 
 NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt) {
@@ -98,4 +101,5 @@ NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt) {
         case BDMCreativeFormatVideo: return @"video"; break;
         case BDMCreativeFormatNative: return @"native"; break;
     }
+    return @"display";
 }
