@@ -123,8 +123,6 @@
 		6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F1992183352400F528AD /* BDMAuctionBuilder.m */; };
 		6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F19C2183461300F528AD /* BDMApiRequest.h */; };
 		6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F19D2183461300F528AD /* BDMApiRequest.m */; };
-		651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */; };
-		651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */; };
 		65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */; };
 		65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */; };
 		65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5DA321B15F0400652496 /* BDMRetryTimer.h */; };
@@ -300,8 +298,6 @@
 		6510F1992183352400F528AD /* BDMAuctionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionBuilder.m; sourceTree = "<group>"; };
 		6510F19C2183461300F528AD /* BDMApiRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMApiRequest.h; sourceTree = "<group>"; };
 		6510F19D2183461300F528AD /* BDMApiRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMApiRequest.m; sourceTree = "<group>"; };
-		651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMAdTypePlacement.h; path = BidMachine/Networking/Builders/BDMAdTypePlacement.h; sourceTree = SOURCE_ROOT; };
-		651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMAdTypePlacement.m; path = BidMachine/Networking/Builders/BDMAdTypePlacement.m; sourceTree = SOURCE_ROOT; };
 		65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSessionBuilder.h; sourceTree = "<group>"; };
 		65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSessionBuilder.m; sourceTree = "<group>"; };
 		65CE5DA321B15F0400652496 /* BDMRetryTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRetryTimer.h; sourceTree = "<group>"; };
@@ -461,8 +457,6 @@
 				42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */,
 				65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */,
 				65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */,
-				651D8DF6219EDC5100216162 /* BDMAdTypePlacement.h */,
-				651D8DF7219EDC5100216162 /* BDMAdTypePlacement.m */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -864,7 +858,6 @@
 				37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */,
 				427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */,
 				3707800B25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h in Headers */,
-				651D8DF8219EDC5100216162 /* BDMAdTypePlacement.h in Headers */,
 				9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */,
 				3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */,
 			);
@@ -1090,7 +1083,6 @@
 				9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */,
 				42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */,
 				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
-				651D8DF9219EDC5100216162 /* BDMAdTypePlacement.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
 				3727034C25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
