@@ -1,3 +1,9 @@
+# Version 1.6.5 (Mar 19th, 2021)
+
+- Update Fullscreen ads viewability logic
+	Now the viewability interval is set on the server (1 sec - default)
+- Update Banner ads click callback logic 
+
 # Version 1.6.4 (Dec 18th, 2020)
 
 - Append support IAB TCF 2.0
