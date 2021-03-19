@@ -88,7 +88,16 @@ Pod::Spec.new do |s|
     ss.dependency 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.1'
   end
 
-  s.pod_target_xcconfig      = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s', 'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
-  s.user_target_xcconfig     = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s', 'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  s.pod_target_xcconfig = {
+    "VALID_ARCHS": "arm64 armv7 armv7s x86_64",
+    "VALID_ARCHS[sdk=iphoneos*]": "arm64 armv7 armv7s",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+  }
+  
+  s.user_target_xcconfig = {
+    "VALID_ARCHS": "arm64 armv7 armv7s x86_64",
+    "VALID_ARCHS[sdk=iphoneos*]": "arm64 armv7 armv7s",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+  }
   
 end
