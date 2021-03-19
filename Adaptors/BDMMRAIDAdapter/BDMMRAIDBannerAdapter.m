@@ -103,6 +103,7 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 }
 
 - (void)didUserInteractionAd:(STKMRAIDAd *)ad withURL:(NSURL *)url {
+    [self.displayDelegate adapterWillPresentScreen:self];
     [STKSpinnerScreen show];
     [self.productPresenter presentProductWithParameters:self.productParameters(url)];
 }
@@ -125,12 +126,12 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 
 - (void)controller:(STKProductController *)controller didFailToPresentWithError:(NSError *)error {
     [STKSpinnerScreen hide];
+    [self.displayDelegate adapterDidDismissScreen:self];
 }
 
 - (void)controller:(STKProductController *)controller willPresentProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
-    [self.displayDelegate adapterRegisterUserInteraction:self];
-    [self.displayDelegate adapterWillPresentScreen:self];
     [STKSpinnerScreen hide];
+    [self.displayDelegate adapterRegisterUserInteraction:self];
 }
 
 - (void)controller:(STKProductController *)controller didDismissProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
@@ -138,10 +139,10 @@ const CGSize kBDMAdSize728x90  = {.width = 728.0f, .height = 90.0f  };
 }
 
 - (void)controller:(STKProductController *)controller willLeaveApplicationToProductWithParameters:(NSDictionary <NSString *, id> *)parameters {
+    [STKSpinnerScreen hide];
+    [self.displayDelegate adapterDidDismissScreen:self];
     [self.displayDelegate adapterRegisterUserInteraction:self];
     [self.displayDelegate adapterWillLeaveApplication:self];
-    [STKSpinnerScreen hide];
-    
 }
 
 @end
