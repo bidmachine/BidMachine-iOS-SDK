@@ -12,14 +12,6 @@
 		3701FA0225FB8FCC006A7B04 /* BDMPlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */; };
 		3701FA1525FB9CE4006A7B04 /* BDMPlacement+Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */; };
 		3701FA1625FB9CE4006A7B04 /* BDMPlacement+Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */; };
-		37077FF825ED28A200D02843 /* BDMExternalAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 37077FF725ED28A200D02843 /* BDMExternalAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3707800B25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3707800925ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3707800C25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3707800A25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.m */; };
-		3707801625ED2B1400D02843 /* BDMExternalAdapterConfigurationBuilderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3707801525ED2B1400D02843 /* BDMExternalAdapterConfigurationBuilderProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		37159ECD25EE554C00361163 /* BDMExternalAdapterSDKController.h in Headers */ = {isa = PBXBuildFile; fileRef = 37159ECB25EE554C00361163 /* BDMExternalAdapterSDKController.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		37159ECE25EE554C00361163 /* BDMExternalAdapterSDKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37159ECC25EE554C00361163 /* BDMExternalAdapterSDKController.m */; };
-		3727034B25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3727034C25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */; };
 		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
 		3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */; };
@@ -29,8 +21,6 @@
 		3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D424FD153F003DD6BF /* BDMEventObject.h */; };
 		3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D524FD153F003DD6BF /* BDMEventObject.m */; };
 		3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3775F17625C02F5900893729 /* BDMExternalAdapterRequestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3775F17725C02F5900893729 /* BDMExternalAdapterRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */; };
 		3781990F24CECD8E00E97FED /* BDMRequestStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781990D24CECD8E00E97FED /* BDMRequestStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781990E24CECD8E00E97FED /* BDMRequestStorage.m */; };
 		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
@@ -182,14 +172,6 @@
 		3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPlacement.m; sourceTree = "<group>"; };
 		3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMPlacement+Builder.h"; sourceTree = "<group>"; };
 		3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMPlacement+Builder.m"; sourceTree = "<group>"; };
-		37077FF725ED28A200D02843 /* BDMExternalAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
-		3707800925ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationDefines.h; sourceTree = "<group>"; };
-		3707800A25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterConfigurationDefines.m; sourceTree = "<group>"; };
-		3707801525ED2B1400D02843 /* BDMExternalAdapterConfigurationBuilderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationBuilderProtocol.h; sourceTree = "<group>"; };
-		37159ECB25EE554C00361163 /* BDMExternalAdapterSDKController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterSDKController.h; sourceTree = "<group>"; };
-		37159ECC25EE554C00361163 /* BDMExternalAdapterSDKController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterSDKController.m; sourceTree = "<group>"; };
-		3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfiguration.h; sourceTree = "<group>"; };
-		3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterConfiguration.m; sourceTree = "<group>"; };
 		37319DA924CEE61900765FE5 /* BDMFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFetcher.h; sourceTree = "<group>"; };
 		37319DAA24CEE61900765FE5 /* BDMFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFetcher.m; sourceTree = "<group>"; };
 		3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualController.h; sourceTree = "<group>"; };
@@ -199,8 +181,6 @@
 		3743A5D424FD153F003DD6BF /* BDMEventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventObject.h; sourceTree = "<group>"; };
 		3743A5D524FD153F003DD6BF /* BDMEventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventObject.m; sourceTree = "<group>"; };
 		3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualProtocol.h; sourceTree = "<group>"; };
-		3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterRequestController.h; sourceTree = "<group>"; };
-		3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterRequestController.m; sourceTree = "<group>"; };
 		3781990D24CECD8E00E97FED /* BDMRequestStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorage.h; sourceTree = "<group>"; };
 		3781990E24CECD8E00E97FED /* BDMRequestStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorage.m; sourceTree = "<group>"; };
 		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
@@ -388,23 +368,6 @@
 				3781991224CED19200E97FED /* BDMRequestStorageItem.m */,
 			);
 			path = Fetcher;
-			sourceTree = "<group>";
-		};
-		378C3D6025C9687600CEE64C /* ExternalAdapterUtils */ = {
-			isa = PBXGroup;
-			children = (
-				3707800925ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h */,
-				3707800A25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.m */,
-				37077FF725ED28A200D02843 /* BDMExternalAdapterConfigurationProtocol.h */,
-				3707801525ED2B1400D02843 /* BDMExternalAdapterConfigurationBuilderProtocol.h */,
-				3727034925B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h */,
-				3727034A25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m */,
-				37159ECB25EE554C00361163 /* BDMExternalAdapterSDKController.h */,
-				37159ECC25EE554C00361163 /* BDMExternalAdapterSDKController.m */,
-				3775F17425C02F5900893729 /* BDMExternalAdapterRequestController.h */,
-				3775F17525C02F5900893729 /* BDMExternalAdapterRequestController.m */,
-			);
-			path = ExternalAdapterUtils;
 			sourceTree = "<group>";
 		};
 		420476902135481600FA2261 /* Extensions */ = {
@@ -644,7 +607,6 @@
 				9C6A651120318A6100D5A98A /* Operation */,
 				420476902135481600FA2261 /* Extensions */,
 				42C3FDBB21624175004D3784 /* HeaderBidding */,
-				378C3D6025C9687600CEE64C /* ExternalAdapterUtils */,
 				429C045E2167584C000C5265 /* Request */,
 				9C2597451FB1EA2E006F3FA7 /* Response */,
 				4227C0C0217A56040022C1D5 /* Viewability */,
@@ -800,7 +762,6 @@
 				421137F021E880D200B65454 /* BDMAdRequests.h in Headers */,
 				422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */,
 				65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */,
-				3727034B25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.h in Headers */,
 				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
 				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
 				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
@@ -826,8 +787,6 @@
 				9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */,
 				427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */,
 				4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */,
-				3707801625ED2B1400D02843 /* BDMExternalAdapterConfigurationBuilderProtocol.h in Headers */,
-				37159ECD25EE554C00361163 /* BDMExternalAdapterSDKController.h in Headers */,
 				65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */,
 				4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */,
 				9C25973C1FB1E25C006F3FA7 /* BDMFactory.h in Headers */,
@@ -844,7 +803,6 @@
 				65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */,
 				42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */,
 				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
-				3775F17625C02F5900893729 /* BDMExternalAdapterRequestController.h in Headers */,
 				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
 				42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */,
 				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
@@ -854,10 +812,8 @@
 				4227C0C3217A56420022C1D5 /* BDMViewabilityMetricProvider.h in Headers */,
 				423CAF4D217DED98000FF60D /* BDMViewabilityMetricAppodeal.h in Headers */,
 				9C2597341FB1DFFF006F3FA7 /* BDMDefines.h in Headers */,
-				37077FF825ED28A200D02843 /* BDMExternalAdapterConfigurationProtocol.h in Headers */,
 				37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */,
 				427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */,
-				3707800B25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.h in Headers */,
 				9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */,
 				3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */,
 			);
@@ -1043,12 +999,10 @@
 				4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */,
 				65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */,
 				9C25973D1FB1E25C006F3FA7 /* BDMFactory.m in Sources */,
-				3775F17725C02F5900893729 /* BDMExternalAdapterRequestController.m in Sources */,
 				9C2597351FB1DFFF006F3FA7 /* BDMDefines.m in Sources */,
 				9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */,
 				3701FA1625FB9CE4006A7B04 /* BDMPlacement+Builder.m in Sources */,
 				4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */,
-				37159ECE25EE554C00361163 /* BDMExternalAdapterSDKController.m in Sources */,
 				9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */,
 				422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */,
 				9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */,
@@ -1073,7 +1027,6 @@
 				422712FB2164B5D100EE5012 /* BDMTargeting.m in Sources */,
 				65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */,
 				4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */,
-				3707800C25ED299900D02843 /* BDMExternalAdapterConfigurationDefines.m in Sources */,
 				426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */,
 				42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */,
 				42D730FA22DF24CB00AEB066 /* BDMPlacementAdUnit.m in Sources */,
@@ -1084,7 +1037,6 @@
 				42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */,
 				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
-				3727034C25B9A4AF00EBDD5B /* BDMExternalAdapterConfiguration.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
