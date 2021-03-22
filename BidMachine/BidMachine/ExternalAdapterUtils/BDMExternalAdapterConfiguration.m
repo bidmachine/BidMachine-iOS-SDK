@@ -16,15 +16,6 @@ NSString *const kBDMExtIDKey                        = @"bm_id";
 NSString *const kBDMExtTypeKey                      = @"bm_ad_type";
 
 
-@interface BDMAdNetworkConfiguration (BDMConfiguration)
-
-+ (instancetype)configurationWithJSON:(NSDictionary <NSString *, id> *)dict;
-
-- (NSDictionary *)jsonConfiguration;
-
-@end
-
-
 @interface BDMExternalAdapterConfigurationBuilder: NSObject <BDMExternalAdapterConfigurationBuilderProtocol>
 
 @property (nonatomic, strong) NSMutableDictionary *configuration;
@@ -514,61 +505,6 @@ NSString *const kBDMExtTypeKey                      = @"bm_ad_type";
         type = BDMNativeAdTypeAllMedia;
     }
     return type;
-}
-
-@end
-
-@implementation BDMAdNetworkConfiguration (BDMConfiguration)
-
-+ (instancetype)configurationWithJSON:(NSDictionary <NSString *, id> *)dict {
-    return [BDMAdNetworkConfiguration buildWithBuilder:^(BDMAdNetworkConfigurationBuilder *builder) {
-        // Append network name
-        if ([dict[@"network"] isKindOfClass:NSString.class]) {
-            builder.appendName(dict[@"network"]);
-        }
-        // Append network class
-        if ([dict[@"network_class"] isKindOfClass:NSString.class]) {
-            builder.appendNetworkClass(NSClassFromString(dict[@"network_class"]));
-        }
-        // Append ad units
-        NSArray <NSDictionary *> *adUnits = dict[@"ad_units"];
-        if ([adUnits isKindOfClass:NSArray.class]) {
-            [adUnits enumerateObjectsUsingBlock:^(NSDictionary *adUnit, NSUInteger idx, BOOL *stop) {
-                if ([adUnit isKindOfClass:NSDictionary.class]) {
-                    BDMAdUnitFormat fmt = [adUnit[@"format"] isKindOfClass:NSString.class] ?
-                    BDMAdUnitFormatFromString(adUnit[@"format"]) :
-                    BDMAdUnitFormatUnknown;
-                    NSMutableDictionary *params = adUnit.mutableCopy;
-                    [params removeObjectForKey:@"format"];
-                    builder.appendAdUnit(fmt, params, nil);
-                }
-            }];
-        }
-        // Append init params
-        NSMutableDictionary <NSString *, id> *customParams = dict.mutableCopy;
-        [customParams removeObjectsForKeys:@[
-                                             @"network",
-                                             @"network_class",
-                                             @"ad_units"
-                                             ]];
-        if (customParams.count) {
-            builder.appendInitializationParams(customParams);
-        }
-    }];
-}
-
-- (NSDictionary *)jsonConfiguration {
-    NSMutableDictionary *configuration = NSMutableDictionary.new;
-    configuration[@"network"] = self.name;
-    configuration[@"network_class"] = NSStringFromClass(self.networkClass);
-    [configuration addEntriesFromDictionary: self.initializationParams ?: @{}];
-    configuration[@"ad_units"] = ANY(self.adUnits).flatMap(^id(BDMAdUnit *unit){
-        NSMutableDictionary *adUnitJson = NSMutableDictionary.new;
-        adUnitJson[@"format"] = NSStringFromBDMAdUnitFormat(unit.format);
-        [adUnitJson addEntriesFromDictionary: unit.customParams ?: @{}];
-        return adUnitJson;
-    }).array;
-    return configuration;
 }
 
 @end

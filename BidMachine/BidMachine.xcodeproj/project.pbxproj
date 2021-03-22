@@ -1,0 +1,1406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		139A484086553A9E474C5837 /* Pods_BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF230351675665987981D7E /* Pods_BidMachine.framework */; };
+		3701FA0125FB8FCC006A7B04 /* BDMPlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 3701F9FF25FB8FCC006A7B04 /* BDMPlacement.h */; };
+		3701FA0225FB8FCC006A7B04 /* BDMPlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */; };
+		3701FA1525FB9CE4006A7B04 /* BDMPlacement+Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */; };
+		3701FA1625FB9CE4006A7B04 /* BDMPlacement+Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */; };
+		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
+		3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */; };
+		3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */; };
+		3743A5D224FD1252003DD6BF /* BDMPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */; };
+		3743A5D324FD1252003DD6BF /* BDMPrivateDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */; };
+		3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D424FD153F003DD6BF /* BDMEventObject.h */; };
+		3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5D524FD153F003DD6BF /* BDMEventObject.m */; };
+		3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3781990F24CECD8E00E97FED /* BDMRequestStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781990D24CECD8E00E97FED /* BDMRequestStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781990E24CECD8E00E97FED /* BDMRequestStorage.m */; };
+		3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3781991124CED19200E97FED /* BDMRequestStorageItem.h */; };
+		3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3781991224CED19200E97FED /* BDMRequestStorageItem.m */; };
+		3794909026089460000D4C63 /* BDMExternalAdapterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794908626089460000D4C63 /* BDMExternalAdapterConfiguration.m */; };
+		3794909126089460000D4C63 /* BDMExternalAdapterSDKController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908726089460000D4C63 /* BDMExternalAdapterSDKController.h */; };
+		3794909226089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908826089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h */; };
+		3794909326089460000D4C63 /* BDMExternalAdapterRequestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794908926089460000D4C63 /* BDMExternalAdapterRequestController.m */; };
+		3794909426089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794908A26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m */; };
+		3794909526089460000D4C63 /* BDMExternalAdapterSDKController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3794908B26089460000D4C63 /* BDMExternalAdapterSDKController.m */; };
+		3794909626089460000D4C63 /* BDMExternalAdapterConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908C26089460000D4C63 /* BDMExternalAdapterConfiguration.h */; };
+		3794909726089460000D4C63 /* BDMExternalAdapterRequestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908D26089460000D4C63 /* BDMExternalAdapterRequestController.h */; };
+		3794909826089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908E26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h */; };
+		3794909926089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3794908F26089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h */; };
+		3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */; };
+		3799E95E25B2F92800CE997E /* NSArray+BDMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */; };
+		37AEA4ED25935E8F00176D9E /* BDMAdapterDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 37AEA4EB25935E8F00176D9E /* BDMAdapterDefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		37AEA4EE25935E8F00176D9E /* BDMAdapterDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */; };
+		37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */; };
+		37AEA4F62593949800176D9E /* OpenRTB+BDMCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */; };
+		37C0D70A259200D300586859 /* BDMNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
+		421137F021E880D200B65454 /* BDMAdRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137EE21E880D200B65454 /* BDMAdRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		421137F121E880D200B65454 /* BDMAdRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421137EF21E880D200B65454 /* BDMAdRequests.m */; };
+		421137F421E8947100B65454 /* BDMRequest+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137F221E8947100B65454 /* BDMRequest+Private.h */; };
+		4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4218D90A21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h */; };
+		4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4218D90B21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m */; };
+		421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 421B9FCF218B4227004CED22 /* BDMFactory+BDMDisplayAd.h */; };
+		421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 421B9FD0218B4227004CED22 /* BDMFactory+BDMDisplayAd.m */; };
+		422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */ = {isa = PBXBuildFile; fileRef = 422712F82164B5D100EE5012 /* BDMTargeting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		422712FB2164B5D100EE5012 /* BDMTargeting.m in Sources */ = {isa = PBXBuildFile; fileRef = 422712F92164B5D100EE5012 /* BDMTargeting.m */; };
+		4227C0C3217A56420022C1D5 /* BDMViewabilityMetricProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 4227C0C1217A56420022C1D5 /* BDMViewabilityMetricProvider.h */; };
+		4227C0C4217A56420022C1D5 /* BDMViewabilityMetricProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4227C0C2217A56420022C1D5 /* BDMViewabilityMetricProvider.m */; };
+		4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4227C0C5217DC7620022C1D5 /* BDMAuctionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4227C0C6217DC7620022C1D5 /* BDMAuctionInfo.m */; };
+		4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */ = {isa = PBXBuildFile; fileRef = 4228797821A2A7DF00FFEAD1 /* BDMRewarded.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */ = {isa = PBXBuildFile; fileRef = 4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */; };
+		422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */; };
+		422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */; };
+		423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = 423A823A21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h */; };
+		423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = 423A823B21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m */; };
+		423CAF4D217DED98000FF60D /* BDMViewabilityMetricAppodeal.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CAF4B217DED98000FF60D /* BDMViewabilityMetricAppodeal.h */; };
+		423CAF4E217DED98000FF60D /* BDMViewabilityMetricAppodeal.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CAF4C217DED98000FF60D /* BDMViewabilityMetricAppodeal.m */; };
+		42420DD921B7AA280041C724 /* BDMInitialisationResponseProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42420DD821B7AA280041C724 /* BDMInitialisationResponseProtocol.h */; };
+		42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 42420DDA21B7AA930041C724 /* BDMInitialisationResponseModel.h */; };
+		42420DDD21B7AA930041C724 /* BDMInitialisationResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42420DDB21B7AA930041C724 /* BDMInitialisationResponseModel.m */; };
+		424BA29A2199CCC800E2745D /* BDMUserAgentProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */; };
+		424BA29F2199CCD300E2745D /* BDMTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BA29B2199CCD300E2745D /* BDMTransformers.m */; };
+		424BA2A02199CCD300E2745D /* BDMTransformers.h in Headers */ = {isa = PBXBuildFile; fileRef = 424BA29C2199CCD300E2745D /* BDMTransformers.h */; };
+		424BA2A12199CCD300E2745D /* BDMAuctionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 424BA29D2199CCD300E2745D /* BDMAuctionSettings.m */; };
+		424BA2A22199CCD300E2745D /* BDMAuctionSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 424BA29E2199CCD300E2745D /* BDMAuctionSettings.h */; };
+		42515D942186DF000025C231 /* BDMDisplayAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42515D922186DF000025C231 /* BDMDisplayAdProtocol.h */; };
+		42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42515D962186F9CB0025C231 /* BDMBannerViewDisplayAd.h */; };
+		42515D992186F9CB0025C231 /* BDMBannerViewDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42515D972186F9CB0025C231 /* BDMBannerViewDisplayAd.m */; };
+		425EF00F2164C897004B1839 /* BDMSdkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 425EF00D2164C897004B1839 /* BDMSdkConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		425EF0102164C897004B1839 /* BDMSdkConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 425EF00E2164C897004B1839 /* BDMSdkConfiguration.m */; };
+		4269622521836145004D9B17 /* BDMFullscreenAdDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 4269622321836145004D9B17 /* BDMFullscreenAdDisplayAd.h */; };
+		4269622621836145004D9B17 /* BDMFullscreenAdDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269622421836145004D9B17 /* BDMFullscreenAdDisplayAd.m */; };
+		4269D16921B01B0E00E3E13B /* NSError+BDMSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */; };
+		426AA21922E89A06003FA6AF /* BDMAdUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 426AA21722E89A06003FA6AF /* BDMAdUnit.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 426AA21822E89A06003FA6AF /* BDMAdUnit.m */; };
+		426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */ = {isa = PBXBuildFile; fileRef = 426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */; };
+		426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */; };
+		4270379D21AD1C48007B47E4 /* BDMAuctionBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */; };
+		4270379E21AD1C48007B47E4 /* BDMApiRequestSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */; };
+		4270379F21AD1C48007B47E4 /* BDMSpecUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379921AD1C48007B47E4 /* BDMSpecUtils.m */; };
+		427037A021AD1C48007B47E4 /* BDMAdTypePlacementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379A21AD1C48007B47E4 /* BDMAdTypePlacementSpec.m */; };
+		427037A121AD1C48007B47E4 /* BDMAuctionSettingsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4270379B21AD1C48007B47E4 /* BDMAuctionSettingsSpec.m */; };
+		427037C221AD1D3C007B47E4 /* BDMSdkSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 427037BA21AD1D3C007B47E4 /* BDMSdkSpec.m */; };
+		427037C421AD1D3C007B47E4 /* BDMRegistrySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 427037BD21AD1D3C007B47E4 /* BDMRegistrySpec.m */; };
+		427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 427037C721AD245F007B47E4 /* BDMAdEventProducerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */ = {isa = PBXBuildFile; fileRef = 427E4D5C219427D3001EE6C7 /* BDMUserRestrictions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427E4D5F219427D3001EE6C7 /* BDMUserRestrictions.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E4D5D219427D3001EE6C7 /* BDMUserRestrictions.m */; };
+		427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 427E63C721A57528005DB6B5 /* BDMCreative.h */; };
+		427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 427E63C821A57528005DB6B5 /* BDMCreative.m */; };
+		427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */ = {isa = PBXBuildFile; fileRef = 427E63D821A5A32E005DB6B5 /* BDMAuctionInfo+Project.h */; };
+		42B65DA42162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42B65DA621625D95006C8A4C /* BDMRequest+HeaderBidding.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C075DA2189D3DE00256E7B /* BDMNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C075DB2189D3DE00256E7B /* BDMNativeAd.m */; };
+		42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C075DE2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h */; };
+		42C075E12189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C075DF2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m */; };
+		42C4D4D622FC23A400A076AD /* BDMAdNetworksMocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */; };
+		42C4D4D922FC303100A076AD /* BDMHeaderBiddingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */; };
+		42CF2F6E22E065E8000E825A /* BDMHeaderBiddingPreparationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */; };
+		42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */; };
+		42D730FA22DF24CB00AEB066 /* BDMPlacementAdUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */; };
+		42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */; };
+		42D730FF22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */; };
+		42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */; };
+		42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */; };
+		42F86EDE21BAB7A400B58CB5 /* BDMPriceFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F86EDC21BAB7A400B58CB5 /* BDMPriceFloor.m */; };
+		42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F86EDD21BAB7A400B58CB5 /* BDMPriceFloor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42FBC7322180A23300B1D324 /* BDMEventURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FBC7302180A23300B1D324 /* BDMEventURL.h */; };
+		42FBC7332180A23300B1D324 /* BDMEventURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FBC7312180A23300B1D324 /* BDMEventURL.m */; };
+		470122CF0E041FE437E60C18 /* Pods_BidMachineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */; };
+		6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F1982183352400F528AD /* BDMAuctionBuilder.h */; };
+		6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F1992183352400F528AD /* BDMAuctionBuilder.m */; };
+		6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6510F19C2183461300F528AD /* BDMApiRequest.h */; };
+		6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6510F19D2183461300F528AD /* BDMApiRequest.m */; };
+		65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */; };
+		65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */; };
+		65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65CE5DA321B15F0400652496 /* BDMRetryTimer.h */; };
+		65CE5DA621B15F0400652496 /* BDMRetryTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CE5DA421B15F0400652496 /* BDMRetryTimer.m */; };
+		65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */; };
+		65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */; };
+		65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */; };
+		9C2597281FB1DC91006F3FA7 /* BidMachine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597261FB1DC91006F3FA7 /* BidMachine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C2597301FB1DD64006F3FA7 /* BDMServerCommunicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25972E1FB1DD64006F3FA7 /* BDMServerCommunicator.h */; };
+		9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25972F1FB1DD64006F3FA7 /* BDMServerCommunicator.m */; };
+		9C2597341FB1DFFF006F3FA7 /* BDMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597321FB1DFFF006F3FA7 /* BDMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C2597351FB1DFFF006F3FA7 /* BDMDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2597331FB1DFFF006F3FA7 /* BDMDefines.m */; };
+		9C2597381FB1E0FE006F3FA7 /* BDMResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2597361FB1E0FE006F3FA7 /* BDMResponse.m */; };
+		9C2597391FB1E0FE006F3FA7 /* BDMResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597371FB1E0FE006F3FA7 /* BDMResponse.h */; };
+		9C25973C1FB1E25C006F3FA7 /* BDMFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25973A1FB1E25C006F3FA7 /* BDMFactory.h */; };
+		9C25973D1FB1E25C006F3FA7 /* BDMFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25973B1FB1E25C006F3FA7 /* BDMFactory.m */; };
+		9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25973E1FB1E4E5006F3FA7 /* BDMResponseProtocol.h */; };
+		9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597411FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h */; };
+		9C2597441FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2597421FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m */; };
+		9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597491FB1EC49006F3FA7 /* BDMSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25974A1FB1EC49006F3FA7 /* BDMSdk.m */; };
+		9C25974F1FB1F8A0006F3FA7 /* BDMInterstitial.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C2597501FB1F8A0006F3FA7 /* BDMInterstitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C25974E1FB1F8A0006F3FA7 /* BDMInterstitial.m */; };
+		9C2597521FB2002C006F3FA7 /* BDMSdk+Project.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2597511FB2002B006F3FA7 /* BDMSdk+Project.h */; };
+		9C69DC761FC2E14800EDC6E5 /* BDMUserAgentProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */; };
+		9C6A65142031A1BE00D5A98A /* BDMAsyncOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */; };
+		9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */; };
+		9C6A651C2031D7F000D5A98A /* BDMFactory+BDMOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C6A651A2031D7F000D5A98A /* BDMFactory+BDMOperation.h */; };
+		9C6A651D2031D7F000D5A98A /* BDMFactory+BDMOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A651B2031D7F000D5A98A /* BDMFactory+BDMOperation.m */; };
+		9C71DBAE1FB5F03800D0DCCA /* BDMBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C71DBAC1FB5F03800D0DCCA /* BDMBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C71DBAF1FB5F03800D0DCCA /* BDMBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C71DBAD1FB5F03800D0DCCA /* BDMBannerView.m */; };
+		9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */; };
+		9CAF86AD203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */; };
+		9CBED2201FB2DBC4004C4669 /* BDMRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CBED21E1FB2DBC4004C4669 /* BDMRegistry.h */; };
+		9CBED2211FB2DBC4004C4669 /* BDMRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBED21F1FB2DBC4004C4669 /* BDMRegistry.m */; };
+		9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CBED2271FB3218D004C4669 /* BDMRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBED2281FB3218D004C4669 /* BDMRequest.m */; };
+		9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2597231FB1DC91006F3FA7 /* BidMachine.framework */; };
+		9CFBD1831FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		426103B1217DFD1700E92B28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C25971A1FB1DC91006F3FA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C2597221FB1DC91006F3FA7;
+			remoteInfo = OpenBidsSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.release.xcconfig"; sourceTree = "<group>"; };
+		3701F9FF25FB8FCC006A7B04 /* BDMPlacement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPlacement.h; sourceTree = "<group>"; };
+		3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPlacement.m; sourceTree = "<group>"; };
+		3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMPlacement+Builder.h"; sourceTree = "<group>"; };
+		3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMPlacement+Builder.m"; sourceTree = "<group>"; };
+		37319DA924CEE61900765FE5 /* BDMFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFetcher.h; sourceTree = "<group>"; };
+		37319DAA24CEE61900765FE5 /* BDMFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFetcher.m; sourceTree = "<group>"; };
+		3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualController.h; sourceTree = "<group>"; };
+		3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMContextualController.m; sourceTree = "<group>"; };
+		3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMPrivateDefines.h; path = BidMachine/BDMPrivateDefines.h; sourceTree = SOURCE_ROOT; };
+		3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMPrivateDefines.m; path = BidMachine/BDMPrivateDefines.m; sourceTree = SOURCE_ROOT; };
+		3743A5D424FD153F003DD6BF /* BDMEventObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventObject.h; sourceTree = "<group>"; };
+		3743A5D524FD153F003DD6BF /* BDMEventObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventObject.m; sourceTree = "<group>"; };
+		3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualProtocol.h; sourceTree = "<group>"; };
+		3781990D24CECD8E00E97FED /* BDMRequestStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorage.h; sourceTree = "<group>"; };
+		3781990E24CECD8E00E97FED /* BDMRequestStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorage.m; sourceTree = "<group>"; };
+		3781991124CED19200E97FED /* BDMRequestStorageItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequestStorageItem.h; sourceTree = "<group>"; };
+		3781991224CED19200E97FED /* BDMRequestStorageItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequestStorageItem.m; sourceTree = "<group>"; };
+		3794908626089460000D4C63 /* BDMExternalAdapterConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterConfiguration.m; sourceTree = "<group>"; };
+		3794908726089460000D4C63 /* BDMExternalAdapterSDKController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterSDKController.h; sourceTree = "<group>"; };
+		3794908826089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationBuilderProtocol.h; sourceTree = "<group>"; };
+		3794908926089460000D4C63 /* BDMExternalAdapterRequestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterRequestController.m; sourceTree = "<group>"; };
+		3794908A26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterConfigurationDefines.m; sourceTree = "<group>"; };
+		3794908B26089460000D4C63 /* BDMExternalAdapterSDKController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMExternalAdapterSDKController.m; sourceTree = "<group>"; };
+		3794908C26089460000D4C63 /* BDMExternalAdapterConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfiguration.h; sourceTree = "<group>"; };
+		3794908D26089460000D4C63 /* BDMExternalAdapterRequestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterRequestController.h; sourceTree = "<group>"; };
+		3794908E26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationDefines.h; sourceTree = "<group>"; };
+		3794908F26089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMExternalAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
+		3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+BDMExtension.h"; sourceTree = "<group>"; };
+		3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BDMExtension.m"; sourceTree = "<group>"; };
+		37AEA4EB25935E8F00176D9E /* BDMAdapterDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdapterDefines.h; sourceTree = "<group>"; };
+		37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdapterDefines.m; sourceTree = "<group>"; };
+		37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenRTB+BDMCreative.h"; sourceTree = "<group>"; };
+		37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OpenRTB+BDMCreative.m"; sourceTree = "<group>"; };
+		420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMProtoAPI-Umbrella.h"; sourceTree = "<group>"; };
+		421137EE21E880D200B65454 /* BDMAdRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdRequests.h; sourceTree = "<group>"; };
+		421137EF21E880D200B65454 /* BDMAdRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdRequests.m; sourceTree = "<group>"; };
+		421137F221E8947100B65454 /* BDMRequest+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequest+Private.h"; sourceTree = "<group>"; };
+		4218D90A21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBaseDisplayAd.h; sourceTree = "<group>"; };
+		4218D90B21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBaseDisplayAd.m; sourceTree = "<group>"; };
+		421B9FCF218B4227004CED22 /* BDMFactory+BDMDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMDisplayAd.h"; sourceTree = "<group>"; };
+		421B9FD0218B4227004CED22 /* BDMFactory+BDMDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMDisplayAd.m"; sourceTree = "<group>"; };
+		422712F82164B5D100EE5012 /* BDMTargeting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMTargeting.h; sourceTree = "<group>"; };
+		422712F92164B5D100EE5012 /* BDMTargeting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMTargeting.m; sourceTree = "<group>"; };
+		4227C0C1217A56420022C1D5 /* BDMViewabilityMetricProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMViewabilityMetricProvider.h; sourceTree = "<group>"; };
+		4227C0C2217A56420022C1D5 /* BDMViewabilityMetricProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMViewabilityMetricProvider.m; sourceTree = "<group>"; };
+		4227C0C5217DC7620022C1D5 /* BDMAuctionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAuctionInfo.h; sourceTree = "<group>"; };
+		4227C0C6217DC7620022C1D5 /* BDMAuctionInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionInfo.m; sourceTree = "<group>"; };
+		4228797821A2A7DF00FFEAD1 /* BDMRewarded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMRewarded.h; sourceTree = "<group>"; };
+		4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMRewarded.m; sourceTree = "<group>"; };
+		422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventMiddleware.h; sourceTree = "<group>"; };
+		422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventMiddleware.m; sourceTree = "<group>"; };
+		423A823A21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMEventMiddleware.h"; sourceTree = "<group>"; };
+		423A823B21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMEventMiddleware.m"; sourceTree = "<group>"; };
+		423CAF4B217DED98000FF60D /* BDMViewabilityMetricAppodeal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMViewabilityMetricAppodeal.h; sourceTree = "<group>"; };
+		423CAF4C217DED98000FF60D /* BDMViewabilityMetricAppodeal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMViewabilityMetricAppodeal.m; sourceTree = "<group>"; };
+		42420DD821B7AA280041C724 /* BDMInitialisationResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInitialisationResponseProtocol.h; sourceTree = "<group>"; };
+		42420DDA21B7AA930041C724 /* BDMInitialisationResponseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInitialisationResponseModel.h; sourceTree = "<group>"; };
+		42420DDB21B7AA930041C724 /* BDMInitialisationResponseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInitialisationResponseModel.m; sourceTree = "<group>"; };
+		424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMUserAgentProvider.m; sourceTree = "<group>"; };
+		424BA29B2199CCD300E2745D /* BDMTransformers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDMTransformers.m; path = BidMachine/BDMTransformers.m; sourceTree = SOURCE_ROOT; };
+		424BA29C2199CCD300E2745D /* BDMTransformers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDMTransformers.h; path = BidMachine/BDMTransformers.h; sourceTree = SOURCE_ROOT; };
+		424BA29D2199CCD300E2745D /* BDMAuctionSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDMAuctionSettings.m; path = BidMachine/BDMAuctionSettings.m; sourceTree = SOURCE_ROOT; };
+		424BA29E2199CCD300E2745D /* BDMAuctionSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDMAuctionSettings.h; path = BidMachine/BDMAuctionSettings.h; sourceTree = SOURCE_ROOT; };
+		42515D922186DF000025C231 /* BDMDisplayAdProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMDisplayAdProtocol.h; sourceTree = "<group>"; };
+		42515D962186F9CB0025C231 /* BDMBannerViewDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerViewDisplayAd.h; sourceTree = "<group>"; };
+		42515D972186F9CB0025C231 /* BDMBannerViewDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerViewDisplayAd.m; sourceTree = "<group>"; };
+		425EF00D2164C897004B1839 /* BDMSdkConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSdkConfiguration.h; sourceTree = "<group>"; };
+		425EF00E2164C897004B1839 /* BDMSdkConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSdkConfiguration.m; sourceTree = "<group>"; };
+		4269622321836145004D9B17 /* BDMFullscreenAdDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFullscreenAdDisplayAd.h; sourceTree = "<group>"; };
+		4269622421836145004D9B17 /* BDMFullscreenAdDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFullscreenAdDisplayAd.m; sourceTree = "<group>"; };
+		4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+BDMSdk.h"; sourceTree = "<group>"; };
+		4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+BDMSdk.m"; sourceTree = "<group>"; };
+		426AA21722E89A06003FA6AF /* BDMAdUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMAdUnit.h; sourceTree = "<group>"; };
+		426AA21822E89A06003FA6AF /* BDMAdUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAdUnit.m; sourceTree = "<group>"; };
+		426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingController.h; sourceTree = "<group>"; };
+		426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingController.m; sourceTree = "<group>"; };
+		4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionBuilderSpec.m; sourceTree = "<group>"; };
+		4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMApiRequestSpec.m; sourceTree = "<group>"; };
+		4270379921AD1C48007B47E4 /* BDMSpecUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMSpecUtils.m; sourceTree = "<group>"; };
+		4270379A21AD1C48007B47E4 /* BDMAdTypePlacementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAdTypePlacementSpec.m; sourceTree = "<group>"; };
+		4270379B21AD1C48007B47E4 /* BDMAuctionSettingsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionSettingsSpec.m; sourceTree = "<group>"; };
+		4270379C21AD1C48007B47E4 /* BDMSpecUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMSpecUtils.h; sourceTree = "<group>"; };
+		427037BA21AD1D3C007B47E4 /* BDMSdkSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMSdkSpec.m; sourceTree = "<group>"; };
+		427037BD21AD1D3C007B47E4 /* BDMRegistrySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMRegistrySpec.m; sourceTree = "<group>"; };
+		427037C721AD245F007B47E4 /* BDMAdEventProducerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdEventProducerProtocol.h; sourceTree = "<group>"; };
+		427E4D5C219427D3001EE6C7 /* BDMUserRestrictions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMUserRestrictions.h; sourceTree = "<group>"; };
+		427E4D5D219427D3001EE6C7 /* BDMUserRestrictions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMUserRestrictions.m; sourceTree = "<group>"; };
+		427E63C721A57528005DB6B5 /* BDMCreative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMCreative.h; sourceTree = "<group>"; };
+		427E63C821A57528005DB6B5 /* BDMCreative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMCreative.m; sourceTree = "<group>"; };
+		427E63D821A5A32E005DB6B5 /* BDMAuctionInfo+Project.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMAuctionInfo+Project.h"; sourceTree = "<group>"; };
+		429C195D2160123C0048F400 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdkConfiguration+HeaderBidding.h"; sourceTree = "<group>"; };
+		42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMRequest+HeaderBidding.h"; sourceTree = "<group>"; };
+		42C075DA2189D3DE00256E7B /* BDMNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAd.h; sourceTree = "<group>"; };
+		42C075DB2189D3DE00256E7B /* BDMNativeAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAd.m; sourceTree = "<group>"; };
+		42C075DE2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNativeAdViewDisplayAd.h; sourceTree = "<group>"; };
+		42C075DF2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMNativeAdViewDisplayAd.m; sourceTree = "<group>"; };
+		42C3FDB921623E70004D3784 /* module.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.private.modulemap; sourceTree = "<group>"; };
+		42C4D4D422FC23A400A076AD /* BDMAdNetworksMocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdNetworksMocks.h; sourceTree = "<group>"; };
+		42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdNetworksMocks.m; sourceTree = "<group>"; };
+		42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingSpec.m; sourceTree = "<group>"; };
+		42C4D4DA22FC316900A076AD /* BDMSdk+Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdk+Tests.h"; sourceTree = "<group>"; };
+		42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPlacementAdUnit.h; sourceTree = "<group>"; };
+		42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPlacementAdUnit.m; sourceTree = "<group>"; };
+		42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingOperationProtocol.h; sourceTree = "<group>"; };
+		42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingPreparationOperation.h; sourceTree = "<group>"; };
+		42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingPreparationOperation.m; sourceTree = "<group>"; };
+		42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdNetworkConfiguration.h; sourceTree = "<group>"; };
+		42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdNetworkConfiguration.m; sourceTree = "<group>"; };
+		42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPlacementRequestBuilderProtocol.h; sourceTree = "<group>"; };
+		42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMNetworkProtocol.h; sourceTree = "<group>"; };
+		42F86EDC21BAB7A400B58CB5 /* BDMPriceFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMPriceFloor.m; sourceTree = "<group>"; };
+		42F86EDD21BAB7A400B58CB5 /* BDMPriceFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMPriceFloor.h; sourceTree = "<group>"; };
+		42FBC7302180A23300B1D324 /* BDMEventURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMEventURL.h; sourceTree = "<group>"; };
+		42FBC7312180A23300B1D324 /* BDMEventURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMEventURL.m; sourceTree = "<group>"; };
+		4600EF1607127158ACF8109E /* Pods-BidMachine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachine.release.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachine/Pods-BidMachine.release.xcconfig"; sourceTree = "<group>"; };
+		6510F1982183352400F528AD /* BDMAuctionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAuctionBuilder.h; sourceTree = "<group>"; };
+		6510F1992183352400F528AD /* BDMAuctionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAuctionBuilder.m; sourceTree = "<group>"; };
+		6510F19C2183461300F528AD /* BDMApiRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMApiRequest.h; sourceTree = "<group>"; };
+		6510F19D2183461300F528AD /* BDMApiRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMApiRequest.m; sourceTree = "<group>"; };
+		65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSessionBuilder.h; sourceTree = "<group>"; };
+		65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSessionBuilder.m; sourceTree = "<group>"; };
+		65CE5DA321B15F0400652496 /* BDMRetryTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRetryTimer.h; sourceTree = "<group>"; };
+		65CE5DA421B15F0400652496 /* BDMRetryTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRetryTimer.m; sourceTree = "<group>"; };
+		65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMPlacementRequestBuilder.h; path = BidMachine/Networking/Builders/BDMPlacementRequestBuilder.h; sourceTree = SOURCE_ROOT; };
+		65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BDMPlacementRequestBuilder.m; path = BidMachine/Networking/Builders/BDMPlacementRequestBuilder.m; sourceTree = SOURCE_ROOT; };
+		65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMPublisherInfo.h; sourceTree = "<group>"; };
+		65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPublisherInfo.m; sourceTree = "<group>"; };
+		76EB7CD6CDD10BD42CC42D42 /* Pods-BidMachine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachine.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachine/Pods-BidMachine.debug.xcconfig"; sourceTree = "<group>"; };
+		9C2597231FB1DC91006F3FA7 /* BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C2597261FB1DC91006F3FA7 /* BidMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BidMachine.h; sourceTree = "<group>"; };
+		9C25972E1FB1DD64006F3FA7 /* BDMServerCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMServerCommunicator.h; sourceTree = "<group>"; };
+		9C25972F1FB1DD64006F3FA7 /* BDMServerCommunicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMServerCommunicator.m; sourceTree = "<group>"; };
+		9C2597321FB1DFFF006F3FA7 /* BDMDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMDefines.h; sourceTree = "<group>"; };
+		9C2597331FB1DFFF006F3FA7 /* BDMDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMDefines.m; sourceTree = "<group>"; };
+		9C2597361FB1E0FE006F3FA7 /* BDMResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMResponse.m; sourceTree = "<group>"; };
+		9C2597371FB1E0FE006F3FA7 /* BDMResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMResponse.h; sourceTree = "<group>"; };
+		9C25973A1FB1E25C006F3FA7 /* BDMFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFactory.h; sourceTree = "<group>"; };
+		9C25973B1FB1E25C006F3FA7 /* BDMFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFactory.m; sourceTree = "<group>"; };
+		9C25973E1FB1E4E5006F3FA7 /* BDMResponseProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMResponseProtocol.h; sourceTree = "<group>"; };
+		9C2597411FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMServerCommunicator.h"; sourceTree = "<group>"; };
+		9C2597421FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMServerCommunicator.m"; sourceTree = "<group>"; };
+		9C2597491FB1EC49006F3FA7 /* BDMSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMSdk.h; sourceTree = "<group>"; };
+		9C25974A1FB1EC49006F3FA7 /* BDMSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMSdk.m; sourceTree = "<group>"; };
+		9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMInterstitial.h; sourceTree = "<group>"; };
+		9C25974E1FB1F8A0006F3FA7 /* BDMInterstitial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMInterstitial.m; sourceTree = "<group>"; };
+		9C2597511FB2002B006F3FA7 /* BDMSdk+Project.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMSdk+Project.h"; sourceTree = "<group>"; };
+		9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMUserAgentProvider.h; sourceTree = "<group>"; };
+		9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAsyncOperation.h; sourceTree = "<group>"; };
+		9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAsyncOperation.m; sourceTree = "<group>"; };
+		9C6A651A2031D7F000D5A98A /* BDMFactory+BDMOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMFactory+BDMOperation.h"; sourceTree = "<group>"; };
+		9C6A651B2031D7F000D5A98A /* BDMFactory+BDMOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMFactory+BDMOperation.m"; sourceTree = "<group>"; };
+		9C71DBAC1FB5F03800D0DCCA /* BDMBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMBannerView.h; sourceTree = "<group>"; };
+		9C71DBAD1FB5F03800D0DCCA /* BDMBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMBannerView.m; sourceTree = "<group>"; };
+		9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMHeaderBiddingInitialisationOperation.h; sourceTree = "<group>"; };
+		9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMHeaderBiddingInitialisationOperation.m; sourceTree = "<group>"; };
+		9CBED21E1FB2DBC4004C4669 /* BDMRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRegistry.h; sourceTree = "<group>"; };
+		9CBED21F1FB2DBC4004C4669 /* BDMRegistry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRegistry.m; sourceTree = "<group>"; };
+		9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdapterProtocol.h; sourceTree = "<group>"; };
+		9CBED2271FB3218D004C4669 /* BDMRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMRequest.h; sourceTree = "<group>"; };
+		9CBED2281FB3218D004C4669 /* BDMRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMRequest.m; sourceTree = "<group>"; };
+		9CFBD1761FB982BE00C31DE6 /* BidMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BidMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMServerCommunicatorSpec.m; sourceTree = "<group>"; };
+		9D9D423B3923E5DEE08C92FD /* Pods-BidMachineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BCF230351675665987981D7E /* Pods_BidMachine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BidMachineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C25971F1FB1DC91006F3FA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				139A484086553A9E474C5837 /* Pods_BidMachine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CFBD1731FB982BE00C31DE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CFBD17B1FB982BE00C31DE6 /* BidMachine.framework in Frameworks */,
+				470122CF0E041FE437E60C18 /* Pods_BidMachineTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3743A5C724FD0BBC003DD6BF /* Contextual */ = {
+			isa = PBXGroup;
+			children = (
+				3743A5D824FD15B7003DD6BF /* BDMContextualProtocol.h */,
+				3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */,
+				3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */,
+			);
+			path = Contextual;
+			sourceTree = "<group>";
+		};
+		3781990C24CECD6A00E97FED /* Fetcher */ = {
+			isa = PBXGroup;
+			children = (
+				37319DA924CEE61900765FE5 /* BDMFetcher.h */,
+				37319DAA24CEE61900765FE5 /* BDMFetcher.m */,
+				3781990D24CECD8E00E97FED /* BDMRequestStorage.h */,
+				3781990E24CECD8E00E97FED /* BDMRequestStorage.m */,
+				3781991124CED19200E97FED /* BDMRequestStorageItem.h */,
+				3781991224CED19200E97FED /* BDMRequestStorageItem.m */,
+			);
+			path = Fetcher;
+			sourceTree = "<group>";
+		};
+		3794908526089460000D4C63 /* ExternalAdapterUtils */ = {
+			isa = PBXGroup;
+			children = (
+				3794908626089460000D4C63 /* BDMExternalAdapterConfiguration.m */,
+				3794908726089460000D4C63 /* BDMExternalAdapterSDKController.h */,
+				3794908826089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h */,
+				3794908926089460000D4C63 /* BDMExternalAdapterRequestController.m */,
+				3794908A26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m */,
+				3794908B26089460000D4C63 /* BDMExternalAdapterSDKController.m */,
+				3794908C26089460000D4C63 /* BDMExternalAdapterConfiguration.h */,
+				3794908D26089460000D4C63 /* BDMExternalAdapterRequestController.h */,
+				3794908E26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h */,
+				3794908F26089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h */,
+			);
+			path = ExternalAdapterUtils;
+			sourceTree = "<group>";
+		};
+		420476902135481600FA2261 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				65CE5DA321B15F0400652496 /* BDMRetryTimer.h */,
+				65CE5DA421B15F0400652496 /* BDMRetryTimer.m */,
+				9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */,
+				424BA2992199CCC800E2745D /* BDMUserAgentProvider.m */,
+				3799E95B25B2F92800CE997E /* NSArray+BDMExtension.h */,
+				3799E95C25B2F92800CE997E /* NSArray+BDMExtension.m */,
+				37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */,
+				37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */,
+				4269D16721B01B0E00E3E13B /* NSError+BDMSdk.h */,
+				4269D16821B01B0E00E3E13B /* NSError+BDMSdk.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		420DE03B21B69C9800C4C28D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		420ED69F21A7DEFC007645CF /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				425EF00D2164C897004B1839 /* BDMSdkConfiguration.h */,
+				425EF00E2164C897004B1839 /* BDMSdkConfiguration.m */,
+				422712F82164B5D100EE5012 /* BDMTargeting.h */,
+				422712F92164B5D100EE5012 /* BDMTargeting.m */,
+				427E4D5C219427D3001EE6C7 /* BDMUserRestrictions.h */,
+				427E4D5D219427D3001EE6C7 /* BDMUserRestrictions.m */,
+				65E838A72397A82C00B3CB8E /* BDMPublisherInfo.h */,
+				65E838A82397A82C00B3CB8E /* BDMPublisherInfo.m */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		420ED6A221A7E75E007645CF /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				6510F1982183352400F528AD /* BDMAuctionBuilder.h */,
+				6510F1992183352400F528AD /* BDMAuctionBuilder.m */,
+				65CE5D9F21B14E5800652496 /* BDMSessionBuilder.h */,
+				65CE5DA021B14E5800652496 /* BDMSessionBuilder.m */,
+				42E6C680219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h */,
+				65D17ECC219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h */,
+				65D17ECD219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		4218D91321ECE0740077B3E3 /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				3743A5D424FD153F003DD6BF /* BDMEventObject.h */,
+				3743A5D524FD153F003DD6BF /* BDMEventObject.m */,
+				422CAC3221AE781A000A0D51 /* BDMEventMiddleware.h */,
+				422CAC3321AE781A000A0D51 /* BDMEventMiddleware.m */,
+			);
+			name = Middleware;
+			sourceTree = "<group>";
+		};
+		4218D91421ECE0820077B3E3 /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				4218D91521ECE0940077B3E3 /* AdSpecific */,
+				42515D922186DF000025C231 /* BDMDisplayAdProtocol.h */,
+				4218D90A21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h */,
+				4218D90B21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m */,
+			);
+			name = Display;
+			sourceTree = "<group>";
+		};
+		4218D91521ECE0940077B3E3 /* AdSpecific */ = {
+			isa = PBXGroup;
+			children = (
+				4269622321836145004D9B17 /* BDMFullscreenAdDisplayAd.h */,
+				4269622421836145004D9B17 /* BDMFullscreenAdDisplayAd.m */,
+				42515D962186F9CB0025C231 /* BDMBannerViewDisplayAd.h */,
+				42515D972186F9CB0025C231 /* BDMBannerViewDisplayAd.m */,
+				42C075DE2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h */,
+				42C075DF2189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m */,
+			);
+			name = AdSpecific;
+			sourceTree = "<group>";
+		};
+		4227C0C0217A56040022C1D5 /* Viewability */ = {
+			isa = PBXGroup;
+			children = (
+				4227C0C1217A56420022C1D5 /* BDMViewabilityMetricProvider.h */,
+				4227C0C2217A56420022C1D5 /* BDMViewabilityMetricProvider.m */,
+				423CAF4B217DED98000FF60D /* BDMViewabilityMetricAppodeal.h */,
+				423CAF4C217DED98000FF60D /* BDMViewabilityMetricAppodeal.m */,
+			);
+			path = Viewability;
+			sourceTree = "<group>";
+		};
+		42420DD621B7A9E80041C724 /* Auction */ = {
+			isa = PBXGroup;
+			children = (
+				4227C0C5217DC7620022C1D5 /* BDMAuctionInfo.h */,
+				427E63D821A5A32E005DB6B5 /* BDMAuctionInfo+Project.h */,
+				4227C0C6217DC7620022C1D5 /* BDMAuctionInfo.m */,
+				9C25973E1FB1E4E5006F3FA7 /* BDMResponseProtocol.h */,
+				427E63C721A57528005DB6B5 /* BDMCreative.h */,
+				427E63C821A57528005DB6B5 /* BDMCreative.m */,
+				9C2597371FB1E0FE006F3FA7 /* BDMResponse.h */,
+				9C2597361FB1E0FE006F3FA7 /* BDMResponse.m */,
+			);
+			path = Auction;
+			sourceTree = "<group>";
+		};
+		42420DD721B7A9F70041C724 /* Init */ = {
+			isa = PBXGroup;
+			children = (
+				42420DD821B7AA280041C724 /* BDMInitialisationResponseProtocol.h */,
+				42420DDA21B7AA930041C724 /* BDMInitialisationResponseModel.h */,
+				42420DDB21B7AA930041C724 /* BDMInitialisationResponseModel.m */,
+			);
+			path = Init;
+			sourceTree = "<group>";
+		};
+		429C045E2167584C000C5265 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3701F9FF25FB8FCC006A7B04 /* BDMPlacement.h */,
+				3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */,
+				3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */,
+				3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */,
+				42F86EDD21BAB7A400B58CB5 /* BDMPriceFloor.h */,
+				42F86EDC21BAB7A400B58CB5 /* BDMPriceFloor.m */,
+				421137EE21E880D200B65454 /* BDMAdRequests.h */,
+				421137EF21E880D200B65454 /* BDMAdRequests.m */,
+				9CBED2271FB3218D004C4669 /* BDMRequest.h */,
+				421137F221E8947100B65454 /* BDMRequest+Private.h */,
+				9CBED2281FB3218D004C4669 /* BDMRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		429C045F2167585C000C5265 /* AdObjects */ = {
+			isa = PBXGroup;
+			children = (
+				427037C721AD245F007B47E4 /* BDMAdEventProducerProtocol.h */,
+				9C25974D1FB1F8A0006F3FA7 /* BDMInterstitial.h */,
+				9C25974E1FB1F8A0006F3FA7 /* BDMInterstitial.m */,
+				9C71DBAC1FB5F03800D0DCCA /* BDMBannerView.h */,
+				9C71DBAD1FB5F03800D0DCCA /* BDMBannerView.m */,
+				42C075DA2189D3DE00256E7B /* BDMNativeAd.h */,
+				42C075DB2189D3DE00256E7B /* BDMNativeAd.m */,
+				4228797821A2A7DF00FFEAD1 /* BDMRewarded.h */,
+				4228797921A2A7DF00FFEAD1 /* BDMRewarded.m */,
+			);
+			path = AdObjects;
+			sourceTree = "<group>";
+		};
+		42C3FDBB21624175004D3784 /* HeaderBidding */ = {
+			isa = PBXGroup;
+			children = (
+				42D7310122DF4B0200AEB066 /* BDMAdNetworkConfiguration.h */,
+				42D7310222DF4B0200AEB066 /* BDMAdNetworkConfiguration.m */,
+				42D730FB22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h */,
+				42D730F722DF24CB00AEB066 /* BDMPlacementAdUnit.h */,
+				42D730F822DF24CB00AEB066 /* BDMPlacementAdUnit.m */,
+				426AA21722E89A06003FA6AF /* BDMAdUnit.h */,
+				426AA21822E89A06003FA6AF /* BDMAdUnit.m */,
+				42B65DA32162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h */,
+				42B65DA521625D95006C8A4C /* BDMRequest+HeaderBidding.h */,
+			);
+			path = HeaderBidding;
+			sourceTree = "<group>";
+		};
+		42C4D4D722FC300E00A076AD /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				42C4D4D422FC23A400A076AD /* BDMAdNetworksMocks.h */,
+				42C4D4D522FC23A400A076AD /* BDMAdNetworksMocks.m */,
+				4270379C21AD1C48007B47E4 /* BDMSpecUtils.h */,
+				4270379921AD1C48007B47E4 /* BDMSpecUtils.m */,
+				42C4D4DA22FC316900A076AD /* BDMSdk+Tests.h */,
+			);
+			name = Supports;
+			sourceTree = "<group>";
+		};
+		42ECABD0217F1E6A009DD85B /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				4218D91321ECE0740077B3E3 /* Middleware */,
+				4218D91421ECE0820077B3E3 /* Display */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		97C6037CDDAE862240366D08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BCF230351675665987981D7E /* Pods_BidMachine.framework */,
+				C084BE23C7A3BBABEB5F0EF2 /* Pods_BidMachineTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C2597191FB1DC91006F3FA7 = {
+			isa = PBXGroup;
+			children = (
+				9C2597251FB1DC91006F3FA7 /* BidMachine */,
+				9CFBD1771FB982BE00C31DE6 /* BidMachineTests */,
+				9C2597241FB1DC91006F3FA7 /* Products */,
+				C5664C224456C18AE50C2A2A /* Pods */,
+				97C6037CDDAE862240366D08 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9C2597241FB1DC91006F3FA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C2597231FB1DC91006F3FA7 /* BidMachine.framework */,
+				9CFBD1761FB982BE00C31DE6 /* BidMachineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C2597251FB1DC91006F3FA7 /* BidMachine */ = {
+			isa = PBXGroup;
+			children = (
+				3743A5C724FD0BBC003DD6BF /* Contextual */,
+				3781990C24CECD6A00E97FED /* Fetcher */,
+				9C2597401FB1E9AA006F3FA7 /* Factory */,
+				9C71DBB01FB5F24F00D0DCCA /* Networking */,
+				9CBED21D1FB2DBA6004C4669 /* SDK */,
+				9CBED22B1FB3269A004C4669 /* Adapters */,
+				9C6A651120318A6100D5A98A /* Operation */,
+				420476902135481600FA2261 /* Extensions */,
+				42C3FDBB21624175004D3784 /* HeaderBidding */,
+				3794908526089460000D4C63 /* ExternalAdapterUtils */,
+				429C045E2167584C000C5265 /* Request */,
+				9C2597451FB1EA2E006F3FA7 /* Response */,
+				4227C0C0217A56040022C1D5 /* Viewability */,
+				42ECABD0217F1E6A009DD85B /* Internal */,
+				429C045F2167585C000C5265 /* AdObjects */,
+				9C2597321FB1DFFF006F3FA7 /* BDMDefines.h */,
+				9C2597331FB1DFFF006F3FA7 /* BDMDefines.m */,
+				3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */,
+				3743A5D124FD1252003DD6BF /* BDMPrivateDefines.m */,
+				9C2597261FB1DC91006F3FA7 /* BidMachine.h */,
+				429C195D2160123C0048F400 /* Info.plist */,
+				42C3FDB921623E70004D3784 /* module.private.modulemap */,
+			);
+			path = BidMachine;
+			sourceTree = "<group>";
+		};
+		9C2597401FB1E9AA006F3FA7 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				9C25973A1FB1E25C006F3FA7 /* BDMFactory.h */,
+				9C2597411FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h */,
+				9C2597421FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m */,
+				9C25973B1FB1E25C006F3FA7 /* BDMFactory.m */,
+				9C6A651A2031D7F000D5A98A /* BDMFactory+BDMOperation.h */,
+				9C6A651B2031D7F000D5A98A /* BDMFactory+BDMOperation.m */,
+				421B9FCF218B4227004CED22 /* BDMFactory+BDMDisplayAd.h */,
+				421B9FD0218B4227004CED22 /* BDMFactory+BDMDisplayAd.m */,
+				423A823A21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h */,
+				423A823B21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		9C2597451FB1EA2E006F3FA7 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				42420DD721B7A9F70041C724 /* Init */,
+				42420DD621B7A9E80041C724 /* Auction */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		9C6A651120318A6100D5A98A /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				9CAF86AA203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h */,
+				9CAF86AB203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m */,
+				42D730FD22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h */,
+				42D730FE22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.m */,
+				426AA21B22E8A1AB003FA6AF /* BDMHeaderBiddingController.h */,
+				426AA21C22E8A1AB003FA6AF /* BDMHeaderBiddingController.m */,
+				9C6A65122031A1BE00D5A98A /* BDMAsyncOperation.h */,
+				9C6A65132031A1BE00D5A98A /* BDMAsyncOperation.m */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		9C71DBB01FB5F24F00D0DCCA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				420DE03B21B69C9800C4C28D /* API */,
+				420ED6A221A7E75E007645CF /* Builders */,
+				9C25972E1FB1DD64006F3FA7 /* BDMServerCommunicator.h */,
+				9C25972F1FB1DD64006F3FA7 /* BDMServerCommunicator.m */,
+				6510F19C2183461300F528AD /* BDMApiRequest.h */,
+				6510F19D2183461300F528AD /* BDMApiRequest.m */,
+				42FBC7302180A23300B1D324 /* BDMEventURL.h */,
+				42FBC7312180A23300B1D324 /* BDMEventURL.m */,
+				424BA29E2199CCD300E2745D /* BDMAuctionSettings.h */,
+				424BA29D2199CCD300E2745D /* BDMAuctionSettings.m */,
+				424BA29C2199CCD300E2745D /* BDMTransformers.h */,
+				424BA29B2199CCD300E2745D /* BDMTransformers.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9CBED21D1FB2DBA6004C4669 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				420ED69F21A7DEFC007645CF /* Configuration */,
+				9C2597491FB1EC49006F3FA7 /* BDMSdk.h */,
+				9C2597511FB2002B006F3FA7 /* BDMSdk+Project.h */,
+				9C25974A1FB1EC49006F3FA7 /* BDMSdk.m */,
+				9CBED21E1FB2DBC4004C4669 /* BDMRegistry.h */,
+				9CBED21F1FB2DBC4004C4669 /* BDMRegistry.m */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		9CBED22B1FB3269A004C4669 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */,
+				9CBED2251FB30A09004C4669 /* BDMAdapterProtocol.h */,
+				37AEA4EB25935E8F00176D9E /* BDMAdapterDefines.h */,
+				37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		9CFBD1771FB982BE00C31DE6 /* BidMachineTests */ = {
+			isa = PBXGroup;
+			children = (
+				42C4D4D722FC300E00A076AD /* Supports */,
+				9CFBD1821FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m */,
+				427037BD21AD1D3C007B47E4 /* BDMRegistrySpec.m */,
+				427037BA21AD1D3C007B47E4 /* BDMSdkSpec.m */,
+				4270379A21AD1C48007B47E4 /* BDMAdTypePlacementSpec.m */,
+				4270379821AD1C48007B47E4 /* BDMApiRequestSpec.m */,
+				4270379B21AD1C48007B47E4 /* BDMAuctionSettingsSpec.m */,
+				4270379721AD1C47007B47E4 /* BDMAuctionBuilderSpec.m */,
+				42C4D4D822FC303100A076AD /* BDMHeaderBiddingSpec.m */,
+			);
+			path = BidMachineTests;
+			sourceTree = "<group>";
+		};
+		C5664C224456C18AE50C2A2A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				76EB7CD6CDD10BD42CC42D42 /* Pods-BidMachine.debug.xcconfig */,
+				4600EF1607127158ACF8109E /* Pods-BidMachine.release.xcconfig */,
+				9D9D423B3923E5DEE08C92FD /* Pods-BidMachineTests.debug.xcconfig */,
+				07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9C2597201FB1DC91006F3FA7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3794909226089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h in Headers */,
+				42D730FF22DF3DFB00AEB066 /* BDMHeaderBiddingPreparationOperation.h in Headers */,
+				9C2597301FB1DD64006F3FA7 /* BDMServerCommunicator.h in Headers */,
+				421137F421E8947100B65454 /* BDMRequest+Private.h in Headers */,
+				42B65DA621625D95006C8A4C /* BDMRequest+HeaderBidding.h in Headers */,
+				9C2597391FB1E0FE006F3FA7 /* BDMResponse.h in Headers */,
+				9C2597521FB2002C006F3FA7 /* BDMSdk+Project.h in Headers */,
+				6510F19E2183461300F528AD /* BDMApiRequest.h in Headers */,
+				4269D16921B01B0E00E3E13B /* NSError+BDMSdk.h in Headers */,
+				3743A5D224FD1252003DD6BF /* BDMPrivateDefines.h in Headers */,
+				9C71DBAE1FB5F03800D0DCCA /* BDMBannerView.h in Headers */,
+				3794909826089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h in Headers */,
+				3781991324CED19200E97FED /* BDMRequestStorageItem.h in Headers */,
+				424BA2A02199CCD300E2745D /* BDMTransformers.h in Headers */,
+				42515D942186DF000025C231 /* BDMDisplayAdProtocol.h in Headers */,
+				3701FA0125FB8FCC006A7B04 /* BDMPlacement.h in Headers */,
+				9C25974F1FB1F8A0006F3FA7 /* BDMInterstitial.h in Headers */,
+				9C6A651C2031D7F000D5A98A /* BDMFactory+BDMOperation.h in Headers */,
+				42B65DA42162597F006C8A4C /* BDMSdkConfiguration+HeaderBidding.h in Headers */,
+				9C6A65142031A1BE00D5A98A /* BDMAsyncOperation.h in Headers */,
+				421137F021E880D200B65454 /* BDMAdRequests.h in Headers */,
+				422712FA2164B5D100EE5012 /* BDMTargeting.h in Headers */,
+				65CE5DA521B15F0400652496 /* BDMRetryTimer.h in Headers */,
+				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
+				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
+				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
+				37AEA4ED25935E8F00176D9E /* BDMAdapterDefines.h in Headers */,
+				423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */,
+				9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */,
+				3743A5D924FD15B7003DD6BF /* BDMContextualProtocol.h in Headers */,
+				3794909126089460000D4C63 /* BDMExternalAdapterSDKController.h in Headers */,
+				42F86EDF21BAB7A400B58CB5 /* BDMPriceFloor.h in Headers */,
+				4269622521836145004D9B17 /* BDMFullscreenAdDisplayAd.h in Headers */,
+				3794909926089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h in Headers */,
+				427E63C921A57528005DB6B5 /* BDMCreative.h in Headers */,
+				9CBED2201FB2DBC4004C4669 /* BDMRegistry.h in Headers */,
+				9C69DC761FC2E14800EDC6E5 /* BDMUserAgentProvider.h in Headers */,
+				42420DD921B7AA280041C724 /* BDMInitialisationResponseProtocol.h in Headers */,
+				37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */,
+				42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */,
+				421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */,
+				42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */,
+				426AA21D22E8A1AB003FA6AF /* BDMHeaderBiddingController.h in Headers */,
+				3701FA1525FB9CE4006A7B04 /* BDMPlacement+Builder.h in Headers */,
+				9C25974B1FB1EC49006F3FA7 /* BDMSdk.h in Headers */,
+				6510F19A2183352400F528AD /* BDMAuctionBuilder.h in Headers */,
+				3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */,
+				9CBED2291FB3218D004C4669 /* BDMRequest.h in Headers */,
+				427E63D921A5A32E005DB6B5 /* BDMAuctionInfo+Project.h in Headers */,
+				4228797A21A2A7DF00FFEAD1 /* BDMRewarded.h in Headers */,
+				65D17ECE219DB5B6006C85A8 /* BDMPlacementRequestBuilder.h in Headers */,
+				4218D90C21ECD3EE0077B3E3 /* BDMBaseDisplayAd.h in Headers */,
+				3794909626089460000D4C63 /* BDMExternalAdapterConfiguration.h in Headers */,
+				9C25973C1FB1E25C006F3FA7 /* BDMFactory.h in Headers */,
+				426AA21922E89A06003FA6AF /* BDMAdUnit.h in Headers */,
+				42FBC7322180A23300B1D324 /* BDMEventURL.h in Headers */,
+				3781990F24CECD8E00E97FED /* BDMRequestStorage.h in Headers */,
+				424BA2A22199CCD300E2745D /* BDMAuctionSettings.h in Headers */,
+				425EF00F2164C897004B1839 /* BDMSdkConfiguration.h in Headers */,
+				9C2597281FB1DC91006F3FA7 /* BidMachine.h in Headers */,
+				420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */,
+				37C0D70A259200D300586859 /* BDMNetworkProtocol.h in Headers */,
+				3794909726089460000D4C63 /* BDMExternalAdapterRequestController.h in Headers */,
+				9CBED2261FB30A09004C4669 /* BDMAdapterProtocol.h in Headers */,
+				9C2597431FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.h in Headers */,
+				65E838A92397A82C00B3CB8E /* BDMPublisherInfo.h in Headers */,
+				42E6C681219BF7FE00F16549 /* BDMPlacementRequestBuilderProtocol.h in Headers */,
+				42515D982186F9CB0025C231 /* BDMBannerViewDisplayAd.h in Headers */,
+				42C075E02189F7CA00256E7B /* BDMNativeAdViewDisplayAd.h in Headers */,
+				42C075DC2189D3DE00256E7B /* BDMNativeAd.h in Headers */,
+				4227C0C7217DC7620022C1D5 /* BDMAuctionInfo.h in Headers */,
+				422CAC3421AE781A000A0D51 /* BDMEventMiddleware.h in Headers */,
+				3743A5D624FD153F003DD6BF /* BDMEventObject.h in Headers */,
+				65CE5DA121B14E5800652496 /* BDMSessionBuilder.h in Headers */,
+				4227C0C3217A56420022C1D5 /* BDMViewabilityMetricProvider.h in Headers */,
+				423CAF4D217DED98000FF60D /* BDMViewabilityMetricAppodeal.h in Headers */,
+				9C2597341FB1DFFF006F3FA7 /* BDMDefines.h in Headers */,
+				37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */,
+				427037C821AD245F007B47E4 /* BDMAdEventProducerProtocol.h in Headers */,
+				9CAF86AC203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.h in Headers */,
+				3799E95D25B2F92800CE997E /* NSArray+BDMExtension.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9C2597221FB1DC91006F3FA7 /* BidMachine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C25972B1FB1DC91006F3FA7 /* Build configuration list for PBXNativeTarget "BidMachine" */;
+			buildPhases = (
+				66318D3C9C21A3C9E55DFDDC /* [CP] Check Pods Manifest.lock */,
+				9C25971E1FB1DC91006F3FA7 /* Sources */,
+				9C25971F1FB1DC91006F3FA7 /* Frameworks */,
+				9C2597201FB1DC91006F3FA7 /* Headers */,
+				9C2597211FB1DC91006F3FA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BidMachine;
+			productName = AppodealAdExchangeSDK;
+			productReference = 9C2597231FB1DC91006F3FA7 /* BidMachine.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9CFBD1751FB982BE00C31DE6 /* BidMachineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CFBD1801FB982BE00C31DE6 /* Build configuration list for PBXNativeTarget "BidMachineTests" */;
+			buildPhases = (
+				09BDD53CDEDBB153BE85092C /* [CP] Check Pods Manifest.lock */,
+				9CFBD1721FB982BE00C31DE6 /* Sources */,
+				9CFBD1731FB982BE00C31DE6 /* Frameworks */,
+				9CFBD1741FB982BE00C31DE6 /* Resources */,
+				1F09F0EE375FBF6E8DCAB486 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				426103B2217DFD1700E92B28 /* PBXTargetDependency */,
+			);
+			name = BidMachineTests;
+			productName = AppodealAdExchangeSDKTests;
+			productReference = 9CFBD1761FB982BE00C31DE6 /* BidMachineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C25971A1FB1DC91006F3FA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Appodeal;
+				TargetAttributes = {
+					9C2597221FB1DC91006F3FA7 = {
+						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1230;
+						ProvisioningStyle = Automatic;
+					};
+					9CFBD1751FB982BE00C31DE6 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9C25971D1FB1DC91006F3FA7 /* Build configuration list for PBXProject "BidMachine" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9C2597191FB1DC91006F3FA7;
+			productRefGroup = 9C2597241FB1DC91006F3FA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C2597221FB1DC91006F3FA7 /* BidMachine */,
+				9CFBD1751FB982BE00C31DE6 /* BidMachineTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C2597211FB1DC91006F3FA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CFBD1741FB982BE00C31DE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09BDD53CDEDBB153BE85092C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BidMachineTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F09F0EE375FBF6E8DCAB486 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kiwi/Kiwi.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/StackAPI/StackAPI.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackAPI.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BidMachineTests/Pods-BidMachineTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66318D3C9C21A3C9E55DFDDC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BidMachine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C25971E1FB1DC91006F3FA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4227C0C4217A56420022C1D5 /* BDMViewabilityMetricProvider.m in Sources */,
+				9C6A651D2031D7F000D5A98A /* BDMFactory+BDMOperation.m in Sources */,
+				65CE5DA621B15F0400652496 /* BDMRetryTimer.m in Sources */,
+				4269622621836145004D9B17 /* BDMFullscreenAdDisplayAd.m in Sources */,
+				42CF2F6E22E065E8000E825A /* BDMHeaderBiddingPreparationOperation.m in Sources */,
+				3794909026089460000D4C63 /* BDMExternalAdapterConfiguration.m in Sources */,
+				425EF0102164C897004B1839 /* BDMSdkConfiguration.m in Sources */,
+				9C2597441FB1E9D3006F3FA7 /* BDMFactory+BDMServerCommunicator.m in Sources */,
+				6510F19F2183461300F528AD /* BDMApiRequest.m in Sources */,
+				42F86EDE21BAB7A400B58CB5 /* BDMPriceFloor.m in Sources */,
+				4228797B21A2A7DF00FFEAD1 /* BDMRewarded.m in Sources */,
+				65E838AA2397A82D00B3CB8E /* BDMPublisherInfo.m in Sources */,
+				9C25973D1FB1E25C006F3FA7 /* BDMFactory.m in Sources */,
+				9C2597351FB1DFFF006F3FA7 /* BDMDefines.m in Sources */,
+				9C2597311FB1DD64006F3FA7 /* BDMServerCommunicator.m in Sources */,
+				3701FA1625FB9CE4006A7B04 /* BDMPlacement+Builder.m in Sources */,
+				4218D90D21ECD3EE0077B3E3 /* BDMBaseDisplayAd.m in Sources */,
+				3794909526089460000D4C63 /* BDMExternalAdapterSDKController.m in Sources */,
+				9C25974C1FB1EC49006F3FA7 /* BDMSdk.m in Sources */,
+				422CAC3521AE781A000A0D51 /* BDMEventMiddleware.m in Sources */,
+				9C6A65152031A1BE00D5A98A /* BDMAsyncOperation.m in Sources */,
+				3799E95E25B2F92800CE997E /* NSArray+BDMExtension.m in Sources */,
+				9C71DBAF1FB5F03800D0DCCA /* BDMBannerView.m in Sources */,
+				421B9FD2218B4227004CED22 /* BDMFactory+BDMDisplayAd.m in Sources */,
+				426AA21E22E8A1AB003FA6AF /* BDMHeaderBiddingController.m in Sources */,
+				9C2597501FB1F8A0006F3FA7 /* BDMInterstitial.m in Sources */,
+				3743A5D724FD153F003DD6BF /* BDMEventObject.m in Sources */,
+				423CAF4E217DED98000FF60D /* BDMViewabilityMetricAppodeal.m in Sources */,
+				424BA2A12199CCD300E2745D /* BDMAuctionSettings.m in Sources */,
+				42515D992186F9CB0025C231 /* BDMBannerViewDisplayAd.m in Sources */,
+				3701FA0225FB8FCC006A7B04 /* BDMPlacement.m in Sources */,
+				9CBED2211FB2DBC4004C4669 /* BDMRegistry.m in Sources */,
+				9CAF86AD203AC7430088CFBD /* BDMHeaderBiddingInitialisationOperation.m in Sources */,
+				421137F121E880D200B65454 /* BDMAdRequests.m in Sources */,
+				42C075E12189F7CA00256E7B /* BDMNativeAdViewDisplayAd.m in Sources */,
+				42420DDD21B7AA930041C724 /* BDMInitialisationResponseModel.m in Sources */,
+				9C2597381FB1E0FE006F3FA7 /* BDMResponse.m in Sources */,
+				424BA29A2199CCC800E2745D /* BDMUserAgentProvider.m in Sources */,
+				65CE5DA221B14E5800652496 /* BDMSessionBuilder.m in Sources */,
+				422712FB2164B5D100EE5012 /* BDMTargeting.m in Sources */,
+				65D17ECF219DB5B6006C85A8 /* BDMPlacementRequestBuilder.m in Sources */,
+				3794909426089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m in Sources */,
+				4269D16A21B01B0E00E3E13B /* NSError+BDMSdk.m in Sources */,
+				426AA21A22E89A06003FA6AF /* BDMAdUnit.m in Sources */,
+				42D7310422DF4B0200AEB066 /* BDMAdNetworkConfiguration.m in Sources */,
+				3794909326089460000D4C63 /* BDMExternalAdapterRequestController.m in Sources */,
+				42D730FA22DF24CB00AEB066 /* BDMPlacementAdUnit.m in Sources */,
+				42FBC7332180A23300B1D324 /* BDMEventURL.m in Sources */,
+				427E4D5F219427D3001EE6C7 /* BDMUserRestrictions.m in Sources */,
+				424BA29F2199CCD300E2745D /* BDMTransformers.m in Sources */,
+				9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */,
+				42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */,
+				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
+				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
+				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
+				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
+				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
+				3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */,
+				3743A5D324FD1252003DD6BF /* BDMPrivateDefines.m in Sources */,
+				6510F19B2183352400F528AD /* BDMAuctionBuilder.m in Sources */,
+				3781991424CED19200E97FED /* BDMRequestStorageItem.m in Sources */,
+				37AEA4EE25935E8F00176D9E /* BDMAdapterDefines.m in Sources */,
+				37AEA4F62593949800176D9E /* OpenRTB+BDMCreative.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CFBD1721FB982BE00C31DE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4270379D21AD1C48007B47E4 /* BDMAuctionBuilderSpec.m in Sources */,
+				42C4D4D622FC23A400A076AD /* BDMAdNetworksMocks.m in Sources */,
+				427037C421AD1D3C007B47E4 /* BDMRegistrySpec.m in Sources */,
+				42C4D4D922FC303100A076AD /* BDMHeaderBiddingSpec.m in Sources */,
+				9CFBD1831FB9AA0C00C31DE6 /* BDMServerCommunicatorSpec.m in Sources */,
+				4270379F21AD1C48007B47E4 /* BDMSpecUtils.m in Sources */,
+				4270379E21AD1C48007B47E4 /* BDMApiRequestSpec.m in Sources */,
+				427037A021AD1C48007B47E4 /* BDMAdTypePlacementSpec.m in Sources */,
+				427037A121AD1C48007B47E4 /* BDMAuctionSettingsSpec.m in Sources */,
+				427037C221AD1D3C007B47E4 /* BDMSdkSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		426103B2217DFD1700E92B28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C2597221FB1DC91006F3FA7 /* BidMachine */;
+			targetProxy = 426103B1217DFD1700E92B28 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9C2597291FB1DC91006F3FA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9C25972A1FB1DC91006F3FA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9C25972C1FB1DC91006F3FA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76EB7CD6CDD10BD42CC42D42 /* Pods-BidMachine.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
+					"\"$(SRCROOT)/../Proto/BidMachineAPI\"",
+				);
+				INFOPLIST_FILE = BidMachine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.4.0;
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/BidMachine/module.private.modulemap";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9C25972D1FB1DC91006F3FA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4600EF1607127158ACF8109E /* Pods-BidMachine.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../Pods/Target\\ Support\\ Files/Namespaced\\ Dependencies\"",
+					"\"$(SRCROOT)/../Proto/BidMachineAPI\"",
+				);
+				INFOPLIST_FILE = BidMachine/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.4.0;
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/BidMachine/module.private.modulemap";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.explorestack.bidmachine;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9CFBD17E1FB982BE00C31DE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D9D423B3923E5DEE08C92FD /* Pods-BidMachineTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				INFOPLIST_FILE = BidMachineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appodeal.OpenBidsSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9CFBD17F1FB982BE00C31DE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D061FBAE5064D3A046D090 /* Pods-BidMachineTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WG4VFF78ZM;
+				INFOPLIST_FILE = BidMachineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appodeal.OpenBidsSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C25971D1FB1DC91006F3FA7 /* Build configuration list for PBXProject "BidMachine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C2597291FB1DC91006F3FA7 /* Debug */,
+				9C25972A1FB1DC91006F3FA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C25972B1FB1DC91006F3FA7 /* Build configuration list for PBXNativeTarget "BidMachine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C25972C1FB1DC91006F3FA7 /* Debug */,
+				9C25972D1FB1DC91006F3FA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CFBD1801FB982BE00C31DE6 /* Build configuration list for PBXNativeTarget "BidMachineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CFBD17E1FB982BE00C31DE6 /* Debug */,
+				9CFBD17F1FB982BE00C31DE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C25971A1FB1DC91006F3FA7 /* Project object */;
+}

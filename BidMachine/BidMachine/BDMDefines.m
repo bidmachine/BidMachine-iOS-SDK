@@ -1,0 +1,105 @@
+//
+//  BDMDefines.m
+//  BidMachine
+//
+//  Created by Stas Kochkin on 07/11/2017.
+//  Copyright © 2017 Appodeal. All rights reserved.
+//
+
+#import "BDMDefines.h"
+
+NSString * const kBDMVersion = @"1.7.0.3-Beta";
+
+NSString * const kBDMUserGenderMale     = @"M";
+NSString * const kBDMUserGenderFemale   = @"F";
+NSString * const kBDMUserGenderUnknown  = @"O";
+
+BDMFmwName * const BDMNativeFramework   = @"native";
+BDMFmwName * const BDMNUnityFramework   = @"unity";
+
+NSInteger const kBDMUndefinedYearOfBirth = 0;
+
+NSString * kBDMErrorDomain = @"com.adx.error";
+BOOL BDMSdkLoggingEnabled = NO;
+
+
+CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize) {
+    CGSize defaultSize = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? CGSizeMake(728, 90) : CGSizeMake(320, 50);
+    switch (adSize) {
+        case BDMBannerAdSize320x50: return CGSizeMake(320, 50); break;
+        case BDMBannerAdSize300x250: return CGSizeMake(300, 250); break;
+        case BDMBannerAdSize728x90: return CGSizeMake(728, 90); break;
+        case BDMBannerAdSizeUnknown: return defaultSize;
+    }
+    return defaultSize;
+}
+
+
+BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt) {
+    return @(fmt);
+}
+
+
+BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key) {
+    return key.integerValue > -1 && key.integerValue < 16 ?
+        (BDMAdUnitFormat)[key integerValue] :
+        BDMAdUnitFormatUnknown;
+}
+
+
+BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key) {
+    NSArray *adTypes = @[
+                         @"banner",
+                         @"banner_320x50",
+                         @"banner_728x90",
+                         @"banner_300x250",
+                         @"interstitial_video",
+                         @"interstitial_static",
+                         @"interstitial",
+                         @"rewarded_video",
+                         @"rewarded_static",
+                         @"rewarded",
+                         @"nativeAd_icon",
+                         @"nativeAd_image",
+                         @"nativeAd_video",
+                         @"nativeAd_icon_video",
+                         @"nativeAd_icon_image",
+                         @"nativeAd",
+                         ];
+    NSUInteger idx = key ? [adTypes indexOfObject:key] : NSNotFound;
+    return idx == NSNotFound ? BDMAdUnitFormatUnknown : (BDMAdUnitFormat)idx;
+}
+
+
+NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt) {
+    switch (fmt) {
+        case BDMAdUnitFormatUnknown: return @"unknown"; break;
+        case BDMAdUnitFormatInLineBanner: return @"banner"; break;
+        case BDMAdUnitFormatBanner320x50: return @"banner_320x50"; break;
+        case BDMAdUnitFormatBanner728x90: return @"banner_728x90"; break;
+        case BDMAdUnitFormatBanner300x250: return @"banner_300x250"; break;
+        case BDMAdUnitFormatInterstitialVideo: return @"interstitial_video"; break;
+        case BDMAdUnitFormatInterstitialStatic: return @"interstitial_static"; break;
+        case BDMAdUnitFormatInterstitialUnknown: return @"interstitial"; break;
+        case BDMAdUnitFormatRewardedVideo: return @"rewarded_video"; break;
+        case BDMAdUnitFormatRewardedPlayable: return @"rewarded_static"; break;
+        case BDMAdUnitFormatRewardedUnknown: return @"rewarded"; break;
+        case BDMAdUnitFormatNativeAdIcon: return @"nativeAd_icon"; break;
+        case BDMAdUnitFormatNativeAdImage: return @"nativeAd_image"; break;
+        case BDMAdUnitFormatNativeAdVideo: return @"nativeAd_video"; break;
+        case BDMAdUnitFormatNativeAdIconAndImage: return @"nativeAd_icon_image"; break;
+        case BDMAdUnitFormatNativeAdIconAndVideo: return @"nativeAd_icon_video"; break;
+        case BDMAdUnitFormatNativeAdImageAndVideo: return @"nativeAd_image_video"; break;
+        case BDMAdUnitFormatNativeAdUnknown: return @"nativeAd"; break;
+    }
+    return @"unknown";
+}
+
+NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt) {
+    switch (fmt) {
+        case BDMCreativeFormatBanner: return @"display"; break;
+        case BDMCreativeFormatVideo: return @"video"; break;
+        case BDMCreativeFormatNative: return @"native"; break;
+    }
+    return @"display";
+}
