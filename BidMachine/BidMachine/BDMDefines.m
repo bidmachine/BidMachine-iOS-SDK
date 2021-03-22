@@ -41,7 +41,7 @@ BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt) {
 
 
 BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key) {
-    return key.integerValue > -1 && key.integerValue < 10 ?
+    return key.integerValue > -1 && key.integerValue < 16 ?
         (BDMAdUnitFormat)[key integerValue] :
         BDMAdUnitFormatUnknown;
 }

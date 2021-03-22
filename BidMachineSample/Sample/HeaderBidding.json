@@ -142,7 +142,7 @@
         "network_class": "BDMCriteoAdNetwork",
         "params" :
         {
-            "publisher_id": "B-057601"
+            "publisher_id": "B-000000"
         },
         "ad_units": [
             {
