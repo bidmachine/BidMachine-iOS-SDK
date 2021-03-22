@@ -393,16 +393,16 @@
 		3794908526089460000D4C63 /* ExternalAdapterUtils */ = {
 			isa = PBXGroup;
 			children = (
-				3794908626089460000D4C63 /* BDMExternalAdapterConfiguration.m */,
-				3794908726089460000D4C63 /* BDMExternalAdapterSDKController.h */,
-				3794908826089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h */,
-				3794908926089460000D4C63 /* BDMExternalAdapterRequestController.m */,
-				3794908A26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m */,
-				3794908B26089460000D4C63 /* BDMExternalAdapterSDKController.m */,
-				3794908C26089460000D4C63 /* BDMExternalAdapterConfiguration.h */,
-				3794908D26089460000D4C63 /* BDMExternalAdapterRequestController.h */,
 				3794908E26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.h */,
+				3794908A26089460000D4C63 /* BDMExternalAdapterConfigurationDefines.m */,
 				3794908F26089460000D4C63 /* BDMExternalAdapterConfigurationProtocol.h */,
+				3794908826089460000D4C63 /* BDMExternalAdapterConfigurationBuilderProtocol.h */,
+				3794908C26089460000D4C63 /* BDMExternalAdapterConfiguration.h */,
+				3794908626089460000D4C63 /* BDMExternalAdapterConfiguration.m */,
+				3794908D26089460000D4C63 /* BDMExternalAdapterRequestController.h */,
+				3794908926089460000D4C63 /* BDMExternalAdapterRequestController.m */,
+				3794908726089460000D4C63 /* BDMExternalAdapterSDKController.h */,
+				3794908B26089460000D4C63 /* BDMExternalAdapterSDKController.m */,
 			);
 			path = ExternalAdapterUtils;
 			sourceTree = "<group>";
