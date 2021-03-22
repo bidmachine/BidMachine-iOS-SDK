@@ -71,7 +71,7 @@ function rebuild_components {
     mkdir -p $universal_temp_dir
 
     local scheme="BidMachine" 
-    # Build for all archs (i386, x86-64), (armv7, armv7s)
+    # Build for all archs (i386, x86-64), (arm64, armv7)
     build_mangled_binary "$scheme" iphonesimulator "i386 x86_64" "$simulator_temp_dir"
     build_mangled_binary "$scheme" iphoneos "arm64 armv7" "$device_temp_dir"
 

@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) id<BDMFullscreenAdapter> adapter;
 @property (nonatomic, weak) UIViewController *rootViewController;
-@property (nonatomic, assign) NSTimeInterval startViewTimestamp;
+@property (nonatomic, strong) STKTimer *viewabilityTimer;
 
 @end
 
@@ -51,6 +51,7 @@
 
 - (void)invalidate {
     self.adapter = nil;
+    [self stopViewability];
     [super invalidate];
 }
 
@@ -79,6 +80,23 @@
     }
 }
 
+#pragma mark - Viewability
+
+- (void)startViewabillity {
+    typeof(self) weakSelf = self;
+    if (!self.viewabilityTimer) {
+        self.viewabilityTimer = [STKTimer timerWithInterval:self.viewabilityConfig.impressionInterval periodic:NO block:^{
+            BDMLog(@"Adapter: %@ will log impression", weakSelf.adapter);
+            [weakSelf.delegate displayAdLogImpression:weakSelf];
+        }];
+    }
+}
+
+- (void)stopViewability {
+    [self.viewabilityTimer cancel];
+    self.viewabilityTimer = nil;
+}
+
 #pragma mark - BDMFullscreenAdapterDisplayDelegate
 
 - (void)adapter:(id<BDMAdapter>)adapter failedToPresentAdWithError:(NSError *)error {
@@ -92,17 +110,11 @@
 
 - (void)adapterWillPresent:(id<BDMFullscreenAdapter>)adapter {
     BDMLog(@"Adapter: %@ will present ad", adapter);
-    self.startViewTimestamp = NSDate.stk_currentTimeInMilliseconds;
     [self.delegate displayAdLogStartView:self];
+    [self startViewabillity];
 }
 
 - (void)adapterDidDismiss:(id<BDMFullscreenAdapter>)adapter {
-    // Log impression if needed
-    NSTimeInterval finishViewTimestamp = NSDate.stk_currentTimeInMilliseconds;
-    if ((finishViewTimestamp - self.startViewTimestamp) > self.viewabilityConfig.impressionInterval) {
-        BDMLog(@"Adapter: %@ will log impression", adapter);
-        [self.delegate displayAdLogImpression:self];
-    }
     // Log finish needed
     BDMLog(@"Adapter: %@ will dismiss", adapter);
     [self.delegate displayAdLogFinishView:self];
