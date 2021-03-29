@@ -12,5 +12,6 @@
 
 + (BDMApiRequest *)request:(NSNumber *)timeout builder:(void(^)(BDMAuctionBuilder *))build;
 + (BDMApiRequest *)sessionRequest:(NSNumber *)timeout builder:(void(^)(BDMSessionBuilder *))build;
++ (BDMApiRequest *)payloadRequest:(NSNumber *)timeout url:(NSURL *)url;
 
 @end

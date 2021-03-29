@@ -10,3 +10,4 @@
 #import <StackAPI/Adcom.pbobjc.h>
 #import <StackAPI/Openrtb.pbobjc.h>
 #import <StackAPI/Headerbidding.pbobjc.h>
+#import <StackAPI/Cache.pbobjc.h>

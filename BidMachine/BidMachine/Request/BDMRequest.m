@@ -19,6 +19,7 @@
 
 #import <StackFoundation/StackFoundation.h>
 #import "BDMFactory+BDMEventMiddleware.h"
+#import "BDMPayloadResponse.h"
 
 #import "BDMPlacement+Builder.h"
 
@@ -69,39 +70,44 @@
 }
 
 - (void)_performWithRequest:(BDMRequest *)request withPlacement:(BDMPlacement *)placement {
-    self.placement = placement;
-    
     if (!BDMSdk.sharedSdk.sellerID.length) {
         BDMLog(@"You should call BDMSdk.sharedSdk startSessionWithSellerID:YOUR_SELLER_ID completion:...] before!. Sdk was not initialized properly, see docs: https://wiki.appodeal.com/display/BID/BidMachine+iOS+SDK+Documentation");
         NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"No seller ID"];
         [self notifyDelegatesOnFail:error];
         return;
     }
+    self.placement = placement;
     
     if (self.state == BDMRequestStateAuction) {
         BDMLog(@"Trying to perform nonidle request");
         return;
     }
     
+    self.state = BDMRequestStateAuction;
+    [self.middleware startEvent:BDMEventAuction];
+    
+    if (self.bidPayload) {
+        [self performPayloadRequest:self.bidPayload];
+    } else {
+        [self performPlacementRequest:self.placement];
+    }
+}
+
+- (void)performPlacementRequest:(BDMPlacement *)placement {
     __weak typeof(self) weakSelf = self;
+    id<BDMPlacementRequestBuilder> placementBuilder = [placement builder];
+    id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:placement.type];
     [BDMSdk.sharedSdk collectHeaderBiddingAdUnits:self.networkConfigurations
-                                        placement:self.placement
+                                        placement:placement
                                        completion:^(NSArray<id<BDMPlacementAdUnit>> *placememntAdUnits) {
-        // Append header bidding
-        id<BDMPlacementRequestBuilder> placementBuilder = [self.placement builder];
+        
         placementBuilder.appendHeaderBidding(placememntAdUnits);
-        // Populate targeting
-        weakSelf.state = BDMRequestStateAuction;
-        [weakSelf.middleware startEvent:BDMEventAuction];
-        // Contextual data
-        id<BDMContextualProtocol> contextualData = self.contextualData ?: [BDMSdk.sharedSdk.contextualController contextualDataForPlacement:self.placement.type];
-        // Make request by expiration timer
-        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:self.timeout
+        [BDMServerCommunicator.sharedCommunicator makeAuctionRequest:weakSelf.timeout
                                                       auctionBuilder:^(BDMAuctionBuilder *builder)
         {
             builder
             .appendPlacementBuilder(placementBuilder)
-            .appendPriceFloors(request.priceFloors)
+            .appendPriceFloors(weakSelf.priceFloors)
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendSessionID(BDMSdk.sharedSdk.contextualController.sessionId)
@@ -109,20 +115,45 @@
             .appendRestrictions(BDMSdk.sharedSdk.restrictions)
             .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo)
             .appendContextualData(contextualData);
-        } success:^(id<BDMResponse> response) {
-            // Save response object
-            weakSelf.response = response;
-            weakSelf.state = BDMRequestStateSuccessful;
-            [weakSelf.middleware fulfillEvent:BDMEventAuction];
-            [weakSelf saveContextualData];
-            [weakSelf beginExpirationMonitoring];
-            [weakSelf notifyDelegatesOnSuccess];
-        } failure:^(NSError *error) {
-            weakSelf.state = BDMRequestStateFailed;
-            [weakSelf.middleware rejectEvent:BDMEventAuction code:error.code];
-            [weakSelf notifyDelegatesOnFail:error];
-        }];
+        } success:^(id<BDMResponse> response) { [weakSelf notifyAuctionSuccess:response]; }
+          failure:^(NSError *error) { [weakSelf notifyAuctionFailure:error];}];
     }];
+}
+
+- (void)performPayloadRequest:(NSString *)payload {
+    BDMPayloadResponse *response = [BDMPayloadResponse parseFromPayload:payload];
+    if (response.response) {
+        [self notifyAuctionSuccess:response.response];
+        return;
+    }
+    
+    if (!response.url) {
+        NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"payload string not contains available payload"];
+        [self notifyAuctionFailure:error];
+        return;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    [BDMServerCommunicator.sharedCommunicator makeAuctionPayloadRequest:self.timeout
+                                                                    url:response.url
+                                                                success:^(id<BDMResponse> response) { [weakSelf notifyAuctionSuccess:response]; }
+                                                                failure:^(NSError *error) { [weakSelf notifyAuctionFailure:error];}];
+}
+
+- (void)notifyAuctionSuccess:(id<BDMResponse>)response {
+    // Save response object
+    self.response = response;
+    self.state = BDMRequestStateSuccessful;
+    [self.middleware fulfillEvent:BDMEventAuction];
+    [self saveContextualData];
+    [self beginExpirationMonitoring];
+    [self notifyDelegatesOnSuccess];
+}
+
+- (void)notifyAuctionFailure:(NSError *)error {
+    self.state = BDMRequestStateFailed;
+    [self.middleware rejectEvent:BDMEventAuction code:error.code];
+    [self notifyDelegatesOnFail:error];
 }
 
 - (BDMAuctionInfo *)info {

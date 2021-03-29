@@ -59,6 +59,10 @@
 */
 @property (copy, nonatomic, readwrite, nullable) NSNumber *timeout;
 /**
+ Request bid payload
+*/
+@property (copy, nonatomic, readwrite, nullable) NSString *bidPayload;
+/**
  Call when mediation win
  */
 - (void)notifyMediationWin;

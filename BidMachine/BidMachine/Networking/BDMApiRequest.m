@@ -66,6 +66,17 @@ static NSTimeInterval const kBDMRequestTimeoutInterval = 10.0;
     return request;
 }
 
++ (BDMApiRequest *)payloadRequest:(NSNumber *)timeout url:(NSURL *)url {
+    BDMApiRequest * request = [BDMApiRequest requestWithURL:url
+                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                            timeoutInterval:kBDMRequestTimeoutInterval];
+    
+    request.timeoutInterval = timeout ? timeout.doubleValue : kBDMRequestTimeoutInterval;
+    [request setHTTPMethod:@"POST"];
+    [request setValue:BDM_API_REQUEST_USER_AGENT forHTTPHeaderField:@"User-Agent"];
+    return request;
+}
+
 #pragma mark - Overriding
 
 - (NSData *)HTTPBody {

@@ -26,6 +26,11 @@
                    success:(void(^)(id<BDMResponse>))success
                    failure:(void(^)(NSError *))failure;
 
+- (void)makeAuctionPayloadRequest:(NSNumber *)timeout
+                              url:(NSURL *)url
+                   success:(void(^)(id<BDMResponse>))success
+                   failure:(void(^)(NSError *))failure;
+
 - (void)makeInitRequest:(NSNumber *)timeout
          sessionBuilder:(void(^)(BDMSessionBuilder *builder))sessionBuilder
                 success:(void(^)(id<BDMInitialisationResponse>))success
