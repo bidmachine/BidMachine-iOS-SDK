@@ -137,12 +137,6 @@
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventCreativeLoading];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-    if ([self.delegate respondsToSelector:@selector(rewarded:readyToPresentAd:)]) {
-        [self.delegate rewarded:self readyToPresentAd:self.auctionInfo];
-    }
-#pragma clang diagnostic pop
     [self.delegate rewardedReadyToPresent:self];
 }
 
