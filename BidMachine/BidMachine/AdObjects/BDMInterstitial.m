@@ -31,10 +31,6 @@
 
 #pragma mark - Public
 
-- (void)makeRequest:(BDMRequest *)request {
-    [self populateWithRequest:(BDMInterstitialRequest *)request];
-}
-
 - (void)populateWithRequest:(BDMInterstitialRequest *)request {
     NSAssert(BDMInterstitialRequest.stk_isValid(request), @"BDMInterstitial request should be kind of class BDMInterstitialRequest");
     self.currentRequest = request;
@@ -141,12 +137,6 @@
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventCreativeLoading];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-    if ([self.delegate respondsToSelector:@selector(interstitial:readyToPresentAd:)]) {
-        [self.delegate interstitial:self readyToPresentAd:self.auctionInfo];
-    }
-#pragma clang diagnostic pop
     [self.delegate interstitialReadyToPresent:self];
 }
 
