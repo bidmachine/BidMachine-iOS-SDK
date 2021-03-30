@@ -182,12 +182,6 @@
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventCreativeLoading];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-    if ([self.delegate respondsToSelector:@selector(bannerView:readyToPresentAd:)]) {
-        [self.delegate bannerView:self readyToPresentAd:self.latestAuctionInfo];
-    }
-#pragma clang diagnostic pop
     [self.delegate bannerViewReadyToPresent:self];
     self.isCreativeOnScreen = NO;
     if (self.isOnScreen) {
