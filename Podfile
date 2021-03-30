@@ -1,80 +1,92 @@
 platform :ios, '10.0'
 workspace 'BidMachine.xcworkspace'
 
-# Use Appodeal CocoaPods repo for adapters dependencies
 source 'https://github.com/appodeal/CocoaPods.git'
-# Use official CocoaPods repo for test dependecies
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 install! 'cocoapods', :deterministic_uuids => false, :warn_for_multiple_pod_sources => false
 
+$IABVersion = '~> 1.2.0'
+$APIVersion = '~> 0.6.0'
+$STKModuleVersion = '~> 1.0.0'
+
+$VungleVersion = '6.9.1'
+$AdcolonyVersion = '4.4.1.1'
+$MytargetVersion = '5.9.11'
+$TapjoyVersion = '12.7.0'
+$FacebookVersion = '6.3.0'
+$CriteoVersion = '4.0.1'
+$AmazonVersion = '3.3.0'
+$SmaatoVersion = '21.6.8'
+$ApprollVersion = '3.1.2'
+
+# Modules
+
+def iabNast
+	pod 'StackIAB/StackNASTKit', $IABVersion
+  	pod 'StackIAB/StackRichMedia', $IABVersion
+end
+
+def iabMRAID
+	pod 'StackIAB/StackMRAIDKit', $IABVersion
+end
+
+def iabVAST
+	pod 'StackIAB/StackVASTKit', $IABVersion
+end
+
 def protobuf
-  pod 'StackAPI/BidMachine', '~> 0.6.0', :inhibit_warnings => true
-  pod 'Protobuf', :inhibit_warnings => true
-end
-
-def nast
-  pod 'StackIAB/StackNASTKit', '~> 1.3.0-Beta'
-  pod 'StackIAB/StackRichMedia', '~> 1.3.0-Beta'
-end
-
-def mraid
-  pod 'StackIAB/StackMRAIDKit', '~> 1.3.0-Beta'
-end
-
-def vast 
-  pod 'StackIAB/StackVASTKit', '~> 1.3.0-Beta'
-end
-
-def toasts
-  pod 'Toast-Swift', '~> 4.0.0', :inhibit_warnings => true
+	pod 'StackAPI/BidMachine', $APIVersion, :inhibit_warnings => true
+  	pod 'Protobuf', :inhibit_warnings => true
 end
 
 def stack_modules
-  pod 'StackModules', '~> 1.0.0'
-  pod 'StackModules/StackFoundation', '~> 1.0.0'
-  pod 'StackModules/StackUIKit', '~> 1.0.0'
+	pod "StackModules/StackFoundation", $STKModuleVersion
+	pod "StackModules/StackUIKit", $STKModuleVersion
 end
 
+# Network
+
 def vungle
-  pod 'VungleSDK-iOS', '6.9.1'
+  	pod 'VungleSDK-iOS', $VungleVersion
 end
 
 def adcolony
-  pod 'AdColony', '4.4.1.1'
+  	pod 'AdColony', $AdcolonyVersion
 end
 
 def my_target 
-  pod 'myTargetSDK', '5.9.11'
+  	pod 'myTargetSDK', $MytargetVersion
 end
 
 def tapjoy
-  pod 'TapjoySDK', '12.7.0'
+  	pod 'TapjoySDK', $TapjoyVersion
 end
 
 def facebook
-  pod 'FBAudienceNetwork', '6.3.0'
+  	pod 'FBAudienceNetwork', $FacebookVersion
 end
 
 def criteo
-  pod 'CriteoPublisherSdk', '4.0.1'
+  	pod 'CriteoPublisherSdk', $CriteoVersion
 end
 
 def amazon
-  pod 'AmazonPublisherServicesSDK', '3.3.0'
+  	pod 'AmazonPublisherServicesSDK', $AmazonVersion
 end
 
 def smaato
-  pod 'smaato-ios-sdk', '21.6.8'
-  pod 'smaato-ios-sdk/Modules/UnifiedBidding', '21.6.8'
+  	pod 'smaato-ios-sdk', $SmaatoVersion
+  	pod 'smaato-ios-sdk/Modules/UnifiedBidding', $SmaatoVersion
 end
 
 def approll
-  pod 'AppRollSDK', '3.1.2'
+  	pod 'AppRollSDK', $ApprollVersion
 end
 
 # Targets configuration
+
 target 'BidMachine' do
   project 'BidMachine/BidMachine.xcodeproj'
   protobuf
@@ -84,80 +96,82 @@ end
 target 'BDMMRAIDAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   stack_modules
-  mraid
-end
-
-target 'BDMNASTAdapter' do
-  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  stack_modules
-  nast
-end
-
-target 'BDMCriteoAdapter' do
-  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  criteo
-  stack_modules
+  iabMRAID
 end
 
 target 'BDMVASTAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
   stack_modules
-  vast
+  iabVAST
+end
+
+target 'BDMNASTAdapter' do
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
+  stack_modules
+  iabNast
+end
+
+target 'BDMCriteoAdapter' do
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
+  stack_modules
+  criteo
 end
 
 target 'BDMMyTargetAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  my_target
   stack_modules
+  my_target
 end
 
 target 'BDMAdColonyAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  adcolony
   stack_modules
+  adcolony
 end
 
 target 'BDMVungleAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  vungle
   stack_modules
+  vungle
 end
 
 target 'BDMTapjoyAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  tapjoy
   stack_modules
+  tapjoy
 end
 
 target 'BDMFacebookAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  facebook
   stack_modules
+  facebook
 end
 
 target 'BDMAmazonAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  amazon
   stack_modules
+  amazon
 end
 
 target 'BDMSmaatoAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  smaato
   stack_modules
+  smaato
 end
 
 target 'BDMAppRollAdapter' do
   project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
-  approll
   stack_modules
+  approll
 end
 
 target 'Sample' do
   project 'BidMachineSample/Sample.xcodeproj'
-  mraid
-  vast
-  nast
+  stack_modules
+  protobuf
+  iabMRAID
+  iabVAST
+  iabNast
   my_target
   adcolony
   vungle
@@ -167,13 +181,12 @@ target 'Sample' do
   smaato
   criteo
   approll
-  stack_modules
-  protobuf
-  toasts
+
+  pod 'Toast-Swift', '~> 4.0.0', :inhibit_warnings => true
 end
 
 target 'BidMachineTests' do
   project 'BidMachine/BidMachine.xcodeproj'
-  pod "Kiwi"
   stack_modules
+  pod "Kiwi"
 end

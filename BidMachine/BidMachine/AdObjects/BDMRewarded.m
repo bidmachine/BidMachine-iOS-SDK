@@ -151,7 +151,9 @@
     [self.delegate rewarded:self failedWithError:error];
 }
 
-- (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {}
+- (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
+    [self.middleware fulfillEvent:BDMEventViewable];
+}
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
     [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placement.type];
@@ -181,7 +183,6 @@
 
 - (void)displayAdCompleteRewardAction:(id<BDMDisplayAd>)displayAd {
     [BDMSdk.sharedSdk.contextualController registerCompletionForPlacement:self.currentRequest.placement.type];
-    [self.middleware fulfillEvent:BDMEventViewable];
     [self.delegate rewardedFinishRewardAction:self];
 }
 

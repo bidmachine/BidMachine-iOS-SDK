@@ -1,3 +1,11 @@
+# Version 1.7.1.0 (Mar 30th, 2021)
+
+- SDK improvement
+- Update header bidding configuration method
+- Adapters are put in a separate project
+- Deprecated client-side rounding, use server side rounding
+- Deprecated BDMFetcher user BDMRequestStorage to save request
+
 # Version 1.6.5 (Mar 19th, 2021)
 
 - Update Fullscreen ads viewability logic
