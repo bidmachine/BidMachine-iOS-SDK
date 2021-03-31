@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol BDMAdEventProducer;
-/// Event producer handler protocol
+
 @protocol BDMAdEventProducerDelegate <NSObject>
 /// Producer did log user action
 /// @param producer On screen ad
@@ -19,7 +19,7 @@
 - (void)didProduceImpression:(nonnull id<BDMAdEventProducer>)producer;
 
 @end
-/// Producer of ad events
+
 @protocol BDMAdEventProducer <NSObject>
 /// Delegate of producer
 @property (nonatomic, weak, nullable) id<BDMAdEventProducerDelegate> producerDelegate;

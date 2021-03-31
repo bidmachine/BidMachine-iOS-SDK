@@ -137,12 +137,6 @@
 
 - (void)displayAdReady:(id<BDMDisplayAd>)displayAd {
     [self.middleware fulfillEvent:BDMEventCreativeLoading];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-    if ([self.delegate respondsToSelector:@selector(rewarded:readyToPresentAd:)]) {
-        [self.delegate rewarded:self readyToPresentAd:self.auctionInfo];
-    }
-#pragma clang diagnostic pop
     [self.delegate rewardedReadyToPresent:self];
 }
 
@@ -151,7 +145,9 @@
     [self.delegate rewarded:self failedWithError:error];
 }
 
-- (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {}
+- (void)displayAdLogImpression:(id<BDMDisplayAd>)displayAd {
+    [self.middleware fulfillEvent:BDMEventViewable];
+}
 
 - (void)displayAdLogUserInteraction:(id<BDMDisplayAd>)displayAd {
     [BDMSdk.sharedSdk.contextualController registerClickForPlacement:self.currentRequest.placement.type];
@@ -181,7 +177,6 @@
 
 - (void)displayAdCompleteRewardAction:(id<BDMDisplayAd>)displayAd {
     [BDMSdk.sharedSdk.contextualController registerCompletionForPlacement:self.currentRequest.placement.type];
-    [self.middleware fulfillEvent:BDMEventViewable];
     [self.delegate rewardedFinishRewardAction:self];
 }
 
