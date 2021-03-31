@@ -16,15 +16,15 @@
 
 + (instancetype)parseFromPayload:(NSString *)payload {
     NSData *payloadData = nil;
-    if (!payload || (payloadData = [[NSData alloc] initWithBase64EncodedString:payload options:0])) {
+    if (!payload || !(payloadData = [[NSData alloc] initWithBase64EncodedString:payload options:0])) {
         return nil;
     }
     
     BDMResponsePayload *payloadResponse = [BDMResponsePayload parseFromData:payloadData error:nil];
-    id<BDMResponse> response = [[BDMFactory sharedFactory] wrappedResponseData:payloadResponse.data];
+    id<BDMResponse> response = [[BDMFactory sharedFactory] wrappedResponseData:payloadResponse.responseCache.data];
     NSURL *responseURL = [NSURL stk_url:payloadResponse.responseCacheURL];
     
-    if (!response && !responseURL) {
+    if (!response.creative && !responseURL) {
         return nil;
     }
     
