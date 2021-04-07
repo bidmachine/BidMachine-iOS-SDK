@@ -23,7 +23,7 @@
     }
 }
 
-+ (void)dispatchMain:(dispatch_block_t)completion {
++ (void)dispatchAsyncMain:(dispatch_block_t)completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         completion ? completion() : nil;
     });
