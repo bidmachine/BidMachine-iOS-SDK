@@ -122,7 +122,7 @@
 
 - (void)performPayloadRequest:(NSString *)payload {
     BDMPayloadResponse *response = [BDMPayloadResponse parseFromPayload:payload];
-    if (response.response) {
+    if (response.response.creative) {
         [self notifyAuctionSuccess:response.response];
         return;
     }

@@ -24,7 +24,7 @@
     id<BDMResponse> response = [[BDMFactory sharedFactory] wrappedResponseData:payloadResponse.responseCache.data];
     NSURL *responseURL = [NSURL stk_url:payloadResponse.responseCacheURL];
     
-    if (!response.creative && !responseURL) {
+    if (!response.creative && (!responseURL || [responseURL.absoluteString isEqual:@""])) {
         return nil;
     }
     
