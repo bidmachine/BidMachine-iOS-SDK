@@ -40,3 +40,45 @@ FOUNDATION_EXTERN NSString *NSStringFromBDMErrorCode(BDMErrorCode code);
 FOUNDATION_EXTERN NSString *NSStringFromBDMInternalPlacementType(BDMInternalPlacementType type);
 
 FOUNDATION_EXTERN BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type);
+
+//////
+
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXTERN BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *_Nullable);
+
+FOUNDATION_EXTERN NSString * NSStringFromBDMAdUnitFormat(BDMAdUnitFormat);
+
+FOUNDATION_EXTERN NSString * NSStringEventFromBDMAdUnitFormat(BDMAdUnitFormat);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatEqual(BDMAdUnitFormat, BDMAdUnitFormat);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsBanner(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsInterstitial(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsRewarded(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsNativeAd(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsDisplay(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsVideo(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN CGSize BDMAdUnitFormatBannerSize(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsInterstitialStatic(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsInterstitialVideo(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsRewardedStatic(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsRewardedVideo(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsNativeIcon(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsNativeImage(BDMAdUnitFormat format);
+
+FOUNDATION_EXTERN BOOL BDMAdUnitFormatIsNativeVideo(BDMAdUnitFormat format);
+
+NS_ASSUME_NONNULL_END

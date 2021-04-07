@@ -44,6 +44,8 @@
 		37AEA4F52593949800176D9E /* OpenRTB+BDMCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */; };
 		37AEA4F62593949800176D9E /* OpenRTB+BDMCreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */; };
 		37C0D70A259200D300586859 /* BDMNetworkProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42ECABEA217F5611009DD85B /* BDMNetworkProtocol.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		37D72B08261DB94300CC9395 /* BDMDispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D72B06261DB94300CC9395 /* BDMDispatcher.h */; };
+		37D72B09261DB94300CC9395 /* BDMDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D72B07261DB94300CC9395 /* BDMDispatcher.m */; };
 		420E305221B6A00600B3E942 /* BDMProtoAPI-Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */; };
 		421137F021E880D200B65454 /* BDMAdRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 421137EE21E880D200B65454 /* BDMAdRequests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		421137F121E880D200B65454 /* BDMAdRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 421137EF21E880D200B65454 /* BDMAdRequests.m */; };
@@ -215,6 +217,8 @@
 		37AEA4EC25935E8F00176D9E /* BDMAdapterDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdapterDefines.m; sourceTree = "<group>"; };
 		37AEA4F32593949800176D9E /* OpenRTB+BDMCreative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenRTB+BDMCreative.h"; sourceTree = "<group>"; };
 		37AEA4F42593949800176D9E /* OpenRTB+BDMCreative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OpenRTB+BDMCreative.m"; sourceTree = "<group>"; };
+		37D72B06261DB94300CC9395 /* BDMDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDMDispatcher.h; sourceTree = "<group>"; };
+		37D72B07261DB94300CC9395 /* BDMDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDMDispatcher.m; sourceTree = "<group>"; };
 		420E305121B6A00600B3E942 /* BDMProtoAPI-Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMProtoAPI-Umbrella.h"; sourceTree = "<group>"; };
 		421137EE21E880D200B65454 /* BDMAdRequests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMAdRequests.h; sourceTree = "<group>"; };
 		421137EF21E880D200B65454 /* BDMAdRequests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMAdRequests.m; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 		420476902135481600FA2261 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37D72B06261DB94300CC9395 /* BDMDispatcher.h */,
+				37D72B07261DB94300CC9395 /* BDMDispatcher.m */,
 				65CE5DA321B15F0400652496 /* BDMRetryTimer.h */,
 				65CE5DA421B15F0400652496 /* BDMRetryTimer.m */,
 				9C69DC741FC2E14800EDC6E5 /* BDMUserAgentProvider.h */,
@@ -811,6 +817,7 @@
 				42D7310322DF4B0200AEB066 /* BDMAdNetworkConfiguration.h in Headers */,
 				42420DDC21B7AA930041C724 /* BDMInitialisationResponseModel.h in Headers */,
 				427E4D5E219427D3001EE6C7 /* BDMUserRestrictions.h in Headers */,
+				37D72B08261DB94300CC9395 /* BDMDispatcher.h in Headers */,
 				37AEA4ED25935E8F00176D9E /* BDMAdapterDefines.h in Headers */,
 				423A823C21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.h in Headers */,
 				9C25973F1FB1E4E5006F3FA7 /* BDMResponseProtocol.h in Headers */,
@@ -1092,6 +1099,7 @@
 				9CBED22A1FB3218D004C4669 /* BDMRequest.m in Sources */,
 				42C075DD2189D3DE00256E7B /* BDMNativeAd.m in Sources */,
 				3781991024CECD8E00E97FED /* BDMRequestStorage.m in Sources */,
+				37D72B09261DB94300CC9395 /* BDMDispatcher.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
 				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,

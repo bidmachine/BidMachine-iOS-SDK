@@ -7,6 +7,7 @@
 //
 
 #import "BDMPrivateDefines.h"
+#import "BDMDispatcher.h"
 
 NSInteger const BDMEventError = 1000;
 
@@ -103,4 +104,223 @@ BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type) {
     } else {
         return 0;
     }
+}
+
+//////////
+
+
+static inline NSArray<NSString *> * BDMAdUnitFormatConstants(void) {
+    return @[
+        @"banner",
+        @"banner_320x50",
+        @"banner_728x90",
+        @"banner_300x250",
+        @"interstitial_video",
+        @"interstitial_static",
+        @"interstitial",
+        @"rewarded_video",
+        @"rewarded_static",
+        @"rewarded",
+        @"nativeAd_icon",
+        @"nativeAd_image",
+        @"nativeAd_video",
+        @"nativeAd_icon_video",
+        @"nativeAd_icon_image",
+        @"nativeAd_image_video",
+        @"nativeAd",
+    ];
+}
+
+BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *value) {
+    NSUInteger idx = value ? [BDMAdUnitFormatConstants() indexOfObject:value] : NSNotFound;
+    return idx == NSNotFound ? BDMAdUnitFormatUnknown : (BDMAdUnitFormat)idx;
+}
+
+NSString * NSStringFromBDMAdUnitFormat(BDMAdUnitFormat format) {
+    if (format < 0 || format + 1 > BDMAdUnitFormatConstants().count ) {
+        return @"unknown";
+    }
+    return  [BDMAdUnitFormatConstants() objectAtIndex:format];
+}
+
+NSString * NSStringEventFromBDMAdUnitFormat(BDMAdUnitFormat format) {
+    NSString *eventString = @"Session";
+    if (BDMAdUnitFormatIsBanner(format)) {
+        eventString = @"Banner";
+    } else if (BDMAdUnitFormatIsInterstitial(format)) {
+        eventString = @"Interstitial";
+    } else if (BDMAdUnitFormatIsRewarded(format)) {
+        eventString = @"RewardedVideo";
+    } else if (BDMAdUnitFormatIsNativeAd(format)) {
+        eventString = @"Native";
+    }
+    return eventString;
+}
+
+BOOL BDMAdUnitFormatEqual(BDMAdUnitFormat format1, BDMAdUnitFormat format2) {
+    if (format2 == BDMAdUnitFormatUnknown) {
+        return NO;
+    }
+    switch (format1) {
+        case BDMAdUnitFormatInLineBanner: return
+            format2 == BDMAdUnitFormatInLineBanner ||
+            format2 == BDMAdUnitFormatBanner320x50 ||
+            format2 == BDMAdUnitFormatBanner728x90 ||
+            format2 == BDMAdUnitFormatBanner300x250;
+            break;
+        case BDMAdUnitFormatBanner320x50: return
+            format2 == BDMAdUnitFormatInLineBanner ||
+            format2 == BDMAdUnitFormatBanner320x50 ;
+            break;
+        case BDMAdUnitFormatBanner728x90: return
+            format2 == BDMAdUnitFormatInLineBanner ||
+            format2 == BDMAdUnitFormatBanner728x90 ;
+            break;
+        case BDMAdUnitFormatBanner300x250: return
+            format2 == BDMAdUnitFormatInLineBanner ||
+            format2 == BDMAdUnitFormatBanner300x250 ;
+            break;
+        case BDMAdUnitFormatInterstitialUnknown: return
+            format2 == BDMAdUnitFormatInterstitialUnknown ||
+            format2 == BDMAdUnitFormatInterstitialVideo ||
+            format2 == BDMAdUnitFormatInterstitialStatic ;
+            break;
+        case BDMAdUnitFormatInterstitialVideo: return
+            format2 == BDMAdUnitFormatInterstitialUnknown ||
+            format2 == BDMAdUnitFormatInterstitialVideo ;
+            break;
+        case BDMAdUnitFormatInterstitialStatic: return
+            format2 == BDMAdUnitFormatInterstitialUnknown ||
+            format2 == BDMAdUnitFormatInterstitialStatic ;
+            break;
+        case BDMAdUnitFormatRewardedUnknown: return
+            format2 == BDMAdUnitFormatRewardedUnknown ||
+            format2 == BDMAdUnitFormatRewardedPlayable ||
+            format2 == BDMAdUnitFormatRewardedVideo ;
+            break;
+        case BDMAdUnitFormatRewardedVideo: return
+            format2 == BDMAdUnitFormatRewardedUnknown ||
+            format2 == BDMAdUnitFormatRewardedVideo ;
+            break;
+        case BDMAdUnitFormatRewardedPlayable: return
+            format2 == BDMAdUnitFormatRewardedUnknown ||
+            format2 == BDMAdUnitFormatRewardedPlayable ;
+            break;
+        case BDMAdUnitFormatNativeAdUnknown: return
+            format2 == BDMAdUnitFormatNativeAdIcon ||
+            format2 == BDMAdUnitFormatNativeAdImage ||
+            format2 == BDMAdUnitFormatNativeAdVideo ||
+            format2 == BDMAdUnitFormatNativeAdIconAndVideo ||
+            format2 == BDMAdUnitFormatNativeAdIconAndImage ||
+            format2 == BDMAdUnitFormatNativeAdImageAndVideo ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdIcon: return
+            format2 == BDMAdUnitFormatNativeAdIcon ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdImage: return
+            format2 == BDMAdUnitFormatNativeAdImage ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdVideo: return
+            format2 == BDMAdUnitFormatNativeAdVideo ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdIconAndVideo: return
+            format2 == BDMAdUnitFormatNativeAdIconAndVideo ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdIconAndImage: return
+            format2 == BDMAdUnitFormatNativeAdIconAndImage ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+        case BDMAdUnitFormatNativeAdImageAndVideo: return
+            format2 == BDMAdUnitFormatNativeAdImageAndVideo ||
+            format2 == BDMAdUnitFormatNativeAdUnknown;
+            break;
+            
+        default: return NO; break;
+    }
+}
+
+BOOL BDMAdUnitFormatIsBanner(BDMAdUnitFormat format) {
+    return [NSStringFromBDMAdUnitFormat(format) containsString:@"banner"];
+}
+
+BOOL BDMAdUnitFormatIsInterstitial(BDMAdUnitFormat format) {
+    return [NSStringFromBDMAdUnitFormat(format) containsString:@"interstitial"];
+}
+
+BOOL BDMAdUnitFormatIsRewarded(BDMAdUnitFormat format) {
+    return [NSStringFromBDMAdUnitFormat(format) containsString:@"rewarded"];
+}
+
+BOOL BDMAdUnitFormatIsNativeAd(BDMAdUnitFormat format) {
+    return [NSStringFromBDMAdUnitFormat(format) containsString:@"nativeAd"];
+}
+
+BOOL BDMAdUnitFormatIsDisplay(BDMAdUnitFormat format) {
+    return
+    BDMAdUnitFormatIsBanner(format) ||
+    BDMAdUnitFormatIsNativeAd(format) ||
+    (BDMAdUnitFormatIsInterstitial(format) && format == BDMAdUnitFormatInterstitialUnknown) ||
+    (BDMAdUnitFormatIsInterstitial(format) && format == BDMAdUnitFormatInterstitialStatic) ||
+    (BDMAdUnitFormatIsRewarded(format) && format == BDMAdUnitFormatRewardedUnknown) ||
+    (BDMAdUnitFormatIsRewarded(format) && format == BDMAdUnitFormatRewardedPlayable);
+}
+
+BOOL BDMAdUnitFormatIsVideo(BDMAdUnitFormat format) {
+    return
+    (BDMAdUnitFormatIsInterstitial(format) && format == BDMAdUnitFormatInterstitialUnknown) ||
+    (BDMAdUnitFormatIsInterstitial(format) && format == BDMAdUnitFormatInterstitialVideo) ||
+    (BDMAdUnitFormatIsRewarded(format) && format == BDMAdUnitFormatRewardedUnknown) ||
+    (BDMAdUnitFormatIsRewarded(format) && format == BDMAdUnitFormatRewardedVideo);
+}
+
+
+CGSize BDMAdUnitFormatBannerSize(BDMAdUnitFormat format) {
+    __block CGSize size = CGSizeZero;
+    [BDMDispatcher dispatchMainSemaphore:^{
+        switch (format) {
+            case BDMAdUnitFormatBanner320x50: size = CGSizeMake(320, 50); break;
+            case BDMAdUnitFormatBanner728x90: size = CGSizeMake(300, 250); break;
+            case BDMAdUnitFormatBanner300x250: size = CGSizeMake(728, 90); break;
+            case BDMAdUnitFormatInLineBanner: size =
+                UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad ?
+                CGSizeMake(728, 90) :
+                CGSizeMake(320, 50);
+                break;
+            default: break;
+        }
+    }];
+    return size;
+}
+
+BOOL BDMAdUnitFormatIsInterstitialStatic(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsInterstitial(format) && BDMAdUnitFormatIsDisplay(format);
+}
+
+BOOL BDMAdUnitFormatIsInterstitialVideo(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsInterstitial(format) && BDMAdUnitFormatIsVideo(format);
+}
+
+BOOL BDMAdUnitFormatIsRewardedStatic(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsRewarded(format) && BDMAdUnitFormatIsDisplay(format);
+}
+
+BOOL BDMAdUnitFormatIsRewardedVideo(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsRewarded(format) && BDMAdUnitFormatIsVideo(format);
+}
+
+BOOL BDMAdUnitFormatIsNativeIcon(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsNativeAd(format) && [NSStringFromBDMAdUnitFormat(format) containsString:@"icon"];
+}
+
+BOOL BDMAdUnitFormatIsNativeImage(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsNativeAd(format) && [NSStringFromBDMAdUnitFormat(format) containsString:@"image"];
+}
+
+BOOL BDMAdUnitFormatIsNativeVideo(BDMAdUnitFormat format) {
+    return BDMAdUnitFormatIsNativeAd(format) && [NSStringFromBDMAdUnitFormat(format) containsString:@"video"];
 }
