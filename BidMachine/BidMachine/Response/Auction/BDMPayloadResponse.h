@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BDMPayloadResponse : NSObject
 
+@property (nonatomic, assign, readonly) BDMAdUnitFormat format;
 @property (nonatomic, copy, readonly, nullable) id<BDMResponse> response;
 @property (nonatomic, copy, readonly, nullable) NSURL *url;
 

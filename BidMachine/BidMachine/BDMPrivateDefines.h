@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, BDMEvent) {
     BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared = 703
 };
 
+NS_ASSUME_NONNULL_BEGIN
 
 
 FOUNDATION_EXTERN NSString *NSStringFromBDMEvent(BDMEvent event);
@@ -40,10 +41,6 @@ FOUNDATION_EXTERN NSString *NSStringFromBDMErrorCode(BDMErrorCode code);
 FOUNDATION_EXTERN NSString *NSStringFromBDMInternalPlacementType(BDMInternalPlacementType type);
 
 FOUNDATION_EXTERN BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type);
-
-//////
-
-NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *_Nullable);
 

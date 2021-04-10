@@ -110,6 +110,7 @@
             .appendPriceFloors(weakSelf.priceFloors)
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
+            .appendTargeting(BDMSdk.sharedSdk.targeting)
             .appendSessionID(BDMSdk.sharedSdk.contextualController.sessionId)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
             .appendRestrictions(BDMSdk.sharedSdk.restrictions)
@@ -122,7 +123,7 @@
 
 - (void)performPayloadRequest:(NSString *)payload {
     BDMPayloadResponse *response = [BDMPayloadResponse parseFromPayload:payload];
-    if (response.response.creative) {
+    if (response.response.creative && [self.placement isSupportedFormat: response.format]) {
         [self notifyAuctionSuccess:response.response];
         return;
     }

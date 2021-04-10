@@ -28,15 +28,60 @@
         return nil;
     }
     
-    return [[self alloc] initPrivatlyWithResponse:response url:responseURL];
+    BDMAdUnitFormat format = [self formatFromPlacement:payloadResponse.hasRequestItemSpec ? payloadResponse.requestItemSpec : nil];
+    
+    return [[self alloc] initPrivatlyWithResponse:response
+                                              url:responseURL
+                                           format:format];
 }
 
-- (instancetype)initPrivatlyWithResponse:(id<BDMResponse>)response url:(NSURL *)url {
+- (instancetype)initPrivatlyWithResponse:(id<BDMResponse>)response
+                                     url:(NSURL *)url
+                                  format:(BDMAdUnitFormat)format {
     if (self = [super init]) {
         _response = response;
         _url = url;
+        _format = format;
     }
     return self;
+}
+
++ (BDMAdUnitFormat)formatFromPlacement:(ADCOMPlacement *)placement {
+    if (!placement) {
+        return BDMAdUnitFormatUnknown;
+    }
+    
+    BDMAdUnitFormat format = BDMAdUnitFormatUnknown;
+    if (placement.hasDisplay) {
+        if (placement.display.pos == ADCOMPlacementPosition_PlacementPositionFullscreen) {
+            if (placement.reward) {
+                format = BDMAdUnitFormatRewardedPlayable;
+            } else {
+                format = BDMAdUnitFormatInterstitialStatic;
+            }
+        } else {
+            if (placement.display.hasNativefmt) {
+                format = BDMAdUnitFormatNativeAdUnknown;
+            } else {
+                if (placement.display.h == 50) {
+                    format = BDMAdUnitFormatBanner320x50;
+                } else if (placement.display.h == 90) {
+                    format = BDMAdUnitFormatBanner728x90;
+                } else if (placement.display.h == 250) {
+                    format = BDMAdUnitFormatBanner300x250;
+                }
+            }
+        }
+    } else if (placement.hasVideo) {
+        if (placement.display.pos == ADCOMPlacementPosition_PlacementPositionFullscreen) {
+            if (placement.reward) {
+                format = BDMAdUnitFormatRewardedVideo;
+            } else {
+                format = BDMAdUnitFormatInterstitialVideo;
+            }
+        }
+    }
+    return format;
 }
 
 @end
