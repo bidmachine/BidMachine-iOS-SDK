@@ -46,9 +46,9 @@
     self.isTracked = YES;
     self.finishTime = [NSDate date];
     self.iteraction ++;
-    BDMLog(@"[Event] %@ event complete(%li), timing: %1.2f sec",
+    BDMLog(@"[Event] %@ event complete(%lu), timing: %1.2f sec",
            self.description,
-           self.iteraction,
+           (unsigned long)self.iteraction,
            self.finishTime.timeIntervalSince1970 - self.startTime.timeIntervalSince1970);
 }
 

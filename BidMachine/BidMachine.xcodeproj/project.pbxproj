@@ -12,8 +12,6 @@
 		3701FA0225FB8FCC006A7B04 /* BDMPlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */; };
 		3701FA1525FB9CE4006A7B04 /* BDMPlacement+Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */; };
 		3701FA1625FB9CE4006A7B04 /* BDMPlacement+Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */; };
-		37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 37319DA924CEE61900765FE5 /* BDMFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 37319DAA24CEE61900765FE5 /* BDMFetcher.m */; };
 		3743A5CE24FD0EDA003DD6BF /* BDMContextualController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */; };
 		3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */; };
 		3743A5D224FD1252003DD6BF /* BDMPrivateDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */; };
@@ -186,8 +184,6 @@
 		3701FA0025FB8FCC006A7B04 /* BDMPlacement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMPlacement.m; sourceTree = "<group>"; };
 		3701FA1325FB9CE4006A7B04 /* BDMPlacement+Builder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDMPlacement+Builder.h"; sourceTree = "<group>"; };
 		3701FA1425FB9CE4006A7B04 /* BDMPlacement+Builder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BDMPlacement+Builder.m"; sourceTree = "<group>"; };
-		37319DA924CEE61900765FE5 /* BDMFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMFetcher.h; sourceTree = "<group>"; };
-		37319DAA24CEE61900765FE5 /* BDMFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMFetcher.m; sourceTree = "<group>"; };
 		3743A5CC24FD0EDA003DD6BF /* BDMContextualController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDMContextualController.h; sourceTree = "<group>"; };
 		3743A5CD24FD0EDA003DD6BF /* BDMContextualController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDMContextualController.m; sourceTree = "<group>"; };
 		3743A5D024FD1252003DD6BF /* BDMPrivateDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDMPrivateDefines.h; path = BidMachine/BDMPrivateDefines.h; sourceTree = SOURCE_ROOT; };
@@ -388,8 +384,6 @@
 		3781990C24CECD6A00E97FED /* Fetcher */ = {
 			isa = PBXGroup;
 			children = (
-				37319DA924CEE61900765FE5 /* BDMFetcher.h */,
-				37319DAA24CEE61900765FE5 /* BDMFetcher.m */,
 				3781990D24CECD8E00E97FED /* BDMRequestStorage.h */,
 				3781990E24CECD8E00E97FED /* BDMRequestStorage.m */,
 				3781991124CED19200E97FED /* BDMRequestStorageItem.h */,
@@ -831,7 +825,6 @@
 				37AD830F26108D7000D0260C /* BDMPayloadResponse.h in Headers */,
 				9C69DC761FC2E14800EDC6E5 /* BDMUserAgentProvider.h in Headers */,
 				42420DD921B7AA280041C724 /* BDMInitialisationResponseProtocol.h in Headers */,
-				37319DAB24CEE61900765FE5 /* BDMFetcher.h in Headers */,
 				42D730FC22DF3DA800AEB066 /* BDMHeaderBiddingOperationProtocol.h in Headers */,
 				421B9FD1218B4227004CED22 /* BDMFactory+BDMDisplayAd.h in Headers */,
 				42D730F922DF24CB00AEB066 /* BDMPlacementAdUnit.h in Headers */,
@@ -1102,7 +1095,6 @@
 				37D72B09261DB94300CC9395 /* BDMDispatcher.m in Sources */,
 				4227C0C8217DC7620022C1D5 /* BDMAuctionInfo.m in Sources */,
 				423A823D21E8D8DF00591F6C /* BDMFactory+BDMEventMiddleware.m in Sources */,
-				37319DAC24CEE61900765FE5 /* BDMFetcher.m in Sources */,
 				427E63CA21A57528005DB6B5 /* BDMCreative.m in Sources */,
 				3743A5CF24FD0EDA003DD6BF /* BDMContextualController.m in Sources */,
 				3743A5D324FD1252003DD6BF /* BDMPrivateDefines.m in Sources */,
