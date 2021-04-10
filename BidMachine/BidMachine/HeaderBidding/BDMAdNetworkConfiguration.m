@@ -7,6 +7,7 @@
 //
 
 #import "BDMAdNetworkConfiguration.h"
+#import "BDMPrivateDefines.h"
 
 #import <StackFoundation/StackFoundation.h>
 

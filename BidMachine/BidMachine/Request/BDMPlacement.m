@@ -7,6 +7,7 @@
 //
 
 #import "BDMPlacement.h"
+#import "BDMPrivateDefines.h"
 
 
 @implementation BDMPlacement

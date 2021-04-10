@@ -34,67 +34,6 @@ CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize) {
     return defaultSize;
 }
 
-
-BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt) {
-    return @(fmt);
-}
-
-
-BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key) {
-    return key.integerValue > -1 && key.integerValue < 16 ?
-        (BDMAdUnitFormat)[key integerValue] :
-        BDMAdUnitFormatUnknown;
-}
-
-
-BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key) {
-    NSArray *adTypes = @[
-                         @"banner",
-                         @"banner_320x50",
-                         @"banner_728x90",
-                         @"banner_300x250",
-                         @"interstitial_video",
-                         @"interstitial_static",
-                         @"interstitial",
-                         @"rewarded_video",
-                         @"rewarded_static",
-                         @"rewarded",
-                         @"nativeAd_icon",
-                         @"nativeAd_image",
-                         @"nativeAd_video",
-                         @"nativeAd_icon_video",
-                         @"nativeAd_icon_image",
-                         @"nativeAd",
-                         ];
-    NSUInteger idx = key ? [adTypes indexOfObject:key] : NSNotFound;
-    return idx == NSNotFound ? BDMAdUnitFormatUnknown : (BDMAdUnitFormat)idx;
-}
-
-
-NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt) {
-    switch (fmt) {
-        case BDMAdUnitFormatUnknown: return @"unknown"; break;
-        case BDMAdUnitFormatInLineBanner: return @"banner"; break;
-        case BDMAdUnitFormatBanner320x50: return @"banner_320x50"; break;
-        case BDMAdUnitFormatBanner728x90: return @"banner_728x90"; break;
-        case BDMAdUnitFormatBanner300x250: return @"banner_300x250"; break;
-        case BDMAdUnitFormatInterstitialVideo: return @"interstitial_video"; break;
-        case BDMAdUnitFormatInterstitialStatic: return @"interstitial_static"; break;
-        case BDMAdUnitFormatInterstitialUnknown: return @"interstitial"; break;
-        case BDMAdUnitFormatRewardedVideo: return @"rewarded_video"; break;
-        case BDMAdUnitFormatRewardedPlayable: return @"rewarded_static"; break;
-        case BDMAdUnitFormatRewardedUnknown: return @"rewarded"; break;
-        case BDMAdUnitFormatNativeAdIcon: return @"nativeAd_icon"; break;
-        case BDMAdUnitFormatNativeAdImage: return @"nativeAd_image"; break;
-        case BDMAdUnitFormatNativeAdVideo: return @"nativeAd_video"; break;
-        case BDMAdUnitFormatNativeAdIconAndImage: return @"nativeAd_icon_image"; break;
-        case BDMAdUnitFormatNativeAdIconAndVideo: return @"nativeAd_icon_video"; break;
-        case BDMAdUnitFormatNativeAdImageAndVideo: return @"nativeAd_image_video"; break;
-        case BDMAdUnitFormatNativeAdUnknown: return @"nativeAd"; break;
-    }
-    return @"unknown";
-}
-
 NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt) {
     switch (fmt) {
         case BDMCreativeFormatBanner: return @"display"; break;

@@ -166,12 +166,6 @@ typedef NS_ENUM(NSInteger, BDMInternalPlacementType) {
     BDMInternalPlacementTypeNative
 };
 
-typedef NSNumber BDMAdUnitFormatKey;
-
-BDMAdUnitFormatKey *BDMAdUnitFormatKeyFromEnum(BDMAdUnitFormat fmt);
-BDMAdUnitFormat BDMAdUnitFormatFromKey(BDMAdUnitFormatKey *key);
-BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *key);
-NSString *NSStringFromBDMAdUnitFormat(BDMAdUnitFormat fmt);
 NSString *NSStringFromBDMCreativeFormat(BDMCreativeFormat fmt);
 
 CGSize CGSizeFromBDMSize(BDMBannerAdSize adSize);
