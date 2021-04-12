@@ -123,8 +123,14 @@
 
 - (void)performPayloadRequest:(NSString *)payload {
     BDMPayloadResponse *response = [BDMPayloadResponse parseFromPayload:payload];
-    if (response.response.creative && [self.placement isSupportedFormat: response.format]) {
-        [self notifyAuctionSuccess:response.response];
+    
+    if (response.response.creative) {
+        if ([self.placement isSupportedFormat: response.format]) {
+            [self notifyAuctionSuccess:response.response];
+        } else {
+            NSError *error = [NSError bdm_errorWithCode:BDMErrorCodeNoContent description:@"payload string contain unsuported format"];
+            [self notifyAuctionFailure:error];
+        }
         return;
     }
     

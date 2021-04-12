@@ -53,12 +53,10 @@
     
     BDMAdUnitFormat format = BDMAdUnitFormatUnknown;
     if (placement.hasDisplay) {
-        if (placement.display.pos == ADCOMPlacementPosition_PlacementPositionFullscreen) {
-            if (placement.reward) {
-                format = BDMAdUnitFormatRewardedPlayable;
-            } else {
-                format = BDMAdUnitFormatInterstitialStatic;
-            }
+        if (placement.reward) {
+            format = BDMAdUnitFormatRewardedPlayable;
+        } else if (placement.display.instl) {
+            format = BDMAdUnitFormatInterstitialStatic;
         } else {
             if (placement.display.hasNativefmt) {
                 format = BDMAdUnitFormatNativeAdUnknown;
