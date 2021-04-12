@@ -112,6 +112,7 @@
             .appendSellerID(BDMSdk.sharedSdk.sellerID)
             .appendTargeting(BDMSdk.sharedSdk.targeting)
             .appendSessionID(BDMSdk.sharedSdk.contextualController.sessionId)
+            .appendTargeting(BDMSdk.sharedSdk.targeting)
             .appendTestMode(BDMSdk.sharedSdk.testMode)
             .appendRestrictions(BDMSdk.sharedSdk.restrictions)
             .appendPublisherInfo(BDMSdk.sharedSdk.publisherInfo)
