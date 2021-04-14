@@ -76,6 +76,14 @@
         [self notifyDelegatesOnFail:error];
         return;
     }
+    
+    if (!self.bidPayload && STKDevice.debug && !BDMSdk.sharedSdk.targeting.storeId) {
+        BDMLog(@"Store ID is NULL. You should set storeID before!");
+        NSError * error = [NSError bdm_errorWithCode:BDMErrorCodeInternal description:@"No storeID"];
+        [self notifyDelegatesOnFail:error];
+        return;
+    }
+    
     self.placement = placement;
     
     if (self.state == BDMRequestStateAuction) {
