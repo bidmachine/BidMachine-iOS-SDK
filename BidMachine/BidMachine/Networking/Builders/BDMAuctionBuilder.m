@@ -354,7 +354,7 @@
     extension[@"omidpv"] = kBDMVersion;
     
     if (STKDevice.availableIOS(14)) {
-        NSMutableDictionary *skExtension = [NSMutableDictionary dictionaryWithCapacity:3];
+        NSMutableDictionary *skExtension = [NSMutableDictionary dictionaryWithCapacity:4];
         skExtension[@"version"]           = STKProductController.supportedSKAdNetworkVersions.firstObject;
         skExtension[@"versions"]          = STKProductController.supportedSKAdNetworkVersions;
         skExtension[@"sourceapp"]         = self.targeting.storeId;
