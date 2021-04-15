@@ -11,6 +11,7 @@
 
 #import "BDMProtoAPI-Umbrella.h"
 #import <StackFoundation/StackFoundation.h>
+#import <StackProductPresentation/StackProductPresentation.h>
 
 
 @interface BDMAuctionBuilder ()
@@ -354,7 +355,8 @@
     
     if (STKDevice.availableIOS(14)) {
         NSMutableDictionary *skExtension = [NSMutableDictionary dictionaryWithCapacity:3];
-        skExtension[@"version"]           = @"2.0";
+        skExtension[@"version"]           = STKProductController.supportedSKAdNetworkVersions.firstObject;
+        skExtension[@"versions"]          = STKProductController.supportedSKAdNetworkVersions;
         skExtension[@"sourceapp"]         = self.targeting.storeId;
         skExtension[@"skadnetids"]        = STKBundle.registeredSKAdNetworkIdentifiers;
         extension[@"skadn"]               = skExtension;
