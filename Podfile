@@ -7,9 +7,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 install! 'cocoapods', :deterministic_uuids => false, :warn_for_multiple_pod_sources => false
 
-$IABVersion = '~> 1.2.0'
+$IABVersion = '~> 1.4.0'
 $APIVersion = '~> 0.6.0'
-$STKModuleVersion = '~> 1.0.0'
+$STKModuleVersion = '~> 1.1.0'
 
 $VungleVersion = '6.9.1'
 $AdcolonyVersion = '4.5.0'
@@ -42,8 +42,7 @@ def protobuf
 end
 
 def stack_modules
-	pod "StackModules/StackFoundation", $STKModuleVersion
-	pod "StackModules/StackUIKit", $STKModuleVersion
+	pod "StackModules", $STKModuleVersion
 end
 
 # Network
