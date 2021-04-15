@@ -10,30 +10,6 @@
 
 #import <StackFoundation/StackFoundation.h>
 
-@interface BDMPlacementOMIDBuilder ()
-
-@property (nonatomic, copy) NSString *sdkName;
-@property (nonatomic, copy) NSString *sdkVer;
-
-@end
-
-@implementation BDMPlacementOMIDBuilder
-
-- (id<BDMPlacementOMIDBuilder> (^)(NSString *))appendSDK {
-    return ^id<BDMPlacementOMIDBuilder>(NSString *sdk){
-        self.sdkName = sdk;
-        return self;
-    };
-}
-
-- (id<BDMPlacementOMIDBuilder> (^)(NSString *))appendSDKVer {
-    return ^id<BDMPlacementOMIDBuilder>(NSString *ver){
-        self.sdkVer = ver;
-        return self;
-    };
-}
-
-@end
 
 @interface BDMPlacementRequestBuilder ()
 
@@ -70,20 +46,6 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
 - (id<BDMPlacementRequestBuilder> (^)(BOOL))appendReward {
     return ^id<BDMPlacementRequestBuilder>(BOOL reward) {
         self.placement.reward = reward;
-        return self;
-    };
-}
-
-- (id<BDMPlacementRequestBuilder> (^)(void (^)(id<BDMPlacementOMIDBuilder>)))appendOMID {
-    return ^id<BDMPlacementRequestBuilder>(void (^builder)(id<BDMPlacementOMIDBuilder>)) {
-        BDMPlacementOMIDBuilder *omidBuilder = BDMPlacementOMIDBuilder.new;
-        builder(omidBuilder);
-        NSMutableDictionary *omid = NSMutableDictionary.new;
-        omid[@"omidpn"] = omidBuilder.sdkName;
-        omid[@"omidpv"] = omidBuilder.sdkVer;
-        GPBStruct *extModel = [BDMTransformers structFromValue:omid];
-        
-        self.placement.ext = extModel;
         return self;
     };
 }

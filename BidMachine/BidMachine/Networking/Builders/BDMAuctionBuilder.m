@@ -7,6 +7,7 @@
 #import "BDMAuctionBuilder.h"
 #import "BDMTransformers.h"
 #import "BDMSdk+Project.h"
+#import "BDMAdapterDefines.h"
 
 #import "BDMProtoAPI-Umbrella.h"
 #import <StackFoundation/StackFoundation.h>
@@ -231,8 +232,7 @@
 - (GPBAny *)adcomPlacementMessage {
     ADCOMPlacement *placement   = (ADCOMPlacement *)self.placementBuilder.placement;
     placement.secure            = !STKDevice.isHTTPSupport;
-    placement.ext               = self.skAdNetworkExtension;
-    
+    placement.ext               = self.placementExtension;
     return [GPBAny anyWithMessage:placement error:nil];
 }
 
@@ -347,16 +347,18 @@
 
 #pragma mark - EXT
 
-- (GPBStruct *)skAdNetworkExtension {
-    if (!STKDevice.availableIOS(14)) {
-        return nil;
-    }
+- (GPBStruct *)placementExtension {
+    NSMutableDictionary *extension = NSMutableDictionary.new;
+    extension[@"omidpn"] = kBDMOMPartnerName;
+    extension[@"omidpv"] = kBDMVersion;
     
-    NSMutableDictionary *extension = [NSMutableDictionary dictionaryWithCapacity:3];
-    extension[@"version"]           = @"2.0";
-    extension[@"sourceapp"]         = self.targeting.storeId;
-    extension[@"skadnetids"]        = STKBundle.registeredSKAdNetworkIdentifiers;
-    extension = @{@"skadn" : extension }.mutableCopy;
+    if (STKDevice.availableIOS(14)) {
+        NSMutableDictionary *skExtension = [NSMutableDictionary dictionaryWithCapacity:3];
+        skExtension[@"version"]           = @"2.0";
+        skExtension[@"sourceapp"]         = self.targeting.storeId;
+        skExtension[@"skadnetids"]        = STKBundle.registeredSKAdNetworkIdentifiers;
+        extension[@"skadn"]               = skExtension;
+    }
     GPBStruct *extModel             = [BDMTransformers structFromValue:extension];
     return extModel;
 }

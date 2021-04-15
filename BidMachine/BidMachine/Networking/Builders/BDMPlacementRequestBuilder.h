@@ -7,10 +7,6 @@
 #import <Foundation/Foundation.h>
 #import "BDMPlacementRequestBuilderProtocol.h"
 
-@interface BDMPlacementOMIDBuilder : NSObject <BDMPlacementOMIDBuilder>
-
-@end
-
 
 @interface BDMPlacementRequestBuilder : NSObject <BDMPlacementRequestBuilder>
 

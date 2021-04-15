@@ -8,7 +8,6 @@
 
 #import "BDMPlacement+Builder.h"
 #import "BDMPlacementRequestBuilder.h"
-#import "BDMAdapterDefines.h"
 
 #import <StackFoundation/StackFoundation.h>
 
@@ -18,10 +17,6 @@
     BDMPlacementRequestBuilder *builder = [BDMPlacementRequestBuilder new];
     builder.appendSDK(@"BidMachine");
     builder.appendSDKVer(kBDMVersion);
-    builder.appendOMID(^(id<BDMPlacementOMIDBuilder> omidBuilder){
-        omidBuilder.appendSDK(kBDMOMPartnerName);
-        omidBuilder.appendSDKVer(kBDMVersion);
-    });
     [self populateBuilder:builder withPlacement:self];
     return builder;
 }
