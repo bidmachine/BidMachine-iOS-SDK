@@ -8,6 +8,7 @@
 
 #import "BDMPlacement+Builder.h"
 #import "BDMPlacementRequestBuilder.h"
+#import "BDMAdapterDefines.h"
 
 #import <StackFoundation/StackFoundation.h>
 
@@ -17,6 +18,10 @@
     BDMPlacementRequestBuilder *builder = [BDMPlacementRequestBuilder new];
     builder.appendSDK(@"BidMachine");
     builder.appendSDKVer(kBDMVersion);
+    builder.appendOMID(^(id<BDMPlacementOMIDBuilder> omidBuilder){
+        omidBuilder.appendSDK(kBDMOMPartnerName);
+        omidBuilder.appendSDKVer(kBDMVersion);
+    });
     [self populateBuilder:builder withPlacement:self];
     return builder;
 }
@@ -36,6 +41,7 @@
         BDMDisplayPlacementBuilder *display = BDMDisplayPlacementBuilder.new;
         display.appendInstl(NO);
         display.appendApi(5);
+        display.appendApi(7);
         display.appendWidth(CGSizeFromBDMSize(placement.bannerType).width);
         display.appendHeight(CGSizeFromBDMSize(placement.bannerType).height);
         display.appendMimes(@[@"image/jpeg", @"image/jpg", @"image/gif", @"image/png"]);
@@ -51,6 +57,7 @@
             display.appendPos(7);
             display.appendInstl(YES);
             display.appendApi(5);
+            display.appendApi(7);
             display.appendUnit(1);
             display.appendWidth(STKScreen.width);
             display.appendHeight(STKScreen.height);
@@ -63,6 +70,7 @@
             BDMVideoPlacementBuilder *video = BDMVideoPlacementBuilder.new;
             video.appendPos(7);
             video.appendskip(YES);
+            video.appendApi(7);
             video.appendCType(@[@2, @3, @5, @6]);
             video.appendUnit(1);
             video.appendWidth(STKScreen.width);
@@ -85,6 +93,7 @@
             display.appendPos(7);
             display.appendInstl(YES);
             display.appendApi(5);
+            display.appendApi(7);
             display.appendUnit(1);
             display.appendWidth(STKScreen.width);
             display.appendHeight(STKScreen.height);
@@ -100,6 +109,7 @@
             video.appendskip(false);
             video.appendCType(@[@2, @3, @5, @6]);
             video.appendUnit(1);
+            video.appendApi(7);
             video.appendWidth(STKScreen.width);
             video.appendHeight(STKScreen.height);
             video.appendMimes(@[@"video/mpeg" , @"video/mp4", @"video/quicktime", @"video/avi"]);

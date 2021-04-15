@@ -58,6 +58,7 @@
 
 - (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendPos;
 - (id<BDMVideoPlacementBuilder>(^)(BOOL))appendskip;
+- (id<BDMVideoPlacementBuilder>(^)(unsigned int))appendApi;
 - (id<BDMVideoPlacementBuilder>(^)(NSArray<NSNumber *>*))appendCType;
 - (id<BDMVideoPlacementBuilder> (^)(unsigned int))appendUnit;
 - (id<BDMVideoPlacementBuilder>(^)(float))appendWidth;
@@ -71,6 +72,13 @@
 
 @end
 
+@protocol BDMPlacementOMIDBuilder <NSObject>
+
+- (id<BDMPlacementOMIDBuilder>(^)(NSString *))appendSDK;
+- (id<BDMPlacementOMIDBuilder>(^)(NSString *))appendSDKVer;
+
+@end
+
 @protocol BDMPlacementRequestBuilder <NSObject>
 
 @property (nonatomic, readonly) id placement;
@@ -78,6 +86,7 @@
 - (id<BDMPlacementRequestBuilder>(^)(NSString *))appendSDK;
 - (id<BDMPlacementRequestBuilder>(^)(NSString *))appendSDKVer;
 - (id<BDMPlacementRequestBuilder>(^)(BOOL))appendReward;
+- (id<BDMPlacementRequestBuilder>(^)(void(^)(id<BDMPlacementOMIDBuilder>)))appendOMID;
 
 - (id<BDMPlacementRequestBuilder>(^)(id<BDMDisplayPlacementBuilder>))appendDisplayPlacement;
 - (id<BDMPlacementRequestBuilder>(^)(id<BDMVideoPlacementBuilder>))appendVideoPlacement;

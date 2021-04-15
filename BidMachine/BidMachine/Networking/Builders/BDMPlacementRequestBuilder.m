@@ -10,6 +10,31 @@
 
 #import <StackFoundation/StackFoundation.h>
 
+@interface BDMPlacementOMIDBuilder ()
+
+@property (nonatomic, copy) NSString *sdkName;
+@property (nonatomic, copy) NSString *sdkVer;
+
+@end
+
+@implementation BDMPlacementOMIDBuilder
+
+- (id<BDMPlacementOMIDBuilder> (^)(NSString *))appendSDK {
+    return ^id<BDMPlacementOMIDBuilder>(NSString *sdk){
+        self.sdkName = sdk;
+        return self;
+    };
+}
+
+- (id<BDMPlacementOMIDBuilder> (^)(NSString *))appendSDKVer {
+    return ^id<BDMPlacementOMIDBuilder>(NSString *ver){
+        self.sdkVer = ver;
+        return self;
+    };
+}
+
+@end
+
 @interface BDMPlacementRequestBuilder ()
 
 @property (nonatomic, readwrite, strong) ADCOMPlacement *placement;
@@ -45,6 +70,20 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
 - (id<BDMPlacementRequestBuilder> (^)(BOOL))appendReward {
     return ^id<BDMPlacementRequestBuilder>(BOOL reward) {
         self.placement.reward = reward;
+        return self;
+    };
+}
+
+- (id<BDMPlacementRequestBuilder> (^)(void (^)(id<BDMPlacementOMIDBuilder>)))appendOMID {
+    return ^id<BDMPlacementRequestBuilder>(void (^builder)(id<BDMPlacementOMIDBuilder>)) {
+        BDMPlacementOMIDBuilder *omidBuilder = BDMPlacementOMIDBuilder.new;
+        builder(omidBuilder);
+        NSMutableDictionary *omid = NSMutableDictionary.new;
+        omid[@"omidpn"] = omidBuilder.sdkName;
+        omid[@"omidpv"] = omidBuilder.sdkVer;
+        GPBStruct *extModel = [BDMTransformers structFromValue:omid];
+        
+        self.placement.ext = extModel;
         return self;
     };
 }
@@ -122,6 +161,13 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
 - (id<BDMVideoPlacementBuilder> (^)(BOOL))appendskip {
     return ^id<BDMVideoPlacementBuilder>(BOOL skip){
         self.placement.skip = skip;
+        return self;
+    };
+}
+
+- (id<BDMVideoPlacementBuilder> (^)(unsigned int))appendApi {
+    return ^id<BDMVideoPlacementBuilder>(unsigned int api){
+        [self.placement.apiArray addValue:api];
         return self;
     };
 }
@@ -233,8 +279,7 @@ BOOL isBDMAdUnitFormatVideo(BDMAdUnitFormat fmt) {
 
 - (id<BDMDisplayPlacementBuilder> (^)(unsigned int))appendApi {
     return ^id<BDMDisplayPlacementBuilder>(unsigned int api){
-        self.placement.apiArray = [GPBEnumArray arrayWithValidationFunction:nil
-                                                                   rawValue:api];
+        [self.placement.apiArray addValue:api];
         return self;
     };
 }
