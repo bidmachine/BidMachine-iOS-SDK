@@ -10,7 +10,7 @@
 #import "BDMAdapterDefines.h"
 
 #import <StackFoundation/StackFoundation.h>
-#import <StackUIKit/StackUIKit.h>
+#import <StackProductPresentation/StackProductPresentation.h>
 
 @implementation ORTBResponse_Seatbid_Bid (BDMCreative)
 
@@ -27,15 +27,37 @@
 - (NSDictionary *)bdmSKStoreJSONRepresentation {
     NSMutableDictionary *store = NSMutableDictionary.dictionary;
     NSDictionary <NSString*, GPBValue*> *bidStructFields = self.ext.fields[@"skadn"].structValue.fields;
-    store[STKProductParameterItemIdentifier]                      = bidStructFields[@"itunesitem"].stringValue;
-    store[STKProductParameterAdNetworkSourceAppStoreIdentifier]   = bidStructFields[@"sourceapp"].stringValue;
-    store[STKProductParameterAdNetworkVersion]                    = bidStructFields[@"version"].stringValue;
-    store[STKProductParameterClickThrough]                        = bidStructFields[@"?"].stringValue;
-    store[STKProductParameterAdNetworkAttributionSignature]       = bidStructFields[@"signature"].stringValue;
-    store[STKProductParameterAdNetworkCampaignIdentifier]         = bidStructFields[@"campaign"].stringValue;
-    store[STKProductParameterAdNetworkIdentifier]                 = bidStructFields[@"network"].stringValue;
-    store[STKProductParameterAdNetworkNonce]                      = bidStructFields[@"nonce"].stringValue;
-    store[STKProductParameterAdNetworkTimestamp]                  = bidStructFields[@"timestamp"].stringValue;
+    
+    //v2.0
+    store[STKProductController.adNetworkVersionKey]                    = bidStructFields[@"version"].stringValue;
+    store[STKProductController.adNetworkIdentifierKey]                 = bidStructFields[@"network"].stringValue;
+    store[STKProductController.adNetworkCampaignIdentifierKey]         = bidStructFields[@"campaign"].stringValue;
+    store[STKProductController.itemIdentifierKey]                      = bidStructFields[@"itunesitem"].stringValue;
+    store[STKProductController.adNetworkNonceKey]                      = bidStructFields[@"nonce"].stringValue;
+    store[STKProductController.adNetworkSourceAppStoreIdentifierKey]   = bidStructFields[@"sourceapp"].stringValue;
+    store[STKProductController.adNetworkTimestampKey]                  = bidStructFields[@"timestamp"].stringValue;
+    store[STKProductController.adNetworkAttributionSignatureKey]       = bidStructFields[@"signature"].stringValue;
+    
+    //v2.2
+    NSMutableArray *fidelities = NSMutableArray.new;
+    NSArray<GPBValue*> *bidListValues = bidStructFields[@"fidelities"].listValue.valuesArray;
+    [bidListValues enumerateObjectsUsingBlock:^(GPBValue *value, NSUInteger idx, BOOL *stop) {
+        NSDictionary <NSString*, GPBValue*> *bidStructFields = value.structValue.fields;
+        if (bidStructFields) {
+            NSMutableDictionary *fidelity = NSMutableDictionary.new;
+            fidelity[STKProductController.adNetworkFidelityKey]                 = @(bidStructFields[@"fidelity"].numberValue);
+            fidelity[STKProductController.adNetworkAttributionSignatureKey]     = bidStructFields[@"signature"].stringValue;
+            fidelity[STKProductController.adNetworkNonceKey]                    = bidStructFields[@"nonce"].stringValue;
+            fidelity[STKProductController.adNetworkTimestampKey]                = bidStructFields[@"timestamp"].stringValue;
+            
+            fidelity.count ? [fidelities addObject:fidelity] : nil;
+        }
+    }];
+    
+    if (fidelities.count) {
+        store[STKProductController.adNetworkFidelitiesKey] = fidelities;
+    }
+    
     return @{kBDMCreativeStoreParams : store};
 }
 
