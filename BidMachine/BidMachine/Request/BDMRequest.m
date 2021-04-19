@@ -53,12 +53,12 @@
 }
 
 - (void)notifyMediationWin {
-    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.lurl type:0];
+    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.purl type:0];
     [BDMServerCommunicator.sharedCommunicator trackEvent:url];
 }
 
 - (void)notifyMediationLoss {
-    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.purl type:0];
+    BDMEventURL *url = [BDMEventURL trackerWithStringURL:self.response.lurl type:0];
     [BDMServerCommunicator.sharedCommunicator trackEvent:url];
 }
 
