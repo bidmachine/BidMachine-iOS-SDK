@@ -18,6 +18,7 @@ Pod::Spec.new do |spec|
 
   spec.frameworks               = "AdSupport", "SystemConfiguration", "CoreTelephony", "SafariServices", "StoreKit"
   spec.libraries                = "xml2", "z"
+  spec.swift_versions           = "4.0", "4.2", "5.0"
   
   spec.pod_target_xcconfig = {
     "VALID_ARCHS": "arm64 armv7 armv7s x86_64",
