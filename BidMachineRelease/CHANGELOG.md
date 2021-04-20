@@ -1,3 +1,13 @@
+# Version 1.7.3.0 (Apr 20th, 2021)
+
+- Append SkAdNetwork 2.2 support
+- Append OM MRAID/VAST support
+- Small fixes
+
+# Version 1.7.2.0 (Apr 12th, 2021)
+
+- Append bid payload
+
 # Version 1.7.1.0 (Mar 30th, 2021)
 
 - SDK improvement

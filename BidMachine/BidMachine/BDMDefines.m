@@ -8,7 +8,7 @@
 
 #import "BDMDefines.h"
 
-NSString * const kBDMVersion = @"1.7.2.0";
+NSString * const kBDMVersion = @"1.7.3.0";
 
 NSString * const kBDMUserGenderMale     = @"M";
 NSString * const kBDMUserGenderFemale   = @"F";
