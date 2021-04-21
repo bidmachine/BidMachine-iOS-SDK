@@ -11,7 +11,7 @@ $IABVersion = '~> 1.4.0'
 $APIVersion = '~> 0.6.0'
 $STKModuleVersion = '~> 1.1.0'
 
-$VungleVersion = '6.9.1'
+$VungleVersion = '6.9.2'
 $AdcolonyVersion = '4.5.0'
 $MytargetVersion = '5.10.2'
 $TapjoyVersion = '12.7.0'
