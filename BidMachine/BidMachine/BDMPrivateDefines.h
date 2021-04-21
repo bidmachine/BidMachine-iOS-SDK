@@ -42,10 +42,6 @@ FOUNDATION_EXTERN NSString *NSStringFromBDMInternalPlacementType(BDMInternalPlac
 
 FOUNDATION_EXTERN BDMInternalPlacementType BDMInternalPlacementTypeFromNSString(NSString *type);
 
-FOUNDATION_EXTERN BDMAdUnitFormat BDMAdUnitFormatFromString(NSString *_Nullable);
-
-FOUNDATION_EXTERN NSString * NSStringFromBDMAdUnitFormat(BDMAdUnitFormat);
-
 FOUNDATION_EXTERN NSString * NSStringEventFromBDMAdUnitFormat(BDMAdUnitFormat);
 
 FOUNDATION_EXTERN BOOL BDMAdUnitFormatEqual(BDMAdUnitFormat, BDMAdUnitFormat);
