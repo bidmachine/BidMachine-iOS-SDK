@@ -332,6 +332,10 @@
         segment.value = userId.value;
         return segment;
     }).array.mutableCopy;
+    
+    if (contextData.segmentArray_Count > 0) {
+        [user.dataArray addObject:contextData];
+    }
     return user;
 }
 
