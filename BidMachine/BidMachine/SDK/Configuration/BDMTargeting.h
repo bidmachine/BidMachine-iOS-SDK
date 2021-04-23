@@ -14,6 +14,13 @@
 
 BDM_SUBCLASSING_RESTRICTED
 
+@interface BDMExternalUserId : NSObject <NSCopying, NSSecureCoding>
+
+@property (copy, nonatomic, readwrite, nullable) NSString *sourceId;
+@property (copy, nonatomic, readwrite, nullable) NSString *value;
+
+@end
+
 /// Targeting model for SDK
 @interface BDMTargeting : NSObject <NSCopying, NSSecureCoding>
 /// Vendor-specific ID for the user
@@ -24,6 +31,8 @@ BDM_SUBCLASSING_RESTRICTED
 @property (copy, nonatomic, readwrite, nonnull) NSNumber *yearOfBirth;
 ///  User age
 @property (copy, nonatomic, readonly, nullable) NSNumber *userAge;
+/// Custom user params
+@property (copy, nonatomic, readwrite, nullable) NSArray<BDMExternalUserId *> *externalUserIds;
 /// Comma separated list of keywords about the app
 @property (copy, nonatomic, readwrite, nullable) NSString *keywords;
 /// List of blocked advertiser categories using the IAB content categories.

@@ -323,6 +323,15 @@
         geo.zip         = ANY(self.targeting.zip).string;
         geo;
     });
+    
+    ADCOMContext_Data *contextData = [ADCOMContext_Data message];
+    contextData.id_p = @"external_user_ids";
+    contextData.segmentArray = ANY(self.targeting.externalUserIds).flatMap(^id(BDMExternalUserId *userId) {
+        ADCOMContext_Data_Segment *segment = [ADCOMContext_Data_Segment message];
+        segment.id_p = userId.sourceId;
+        segment.value = userId.value;
+        return segment;
+    }).array.mutableCopy;
     return user;
 }
 
