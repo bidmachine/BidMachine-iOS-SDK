@@ -13,12 +13,12 @@ $STKModuleVersion = '~> 1.1.0'
 
 $VungleVersion = '6.9.2'
 $AdcolonyVersion = '4.5.0'
-$MytargetVersion = '5.10.2'
+$MytargetVersion = '5.11.0'
 $TapjoyVersion = '12.7.0'
-$FacebookVersion = '6.3.1'
+$FacebookVersion = '6.4.1'
 $CriteoVersion = '4.0.1'
 $AmazonVersion = '3.3.0'
-$SmaatoVersion = '21.6.8'
+$SmaatoVersion = '21.6.13'
 $ApprollVersion = '3.1.2'
 
 # Modules
