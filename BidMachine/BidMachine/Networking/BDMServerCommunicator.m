@@ -37,24 +37,26 @@
                    success:(void (^)(id<BDMResponse>))success
                    failure:(void (^)(NSError *))failure
 {
-    BDMApiRequest *urlRequest = [BDMApiRequest request:timeout builder:auctionBuilder];
-    BDMLog(@"Performing auction with auction request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
-                                                 completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
-                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                         id<BDMResponse> wrappedResponse = [[BDMFactory sharedFactory] wrappedResponseData:data];
-                                                         NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
-                                                         if (wrappedError) {
-                                                             BDMLog(@"Auction request failed with error: %@", wrappedError);
-                                                             STK_RUN_BLOCK(failure, wrappedError);
-                                                         } else {
-                                                             BDMLog(@"Auction request was successful with response: %@", wrappedResponse);
-                                                             STK_RUN_BLOCK(success, wrappedResponse);
-                                                         }
-                                                     });
-                                                 }];
-    [task resume];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BDMApiRequest *urlRequest = [BDMApiRequest request:timeout builder:auctionBuilder];
+        BDMLog(@"Performing auction with auction request: %@", urlRequest);
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:urlRequest
+                                                         completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                id<BDMResponse> wrappedResponse = [[BDMFactory sharedFactory] wrappedResponseData:data];
+                NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
+                if (wrappedError) {
+                    BDMLog(@"Auction request failed with error: %@", wrappedError);
+                    STK_RUN_BLOCK(failure, wrappedError);
+                } else {
+                    BDMLog(@"Auction request was successful with response: %@", wrappedResponse);
+                    STK_RUN_BLOCK(success, wrappedResponse);
+                }
+            });
+        }];
+        [task resume];
+    });
 }
 
 - (void)makeAuctionPayloadRequest:(NSNumber *)timeout
@@ -62,24 +64,26 @@
                           success:(void (^)(id<BDMResponse>))success
                           failure:(void (^)(NSError *))failure
 {
-    BDMApiRequest *urlRequest = [BDMApiRequest payloadRequest:timeout url:url];
-    BDMLog(@"Performing auction with auction request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
-                                                 completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
-                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                         id<BDMResponse> wrappedResponse = [[BDMFactory sharedFactory] wrappedResponseData:data];
-                                                         NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
-                                                         if (wrappedError) {
-                                                             BDMLog(@"Auction request failed with error: %@", wrappedError);
-                                                             STK_RUN_BLOCK(failure, wrappedError);
-                                                         } else {
-                                                             BDMLog(@"Auction request was successful with response: %@", wrappedResponse);
-                                                             STK_RUN_BLOCK(success, wrappedResponse);
-                                                         }
-                                                     });
-                                                 }];
-    [task resume];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BDMApiRequest *urlRequest = [BDMApiRequest payloadRequest:timeout url:url];
+        BDMLog(@"Performing auction with auction request: %@", urlRequest);
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:urlRequest
+                                                         completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                id<BDMResponse> wrappedResponse = [[BDMFactory sharedFactory] wrappedResponseData:data];
+                NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
+                if (wrappedError) {
+                    BDMLog(@"Auction request failed with error: %@", wrappedError);
+                    STK_RUN_BLOCK(failure, wrappedError);
+                } else {
+                    BDMLog(@"Auction request was successful with response: %@", wrappedResponse);
+                    STK_RUN_BLOCK(success, wrappedResponse);
+                }
+            });
+        }];
+        [task resume];
+    });
 }
 
 - (void)makeInitRequest:(NSNumber *)timeout
@@ -87,24 +91,26 @@
                 success:(void (^)(id<BDMInitialisationResponse>))success
                 failure:(void (^)(NSError *))failure
 {
-    BDMApiRequest *urlRequest = [BDMApiRequest sessionRequest:timeout builder:sessionBuilder];
-    BDMLog(@"Performing init request: %@", urlRequest);
     __weak typeof(self) weakSelf = self;
-    NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest
-                                                 completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
-                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                         id<BDMInitialisationResponse> wrappedResponse = [BDMInitialisationResponseModel modelWithData:data];
-                                                         NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
-                                                         if (wrappedError) {
-                                                             BDMLog(@"Init request failed with error: %@", wrappedError);
-                                                             STK_RUN_BLOCK(failure, wrappedError);
-                                                         } else {
-                                                             BDMLog(@"Init request was successful  with response: %@", wrappedResponse);
-                                                             STK_RUN_BLOCK(success, wrappedResponse);
-                                                         }
-                                                     });
-                                                 }];
-    [task resume];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BDMApiRequest *urlRequest = [BDMApiRequest sessionRequest:timeout builder:sessionBuilder];
+        BDMLog(@"Performing init request: %@", urlRequest);
+        NSURLSessionDataTask *task = [weakSelf.session dataTaskWithRequest:urlRequest
+                                                         completionHandler:^(NSData * data, NSURLResponse * response, NSError * error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                id<BDMInitialisationResponse> wrappedResponse = [BDMInitialisationResponseModel modelWithData:data];
+                NSError * wrappedError = [weakSelf wrappedError:error response:response wrappedResponse:wrappedResponse];
+                if (wrappedError) {
+                    BDMLog(@"Init request failed with error: %@", wrappedError);
+                    STK_RUN_BLOCK(failure, wrappedError);
+                } else {
+                    BDMLog(@"Init request was successful  with response: %@", wrappedResponse);
+                    STK_RUN_BLOCK(success, wrappedResponse);
+                }
+            });
+        }];
+        [task resume];
+    });
 }
 
 - (void)trackEvent:(BDMEventURL *)tracker fallback:(BDMEventURL *)fallback {

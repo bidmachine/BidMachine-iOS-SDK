@@ -57,7 +57,7 @@ NSString * const BDMCCPANegativeCode = @"1n";
 }
 
 - (void)userDefaultsDidChangeNotification:(NSNotification *)notification {
-    NSUserDefaults *defaults = (NSUserDefaults *)[notification object];
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
     self.userDefaultsUSPrivacyString = [defaults objectForKey:@"IABUSPrivacy_String"];
     //v1
     self.userDefaultsSubjectToGDPR = [defaults boolForKey:@"IABConsent_SubjectToGDPR"];

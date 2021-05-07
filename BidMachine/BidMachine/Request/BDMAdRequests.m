@@ -16,7 +16,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.adSize = STKDevice.isIPhone ? BDMBannerAdSize320x50 : BDMBannerAdSize728x90;
+        self.adSize = UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad ? BDMBannerAdSize728x90 : BDMBannerAdSize320x50;
     }
     return self;
 }

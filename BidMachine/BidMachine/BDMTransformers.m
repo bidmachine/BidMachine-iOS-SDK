@@ -13,7 +13,7 @@
 
 + (ADCOMDeviceType (^)(STKDeviceType))deviceType {
     return ^ADCOMDeviceType (STKDeviceType type){
-        return STKDevice.isIPhone ? ADCOMDeviceType_DeviceTypePhoneDevice : ADCOMDeviceType_DeviceTypeTablet;
+        return UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad ? ADCOMDeviceType_DeviceTypeTablet : ADCOMDeviceType_DeviceTypePhoneDevice;
     };
 }
 
