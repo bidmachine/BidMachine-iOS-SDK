@@ -71,12 +71,10 @@
             }
         }
     } else if (placement.hasVideo) {
-        if (placement.display.pos == ADCOMPlacementPosition_PlacementPositionFullscreen) {
-            if (placement.reward) {
-                format = BDMAdUnitFormatRewardedVideo;
-            } else {
-                format = BDMAdUnitFormatInterstitialVideo;
-            }
+        if (placement.reward) {
+            format = BDMAdUnitFormatRewardedVideo;
+        } else {
+            format = BDMAdUnitFormatInterstitialVideo;
         }
     }
     return format;
