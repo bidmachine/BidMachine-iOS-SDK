@@ -1,3 +1,9 @@
+# Version 1.7.3.1 (May 14th, 2021)
+
+- Added API for transfer external user ids
+- Fix thread unsafe call
+- Fix video payload validation
+
 # Version 1.7.3.0 (Apr 20th, 2021)
 
 - Append SkAdNetwork 2.2 support
