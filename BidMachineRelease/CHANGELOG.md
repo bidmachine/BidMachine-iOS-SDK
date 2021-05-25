@@ -1,3 +1,7 @@
+# Version 1.7.3.2 (May 25th, 2021)
+
+- Added API for transfer placement id
+
 # Version 1.7.3.1 (May 14th, 2021)
 
 - Added API for transfer external user ids
