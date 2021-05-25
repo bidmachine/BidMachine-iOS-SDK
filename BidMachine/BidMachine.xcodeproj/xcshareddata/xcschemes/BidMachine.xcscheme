@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D905649A37FE7E236C51D78FFBBA798F"
+               BuildableName = "StackModules.framework"
+               BlueprintName = "StackModules"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "55BFC52B1CEA712076749C15EB643D2D"
                BuildableName = "StackAPI.framework"
                BlueprintName = "StackAPI"

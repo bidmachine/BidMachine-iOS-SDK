@@ -115,6 +115,7 @@
         {
             builder
             .appendPlacementBuilder(placementBuilder)
+            .appendPlacementID(weakSelf.placementId)
             .appendPriceFloors(weakSelf.priceFloors)
             .appendAuctionSettings(BDMSdk.sharedSdk.auctionSettings)
             .appendSellerID(BDMSdk.sharedSdk.sellerID)

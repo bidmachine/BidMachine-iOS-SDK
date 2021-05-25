@@ -63,6 +63,10 @@
 */
 @property (copy, nonatomic, readwrite, nullable) NSString *bidPayload;
 /**
+ Custom placement id
+*/
+@property (copy, nonatomic, readwrite, nullable) NSString *placementId;
+/**
  Call when mediation win
  */
 - (void)notifyMediationWin;

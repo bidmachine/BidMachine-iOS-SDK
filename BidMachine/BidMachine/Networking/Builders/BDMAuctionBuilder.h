@@ -19,6 +19,7 @@
 - (BDMAuctionBuilder *(^)(BOOL))appendTestMode;
 - (BDMAuctionBuilder *(^)(NSString *))appendSellerID;
 - (BDMAuctionBuilder *(^)(NSString *))appendSessionID;
+- (BDMAuctionBuilder *(^)(NSString *))appendPlacementID;
 - (BDMAuctionBuilder *(^)(BDMTargeting *))appendTargeting;
 - (BDMAuctionBuilder *(^)(BDMPublisherInfo *))appendPublisherInfo;
 - (BDMAuctionBuilder *(^)(BDMUserRestrictions *))appendRestrictions;

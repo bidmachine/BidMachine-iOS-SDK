@@ -20,6 +20,7 @@
 
 @property (nonatomic,   copy) NSString *sellerID;
 @property (nonatomic,   copy) NSString *sessionID;
+@property (nonatomic,   copy) NSString *placementID;
 @property (nonatomic,   copy) NSArray<BDMPriceFloor *> *priceFloors;
 
 @property (nonatomic, strong) BDMTargeting *targeting;
@@ -50,6 +51,13 @@
 - (BDMAuctionBuilder *(^)(NSString *))appendSessionID {
     return ^id(NSString * sessionID) {
         self.sessionID = sessionID;
+        return self;
+    };
+}
+
+- (BDMAuctionBuilder *(^)(NSString *))appendPlacementID {
+    return ^id(NSString * placementID) {
+        self.placementID = placementID;
         return self;
     };
 }
@@ -234,6 +242,7 @@
     ADCOMPlacement *placement   = (ADCOMPlacement *)self.placementBuilder.placement;
     placement.secure            = !STKDevice.isHTTPSupport;
     placement.ext               = self.placementExtension;
+    placement.tagid             = self.placementID;
     return [GPBAny anyWithMessage:placement error:nil];
 }
 
