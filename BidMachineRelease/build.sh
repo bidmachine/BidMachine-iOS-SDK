@@ -66,9 +66,9 @@ function rebuild_components {
     echo -e "${INFO}All logs in build/build type/build.log${INFO}"
 
     # Clear temporary build directories
-    mkdir -p $simulator_temp_dir
-    mkdir -p $device_temp_dir
-    mkdir -p $universal_temp_dir
+#    mkdir -p $simulator_temp_dir
+#    mkdir -p $device_temp_dir
+#    mkdir -p $universal_temp_dir
 
     local scheme="BidMachine" 
     # Build for all archs (i386, x86-64), (arm64, armv7)

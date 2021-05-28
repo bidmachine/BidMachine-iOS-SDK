@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D905649A37FE7E236C51D78FFBBA798F"
-               BuildableName = "StackModules.framework"
-               BlueprintName = "StackModules"
-               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "9C2597221FB1DC91006F3FA7"
+               BuildableName = "BidMachine.framework"
+               BlueprintName = "BidMachine"
+               ReferencedContainer = "container:BidMachine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -42,10 +42,178 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C2597221FB1DC91006F3FA7"
-               BuildableName = "BidMachine.framework"
-               BlueprintName = "BidMachine"
-               ReferencedContainer = "container:BidMachine.xcodeproj">
+               BlueprintIdentifier = "D905649A37FE7E236C51D78FFBBA798F"
+               BuildableName = "StackModules.framework"
+               BlueprintName = "StackModules"
+               ReferencedContainer = "container:../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4231D02722E1DD84002852CE"
+               BuildableName = "libBDMAdColonyAdapter.a"
+               BlueprintName = "BDMAdColonyAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D9403D162327D2550091E61E"
+               BuildableName = "libBDMAmazonAdapter.a"
+               BlueprintName = "BDMAmazonAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "37A3EA09256279650027DF27"
+               BuildableName = "libBDMAppRollAdapter.a"
+               BlueprintName = "BDMAppRollAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "427D1C6823293EEF00874ED0"
+               BuildableName = "libBDMCriteoAdapter.a"
+               BlueprintName = "BDMCriteoAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42A93E5222E70368005053A2"
+               BuildableName = "libBDMFacebookAdapter.a"
+               BlueprintName = "BDMFacebookAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "429C1977216014720048F400"
+               BuildableName = "libBDMMRAIDAdapter.a"
+               BlueprintName = "BDMMRAIDAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42D7310822DF5CF200AEB066"
+               BuildableName = "libBDMMyTargetAdapter.a"
+               BlueprintName = "BDMMyTargetAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "429C19912160149B0048F400"
+               BuildableName = "libBDMNASTAdapter.a"
+               BlueprintName = "BDMNASTAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "658CA8F523619D7200B6D234"
+               BuildableName = "libBDMSmaatoAdapter.a"
+               BlueprintName = "BDMSmaatoAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4274FA7922E5E7A600EE0D47"
+               BuildableName = "libBDMTapjoyAdapter.a"
+               BlueprintName = "BDMTapjoyAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "429C1984216014850048F400"
+               BuildableName = "libBDMVASTAdapter.a"
+               BlueprintName = "BDMVASTAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42675D8622E2151D008298F5"
+               BuildableName = "libBDMVungleAdapter.a"
+               BlueprintName = "BDMVungleAdapter"
+               ReferencedContainer = "container:../BidMachine-iOS-Adaptors/Adaptors.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

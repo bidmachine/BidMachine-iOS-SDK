@@ -4,6 +4,7 @@
 # Xcode
 BidMachineRelease/build/
 BidMachineRelease/Release/
+BidMachineRelease/Frameworks/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
