@@ -22,18 +22,29 @@ class File {
 public
 extension File {
     
-    func filePath(_ relativePath: String?) -> String? {
-        guard let pwd = self.projectDirectory,
-              let path = relativePath,
-              let pathUrl = URL(string: path, relativeTo: URL(string: pwd))
-        else { return nil }
-        return pathUrl.absoluteString
+    func rootDirectory() -> String? {
+        return self.projectDirectory
+    }
+    
+    static
+    func fileExist(_ absolutePath: String?) -> Bool {
+        guard let path = absolutePath
+        else { return false }
+        return FileManager.default.fileExists(atPath: path)
     }
     
     func fileExist(_ relativePath: String?) -> Bool {
         guard let path = self.filePath(relativePath)
         else { return false }
         return self.manager.fileExists(atPath: path)
+    }
+    
+    func filePath(_ relativePath: String?) -> String? {
+        guard let pwd = self.projectDirectory,
+              let path = relativePath,
+              let pathUrl = URL(string: path, relativeTo: URL(string: pwd))
+        else { return nil }
+        return pathUrl.absoluteString
     }
     
     func createFile(_ relativePath: String?) {

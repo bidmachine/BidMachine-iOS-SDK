@@ -1,8 +1,6 @@
 import Foundation
 import CLISpinner
 
-public typealias ShellResult = (code: Int32, desription: String)
-
 public
 struct Shell {
     
@@ -15,14 +13,9 @@ struct Shell {
     func exitWithFailure(){
         exit(1)
     }
-
-    public static
-    func shell(_ args: String...) -> ShellResult {
-        return self.shell(args)
-    }
     
     public static
-    func shell(_ args: [String]) -> ShellResult {
+    func shell(_ args: [String]) -> Bool {
         let task = Process()
         let pipe = Pipe()
         let spinner = Spinner(pattern: .arrow3)
@@ -53,7 +46,9 @@ struct Shell {
         
         spinner.stop()
         
-        return ShellResult(task.terminationStatus, message)
+        Router.shared.print(message, .verbose)
+        
+        return task.terminationStatus == 0
     }
 }
 

@@ -31,7 +31,16 @@ public
 extension Router {
     
     func buildSdk() {
-        self.print("Build complete", self.build.build() ? .success : .failure)
+        
+    
+        let git = Git(absolute: file.rootDirectory())
+//        git?.status()
+        git?.createTag("test_1", "test tag", true)
+        git?.deleteTag("test_1", true)
+//        _ = git.flatMap { $0.status() }
+        
+        
+//        self.print("Build complete", self.build.build() ? .success : .failure)
         
 //        var url = URL(string:  FileManager.default.currentDirectoryPath)
 //        url = url!.deletingLastPathComponent()

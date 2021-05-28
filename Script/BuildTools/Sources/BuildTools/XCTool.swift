@@ -15,13 +15,13 @@ class XCBuild {
     @discardableResult public
     func build() -> Bool {
         return
-            self.validateResult(self._build(.iphoneos)) &&
-            self.validateResult(self._build(.iphonesimulator))
+            self._build(.iphoneos) &&
+            self._build(.iphonesimulator)
     }
     
     @discardableResult private
-    func _build(_ type: BuildType) -> ShellResult {
-        return Shell.shell("xcodebuild",
+    func _build(_ type: BuildType) -> Bool {
+        return Shell.shell(["xcodebuild",
                      "-workspace", self.workspace,
                      "-scheme", self.scheme,
                      "-sdk", type.rawValue,
@@ -37,13 +37,7 @@ class XCBuild {
                      "DEPLOYMENT_POSTPROCESSING=YES",
                      "GCC_GENERATE_DEBUGGING_SYMBOLS=NO",
                      "build",
-                     "CONFIGURATION_BUILD_DIR=/Users/assassinsc/Desktop/BidMachine-iOS-SDK/BidMachineRelease/build/\(type.rawValue)")
-    }
-    
-    private
-    func validateResult(_ result: ShellResult) -> Bool {
-        Router.shared.print(result.desription, .verbose)
-        return result.code == 1 ? false : true
+                     "CONFIGURATION_BUILD_DIR=/Users/assassinsc/Desktop/BidMachine-iOS-SDK/BidMachineRelease/build/\(type.rawValue)"])
     }
 }
 
