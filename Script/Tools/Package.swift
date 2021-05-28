@@ -4,11 +4,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "BuildTools",
+    name: "Tools",
     products: [
         .library(
-            name: "BuildTools",
-            targets: ["BuildTools"]),
+            name: "Tools",
+            targets: ["Tools"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
@@ -16,7 +16,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "BuildTools",
+            name: "Tools",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "CLISpinner", package: "CLISpinner")

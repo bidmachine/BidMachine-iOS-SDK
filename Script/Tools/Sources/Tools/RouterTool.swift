@@ -34,9 +34,9 @@ extension Router {
         
     
         let git = Git(absolute: file.rootDirectory())
-//        git?.status()
-        git?.createTag("test_1", "test tag", true)
-        git?.deleteTag("test_1", true)
+        git?.status()
+//        git?.createTag("test_1", "test tag", true)
+//        git?.deleteTag("test_1", true)
 //        _ = git.flatMap { $0.status() }
         
         

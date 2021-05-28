@@ -2,7 +2,7 @@
 
 import Foundation
 import ArgumentParser
-import BuildTools // ./BuildTools/
+import Tools // ./Tools/
 
 struct Build: ParsableCommand {
     @Flag(help: "Verbose log level.")
