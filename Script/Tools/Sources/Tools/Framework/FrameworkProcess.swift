@@ -76,7 +76,7 @@ extension FrameworkProcess {
             return $0 && exist
         }
         guard exists else {
-            Log.println("Can't create fat lib for: \(framework.description)", .info)
+            Log.println("Can't create fat lib for: \(framework.description)", .failure)
             return false
         }
         
