@@ -46,11 +46,8 @@ struct Shell {
         
         spinner.stop()
         
-        Router.shared.print(message, .verbose)
+        Log.println(message, .verbose)
         
         return task.terminationStatus == 0
     }
 }
-
-
-

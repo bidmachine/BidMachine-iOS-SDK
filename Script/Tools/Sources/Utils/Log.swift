@@ -23,15 +23,15 @@ enum LogType: String {
 public
 class Log {
     
+    public static
+    let shared = Log()
+    
     public
     var verbose = false
     
-    public
+    public static
     func println(_ message: String, _ type: LogType) {
-        guard (type != .verbose) || type == .verbose && self.verbose else {
-            return
-        }
-        self._println("\(type.color())\(Date()) [\(type.rawValue.uppercased())] \(message)\n")
+        Self.shared.println(message, type)
     }
     
     public
@@ -40,30 +40,15 @@ class Log {
     }
     
     private
+    func println(_ message: String, _ type: LogType) {
+        guard (type != .verbose) || type == .verbose && self.verbose else {
+            return
+        }
+        self._println("\(type.color())\(Date()) [\(type.rawValue.uppercased())] \(message)\n")
+    }
+    
+    private
     func _println(_ message: String) {
         FileHandle.standardOutput.write(message.data(using: .ascii)!)
-    }
-}
-
-public
-class Logging {
-    
-    public static
-    func println(_ log: String){
-        print(log)
-    }
-    
-    public static
-    func printf(_ path: String, _ log: String) {
-        
-        if FileManager.default.fileExists(atPath: path) {
-            do {
-                try log.write(toFile: path, atomically: false, encoding: .utf8)
-            } catch {
-                
-            }
-        } else {
-            
-        }
     }
 }

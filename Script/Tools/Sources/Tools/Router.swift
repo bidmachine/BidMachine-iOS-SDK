@@ -1,6 +1,5 @@
 import Foundation
-
-
+import Utils
 
 public
 class Router {
@@ -10,20 +9,8 @@ class Router {
     
     public
     var verbose: Bool {
-        get { return self.logger.verbose}
-        set { self.logger.verbose = newValue }
-    }
-    
-    private let logger = Log()
-    private let build = Build()
-    private let file = File()
-}
-
-public
-extension Router {
-    
-    func print(_ message: String, _ type: LogType) {
-        self.logger.println(message, type)
+        get { Log.shared.verbose }
+        set { Log.shared.verbose = newValue }
     }
 }
 
@@ -32,9 +19,16 @@ extension Router {
     
     func buildSdk() {
         
+        guard let fileTool = FileTool(nil) else {
+            return
+        }
+        
+        let buildTool = BuildTool(fileTool)
+        buildTool.build()
+        
     
-        let git = Git(absolute: file.rootDirectory())
-        git?.status()
+//        let git = Git(absolute: file.rootDirectory())
+//        git?.status()
 //        git?.createTag("test_1", "test tag", true)
 //        git?.deleteTag("test_1", true)
 //        _ = git.flatMap { $0.status() }

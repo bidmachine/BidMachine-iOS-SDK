@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Ilia Lozhkin on 28.05.2021.
-//
-
 import Foundation
 
 public
@@ -15,7 +8,7 @@ class Git {
     init?(absolute path: String?) {
         guard
             let path = path,
-            File.fileExist(path)
+            File.exist(path)
         else { return nil }
         self.path = path
     }
