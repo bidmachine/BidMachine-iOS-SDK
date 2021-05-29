@@ -15,10 +15,10 @@ struct Shell {
     }
     
     public static
-    func shell(_ args: [String]) -> Bool {
+    func shell(_ args: [String], _ enableProgress: Bool = false) -> Bool {
         let task = Process()
         let pipe = Pipe()
-        let spinner = Spinner(pattern: .arrow3)
+        let spinner = enableProgress ? Spinner(pattern: .arrow3) : nil
         
         var message = ""
         
@@ -38,13 +38,13 @@ struct Shell {
                 message.append(String(data: data, encoding: .utf8)!)
             }
         }
-        spinner.start()
+        spinner.flatMap { $0.start() }
 
         task.launch()
         task.waitUntilExit()
         group.wait()
         
-        spinner.stop()
+        spinner.flatMap { $0.stop() }
         
         Log.println(message, .verbose)
         

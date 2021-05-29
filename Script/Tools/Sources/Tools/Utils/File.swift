@@ -10,13 +10,12 @@ extension File {
     
     static
     func path(with components: String...) -> String {
-        return components.joined(separator: "/")
+        return components.joined(separator: "/").replacingOccurrences(of: "//", with: "/")
     }
     
     @discardableResult static
     func exist(_ absolutePath: String) -> Bool {
         guard FileManager.default.fileExists(atPath: absolutePath) else {
-            Log.println("File not exist at path: \(absolutePath) ", .failure)
             return false
         }
         return true
@@ -58,14 +57,14 @@ extension File {
     @discardableResult static
     func create(_ absolutePath: String) -> Bool {
         Log.println("- Try create direcrory at path: \(absolutePath)", .verbose)
-        guard self.exist(absolutePath) else {
-            Log.println("-- Directory allready exist at path: \(absolutePath)", .verbose)
+        guard !self.exist(absolutePath) else {
+            Log.println("  -- Directory at this path allready exist", .verbose)
             return true
         }
         
         do {
             try FileManager.default.createDirectory(atPath: absolutePath, withIntermediateDirectories: true)
-            Log.println("-- Complete create directory", .verbose)
+            Log.println("  -- Complete create directory", .verbose)
             return true
         } catch {
             return false
@@ -76,13 +75,13 @@ extension File {
     func remove(_ absolutePath: String) -> Bool {
         Log.println("- Try remove file at path: \(absolutePath)", .verbose)
         guard self.exist(absolutePath) else {
-            Log.println("- File at this path not exist: \(absolutePath)", .verbose)
+            Log.println("  -- File at this path allready not exist", .verbose)
             return true
         }
         
         do {
             try FileManager.default.removeItem(atPath: absolutePath)
-            Log.println("- File removed: \(absolutePath)", .verbose)
+            Log.println("  -- Complete remove file", .verbose)
             return true
         } catch {
             return false

@@ -1,5 +1,4 @@
 import Foundation
-import Utils
 
 public
 struct FrameworkProcess {
@@ -93,8 +92,8 @@ extension FrameworkProcess {
     @discardableResult private
     func removeSubmodule(_ framework: Framework, _ frameworks: [Framework]) -> Bool {
         frameworks.forEach {
-            if ($0.name != framework.name) {
-                File.remove(File.path(with: self.universalLibPath, $0.binPath))
+            if ($0 != framework) {
+                File.remove(File.path(with: self.universalLibPath, $0.path))
             }
         }
         return true

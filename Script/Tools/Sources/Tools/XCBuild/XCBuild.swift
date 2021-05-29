@@ -1,5 +1,4 @@
 import Foundation
-import Utils
 
 public
 class XCBuildBuilder {
@@ -86,7 +85,7 @@ class XCBuild {
                      "DEPLOYMENT_POSTPROCESSING=YES",
                      "GCC_GENERATE_DEBUGGING_SYMBOLS=NO",
                      "build",
-                     "CONFIGURATION_BUILD_DIR=\(type == .iphoneos ? self.config.iphonePath : self.config.simulatorPath)"])
+                     "CONFIGURATION_BUILD_DIR=\(type == .iphoneos ? self.config.iphonePath : self.config.simulatorPath)"], true)
     }
 }
 

@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "Tools",
-            targets: ["Tools", "Utils", "Framework"]),
+            targets: ["Tools"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
@@ -17,19 +17,7 @@ let package = Package(
     targets: [
         .target(
             name: "Tools",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ]),
-        .target(
-            name: "Utils",
-            dependencies: [
-                .product(name: "CLISpinner", package: "CLISpinner")
-            ]),
-        .target(
-            name: "Framework",
-            dependencies: []),
-        .target(
-            name: "XCBuild",
-            dependencies: [])
+            dependencies: ["ArgumentParser", "CLISpinner"])
     ]
 )
+
