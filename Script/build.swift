@@ -14,13 +14,10 @@ struct Build: ParsableCommand {
     mutating func run() throws {
         let router = Router.shared
         router.verbose = verbose
-        
         router.buildSdk()
     }
 }
 
 Build.main()
-
-//OptionParserService.parseOptions(CommandLine.arguments)
 
 

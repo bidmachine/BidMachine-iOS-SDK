@@ -6,24 +6,21 @@ class BuildTool {
     private
     struct Config {
         static let scheme = "BidMachine"
-        static let requiredFrameworks: [Framework] =
-            [.BidMachine,
-             .StackAPI,
-             .BDMAdColonyAdapter,
-             .BDMAmazonAdapter,
-             .BDMAppRollAdapter,
-             .BDMCriteoAdapter,
-             .BDMFacebookAdapter,
-             .BDMMyTargetAdapter,
-             .BDMSmaatoAdapter,
-             .BDMTapjoyAdapter,
-             .BDMVungleAdapter,
-             .BDMMRAIDAdapter,
-             .BDMVASTAdapter,
-             .BDMNASTAdapter]
-        static let fatFrameworks: [Framework : [Framework]] =
-            [.BidMachine : [.BidMachine, .StackAPI],
-             .BDMIABAdapter : [.BDMVASTAdapter, .BDMNASTAdapter, .BDMMRAIDAdapter]]
+        
+        static let targets =
+            [
+                Target(.BDMAdColonyAdapter, .BDMAdColonyAdapter),
+                Target(.BDMAmazonAdapter, .BDMAmazonAdapter),
+                Target(.BDMAppRollAdapter, .BDMAppRollAdapter),
+                Target(.BDMCriteoAdapter, .BDMCriteoAdapter),
+                Target(.BDMFacebookAdapter, .BDMFacebookAdapter),
+                Target(.BDMMyTargetAdapter, .BDMMyTargetAdapter),
+                Target(.BDMSmaatoAdapter, .BDMSmaatoAdapter),
+                Target(.BDMTapjoyAdapter, .BDMTapjoyAdapter),
+                Target(.BDMVungleAdapter, .BDMVungleAdapter),
+                Target(.BidMachine, .BidMachine, .StackAPI),
+                Target(.BDMIABAdapter, .BDMVASTAdapter, .BDMNASTAdapter, .BDMMRAIDAdapter)
+            ]
     }
 
     private
@@ -48,9 +45,7 @@ class BuildTool {
         let result =
             self.prepareBuildDirectory() &&
             self.buildFrameworks() &&
-            self.copyFrameworks() &&
-            self.createUniversalFrameworks() &&
-            self.createFatFrameworks() &&
+            Config.targets.reduce(true) { $0 && self.frameworkProcess.execute($1) } &&
             self.copyToFrameworksDir() &&
             self.cleanBuildDirectory()
         
@@ -84,17 +79,17 @@ extension BuildTool {
         return result
     }
     
-    func copyFrameworks() -> Bool {
-        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.copyIfNeeded($1) }
-    }
-    
-    func createUniversalFrameworks() -> Bool {
-        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.createUniversalFramework($1) }
-    }
-    
-    func createFatFrameworks() -> Bool {
-        return Config.fatFrameworks.reduce(true) { $0 && self.frameworkProcess.createFatFramework($1.key, $1.value, true) }
-    }
+//    func copyFrameworks() -> Bool {
+//        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.copyIfNeeded($1) }
+//    }
+//
+//    func createUniversalFrameworks() -> Bool {
+//        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.createUniversalFramework($1) }
+//    }
+//
+//    func createFatFrameworks() -> Bool {
+//        return Config.fatFrameworks.reduce(true) { $0 && self.frameworkProcess.createFatFramework($1.key, $1.value, true) }
+//    }
 }
 
 private

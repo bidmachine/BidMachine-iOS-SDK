@@ -1,22 +1,24 @@
 #!/usr/bin/swift sh
 
 import Foundation
-import Services // ./Services/
+import ArgumentParser
+import Tools // ./Tools/
 
-OptionParserService.parseOptions(CommandLine.arguments)
+struct Build: ParsableCommand {
+    @Flag(help: "Verbose log level.")
+    var verbose = false
 
-//
-//
-//let build = XCBuild("/Users/assassinsc/Desktop/BidMachine-iOS-SDK/BidMachine.xcworkspace", "BidMachine")
-//let result = build.build("arm64 armv7")
-////let result = build.build("i386")
-//
-////shell("`\(result.decription) | xcpretty > /Users/assassinsc/Desktop/Release/log.log`")
-////shell("echo ; \(result.decription) ; >> ; /Users/assassinsc/Desktop/Release/log.log")
-////shell(result.decription)
-//print("code = \(result.code)")
-////print(result.decription)
-//
-//Logging.printf("/Users/assassinsc/Desktop/Release/log.log", result.desription)
+    @Argument(help:
+    "The Release value. Can be: [Sdk] or [Adapters]")
+    var releaseType: String
+    
+    mutating func run() throws {
+        let router = Router.shared
+        router.verbose = verbose
+        router.releaseSdk(self.releaseType)
+    }
+}
+
+Build.main()
 
 

@@ -1,6 +1,22 @@
 import Foundation
 
 public
+struct Target {
+    
+    fileprivate
+    let dependencies:[Framework]
+    
+    fileprivate
+    let framework: Framework
+    
+    public
+    init(_ framework: Framework, _ dependencies: Framework...) {
+        self.dependencies = dependencies
+        self.framework = framework
+    }
+}
+
+public
 struct FrameworkProcess {
     
     private let iphoneLibPath: String
@@ -22,6 +38,14 @@ public
 extension FrameworkProcess {
     
     @discardableResult
+    func execute(_ target: Target) -> Bool {
+        return
+            target.dependencies.reduce(true) { $0 && self.copyIfNeeded($1) } &&
+            target.dependencies.reduce(true) { $0 && self.createUniversalFramework($1) } &&
+            self.createFatFramework(target.framework, target.dependencies, true)
+    }
+    
+    @discardableResult private
     func copyIfNeeded(_ framework: Framework) -> Bool {
         if framework.type == .lib {
             return true
@@ -29,6 +53,7 @@ extension FrameworkProcess {
         
         let path = File.path(with: iphoneLibPath, framework.path)
         guard File.exist(path) else {
+            Log.println("Framework not exist at path: \(path)", .failure)
             return false
         }
         
@@ -38,7 +63,7 @@ extension FrameworkProcess {
             File.remove(File.path(with: universalLibPath, framework.binPath))
     }
     
-    @discardableResult
+    @discardableResult private
     func createUniversalFramework(_ framework: Framework) -> Bool {
         Log.println("Try create universal lib for: \(framework.description)", .info)
         let iphonePath = File.path(with: self.iphoneLibPath, framework.binPath)
@@ -46,12 +71,12 @@ extension FrameworkProcess {
         let universalPath = File.path(with: self.universalLibPath, framework.binPath)
         
         guard File.exist(iphonePath) else {
-            Log.println("Framework: \(framework.description) not required iphone lib for path: \(iphonePath)", .failure)
+            Log.println("Framework: \(framework.description) not contain required iphone lib for path: \(iphonePath)", .failure)
             return false
         }
         
         guard File.exist(simulatorPath) else {
-            Log.println("Framework: \(framework.description) not required simulator lib for path: \(simulatorPath)", .failure)
+            Log.println("Framework: \(framework.description) not contain required simulator lib for path: \(simulatorPath)", .failure)
             return false
         }
         
@@ -63,8 +88,12 @@ extension FrameworkProcess {
         return result
     }
     
-    @discardableResult
+    @discardableResult private
     func createFatFramework(_ framework: Framework, _ frameworks: [Framework], _ removeSubmodule: Bool) -> Bool {
+        if frameworks.count == 1 && frameworks.contains(framework) {
+            return true
+        }
+        
         Log.println("Try create fat lib for: \(framework.description)", .info)
         Log.println("-- Components: \(frameworks.compactMap { $0.description }.joined(separator: ", "))", .info)
         

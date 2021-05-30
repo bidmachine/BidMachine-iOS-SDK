@@ -19,36 +19,15 @@ extension Router {
     func buildSdk() {
         
         guard let fileTool = FileTool(nil) else {
+            Shell.exitWithFailure()
             return
         }
         
         let buildTool = BuildTool(fileTool)
-        buildTool.build()
-        
+        buildTool.build() ? Shell.exitWithSuccess() : Shell.exitWithFailure()
+    }
     
-//        let git = Git(absolute: file.rootDirectory())
-//        git?.status()
-//        git?.createTag("test_1", "test tag", true)
-//        git?.deleteTag("test_1", true)
-//        _ = git.flatMap { $0.status() }
+    func releaseSdk(_ type: String) {
         
-        
-//        self.print("Build complete", self.build.build() ? .success : .failure)
-        
-//        var url = URL(string:  FileManager.default.currentDirectoryPath)
-//        url = url!.deletingLastPathComponent()
-//        self.filePath = url!.absoluteString
-//        self.print("Start build sdk", .info)
-//        self.print("\(self.filePath!)", .warning)
-//
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            let xcbuild = XCBuild(self.filePath! + "BidMachine.xcworkspace", "BidMachine")
-//            let result = xcbuild.build()
-//
-//            self.print("Build complete", result ? .success : .failure)
-//
-//            Shell.exitWithSuccess()
-//        }
-//        RunLoop.current.run()
     }
 }
