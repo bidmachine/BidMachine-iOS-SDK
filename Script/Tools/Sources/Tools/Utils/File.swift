@@ -3,6 +3,23 @@ import Foundation
 public
 class File {
     
+    private
+    let projectDirectory: String
+    
+    public
+    init?(_ projectDirectory: String?) {
+        let projectDirectory = projectDirectory ??
+            URL(string: FileManager.default.currentDirectoryPath).flatMap ({ $0.deletingLastPathComponent() }).flatMap ({ $0.absoluteString })
+        guard
+            let dir = projectDirectory,
+            File.exist(dir)
+        else {
+            Log.println("Can't find project dir at path: \(String(describing: projectDirectory))", .failure)
+            return nil
+        }
+        
+        self.projectDirectory = dir
+    }
 }
 
 public
@@ -10,6 +27,11 @@ extension File {
     
     static
     func path(with components: String...) -> String {
+        return self.path(with: components)
+    }
+    
+    static
+    func path(with components: [String]) -> String {
         return components.joined(separator: "/").replacingOccurrences(of: "//", with: "/")
     }
     
@@ -86,5 +108,37 @@ extension File {
         } catch {
             return false
         }
+    }
+}
+
+public
+extension File {
+    
+    func path(_ components: String...) -> String {
+        return self.path(components)
+    }
+    
+    func path(_ components: [String]) -> String {
+        return Self.path(with: [self.projectDirectory] + components)
+    }
+    
+    @discardableResult
+    func exist(_ path: String...) -> Bool {
+        return Self.exist(self.path(path))
+    }
+    
+    @discardableResult
+    func copy(_ fromPath: String, _ toPath: String) -> Bool {
+        return Self.copy(self.path(fromPath), self.path(toPath))
+    }
+    
+    @discardableResult
+    func create(_ path: String...) -> Bool {
+        return Self.create(self.path(path))
+    }
+    
+    @discardableResult
+    func remove(_ path: String...) -> Bool {
+        return Self.remove(self.path(path))
     }
 }

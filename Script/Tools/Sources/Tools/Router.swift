@@ -18,7 +18,7 @@ extension Router {
     
     func buildSdk() {
         
-        guard let fileTool = FileTool(nil) else {
+        guard let fileTool = File(nil) else {
             Shell.exitWithFailure()
             return
         }
@@ -29,7 +29,7 @@ extension Router {
     
     func releaseSdk(_ type: String, _ allowWarnings: Bool) {
         
-        guard let fileTool = FileTool(nil) else {
+        guard let fileTool = File(nil) else {
             Shell.exitWithFailure()
             return
         }
