@@ -5,14 +5,19 @@ class FileTool {
     
     public
     enum Dir {
-        case workspace
-        case frameworks
-        case build
         case project
-        case adapter
+        case workspace
+        
+        case build
+        case frameworks
+        case releases
+        
         case iphone
         case simulator
         case universal
+        
+        case adapterSpec
+        case sdkSpec
     }
     
     private
@@ -47,12 +52,17 @@ extension FileTool.Dir {
         switch self {
         case .project: return ""
         case .workspace: return "BidMachine.xcworkspace"
-        case .adapter: return "BidMachine-iOS-Adaptors"
+            
         case .build: return "BidMachineRelease/build"
         case .frameworks: return "BidMachineRelease/Frameworks"
+        case .releases: return "BidMachineRelease/Releases"
+            
         case .iphone: return "BidMachineRelease/build/iphoneos"
         case .simulator: return "BidMachineRelease/build/iphonesimulator"
         case .universal: return "BidMachineRelease/build/universal"
+            
+        case .adapterSpec: return "BidMachine-iOS-Adaptors"
+        case .sdkSpec: return "BidMachineRelease"
         }
     }
 }

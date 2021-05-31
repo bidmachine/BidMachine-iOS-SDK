@@ -7,6 +7,9 @@ import Tools // ./Tools/
 struct Build: ParsableCommand {
     @Flag(help: "Verbose log level.")
     var verbose = false
+    
+    @Flag(help: "Allow spec warnings.")
+    var allowWarnings = false
 
     @Argument(help:
     "The Release value. Can be: [Sdk] or [Adapters]")
@@ -15,7 +18,7 @@ struct Build: ParsableCommand {
     mutating func run() throws {
         let router = Router.shared
         router.verbose = verbose
-        router.releaseSdk(self.releaseType)
+        router.releaseSdk(self.releaseType, self.allowWarnings)
     }
 }
 

@@ -27,7 +27,15 @@ extension Router {
         buildTool.build() ? Shell.exitWithSuccess() : Shell.exitWithFailure()
     }
     
-    func releaseSdk(_ type: String) {
+    func releaseSdk(_ type: String, _ allowWarnings: Bool) {
+        
+        guard let fileTool = FileTool(nil) else {
+            Shell.exitWithFailure()
+            return
+        }
+        
+        let releaseTool = ReleaseTool(fileTool, allowWarnings)
+        releaseTool.release(type)
         
     }
 }

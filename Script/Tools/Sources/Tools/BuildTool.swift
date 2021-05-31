@@ -78,18 +78,6 @@ extension BuildTool {
         group.wait()
         return result
     }
-    
-//    func copyFrameworks() -> Bool {
-//        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.copyIfNeeded($1) }
-//    }
-//
-//    func createUniversalFrameworks() -> Bool {
-//        return Config.requiredFrameworks.reduce(true) { $0 && self.frameworkProcess.createUniversalFramework($1) }
-//    }
-//
-//    func createFatFrameworks() -> Bool {
-//        return Config.fatFrameworks.reduce(true) { $0 && self.frameworkProcess.createFatFramework($1.key, $1.value, true) }
-//    }
 }
 
 private

@@ -33,9 +33,9 @@ enum Spec {
         case .spec(let framework):
             var subPath = ""
             switch type {
-            case .license: subPath = "\(framework.rawValue)/LICENSE"
+            case .license: subPath = "LICENSE"
+            case .changelog: subPath = "CHANGELOG.md"
             case .podspec: subPath = "\(framework.rawValue).podspec"
-            case .changelog: subPath = "\(framework.rawValue)/CHANGELOG.md"
             }
             return "\(framework.rawValue)/\(subPath)"
         }
