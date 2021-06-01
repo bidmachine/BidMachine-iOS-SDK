@@ -3,7 +3,7 @@ import Foundation
 public
 class File {
     
-    private
+    internal
     let projectDirectory: String
     
     public

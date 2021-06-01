@@ -8,8 +8,11 @@ class Git {
     init?(absolute path: String?) {
         guard
             let path = path,
-            File.exist(path)
-        else { return nil }
+            File.exist(File.path(with: path, ".git"))
+        else {
+            Log.println("Can't find git dir dir at path: \(String(describing: path))", .failure)
+            return nil
+        }
         self.path = path
     }
 }

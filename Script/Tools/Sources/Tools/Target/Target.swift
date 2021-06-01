@@ -11,7 +11,7 @@ internal
 class Target {
     
     private static
-    let releaseRootPath = "BidMachineRelease"
+    let targetRootPath = "BidMachineRelease"
     
     internal
     enum Dir: String {
@@ -20,7 +20,7 @@ class Target {
         internal
         var path: String {
             switch self {
-            case .release: return File.path(with: Target.releaseRootPath, "Releases")
+            case .release: return File.path(with: Target.targetRootPath, "Releases")
             }
         }
     }
@@ -52,8 +52,8 @@ class Target {
     
     internal
     init(_ name: Name) {
-        self.framework = Framework(name, Target.releaseRootPath)
-        self.spec = Spec(self.framework)
+        self.framework = Framework(name, Target.targetRootPath)
+        self.spec = Spec(name, Target.targetRootPath)
     }
     
 }
@@ -63,6 +63,7 @@ extension Target {
     
     static
     func frameworkDir(_ dir: Framework.Dir) -> String {
-        return File.path(with: releaseRootPath, dir.path)
+        return File.path(with: targetRootPath, dir.path)
     }
+
 }

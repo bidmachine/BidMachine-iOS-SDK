@@ -1,6 +1,6 @@
 import Foundation
 
-public
+internal
 class BuildTool {
     
     private
@@ -36,12 +36,12 @@ class BuildTool {
     private
     let file: File
     
-    public
-    init(_ file: File) {
+    internal
+    init?(_ file: File) {
         self.file = file
     }
     
-    @discardableResult public
+    @discardableResult internal
     func build() -> Bool {
         Log.println("Start build sdk!", .info)
         

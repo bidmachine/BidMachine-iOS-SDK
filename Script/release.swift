@@ -12,8 +12,8 @@ struct Build: ParsableCommand {
     var allowWarnings = false
 
     @Argument(help:
-    "The Release value. Can be: [Sdk] or [Adapters]")
-    var releaseType: String
+    "The Release value. Can be: [All] or [Adapters] or [BidMachine BDM*Name*Adapter]")
+    var releaseType: [String]
     
     mutating func run() throws {
         let router = Router.shared
