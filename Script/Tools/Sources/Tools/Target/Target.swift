@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Ilia Lozhkin on 31.05.2021.
 //
@@ -12,6 +12,9 @@ class Target {
     
     private static
     let targetRootPath = "BidMachineRelease"
+    
+    private static
+    let gitAdaptersDir = "BidMachine-iOS-Adaptors"
     
     internal
     enum Dir: String {
@@ -42,18 +45,45 @@ class Target {
         case BDMVASTAdapter
         case BDMNASTAdapter
         case BDMIABAdapter
+        
+        internal
+        var isFramework: Bool {
+            let frameworkNames: [Target.Name] = [.BidMachine, .StackAPI]
+            return frameworkNames.contains(self)
+        }
     }
     
     internal
     let framework: Framework
-    
+
     internal
     let spec: Spec
-    
+
     internal
-    init(_ name: Name) {
-        self.framework = Framework(name, Target.targetRootPath)
-        self.spec = Spec(name, Target.targetRootPath)
+    let git: Git
+
+    internal
+    let file: File
+
+    internal
+    init?(_ name: Name, _ rootPath: String) {
+
+        let path = File.path(with: rootPath, Self.targetRootPath)
+        
+        guard
+            let file = File(path),
+            let framework = Framework(name, file.workDirectory),
+            let spec = Spec(name, file.workDirectory),
+            let git = name.isFramework ? Git(absolute: rootPath) : Git(absolute: File.path(with: rootPath, Self.gitAdaptersDir))
+        else {
+            Log.println("Can't create Target: \(name.rawValue)", .failure)
+            return nil
+        }
+
+        self.framework = framework
+        self.spec = spec
+        self.git = git
+        self.file = file
     }
     
 }
@@ -66,4 +96,13 @@ extension Target {
         return File.path(with: targetRootPath, dir.path)
     }
 
+}
+
+internal
+extension Target {
+    
+//    func gitContainsTargetVersion(_ allowWarnings: Bool) -> Bool {
+////        self.git.existTag(self.spec.tagName)
+//    }
+    
 }

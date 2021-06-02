@@ -1,28 +1,21 @@
 import Foundation
 
-public
+internal
 class File {
     
     internal
-    let projectDirectory: String
+    let workDirectory: String
     
-    public
-    init?(_ projectDirectory: String?) {
-        let projectDirectory = projectDirectory ??
-            URL(string: FileManager.default.currentDirectoryPath).flatMap ({ $0.deletingLastPathComponent() }).flatMap ({ $0.absoluteString })
-        guard
-            let dir = projectDirectory,
-            File.exist(dir)
-        else {
-            Log.println("Can't find project dir at path: \(String(describing: projectDirectory))", .failure)
-            return nil
-        }
+    internal
+    init?(_ workDirectory: String?) {
+        guard let dir = workDirectory, File.exist(dir)
+        else { return nil }
         
-        self.projectDirectory = dir
+        self.workDirectory = dir
     }
 }
 
-public
+internal
 extension File {
     
     static
@@ -111,7 +104,7 @@ extension File {
     }
 }
 
-public
+internal
 extension File {
     
     func path(_ components: String...) -> String {
@@ -119,7 +112,7 @@ extension File {
     }
     
     func path(_ components: [String]) -> String {
-        return Self.path(with: [self.projectDirectory] + components)
+        return Self.path(with: [self.workDirectory] + components)
     }
     
     @discardableResult

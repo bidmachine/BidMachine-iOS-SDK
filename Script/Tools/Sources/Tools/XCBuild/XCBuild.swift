@@ -1,6 +1,6 @@
 import Foundation
 
-public
+internal
 class XCBuildBuilder {
     
     fileprivate private(set) var workspacePath: String = ""
@@ -9,31 +9,31 @@ class XCBuildBuilder {
     fileprivate private(set) var simulatorPath: String = ""
     
     @discardableResult
-    public func appendScheme(_ scheme: String) -> XCBuildBuilder {
+    internal func appendScheme(_ scheme: String) -> XCBuildBuilder {
         self.scheme = scheme
         return self
     }
     
     @discardableResult
-    public func appendWorkspacePath(_ path: String) -> XCBuildBuilder {
+    internal func appendWorkspacePath(_ path: String) -> XCBuildBuilder {
         self.workspacePath = path
         return self
     }
     
     @discardableResult
-    public func appendIphonePath(_ path: String) -> XCBuildBuilder {
+    internal func appendIphonePath(_ path: String) -> XCBuildBuilder {
         self.iphonePath = path
         return self
     }
     
     @discardableResult
-    public func appendSimulatorPath(_ path: String) -> XCBuildBuilder {
+    internal func appendSimulatorPath(_ path: String) -> XCBuildBuilder {
         self.simulatorPath = path
         return self
     }
 }
 
-public
+internal
 class XCBuild {
     
     internal
@@ -44,14 +44,14 @@ class XCBuild {
     
     private let config: XCBuildBuilder
     
-    public
+    internal
     init(_ builder: (XCBuildBuilder) -> Void) {
         let config = XCBuildBuilder()
         builder(config)
         self.config = config
     }
     
-    @discardableResult public
+    @discardableResult internal
     func build() -> Bool {
         guard
             File.exist(self.config.workspacePath) else {

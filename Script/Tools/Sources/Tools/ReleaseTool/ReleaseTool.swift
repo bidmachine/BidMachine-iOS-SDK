@@ -1,6 +1,6 @@
 //
 //  ReleaseTool.swift
-//  
+//
 //
 //  Created by Ilia Lozhkin on 28.05.2021.
 //
@@ -13,9 +13,6 @@ class ReleaseTool {
     
     private
     struct Config {
-        static let gitSDKDir = ""
-        static let gitAdaptersDir = "BidMachine-iOS-Adaptors"
-        
         static let targets: [Target.Name] =
             [
                 .BidMachine,
@@ -33,41 +30,37 @@ class ReleaseTool {
     }
     
     private
-    var adapterService: ReleaseServiceProtocol
-    
-    private
-    var sdkService: ReleaseServiceProtocol
+    let file: File
     
     internal
     init?(_ file: File, _ allowWarnings: Bool) {
-        guard let gitSdk = Git(absolute: file.path(Config.gitSDKDir)),
-              let gitAdapters = Git(absolute: file.path(Config.gitAdaptersDir))
-        else {
-            return nil
-        }
-        
-        self.adapterService = ReleaseService(file, gitAdapters, allowWarnings)
-        self.sdkService = ReleaseService(file, gitSdk, allowWarnings)
+        self.file = file
     }
     
     @discardableResult internal
     func release(_ type: [String]) -> Bool {
+        var targetNames: [Target.Name] = []
         if type.contains("All") {
-            return self.prepareRelease(Config.targets.compactMap { Target($0) })
-        }
-        
-        var targets = type.compactMap { Target.Name(rawValue: $0) }.compactMap { Target($0) }
-        if type.contains("Adapters") {
-            targets = targets.filter{ !$0.spec.isAdapter }
-            targets = targets + Config.targets.compactMap { Target($0) }.filter { $0.spec.isAdapter }
-        }
+            targetNames = Config.targets
+        } else {
+            var targetNames = type.compactMap { Target.Name(rawValue: $0) }
+            if type.contains("Adapters") {
+                targetNames = targetNames.filter{ $0.isFramework }
+                targetNames = targetNames + Config.targets.filter { !$0.isFramework }
+            }
 
-        if type.contains("Sdk") {
-            targets = targets.filter{ $0.spec.isAdapter }
-            targets = targets + Config.targets.compactMap { Target($0) }.filter { !$0.spec.isAdapter }
+            if type.contains("Sdk") {
+                targetNames = targetNames.filter{ !$0.isFramework }
+                targetNames = targetNames + Config.targets.filter { $0.isFramework }
+            }
         }
         
-        return self.prepareRelease(targets)
+        Log.println("Start release targets!", .info)
+        Log.println("\(targetNames.compactMap { $0.rawValue })", .info)
+        let result = self._release(targetNames)
+        Log.println("Finish release targets!", result ? .success : .failure)
+
+        return result
     }
 }
 
@@ -75,15 +68,43 @@ private
 extension ReleaseTool {
     
     @discardableResult
-    func prepareRelease(_ targets: [Target]) -> Bool {
-        self.adapterService.targets = targets.filter { $0.spec.isAdapter }
-        self.sdkService.targets = targets.filter { !$0.spec.isAdapter }
+    func _release(_ names: [Target.Name]) -> Bool {
+        let targets = names.compactMap{ Target($0, self.file.workDirectory)}
+        if targets.count != names.count {
+            Log.println("Cant't create all required targets", .failure)
+            return false
+        }
         
         return
-            self.sdkService.release() &&
-            self.adapterService.release()
+            self.validateTargets(targets)
     }
 }
 
+private
+extension ReleaseTool {
+    
+    @discardableResult
+    func validateTargets(_ targets: [Target]) -> Bool {
+        return
+            self.checkSpecsSource(targets)
+    }
+    
+    @discardableResult
+    func prepareTargets(_ targets: [Target]) -> Bool {
+        return true
+    }
+}
+
+private
+extension ReleaseTool {
+    
+    @discardableResult
+    func checkSpecsSource(_ targets: [Target]) -> Bool {
+        Log.println("Start check available specs sources", .info)
+        let result = targets.reduce(true) { $0 && $1.spec.validateResources() }
+        Log.println("Finish check available specs sources", result ? .success : .failure)
+        return result
+    }
+}
 
 

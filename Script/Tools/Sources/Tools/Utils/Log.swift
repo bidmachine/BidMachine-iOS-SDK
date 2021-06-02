@@ -1,6 +1,6 @@
 import Foundation
 
-public
+internal
 enum LogType: String {
     case info
     case warning
@@ -20,21 +20,21 @@ enum LogType: String {
     }
 }
 
-public
+internal
 class Log {
     
-    public static
+    internal static
     let shared = Log()
     
-    public
+    internal
     var verbose = false
     
-    public static
+    internal static
     func println(_ message: String, _ type: LogType) {
         Self.shared.println(message, type)
     }
     
-    public
+    internal
     init() {
         self._println("\n--------------------\n")
     }
@@ -57,7 +57,7 @@ class Log {
     }
 }
 
-public
+internal
 extension Log {
     
     static

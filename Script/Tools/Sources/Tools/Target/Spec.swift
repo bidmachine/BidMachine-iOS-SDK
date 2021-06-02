@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Ilia Lozhkin on 31.05.2021.
 //
@@ -20,53 +20,71 @@ class Spec {
         case podspec
         case changelog
     }
-
-    internal
-    let isAdapter: Bool
     
-    private
-    let rootPath: String
+    internal
+    let name: String
+    
+    internal
+    var isAdapter: Bool {
+        !self.targetName.isFramework
+    }
+    
+    internal lazy
+    var specVersion: String? = {
+        self._specVersion()
+    }()
+    
+    internal lazy
+    var tagName: String? = {
+        self._tagName()
+    }()
     
     private
     let targetName: Target.Name
     
-    init(_ name: Target.Name, _ rootPath: String) {
-        self.rootPath = rootPath
-        self.targetName = name
-        self.isAdapter = name != .BidMachine
-    }
-}
-
-internal
-extension Spec {
+    private
+    let file: File
     
-    var name: String {
-        return self.targetName.rawValue
-    }
-    
-    func path(_ dir: Dir) -> String {
-        var subPath = ""
-        switch dir {
-        case .license: subPath = "LICENSE"
-        case .changelog: subPath = "CHANGELOG.md"
-        case .podspec: subPath = "\(self.name).podspec"
+    init?(_ name: Target.Name, _ rootPath: String) {
+        self.name = name.rawValue
+        
+        let path = File.path(with: rootPath, Self.specRootPath)
+        guard let file = File(path) else {
+            Log.println("Can't create Spec: \(name). Root path not found: \(path)", .failure)
+            return nil
         }
         
-        return File.path(with: self.rootPath, Spec.specRootPath, self.name, subPath)
+        self.file = file
+        self.targetName = name
     }
 }
 
-internal
+private
 extension Spec {
     
-    func specVersion(_ path: String) -> String? {
-        guard let text = try? String(contentsOfFile: File.path(with: path, self.path(.podspec)), encoding: .utf8) else {
+    func _path(_ dir: Dir) -> String {
+        var filePath = ""
+        switch dir {
+        case .license: filePath = "LICENSE"
+        case .changelog: filePath = "CHANGELOG.md"
+        case .podspec: filePath = "\(self.name).podspec"
+        }
+        
+        return File.path(with: self.name, filePath)
+    }
+}
+
+private
+extension Spec {
+    
+    func _specVersion() -> String? {
+        guard let text = try? String(contentsOfFile: self.file.path(self._path(.podspec)), encoding: .utf8) else {
             return nil
         }
         
         let sdkPattern = #".*(sdkVersion\s*.*=(.*\"(.*).*\"))"#
         let adapterPattern = #".*(adapterVersion\s*.*=(.*\"(.*).*\"))"#
-        let pattern = self.isAdapter ? adapterPattern : sdkPattern
+        let pattern = self.targetName.isFramework ? sdkPattern : adapterPattern
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         
         
@@ -86,11 +104,29 @@ extension Spec {
         return result.last.flatMap { $0.last }
     }
     
-    func tagName(_ path: String) -> String? {
-        guard let version = self.specVersion(path) else {
+    func _tagName() -> String? {
+        guard let version = self.specVersion else {
             return nil
         }
-        return self.isAdapter ? "v\(self.name)-\(version)" : "v\(version)"
+        return self.targetName.isFramework ? "v\(version)" : "v\(self.name)-\(version)"
+    }
+}
+
+internal
+extension Spec {
+    
+    func validateResources() -> Bool {
+        let changelogPath = self.file.path(self._path(.changelog))
+        let licensePath = self.file.path(self._path(.license))
+        let specPath = self.file.path(self._path(.podspec))
+        
+        let checkResult =
+            Log.completionLog(File.exist(changelogPath), "Exist file path: \(changelogPath)", .verbose) &&
+            Log.completionLog(File.exist(licensePath), "Exist file path: \(licensePath)", .verbose) &&
+            Log.completionLog(File.exist(specPath), "Exist file path: \(specPath)", .verbose)
+        
+        Log.println("Check spec: \(self.name) source", checkResult ? .verbose : .failure)
+        return checkResult
     }
     
 }

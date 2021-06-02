@@ -1,20 +1,20 @@
 import Foundation
 import CLISpinner
 
-public
+internal
 struct Shell {
     
-    public static
+    internal static
     func exitWithSuccess(){
         exit(0)
     }
     
-    public static
+    internal static
     func exitWithFailure(){
         exit(1)
     }
     
-    public static
+    internal static
     func shell(_ args: [String], _ enableProgress: Bool = false) -> Bool {
         let task = Process()
         let pipe = Pipe()
@@ -46,7 +46,7 @@ struct Shell {
         
         spinner.flatMap { $0.stop() }
         
-        Log.println(message, .verbose)
+//        Log.println(message, .verbose)
         
         return task.terminationStatus == 0
     }

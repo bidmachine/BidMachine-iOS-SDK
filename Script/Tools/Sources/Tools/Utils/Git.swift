@@ -1,6 +1,6 @@
 import Foundation
 
-public
+internal
 class Git {
     
     let path: String
@@ -10,10 +10,10 @@ class Git {
             let path = path,
             File.exist(File.path(with: path, ".git"))
         else {
-            Log.println("Can't find git dir dir at path: \(String(describing: path))", .failure)
+            Log.println("Can't find git dir at path: \(String(describing: path))", .failure)
             return nil
         }
-        self.path = path
+        self.path = "sdf"
     }
 }
 
@@ -24,7 +24,7 @@ extension Git {
     }
 }
 
-public
+internal
 extension Git {
     
     @discardableResult
