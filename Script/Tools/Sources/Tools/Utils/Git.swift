@@ -33,6 +33,11 @@ extension Git {
     }
     
     @discardableResult
+    func existTag(_ name: String) -> Bool {
+        return Shell.shell(self.defaultComand() + ["show-ref", "--tags", "--quiet", "--verify", "--", "refs/tags/\(name)"])
+    }
+    
+    @discardableResult
     func createTag(_ name: String, _ description: String, _ remote: Bool) -> Bool {
         return
             self._createTag(name, description) &&

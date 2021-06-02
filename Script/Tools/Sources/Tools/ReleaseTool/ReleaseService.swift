@@ -114,9 +114,14 @@ extension ReleaseService {
     
     func specVersions(_ targets: [Target]) -> Bool {
         let result = targets.reduce(true) { result, target in
-            let specVersion = target.spec.specVersion(self.file.projectDirectory)
-            Log.println("Spec \(target.spec.name) - \(specVersion)", specVersion == nil ? .failure : .success)
-            return result && specVersion != nil
+            guard let specVersion = target.spec.tagName(self.file.projectDirectory) else {
+                Log.println("Spec \(target.spec.name) not contain version ", .failure)
+                return false
+            }
+            Log.println("Spec \(target.spec.name) - \(specVersion)", .success)
+            let gitResult = git.existTag(specVersion)
+            Log.println("Git tag exist: \(specVersion)", gitResult ? .success : .failure)
+            return result && gitResult
         }
         return result
     }

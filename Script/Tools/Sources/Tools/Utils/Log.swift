@@ -41,6 +41,10 @@ class Log {
     
     private
     func println(_ message: String, _ type: LogType) {
+        guard message != "" else {
+            return
+        }
+        
         guard (type != .verbose) || type == .verbose && self.verbose else {
             return
         }

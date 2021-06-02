@@ -86,4 +86,11 @@ extension Spec {
         return result.last.flatMap { $0.last }
     }
     
+    func tagName(_ path: String) -> String? {
+        guard let version = self.specVersion(path) else {
+            return nil
+        }
+        return self.isAdapter ? "v\(self.name)-\(version)" : "v\(version)"
+    }
+    
 }
