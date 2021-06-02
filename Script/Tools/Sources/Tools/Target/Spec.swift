@@ -52,6 +52,38 @@ extension Spec {
         case .podspec: subPath = "\(self.name).podspec"
         }
         
-        return File.path(with: self.rootPath, Spec.specRootPath, subPath)
+        return File.path(with: self.rootPath, Spec.specRootPath, self.name, subPath)
     }
+}
+
+internal
+extension Spec {
+    
+    func specVersion(_ path: String) -> String? {
+        guard let text = try? String(contentsOfFile: File.path(with: path, self.path(.podspec)), encoding: .utf8) else {
+            return nil
+        }
+        
+        let sdkPattern = #".*(sdkVersion\s*.*=(.*\"(.*).*\"))"#
+        let adapterPattern = #".*(adapterVersion\s*.*=(.*\"(.*).*\"))"#
+        let pattern = self.isAdapter ? adapterPattern : sdkPattern
+        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
+        
+        
+        let stringRange = NSRange(location: 0, length: text.utf16.count)
+        let matches = regex.matches(in: text, range: stringRange)
+        var result: [[String]] = []
+        for match in matches {
+            var groups: [String] = []
+            for rangeIndex in 1 ..< match.numberOfRanges {
+                groups.append((text as NSString).substring(with: match.range(at: rangeIndex)))
+            }
+            if !groups.isEmpty {
+                result.append(groups)
+            }
+        }
+        
+        return result.last.flatMap { $0.last }
+    }
+    
 }

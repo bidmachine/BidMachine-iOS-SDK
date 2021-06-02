@@ -52,3 +52,13 @@ class Log {
         FileHandle.standardOutput.write(message.data(using: .ascii)!)
     }
 }
+
+public
+extension Log {
+    
+    static
+    func completionLog(_ value: Bool, _ message: String, _ type: LogType) -> Bool {
+        Self.println(message, value ? type : .failure)
+        return value
+    }
+}

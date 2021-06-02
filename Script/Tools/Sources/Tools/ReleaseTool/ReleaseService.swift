@@ -48,6 +48,76 @@ class ReleaseService : ReleaseServiceProtocol {
         }
         
         Log.println("Start release targets: \(targets.compactMap { $0.spec.name })", .info)
-        return true
+        
+        let result = self.specVersions(targets)
+//            self.checkAvailableSpecSources(targets) &&
+//            self.checkAvailableFrameworkSources(targets)
+        
+        Log.println("Finish release", result ? .success : .failure)
+        
+        return result
+    }
+}
+
+private
+extension ReleaseService {
+}
+
+private
+extension ReleaseService {
+    
+    func checkAvailableSpecSources(_ targets: [Target]) -> Bool {
+        Log.println("Start check available specs sources", .info)
+        
+        let result = targets.reduce(true) { result, target in
+            Log.println("For spec: \(target.spec.name)", .verbose)
+            
+            let changelogPath = self.file.path(target.spec.path(.changelog))
+            let licensePath = self.file.path(target.spec.path(.license))
+            let specPath = self.file.path(target.spec.path(.podspec))
+            
+
+            let checkResult =
+                Log.completionLog(File.exist(changelogPath), "Exist file path: \(changelogPath)", .verbose) &&
+                Log.completionLog(File.exist(licensePath), "Exist file path: \(licensePath)", .verbose) &&
+                Log.completionLog(File.exist(specPath), "Exist file path: \(specPath)", .verbose)
+            
+            Log.println("Check spec: \(target.spec.name) source", checkResult ? .verbose : .failure)
+            
+            return result && checkResult
+        }
+        Log.println("Finish check available specs sources", result ? .success : .failure)
+        return result
+    }
+    
+    func checkAvailableFrameworkSources(_ targets: [Target]) -> Bool {
+        Log.println("Start check available frameworks sources", .info)
+        
+        let result = targets.reduce(true) { result, target in
+            Log.println("For spec: \(target.spec.name)", .verbose)
+            
+            let frameworkPath = self.file.path(target.framework.path(.universal))
+            let checkResult = Log.completionLog(File.exist(frameworkPath), "Exist file path: \(frameworkPath)", .verbose)
+            
+            Log.println("Check spec: \(target.spec.name) framework source", checkResult ? .verbose : .failure)
+            
+            return result && checkResult
+        }
+        
+        Log.println("Finish check available frameworks sources", result ? .success : .failure)
+        return result
+    }
+}
+
+private
+extension ReleaseService {
+    
+    func specVersions(_ targets: [Target]) -> Bool {
+        let result = targets.reduce(true) { result, target in
+            let specVersion = target.spec.specVersion(self.file.projectDirectory)
+            Log.println("Spec \(target.spec.name) - \(specVersion)", specVersion == nil ? .failure : .success)
+            return result && specVersion != nil
+        }
+        return result
     }
 }
