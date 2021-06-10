@@ -13,7 +13,7 @@ $STKModuleVersion = '~> 1.1.0'
 
 $VungleVersion = '6.9.2'
 $AdcolonyVersion = '4.6.1'
-$MytargetVersion = '5.11.0'
+$MytargetVersion = '5.11.2'
 $TapjoyVersion = '12.7.0'
 $FacebookVersion = '6.4.1'
 $CriteoVersion = '4.3.3'
