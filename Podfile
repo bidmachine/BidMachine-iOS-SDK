@@ -20,6 +20,7 @@ $CriteoVersion = '4.3.3'
 $AmazonVersion = '3.3.0'
 $SmaatoVersion = '21.6.13'
 $ApprollVersion = '3.1.2'
+$PangleVersion = '3.5.1.2'
 
 # Modules
 
@@ -82,6 +83,10 @@ end
 
 def approll
   	pod 'AppRollSDK', $ApprollVersion
+end
+
+def pangle
+  	pod 'Ads-Global', $PangleVersion
 end
 
 # Targets configuration
@@ -164,6 +169,12 @@ target 'BDMAppRollAdapter' do
   approll
 end
 
+target 'BDMPangleAdapter' do
+  project 'BidMachine-iOS-Adaptors/Adaptors.xcodeproj'
+  stack_modules
+  pangle
+end
+
 target 'Sample' do
   project 'BidMachineSample/Sample.xcodeproj'
   stack_modules
@@ -180,6 +191,7 @@ target 'Sample' do
   smaato
   criteo
   approll
+  pangle
 
   pod 'Toast-Swift', '~> 4.0.0', :inhibit_warnings => true
 end
