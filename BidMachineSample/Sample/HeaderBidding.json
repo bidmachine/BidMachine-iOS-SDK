@@ -1,5 +1,36 @@
 [
     {
+        "network": "pangle_sdk",
+        "network_class": "BDMPangleAdNetwork",
+        "params" :
+        {
+            "app_id": "5177308"
+        },
+        "ad_units": [
+            {
+                "format": "banner_300x250",
+                "params" :
+                {
+                    "slot_id": "946200497"
+                }
+            },
+            {
+                "format": "interstitial_video",
+                "params" :
+                {
+                    "slot_id": "946185894"
+                }
+            },
+            {
+                "format": "rewarded_video",
+                "params" :
+                {
+                    "slot_id": "946185895"
+                }
+            }
+        ]
+    },
+    {
         "network": "approll",
         "network_class": "BDMAppRollAdNetwork",
         "params" :
