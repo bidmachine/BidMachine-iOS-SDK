@@ -63,17 +63,27 @@
                                                      description:@"Display ad not ready to present any ad!"])
         return;
     }
+    [self.middleware startEvent:BDMEventContainerAdded];
     [self.middleware startEvent:BDMEventImpression];
     [self.middleware startEvent:BDMEventClosed];
     [self.middleware startEvent:BDMEventClick];
     [self.middleware startEvent:BDMEventViewable];
     
     [self.currentRequest cancelExpirationTimer];
+    
+    NSError *presentError = nil;
     [self.displayAd presentOn:view
                clickableViews:clickableViews
                   adRendering:adRendering
                    controller:controller
-                        error:error];
+                        error:&presentError];
+    
+    if (presentError == nil) {
+        [self.middleware fulfillEvent:BDMEventContainerAdded];
+    } else {
+        [self.middleware rejectEvent:BDMEventContainerAdded code:presentError.code];
+    }
+    STK_SET_AUTORELASE_VAR(error, presentError);
 }
 
 - (BDMAuctionInfo *)auctionInfo {

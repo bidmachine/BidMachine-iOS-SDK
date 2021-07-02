@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, BDMEvent) {
     BDMEventAuction = 507,
     BDMEventAuctionExpired = 509,
     BDMEventAuctionDestroyed = 510,
+    BDMEventContainerAdded = 512,
     BDMEventHeaderBiddingNetworkInitializing = 701,
     BDMEventHeaderBiddingNetworkPreparing = 702,
     BDMEventHeaderBiddingAllHeaderBiddingNetworksPrepared = 703

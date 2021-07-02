@@ -108,7 +108,7 @@
     if (!self.displayAd.hasLoadedCreative) {
         return;
     }
-    
+    [self.middleware startEvent:BDMEventContainerAdded];
     [self.middleware startEvent:BDMEventImpression];
     [self.middleware startEvent:BDMEventClosed];
     [self.middleware startEvent:BDMEventClick];
@@ -119,6 +119,7 @@
     self.displayAd.delegate = self;
     
     [UIView animateWithDuration:0.3f animations:^{
+        [self.middleware fulfillEvent:BDMEventContainerAdded];
         [self.displayAd presentAd:rootViewController container:self];
     }];
 }
