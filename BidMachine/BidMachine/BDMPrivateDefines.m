@@ -24,6 +24,7 @@ NSString *NSStringFromBDMEvent(BDMEvent event) {
         case BDMEventAuction: return @"Auction"; break;
         case BDMEventAuctionExpired: return @"Auction Expired"; break;
         case BDMEventAuctionDestroyed: return @"Auction Destroyed"; break;
+        case BDMEventContainerAdded: return @"Ad object did added in container"; break;
         case BDMEventInitialisation: return @"Initialisation"; break;
         case BDMEventHeaderBiddingNetworkInitializing: return @"Header Bidding network initialisation"; break;
         case BDMEventHeaderBiddingNetworkPreparing: return @"Header Bidding network preparing"; break;
