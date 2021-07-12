@@ -74,7 +74,7 @@ class Target {
             let file = File(path),
             let framework = Framework(name, file.workDirectory),
             let spec = Spec(name, file.workDirectory),
-            let git = name.isFramework ? Git(absolute: rootPath) : Git(absolute: File.path(with: rootPath, Self.gitAdaptersDir))
+            let gitFile = name.isFramework ? Git(absolute: rootPath) : Git(absolute: File.path(with: rootPath, Self.gitAdaptersDir))
         else {
             Log.println("Can't create Target: \(name.rawValue)", .failure)
             return nil
@@ -82,7 +82,7 @@ class Target {
 
         self.framework = framework
         self.spec = spec
-        self.git = git
+        self.git = gitFile
         self.file = file
     }
     
@@ -101,8 +101,8 @@ extension Target {
 internal
 extension Target {
     
-//    func gitContainsTargetVersion(_ allowWarnings: Bool) -> Bool {
-////        self.git.existTag(self.spec.tagName)
-//    }
+    func gitContainsTargetVersion(_ version: String) -> Bool {
+        return self.git.existTag(version)
+    }
     
 }

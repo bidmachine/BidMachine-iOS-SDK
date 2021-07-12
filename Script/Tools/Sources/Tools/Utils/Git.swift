@@ -13,7 +13,7 @@ class Git {
             Log.println("Can't find git dir at path: \(String(describing: path))", .failure)
             return nil
         }
-        self.path = "sdf"
+        self.path = path
     }
 }
 

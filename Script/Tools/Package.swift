@@ -12,12 +12,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.4.0"),
-        .package(url: "https://github.com/kiliankoe/CLISpinner", from: "0.4.0")
+        .package(url: "https://github.com/kiliankoe/CLISpinner", from: "0.4.0"),
+        .package(url: "https://github.com/marmelroy/Zip.git", from: "2.1.1"),
+        .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0")
     ],
     targets: [
         .target(
             name: "Tools",
-            dependencies: ["ArgumentParser", "CLISpinner"])
+            dependencies: ["ArgumentParser", "CLISpinner", "Zip", "OctoKit"])
     ]
 )
 
