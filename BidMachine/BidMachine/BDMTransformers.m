@@ -76,7 +76,16 @@
 
 + (NSNumber *(^)(float))batteryLevel {
     return ^NSNumber *(float value) {
-        return value < 5 ? @(1) : @((value + 35) / 15);
+        if (value < 0) {
+            return @(value);
+        }
+        
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        formatter.maximumFractionDigits = 2;
+        formatter.roundingMode = NSNumberFormatterRoundHalfUp;
+        NSString *roundedString = [formatter stringFromNumber:@(value)];
+        return [formatter numberFromString:roundedString];
     };
 }
 

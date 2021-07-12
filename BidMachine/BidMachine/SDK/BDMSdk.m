@@ -102,6 +102,8 @@
         return;
     }
     
+    UIDevice.currentDevice.batteryMonitoringEnabled = YES;
+    
     // Start location manager
     if (STKLocation.locationTrackingEnabled) {
         [STKLocation startMonitoring];
