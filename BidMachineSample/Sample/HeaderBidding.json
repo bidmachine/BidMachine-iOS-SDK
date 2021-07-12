@@ -39,22 +39,25 @@
         }
     },
     {
-        "network": "vungle",
+        "network": "vungle_sdk",
         "network_class": "BDMVungleAdNetwork",
         "params" :
         {
-            "app_id": "5a35a75845eaab51250070a5"
+            "app_id": "60e57059fe8e30cae2e04bca"
         },
         "ad_units": [
             {
                 "format": "interstitial",
                 "params" :
                 {
-                    "placement_id": "95298PL39048"
-                },
-                "custom_params" :
+                    "placement_id": "IOS_INTERSTITIAL_NON_SKIPPABLE-4521981"
+                }
+            },
+            {
+                "format": "rewarded_video",
+                "params" :
                 {
-                    "custom_field": "unknown"
+                    "placement_id": "IOS_INTERSTITIAL_NON_SKIPPABLE-4521981"
                 }
             }
         ]
