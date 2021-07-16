@@ -302,6 +302,8 @@
     NSArray<BDMAdNetworkConfiguration *> *networkConfigurations = nil;
     if (configs.count) {
         networkConfigurations = [self.uniqServerNetworkConfigurations bdm_configurationConcat:configs];
+    } else if (configs != nil) {
+        networkConfigurations = self.uniqServerNetworkConfigurations;
     } else {
         networkConfigurations = self.networkConfigurations;
     }
